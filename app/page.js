@@ -10,15 +10,8 @@ const GET_HOME_PAGE = gql`
   }
 `;
 
-type HomePageQuery = {
-  page: {
-    title: string;
-    content: string;
-  } | null;
-};
-
 export default async function Home() {
-  const { data } = await client.query<HomePageQuery>({
+  const { data } = await client.query({
     query: GET_HOME_PAGE,
   });
 
@@ -77,3 +70,4 @@ export default async function Home() {
     </main>
   );
 }
+
