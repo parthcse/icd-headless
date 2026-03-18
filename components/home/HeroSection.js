@@ -1,48 +1,73 @@
-import Image from "next/image";
+"use client";
+
+import { motion } from "framer-motion";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] },
+  }),
+};
 
 export default function HeroSection() {
   return (
-    <section className="relative flex min-h-[70vh] items-center justify-between gap-10 py-16 sm:py-20 lg:py-24">
-      <div className="relative z-10 max-w-xl space-y-6">
-        <p className="text-sm font-semibold uppercase tracking-[0.3em] text-orange-400">
-          Digital Creative Agency
-        </p>
-        <h1 className="text-3xl font-semibold leading-tight sm:text-4xl lg:text-5xl">
-          Build, Grow, &amp; Scale
-          <span className="block text-orange-400">Your Digital Presence</span>
-        </h1>
-        <p className="max-w-md text-sm text-zinc-300 sm:text-base">
-          We help brands design, develop, and launch high‑converting digital experiences across web,
-          e‑commerce, and marketing.
-        </p>
-        <div className="flex flex-wrap items-center gap-4">
-          <button className="rounded-full bg-orange-500 px-6 py-2.5 text-sm font-semibold uppercase tracking-wide text-black transition hover:bg-orange-400">
-            Get a Free Quote
-          </button>
-          <button className="text-sm font-semibold text-zinc-200 hover:text-white">
-            View Success Stories
-          </button>
-        </div>
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-[72px]">
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/70 to-black" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(249,115,22,0.15),transparent_60%)]" />
       </div>
 
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,_rgba(255,115,68,0.35),transparent_60%),radial-gradient(circle_at_bottom,_rgba(15,23,42,0.9),#020617)]" />
+      <div className="mx-auto max-w-[1320px] w-full px-4 sm:px-6 lg:px-8 py-20 lg:py-28 text-center">
+        <motion.p
+          custom={0}
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          className="text-[13px] font-semibold uppercase tracking-[0.35em] text-orange-400 mb-5"
+        >
+          Full Service Digital Agency
+        </motion.p>
 
-      <div className="relative hidden h-[340px] w-[320px] shrink-0 overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900/60 shadow-[0_24px_80px_rgba(0,0,0,0.8)] sm:block lg:h-[380px] lg:w-[360px]">
-        <Image
-          src="/images/hero-agency.jpg"
-          alt="Creative digital agency team working together"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-x-4 bottom-4 rounded-2xl bg-black/70 p-4 text-xs text-zinc-100 backdrop-blur">
-          <p className="font-semibold tracking-wide">Full‑Funnel Growth Partner</p>
-          <p className="mt-1 text-[11px] text-zinc-300">
-            Strategy, design, development, and performance marketing for brands that want to scale.
-          </p>
-        </div>
+        <motion.h1
+          custom={1}
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] font-bold leading-[1.1] tracking-tight"
+        >
+          Build, Grow, &amp; Scale
+        </motion.h1>
+
+        <motion.p
+          custom={2}
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          className="mt-4 text-lg sm:text-xl md:text-2xl text-zinc-300 font-light max-w-2xl mx-auto"
+        >
+          Your Ecommerce Growth &amp; Digital
+        </motion.p>
+
+        <motion.div
+          custom={3}
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          className="mt-8 flex flex-wrap items-center justify-center gap-4"
+        >
+          <a
+            href="/contact"
+            className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-7 py-3 text-[14px] font-semibold text-black hover:bg-orange-400 transition-all duration-300 hover:shadow-[0_0_24px_rgba(249,115,22,0.4)]"
+          >
+            Get Started Now
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </motion.div>
       </div>
     </section>
   );
 }
-

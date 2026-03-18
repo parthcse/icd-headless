@@ -1,3 +1,6 @@
+import { Suspense } from "react";
+import Header from "../components/layout/Header";
+import Footer from "../components/layout/Footer";
 import HeroSection from "../components/home/HeroSection";
 import ServicesSection from "../components/home/ServicesSection";
 import SuccessStoriesSection from "../components/home/SuccessStoriesSection";
@@ -7,23 +10,34 @@ import TrustedClientsSection from "../components/home/TrustedClientsSection";
 import LatestNewsSection from "../components/home/LatestNewsSection";
 import GetQuoteSection from "../components/home/GetQuoteSection";
 import WeServeSection from "../components/home/WeServeSection";
-import FooterSection from "../components/home/FooterSection";
+import SuccessStoriesSkeleton from "../components/home/skeletons/SuccessStoriesSkeleton";
+import TestimonialsSkeleton from "../components/home/skeletons/TestimonialsSkeleton";
+import BlogSkeleton from "../components/home/skeletons/BlogSkeleton";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black text-white">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <>
+      <Header />
+      <main className="min-h-screen bg-black text-white overflow-x-hidden">
         <HeroSection />
-        <ServicesSection />
-        <SuccessStoriesSection />
-        <WhyChooseUsSection />
-        <HappyCustomersSection />
-        <TrustedClientsSection />
-        <LatestNewsSection />
-        <GetQuoteSection />
-        <WeServeSection />
-      </div>
-      <FooterSection />
-    </main>
+        <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
+          <ServicesSection />
+          <Suspense fallback={<SuccessStoriesSkeleton />}>
+            <SuccessStoriesSection />
+          </Suspense>
+          <WhyChooseUsSection />
+          <Suspense fallback={<TestimonialsSkeleton />}>
+            <HappyCustomersSection />
+          </Suspense>
+          <TrustedClientsSection />
+          <Suspense fallback={<BlogSkeleton />}>
+            <LatestNewsSection />
+          </Suspense>
+          <GetQuoteSection />
+          <WeServeSection />
+        </div>
+      </main>
+      <Footer />
+    </>
   );
 }
