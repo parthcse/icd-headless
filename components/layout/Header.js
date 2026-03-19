@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
@@ -17,13 +18,16 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/5">
-      <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8 flex items-center justify-between h-[72px]">
+      <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8 flex items-center justify-between h-[76px]">
         <Link href="/" className="flex items-center gap-2 shrink-0">
-          <span className="text-xl font-bold tracking-tight text-white">
-            <span className="text-orange-500">ICE</span>CUBE
-          </span>
-          <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-400 hidden sm:block">
-            Digital
+          <span className="relative w-[136px] h-8">
+            <Image
+              src="/images/logo.png"
+              alt="Icecube Digital"
+              fill
+              className="object-contain"
+              priority
+            />
           </span>
         </Link>
 
@@ -32,7 +36,7 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-[14px] font-medium text-zinc-300 hover:text-orange-400 transition-colors duration-200"
+              className="text-[13px] font-medium text-zinc-300 hover:text-orange-400 transition-colors duration-200"
             >
               {link.label}
             </Link>
@@ -42,7 +46,7 @@ export default function Header() {
         <div className="flex items-center gap-4">
           <Link
             href="/contact"
-            className="hidden sm:inline-flex items-center gap-2 rounded-full bg-orange-500 px-5 py-2.5 text-[13px] font-semibold text-black hover:bg-orange-400 transition-colors duration-200"
+            className="hidden sm:inline-flex items-center gap-2 rounded-full bg-orange-500 px-5 py-2.5 text-[13px] font-semibold text-black hover:bg-orange-400 transition-colors duration-200 shadow-[0_0_0_rgba(249,115,22,0)] hover:shadow-[0_0_24px_rgba(249,115,22,0.35)]"
           >
             Contact Us
           </Link>

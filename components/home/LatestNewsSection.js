@@ -90,12 +90,7 @@ export default async function LatestNewsSection() {
                     <h3 className="text-[15px] font-semibold text-white leading-snug group-hover:text-orange-400 transition-colors duration-200 line-clamp-2">
                       {post.title}
                     </h3>
-                    <span className="mt-3 inline-flex items-center gap-1.5 text-[13px] font-semibold text-orange-400 group-hover:text-orange-300 transition-colors">
-                      Read More
-                      <svg className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </span>
+                    <div className="mt-4 h-1 w-10 rounded-full bg-orange-500/90" />
                   </div>
                 </article>
               </Link>

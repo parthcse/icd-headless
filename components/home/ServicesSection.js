@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Reveal from "../animations/Reveal";
+import Image from "next/image";
 
 const tabs = [
   {
@@ -62,32 +63,39 @@ export default function ServicesSection() {
   return (
     <Reveal>
       <section className="py-20 lg:py-28">
-        <div className="text-center mb-12">
+        <div className="mb-12">
           <p className="text-[12px] font-semibold uppercase tracking-[0.35em] text-orange-400 mb-3">
-            What We Do
+            Creative Services
           </p>
           <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold leading-tight">
             Creative Services
           </h2>
-          <p className="mt-4 text-zinc-400 text-[15px] max-w-2xl mx-auto leading-relaxed">
-            We offer a full spectrum of digital services to help your brand thrive online — from stunning websites to scalable ecommerce and growth marketing.
-          </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10">
+        <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-10">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`inline-flex items-center gap-2 rounded-full px-4 sm:px-5 py-2.5 text-[13px] font-medium transition-all duration-300 border ${
+              className={`relative flex flex-col items-center justify-center gap-3 rounded-2xl px-4 sm:px-5 py-4 text-center transition-all duration-300 border ${
                 activeTab === tab.id
-                  ? "bg-orange-500 text-black border-orange-500"
-                  : "bg-transparent text-zinc-300 border-zinc-700 hover:border-orange-500/50 hover:text-white"
+                  ? "bg-zinc-900/60 border-orange-500/60"
+                  : "bg-transparent border-zinc-800 hover:border-orange-500/40"
               }`}
             >
-              {tab.icon}
-              <span className="hidden sm:inline">{tab.label}</span>
-              <span className="sm:hidden">{tab.label.split(" ")[0]}</span>
+              <span
+                className={`w-10 h-10 rounded-xl flex items-center justify-center ${
+                  activeTab === tab.id ? "bg-orange-500/15 text-orange-400" : "bg-zinc-900/40 text-zinc-300"
+                }`}
+              >
+                {tab.icon}
+              </span>
+              <span className="text-[12px] font-semibold text-zinc-200 leading-tight">
+                {tab.label}
+              </span>
+              {activeTab === tab.id ? (
+                <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 h-1.5 w-10 rounded-full bg-orange-500" />
+              ) : null}
             </button>
           ))}
         </div>
@@ -103,7 +111,7 @@ export default function ServicesSection() {
           >
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               <div>
-                <h3 className="text-2xl sm:text-3xl font-bold mb-4">
+                <h3 className="text-2xl sm:text-3xl font-bold mb-4 text-white">
                   {activeService.heading}
                 </h3>
                 <p className="text-zinc-400 text-[15px] leading-relaxed mb-6">
@@ -132,15 +140,13 @@ export default function ServicesSection() {
                 </a>
               </div>
               <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-zinc-900">
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-transparent" />
-                <div className="absolute inset-0 flex items-center justify-center text-zinc-600">
-                  <div className="text-center">
-                    <div className="w-16 h-16 mx-auto mb-3 rounded-2xl bg-zinc-800/80 flex items-center justify-center text-orange-400">
-                      {activeService.icon}
-                    </div>
-                    <p className="text-xs text-zinc-500">Service Image</p>
-                  </div>
-                </div>
+                <Image
+                  src={`/images/services/${activeTab}.jpg`}
+                  alt=""
+                  fill
+                  className="object-cover opacity-40"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/15 via-transparent to-transparent" />
               </div>
             </div>
           </motion.div>

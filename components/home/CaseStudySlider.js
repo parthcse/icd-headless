@@ -45,7 +45,7 @@ export default function CaseStudySlider({ items = [] }) {
               <motion.article
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.3 }}
-                className="group/card rounded-2xl border border-zinc-800 bg-zinc-950/70 overflow-hidden h-full"
+                className="group/card relative rounded-2xl border border-zinc-800 bg-zinc-950/70 overflow-hidden h-full"
               >
                 <div className="relative aspect-[16/10] overflow-hidden bg-zinc-900">
                   {imgSrc ? (
@@ -64,23 +64,11 @@ export default function CaseStudySlider({ items = [] }) {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 </div>
                 <div className="p-5">
-                  <h3 className="text-[16px] font-semibold mb-2 text-white">
-                    {item.title}
-                  </h3>
+                  <h3 className="text-[15px] font-semibold mb-2 text-white">{item.title}</h3>
                   {desc && (
-                    <p className="text-[13px] text-zinc-400 leading-relaxed line-clamp-3">
-                      {desc}
-                    </p>
+                    <p className="text-[13px] text-zinc-400 leading-relaxed line-clamp-3">{desc}</p>
                   )}
-                  <a
-                    href={item.uri || "#"}
-                    className="mt-4 inline-flex items-center gap-1.5 text-[13px] font-semibold text-orange-400 hover:text-orange-300 transition-colors"
-                  >
-                    Read More
-                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </a>
+                  <div className="mt-4 h-1 w-10 rounded-full bg-orange-500/90" />
                 </div>
               </motion.article>
             </SwiperSlide>
