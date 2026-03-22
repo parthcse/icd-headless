@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import Header from "../components/layout/Header";
+import HeroHeaderBackground from "../components/layout/HeroHeaderBackground";
 import Footer from "../components/layout/Footer";
 import HeroSection from "../components/home/HeroSection";
 import ServicesSection from "../components/home/ServicesSection";
@@ -17,9 +18,14 @@ import BlogSkeleton from "../components/home/skeletons/BlogSkeleton";
 export default function Home() {
   return (
     <>
-      <Header />
-      <main className="min-h-screen bg-black text-white overflow-x-hidden">
+      {/* One continuous background for fixed header + hero (see HeroHeaderBackground) */}
+      <div className="relative isolate">
+        <HeroHeaderBackground />
+        <Header />
         <HeroSection />
+      </div>
+
+      <main className="relative z-10 min-h-screen w-full min-w-0 bg-black text-white">
         <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
           <ServicesSection />
           <Suspense fallback={<SuccessStoriesSkeleton />}>

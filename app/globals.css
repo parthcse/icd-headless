@@ -5,12 +5,41 @@
   --color-foreground: #ededed;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-gilroy: "Gilroy", "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-gilroy-bold: "Gilroy-Bold", "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/*
+  Prevent horizontal overflow without nesting a second scroll container.
+  overflow-x-hidden on a child (e.g. <main>) can force overflow-y: auto on that
+  element and show a duplicate scrollbar next to the document.
+*/
+:root {
+  /* Figma: 1920px frame; main content width ~1400px */
+  --site-max: 1400px;
+  /* Fixed header clearance = vertical padding + logo row */
+  --header-offset: 5rem; /* ~80px: py-4 + h-12 logo */
+  --header-offset-lg: 7.6875rem; /* 123px: py-[30px] + 63px logo */
+}
+
+html {
+  overflow-x: clip;
+  max-width: 100%;
+  scroll-behavior: smooth;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-offset: var(--header-offset-lg);
+  }
 }
 
 body {
   background: #000;
   color: #ededed;
   font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 /* Swiper pagination bullets */
@@ -24,12 +53,70 @@ body {
   background: #f97316 !important;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
 /* Hide scrollbar on sliders */
 .swiper-wrapper {
   -webkit-overflow-scrolling: touch;
+}
+
+/* Gilroy font classes */
+.font-gilroy {
+  font-family: var(--font-gilroy);
+}
+
+.font-gilroy-bold {
+  font-family: var(--font-gilroy-bold);
+  font-weight: 700;
+}
+
+.font-gilroy-light {
+  font-family: var(--font-gilroy);
+  font-weight: 300;
+}
+
+.font-gilroy-medium {
+  font-family: var(--font-gilroy);
+  font-weight: 500;
+}
+
+/*
+ * Quote CTA only — use class `icd-quote-cta` on components/ui/QuoteCTAButton.
+ * Holographic-style shine (inspired by rotating gradient beam) — no scale, no shadow.
+ */
+.icd-quote-cta {
+  box-shadow: none !important;
+  transform: none;
+  transition:
+    border-color 0.35s ease,
+    filter 0.2s ease;
+}
+
+.icd-quote-cta:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/*
+ * Oversized diagonal layer + narrow bright band; on hover the beam sweeps (translateY)
+ * like a holographic card — colors tuned to orange CTA (#f17e3f), not cyan.
+ */
+.icd-quote-cta__arrow-wrap {
+  width: 1.125rem;
+  height: 1.125rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .icd-quote-cta__arrow-wrap {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+/* All arrow motion is handled via Framer Motion in the component; keep reduced-motion fallback simple. */
+@media (prefers-reduced-motion: reduce) {
+  .icd-quote-cta__arrow-wrap svg {
+    transition: none !important;
+  }
 }
