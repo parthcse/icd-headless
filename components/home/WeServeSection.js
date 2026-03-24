@@ -27,7 +27,8 @@ export default function WeServeSection() {
   return (
     <Reveal>
       <section className="section-pad">
-        <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-[40px]">
+        <div className="site-gutter">
+          <div className="site-container">
           <div className="mb-10 lg:mb-14">
             <h2 className="flex flex-col">
               <span className="section-heading-light">Countries</span>
@@ -42,10 +43,11 @@ export default function WeServeSection() {
                 className="flex items-center gap-2 bg-[#151515] px-[20px] py-[10px]"
               >
                 <div className="h-[18px] w-[18px] shrink-0 rounded-full bg-[#3a3a3a]" aria-hidden />
-                <span className="font-gilroy text-[20px] text-white">{name}</span>
+                <span className="text-[20px] text-white">{name}</span>
               </div>
             ))}
           </div>
+        </div>
         </div>
       </section>
     </Reveal>

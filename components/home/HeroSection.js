@@ -11,35 +11,58 @@ const fadeUp = {
   }),
 };
 
+// HeroSection.js - Natural Height & Seamless Background
 export default function HeroSection() {
   return (
-    <section className="relative z-10 w-full text-white">
-      <div className="relative mx-auto flex w-full max-w-[1400px] flex-col items-center justify-center px-4 pb-10 pt-[calc(var(--header-offset)+1rem)] sm:px-6 lg:px-[40px] lg:pb-[clamp(2rem,4vh,3.75rem)] lg:pt-[calc(var(--header-offset)+clamp(0.5rem,2vh,2rem))] min-h-[min(100svh,920px)] lg:min-h-[min(100vh,850px)]">
-        <div className="flex w-full flex-col items-center gap-[clamp(1.5rem,3vh,3.75rem)]">
-          <div className="flex w-full flex-col items-center gap-[clamp(1.5rem,3vh,3.75rem)] border-b border-[#272727] pb-[clamp(1.5rem,3vh,3.75rem)]">
-            <div className="flex w-full items-center justify-center border-b border-[#272727] pb-[clamp(1rem,2.5vh,2.5rem)]">
-              <div className="flex flex-col items-center text-center">
-                <motion.h1 custom={0} variants={fadeUp} initial="hidden" animate="visible" className="font-gilroy-bold text-[clamp(2.25rem,6.5vw,9.375rem)] leading-[1.02] tracking-[-0.02em]">
-                  Build, Grow, &amp; Scale
-                </motion.h1>
-                <motion.p custom={1} variants={fadeUp} initial="hidden" animate="visible" className="mt-1 font-gilroy-light text-[clamp(1.125rem,2.8vw,3.75rem)] leading-[1.15] lg:leading-[1.6]">
-                  Your eCommerce Store With Experts
-                </motion.p>
-              </div>
-            </div>
-            <motion.p custom={2} variants={fadeUp} initial="hidden" animate="visible" className="font-gilroy max-w-[872px] text-center text-[clamp(1.125rem,2.2vw,2.5rem)] leading-snug">
-              Your Success, Our Strategy
-            </motion.p>
-          </div>
+    <section className="relative w-full overflow-hidden bg-black text-white">
+      {/* Background graphic: Now covers the entire section including the area under the header */}
+      <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
+        <div
+          className="h-full w-full bg-cover bg-center bg-no-repeat opacity-60"
+          style={{ backgroundImage: "url(/images/hero-bg.png)" }}
+        />
+      </div>
 
-          <motion.div custom={3} variants={fadeUp} initial="hidden" animate="visible" className="flex w-full max-w-[1100px] flex-col items-center gap-6 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
-            <p className="font-gilroy text-center text-[clamp(0.9375rem,1.5vw,1.25rem)] leading-relaxed text-zinc-200 lg:max-w-[567px] lg:text-left lg:leading-8">
-              We design, develop, and market high-performing eCommerce websites that drive real growth.
-            </p>
-            <QuoteCTAButton className="w-full sm:w-auto px-6 py-3.5 sm:px-[34px] sm:py-[18px] text-[16px] lg:text-[20px]">
-              Get a free consultation
-            </QuoteCTAButton>
-          </motion.div>
+      <div className="site-gutter relative z-10">
+        {/* Change: Removed min-h. 
+            Added pt-32 (lg:pt-48) to push content down so it doesn't overlap the absolute header.
+        */}
+        <div className="site-container flex w-full flex-col items-center justify-center pb-20 pt-32 lg:pb-24 lg:pt-52">
+          
+          <div className="flex w-full flex-col items-center">
+            
+            {/* Top Border Line Section */}
+            <div className="flex w-full flex-col items-center border-b border-white/10 pb-10 lg:pb-16">
+              
+              {/* Heading Group */}
+              <div className="flex w-full items-center justify-center border-b border-white/10 pb-10 lg:pb-12">
+                <div className="flex flex-col items-center text-center">
+                  <motion.h1 className="font-bold text-[clamp(2.5rem,6vw,5rem)] leading-[1.1] tracking-tight">
+                    Build, Grow, &amp; Scale
+                  </motion.h1>
+                  <motion.p className="mt-4 text-[clamp(1.25rem,2.5vw,2.25rem)] font-light text-white/80">
+                    Your eCommerce Store With Experts
+                  </motion.p>
+                </div>
+              </div>
+
+              {/* Secondary Heading */}
+              <motion.p className="mt-10 text-center text-[clamp(1.5rem,3vw,2.75rem)] font-medium text-white lg:mt-12">
+                Your Success, Our Strategy
+              </motion.p>
+            </div>
+
+            {/* Bottom Content Area */}
+            <motion.div className="mt-10 flex w-full max-w-[1100px] flex-col items-center justify-between gap-8 lg:mt-16 lg:flex-row">
+              <p className="max-w-[580px] text-center text-[18px] leading-relaxed text-zinc-400 lg:text-left">
+                We design, develop, and market high-performing eCommerce websites that drive real growth.
+              </p>
+              <QuoteCTAButton className="w-full sm:w-auto">
+                Get a free consultation
+              </QuoteCTAButton>
+            </motion.div>
+
+          </div>
         </div>
       </div>
     </section>

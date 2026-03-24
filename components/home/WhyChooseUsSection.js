@@ -36,7 +36,8 @@ const stats = [
 export default function WhyChooseUsSection() {
   return (
     <section className="border-b border-[#202020] section-pad text-white">
-      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-[40px]">
+      <div className="site-gutter">
+        <div className="site-container">
         <Reveal>
           <div className="mx-auto max-w-[1100px] text-center">
             <p className="section-heading-light">Count On The Recognized Leader</p>
@@ -55,7 +56,7 @@ export default function WhyChooseUsSection() {
                   {stat.icon}
                 </span>
                 <div
-                  className="w-full [&_p:first-of-type]:!text-[clamp(2.25rem,5.5vw,5.625rem)] [&_p:first-of-type]:!leading-[1.05] [&_p:first-of-type]:!font-bold [&_p:nth-of-type(2)]:!mt-3 [&_p:nth-of-type(2)]:!text-[clamp(1.125rem,2.5vw,2.5rem)] [&_p:nth-of-type(2)]:!font-gilroy [&_p:nth-of-type(2)]:!text-white [&_p:nth-of-type(2)]:!leading-tight"
+                  className="w-full [&_p:first-of-type]:!text-[clamp(2.25rem,5.5vw,5.625rem)] [&_p:first-of-type]:!leading-[1.05] [&_p:first-of-type]:!font-bold [&_p:nth-of-type(2)]:!mt-3 [&_p:nth-of-type(2)]:!text-[clamp(1.125rem,2.5vw,2.5rem)] [&_p:nth-of-type(2)]:!text-white [&_p:nth-of-type(2)]:!leading-tight"
                 >
                   <Counter
                     end={Number.parseInt(stat.number, 10)}
@@ -68,12 +69,13 @@ export default function WhyChooseUsSection() {
                   className="mt-6 h-px w-full max-w-[280px] bg-gradient-to-r from-transparent via-[#f17e3f] to-transparent md:max-w-none"
                   aria-hidden
                 />
-                <p className="font-gilroy mt-6 max-w-[520px] text-[clamp(0.9375rem,1.2vw,1.125rem)] leading-relaxed text-zinc-400">
+                <p className="mt-6 max-w-[520px] text-[clamp(0.9375rem,1.2vw,1.125rem)] leading-relaxed text-zinc-400">
                   {stat.desc}
                 </p>
               </article>
             </Reveal>
           ))}
+        </div>
         </div>
       </div>
     </section>

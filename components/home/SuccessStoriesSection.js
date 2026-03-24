@@ -26,7 +26,8 @@ export default async function SuccessStoriesSection() {
   if (fetchError) {
     return (
       <section className="section-pad border-b border-[#202020]" aria-labelledby="success-stories-heading">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-[40px]">
+        <div className="site-gutter">
+          <div className="site-container">
           <Reveal>
             <ErrorState
               title="Could not load success stories"
@@ -34,6 +35,7 @@ export default async function SuccessStoriesSection() {
               className="border-[#202020] bg-black/40"
             />
           </Reveal>
+          </div>
         </div>
       </section>
     );
@@ -41,7 +43,8 @@ export default async function SuccessStoriesSection() {
 
   return (
     <section className="section-pad border-b border-[#202020]" aria-labelledby="success-stories-heading">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-[40px]">
+      <div className="site-gutter">
+        <div className="site-container">
         <Reveal>
           <header className="mb-10 lg:mb-14" id="success-stories-heading">
             <h2 className="section-heading-light">Our Client</h2>
@@ -62,6 +65,7 @@ export default async function SuccessStoriesSection() {
             </p>
           )}
         </Reveal>
+        </div>
       </div>
     </section>
   );

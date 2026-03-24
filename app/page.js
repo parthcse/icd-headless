@@ -1,6 +1,4 @@
 import { Suspense } from "react";
-import Header from "../components/layout/Header";
-import HeroHeaderBackground from "../components/layout/HeroHeaderBackground";
 import Footer from "../components/layout/Footer";
 import HeroSection from "../components/home/HeroSection";
 import ServicesSection from "../components/home/ServicesSection";
@@ -18,12 +16,7 @@ import BlogSkeleton from "../components/home/skeletons/BlogSkeleton";
 export default function Home() {
   return (
     <>
-      {/* Shared bg image covers both fixed header and hero */}
-      <div className="relative isolate">
-        <HeroHeaderBackground />
-        <Header />
-        <HeroSection />
-      </div>
+      <HeroSection />
 
       <main className="relative z-10 w-full min-w-0 bg-black text-white">
         <ServicesSection />

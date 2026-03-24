@@ -7,7 +7,8 @@ export default function TrustedClientsSection() {
   return (
     <Reveal>
       <section className="section-pad border-b border-[#202020]">
-        <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-[40px]">
+        <div className="site-gutter">
+          <div className="site-container">
           <div className="mb-10 lg:mb-14">
             <h2 className="flex flex-col">
               <span className="section-heading-light">Our</span>
@@ -35,6 +36,7 @@ export default function TrustedClientsSection() {
               );
             })}
           </div>
+        </div>
         </div>
       </section>
     </Reveal>

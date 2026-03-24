@@ -16,11 +16,13 @@ export default async function HappyCustomersSection() {
   } catch (e) {
     return (
       <section className="border-b border-[#202020] section-pad text-white">
-        <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-[40px]">
+        <div className="site-gutter">
+          <div className="site-container">
           <ErrorState
             title="Could not load testimonials"
             message={e?.message || "Please try again later."}
           />
+          </div>
         </div>
       </section>
     );
@@ -28,7 +30,8 @@ export default async function HappyCustomersSection() {
 
   return (
     <section className="border-b border-[#202020] section-pad text-white">
-      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-[40px]">
+      <div className="site-gutter">
+        <div className="site-container">
         <Reveal>
           <div className="mx-auto max-w-[1100px] text-center">
             <p className="section-heading-light">Kind Words from Our</p>
@@ -43,6 +46,7 @@ export default async function HappyCustomersSection() {
         <Reveal delayMs={140} className="mt-10 flex justify-center">
           <QuoteCTAButton href="/testimonials">View More Reviews</QuoteCTAButton>
         </Reveal>
+        </div>
       </div>
     </section>
   );

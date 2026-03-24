@@ -37,14 +37,15 @@ export default async function LatestNewsSection() {
   return (
     <Reveal>
       <section className="section-pad border-b border-[#202020]">
-        <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-[40px]">
+        <div className="site-gutter">
+          <div className="site-container">
           <div className="mb-10 flex flex-col gap-8 lg:mb-14 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <h2 className="flex flex-col">
                 <span className="section-heading-light">Our Blog</span>
                 <span className="section-heading-bold">Latest News</span>
               </h2>
-              <p className="mt-6 max-w-2xl font-gilroy text-[24px] leading-snug text-[#bbb]">
+              <p className="mt-6 max-w-2xl text-[24px] leading-snug text-[#bbb]">
                 Read our latest news to get updated with markets
               </p>
             </div>
@@ -75,11 +76,11 @@ export default async function LatestNewsSection() {
                       ) : null}
                     </div>
                     <div className="flex flex-col gap-3 p-6 lg:p-8">
-                      <h3 className="font-gilroy-bold text-[28px] leading-tight text-white group-hover:text-[#f17e3f]">
+                      <h3 className="font-bold text-[28px] leading-tight text-white group-hover:text-[#f17e3f]">
                         {post.title}
                       </h3>
                       {date ? (
-                        <p className="font-gilroy text-[16px] text-[#bbb]">{date}</p>
+                        <p className="text-[16px] text-[#bbb]">{date}</p>
                       ) : null}
                     </div>
                   </article>
@@ -87,6 +88,7 @@ export default async function LatestNewsSection() {
               );
             })}
           </div>
+        </div>
         </div>
       </section>
     </Reveal>

@@ -34,7 +34,8 @@ export default function GetQuoteSection() {
 
   return (
     <section className="section-pad border-b border-[#202020]">
-      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-[40px]">
+      <div className="site-gutter">
+        <div className="site-container">
         <div className="mb-10 lg:mb-14">
           <h2 className="flex flex-col">
             <span className="section-heading-light">Let&apos;s Work Together</span>
@@ -53,8 +54,8 @@ export default function GetQuoteSection() {
               <div className="flex items-start gap-4">
                 <MailIcon />
                 <div>
-                  <p className="font-gilroy-bold text-lg text-white">Email Us</p>
-                  <a href="mailto:hello@icecubedigital.com" className="mt-1 block font-gilroy text-xl text-zinc-300 hover:text-[#f17e3f]">
+                  <p className="font-bold text-lg text-white">Email Us</p>
+                  <a href="mailto:hello@icecubedigital.com" className="mt-1 block text-xl text-zinc-300 hover:text-[#f17e3f]">
                     hello@icecubedigital.com
                   </a>
                 </div>
@@ -64,8 +65,8 @@ export default function GetQuoteSection() {
               <div className="flex items-start gap-4">
                 <PhoneIcon />
                 <div>
-                  <p className="font-gilroy-bold text-lg text-white">Sales &amp; Support</p>
-                  <a href="tel:+919106060593" className="mt-1 block font-gilroy text-xl text-zinc-300 hover:text-[#f17e3f]">
+                  <p className="font-bold text-lg text-white">Sales &amp; Support</p>
+                  <a href="tel:+919106060593" className="mt-1 block text-xl text-zinc-300 hover:text-[#f17e3f]">
                     +91 9106060593
                   </a>
                 </div>
@@ -75,8 +76,8 @@ export default function GetQuoteSection() {
               <div className="flex items-start gap-4">
                 <UserIcon />
                 <div>
-                  <p className="font-gilroy-bold text-lg text-white">HR</p>
-                  <a href="tel:+916352955623" className="mt-1 block font-gilroy text-xl text-zinc-300 hover:text-[#f17e3f]">
+                  <p className="font-bold text-lg text-white">HR</p>
+                  <a href="tel:+916352955623" className="mt-1 block text-xl text-zinc-300 hover:text-[#f17e3f]">
                     +91 6352955623
                   </a>
                 </div>
@@ -98,7 +99,7 @@ export default function GetQuoteSection() {
                   type="text"
                   required
                   placeholder="Full Name"
-                  className="w-full border border-[#272727] bg-transparent px-[30px] py-[20px] font-gilroy text-[20px] text-white placeholder:text-zinc-500 focus:border-[#f17e3f] focus:outline-none"
+                  className="w-full border border-[#272727] bg-transparent px-[30px] py-[20px] text-[20px] text-white placeholder:text-zinc-500 focus:border-[#f17e3f] focus:outline-none"
                 />
               </label>
               <label className="block">
@@ -108,7 +109,7 @@ export default function GetQuoteSection() {
                   type="email"
                   required
                   placeholder="Email"
-                  className="w-full border border-[#272727] bg-transparent px-[30px] py-[20px] font-gilroy text-[20px] text-white placeholder:text-zinc-500 focus:border-[#f17e3f] focus:outline-none"
+                  className="w-full border border-[#272727] bg-transparent px-[30px] py-[20px] text-[20px] text-white placeholder:text-zinc-500 focus:border-[#f17e3f] focus:outline-none"
                 />
               </label>
             </div>
@@ -119,13 +120,14 @@ export default function GetQuoteSection() {
                 required
                 rows={6}
                 placeholder="Message"
-                className="h-[260px] w-full resize-none border border-[#272727] bg-transparent px-[30px] py-[20px] font-gilroy text-[20px] text-white placeholder:text-zinc-500 focus:border-[#f17e3f] focus:outline-none"
+                className="h-[260px] w-full resize-none border border-[#272727] bg-transparent px-[30px] py-[20px] text-[20px] text-white placeholder:text-zinc-500 focus:border-[#f17e3f] focus:outline-none"
               />
             </label>
             <QuoteCTAButton href="#" onClick={handleSendClick} className="w-full justify-center sm:w-auto">
               Send Message
             </QuoteCTAButton>
           </form>
+        </div>
         </div>
       </div>
     </section>

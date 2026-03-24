@@ -138,7 +138,8 @@ export default function ServicesSection() {
   return (
     <Reveal>
       <section className="section-pad border-b border-[#202020]">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-[40px]">
+        <div className="site-gutter">
+          <div className="site-container">
           <header className="mb-8 lg:mb-12">
             <h2 className="section-heading-light">We Provide The Full Stack of</h2>
             <h2 className="section-heading-bold mt-1">Creative Services</h2>
@@ -199,6 +200,7 @@ export default function ServicesSection() {
               </motion.div>
             </AnimatePresence>
           </div>
+        </div>
         </div>
       </section>
     </Reveal>
