@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Reveal from "../animations/Reveal";
 import ErrorState from "../common/ErrorState";
+import QuoteCTAButton from "../ui/QuoteCTAButton";
 import client from "../../lib/apollo-client";
 import { RECENT_POSTS_QUERY } from "../../graphql/posts";
 
@@ -35,67 +36,57 @@ export default async function LatestNewsSection() {
 
   return (
     <Reveal>
-      <section className="py-20 lg:py-28">
-        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-12">
-          <div>
-            <p className="text-[12px] font-semibold uppercase tracking-[0.35em] text-orange-400 mb-3">
-              Our Blog
-            </p>
-            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold leading-tight">
-              Latest News
-            </h2>
-            <p className="mt-4 text-zinc-400 text-[15px] max-w-xl leading-relaxed">
-              Perspectives from our team on design, development, and growth for modern brands.
-            </p>
+      <section className="section-pad border-b border-[#202020]">
+        <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-[40px]">
+          <div className="mb-10 flex flex-col gap-8 lg:mb-14 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <h2 className="flex flex-col">
+                <span className="section-heading-light">Our Blog</span>
+                <span className="section-heading-bold">Latest News</span>
+              </h2>
+              <p className="mt-6 max-w-2xl font-gilroy text-[24px] leading-snug text-[#bbb]">
+                Read our latest news to get updated with markets
+              </p>
+            </div>
+            <QuoteCTAButton href="/blog" className="shrink-0 self-start lg:self-auto">
+              View More Blogs
+            </QuoteCTAButton>
           </div>
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 rounded-full border border-zinc-700 px-6 py-2.5 text-[13px] font-semibold text-zinc-100 hover:border-orange-500 hover:text-orange-400 transition-all duration-300 shrink-0"
-          >
-            View All Articles
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </Link>
-        </div>
 
-        <div className="grid gap-6 md:grid-cols-3">
-          {nodes.map((post) => {
-            const img = post?.featuredImage?.node?.sourceUrl;
-            const alt = post?.featuredImage?.node?.altText || post.title;
-            const date = formatDate(post?.date);
+          <div className="flex flex-col gap-[40px] lg:flex-row lg:gap-[40px]">
+            {nodes.map((post) => {
+              const img = post?.featuredImage?.node?.sourceUrl;
+              const alt = post?.featuredImage?.node?.altText || post?.title || "";
+              const date = formatDate(post?.date);
+              const href = post?.uri || "/blog";
 
-            return (
-              <Link href={post.uri || "#"} key={post.databaseId} className="group">
-                <article className="overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950/70 transition-all duration-300 hover:border-orange-500/40 hover:-translate-y-1">
-                  <div className="relative aspect-[16/10] overflow-hidden bg-zinc-900">
-                    {img ? (
-                      <Image
-                        src={img}
-                        alt={alt}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 flex items-center justify-center text-zinc-700 text-sm">
-                        No Image
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-5">
-                    {date && (
-                      <p className="text-[11px] uppercase tracking-[0.2em] text-zinc-500 mb-2">{date}</p>
-                    )}
-                    <h3 className="text-[15px] font-semibold text-white leading-snug group-hover:text-orange-400 transition-colors duration-200 line-clamp-2">
-                      {post.title}
-                    </h3>
-                    <div className="mt-4 h-1 w-10 rounded-full bg-orange-500/90" />
-                  </div>
-                </article>
-              </Link>
-            );
-          })}
+              return (
+                <Link href={href} key={post.databaseId} className="group flex-1">
+                  <article className="flex h-full flex-col bg-[#151515]">
+                    <div className="relative h-[300px] w-full shrink-0 overflow-hidden bg-[#272727]">
+                      {img ? (
+                        <Image
+                          src={img}
+                          alt={alt}
+                          fill
+                          sizes="(max-width: 1024px) 100vw, 33vw"
+                          className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                        />
+                      ) : null}
+                    </div>
+                    <div className="flex flex-col gap-3 p-6 lg:p-8">
+                      <h3 className="font-gilroy-bold text-[28px] leading-tight text-white group-hover:text-[#f17e3f]">
+                        {post.title}
+                      </h3>
+                      {date ? (
+                        <p className="font-gilroy text-[16px] text-[#bbb]">{date}</p>
+                      ) : null}
+                    </div>
+                  </article>
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </section>
     </Reveal>

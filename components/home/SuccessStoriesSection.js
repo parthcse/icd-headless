@@ -6,48 +6,63 @@ import CaseStudySlider from "./CaseStudySlider";
 
 export default async function SuccessStoriesSection() {
   let nodes = [];
+  let fetchError = null;
+
   try {
-    const { data } = await client.query({
+    const { data, error } = await client.query({
       query: CASE_STUDIES_QUERY,
-      variables: { first: 9 },
+      variables: { first: 12 },
     });
-    nodes = data?.caseStudies?.nodes || [];
+
+    if (error) {
+      fetchError = error.message || "Unable to load case studies.";
+    } else {
+      nodes = data?.caseStudies?.nodes ?? [];
+    }
   } catch (e) {
+    fetchError = e?.message || "Unable to load case studies.";
+  }
+
+  if (fetchError) {
     return (
-      <ErrorState
-        title="Could not load success stories"
-        message={e?.message || "Please try again later."}
-      />
+      <section className="section-pad border-b border-[#202020]" aria-labelledby="success-stories-heading">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-[40px]">
+          <Reveal>
+            <ErrorState
+              title="Could not load success stories"
+              message={fetchError}
+              className="border-[#202020] bg-black/40"
+            />
+          </Reveal>
+        </div>
+      </section>
     );
   }
 
   return (
-    <Reveal>
-      <section className="py-20 lg:py-28">
-        <div className="text-center mb-12">
-          <p className="text-[12px] font-semibold uppercase tracking-[0.35em] text-orange-400 mb-3">
-            Our Work
-          </p>
-          <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold leading-tight">
-            Success Stories
-          </h2>
-          <p className="mt-4 text-zinc-400 text-[15px] max-w-2xl mx-auto leading-relaxed">
-            Real results from brands that partnered with us to redesign, rebuild, and scale their digital presence.
-          </p>
-        </div>
-        <CaseStudySlider items={nodes} />
-        <div className="mt-10 text-center">
-          <a
-            href="/case-studies"
-            className="inline-flex items-center gap-2 rounded-full border border-zinc-700 px-6 py-2.5 text-[13px] font-semibold text-zinc-100 hover:border-orange-500 hover:text-orange-400 transition-all duration-300"
-          >
-            View All Projects
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </a>
-        </div>
-      </section>
-    </Reveal>
+    <section className="section-pad border-b border-[#202020]" aria-labelledby="success-stories-heading">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-[40px]">
+        <Reveal>
+          <header className="mb-10 lg:mb-14" id="success-stories-heading">
+            <h2 className="section-heading-light">Our Client</h2>
+            <h2 className="section-heading-bold mt-1">Success Stories</h2>
+            <p className="section-desc mt-4">
+              This is where we take you on a journey through real-world examples of strategy, design, and engineering
+              coming together—so you can see how we help brands grow, convert, and scale with confidence.
+            </p>
+          </header>
+        </Reveal>
+
+        <Reveal delayMs={100}>
+          {nodes.length > 0 ? (
+            <CaseStudySlider items={nodes} />
+          ) : (
+            <p className="text-white/70 text-lg max-w-2xl" role="status">
+              No case studies are published yet. Please check back soon.
+            </p>
+          )}
+        </Reveal>
+      </div>
+    </section>
   );
 }

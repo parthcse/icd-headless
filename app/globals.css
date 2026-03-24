@@ -9,17 +9,13 @@
   --font-gilroy-bold: "Gilroy-Bold", "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/*
-  Prevent horizontal overflow without nesting a second scroll container.
-  overflow-x-hidden on a child (e.g. <main>) can force overflow-y: auto on that
-  element and show a duplicate scrollbar next to the document.
-*/
 :root {
-  /* Figma: 1920px frame; main content width ~1400px */
   --site-max: 1400px;
-  /* Fixed header clearance = vertical padding + logo row */
-  --header-offset: 5rem; /* ~80px: py-4 + h-12 logo */
-  --header-offset-lg: 7.6875rem; /* 123px: py-[30px] + 63px logo */
+  --header-offset: 5rem;
+  --header-offset-lg: 7.6875rem;
+  --section-py: clamp(4rem, 8vh, 8.75rem);
+  --section-py-lg: clamp(5rem, 9vh, 11.25rem);
+  --section-gap: clamp(2rem, 4vh, 5rem);
 }
 
 html {
@@ -53,70 +49,105 @@ body {
   background: #f97316 !important;
 }
 
-/* Hide scrollbar on sliders */
 .swiper-wrapper {
   -webkit-overflow-scrolling: touch;
 }
 
 /* Gilroy font classes */
-.font-gilroy {
-  font-family: var(--font-gilroy);
-}
+.font-gilroy { font-family: var(--font-gilroy); }
+.font-gilroy-bold { font-family: var(--font-gilroy-bold); font-weight: 700; }
+.font-gilroy-light { font-family: var(--font-gilroy); font-weight: 300; }
+.font-gilroy-medium { font-family: var(--font-gilroy); font-weight: 500; }
 
-.font-gilroy-bold {
-  font-family: var(--font-gilroy-bold);
-  font-weight: 700;
-}
-
-.font-gilroy-light {
-  font-family: var(--font-gilroy);
-  font-weight: 300;
-}
-
-.font-gilroy-medium {
-  font-family: var(--font-gilroy);
-  font-weight: 500;
-}
-
-/*
- * Quote CTA only — use class `icd-quote-cta` on components/ui/QuoteCTAButton.
- * Holographic-style shine (inspired by rotating gradient beam) — no scale, no shadow.
- */
-.icd-quote-cta {
-  box-shadow: none !important;
-  transform: none;
-  transition:
-    border-color 0.35s ease,
-    filter 0.2s ease;
-}
-
-.icd-quote-cta:hover {
-  transform: none !important;
-  box-shadow: none !important;
-}
-
-/*
- * Oversized diagonal layer + narrow bright band; on hover the beam sweeps (translateY)
- * like a holographic card — colors tuned to orange CTA (#f17e3f), not cyan.
- */
-.icd-quote-cta__arrow-wrap {
-  width: 1.125rem;
-  height: 1.125rem;
+/* ── Global button ── */
+.btn {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 0.625rem;
+  padding: 0.875rem 1.75rem;
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: #fff;
+  background: #f17e3f;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 220ms ease;
+  box-shadow: none !important;
+  transform: none !important;
+  position: relative;
+  overflow: hidden;
 }
 
-@media (min-width: 640px) {
-  .icd-quote-cta__arrow-wrap {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
+.btn:hover {
+  background-color: #e06a2f;
 }
 
-/* All arrow motion is handled via Framer Motion in the component; keep reduced-motion fallback simple. */
+.btn:active {
+  filter: brightness(0.96);
+}
+
+.btn .btn-icon {
+  display: inline-flex;
+  width: 1.125rem;
+  height: 1.125rem;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.btn .btn-icon svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.btn .btn-icon .icon-default { opacity: 1; transform: translateY(0); }
+.btn .btn-icon .icon-hover   { opacity: 0; transform: translateY(100%); }
+
+.btn:hover .btn-icon .icon-default { opacity: 0; transform: translateY(-100%); }
+.btn:hover .btn-icon .icon-hover   { opacity: 1; transform: translateY(0); }
+
 @media (prefers-reduced-motion: reduce) {
-  .icd-quote-cta__arrow-wrap svg {
-    transition: none !important;
+  .btn .btn-icon svg { transition: none; }
+}
+
+/* ── Section spacing helper ── */
+.section-pad {
+  padding-top: var(--section-py);
+  padding-bottom: var(--section-py);
+}
+
+@media (min-width: 1024px) {
+  .section-pad {
+    padding-top: var(--section-py-lg);
+    padding-bottom: var(--section-py-lg);
   }
+}
+
+/* ── Section heading ── Figma uses light 60px + bold 150px. Clamp for responsive. */
+.section-heading-light {
+  font-family: var(--font-gilroy);
+  font-weight: 300;
+  font-size: clamp(1.75rem, 3.2vw, 3.75rem);
+  line-height: 1.2;
+  color: #fff;
+}
+
+.section-heading-bold {
+  font-family: var(--font-gilroy-bold);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 8vw, 9.375rem);
+  line-height: 1;
+  color: #fff;
+}
+
+.section-desc {
+  font-family: var(--font-gilroy);
+  font-size: clamp(1rem, 1.4vw, 1.375rem);
+  line-height: 1.6;
+  color: #fff;
+  max-width: 54.5rem;
 }

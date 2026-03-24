@@ -18,30 +18,28 @@ import BlogSkeleton from "../components/home/skeletons/BlogSkeleton";
 export default function Home() {
   return (
     <>
-      {/* One continuous background for fixed header + hero (see HeroHeaderBackground) */}
+      {/* Shared bg image covers both fixed header and hero */}
       <div className="relative isolate">
         <HeroHeaderBackground />
         <Header />
         <HeroSection />
       </div>
 
-      <main className="relative z-10 min-h-screen w-full min-w-0 bg-black text-white">
-        <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
-          <ServicesSection />
-          <Suspense fallback={<SuccessStoriesSkeleton />}>
-            <SuccessStoriesSection />
-          </Suspense>
-          <WhyChooseUsSection />
-          <Suspense fallback={<TestimonialsSkeleton />}>
-            <HappyCustomersSection />
-          </Suspense>
-          <TrustedClientsSection />
-          <Suspense fallback={<BlogSkeleton />}>
-            <LatestNewsSection />
-          </Suspense>
-          <GetQuoteSection />
-          <WeServeSection />
-        </div>
+      <main className="relative z-10 w-full min-w-0 bg-black text-white">
+        <ServicesSection />
+        <Suspense fallback={<SuccessStoriesSkeleton />}>
+          <SuccessStoriesSection />
+        </Suspense>
+        <WhyChooseUsSection />
+        <Suspense fallback={<TestimonialsSkeleton />}>
+          <HappyCustomersSection />
+        </Suspense>
+        <TrustedClientsSection />
+        <Suspense fallback={<BlogSkeleton />}>
+          <LatestNewsSection />
+        </Suspense>
+        <GetQuoteSection />
+        <WeServeSection />
       </main>
       <Footer />
     </>
