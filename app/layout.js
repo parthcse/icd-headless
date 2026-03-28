@@ -1,31 +1,24 @@
-import { Inter, Geist_Mono } from "next/font/google";
-import Header from "../components/layout/Header";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata = {
-  title: "Icecube Digital | Full Service Digital Agency",
+  title: "Icecube Digital",
   description:
-    "Build, Grow & Scale your digital presence with Icecube Digital. We offer web development, eCommerce, digital marketing, and UI/UX design services.",
+    "Build, Grow, and Scale your eCommerce store with experts. Full-stack creative and digital services.",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${inter.variable} ${geistMono.variable} antialiased bg-black text-white`}>
-        <Header />
-        {children}
-      </body>
+    <html lang="en">
+      <head>
+        <link rel="stylesheet" href="/css/fonts.css" />
+        <link rel="stylesheet" href="/css/owl.carousel.min.css" />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+        />
+        <link rel="stylesheet" href="/css/output.css" />
+      </head>
+      <body className="bg-black text-white antialiased">{children}</body>
     </html>
   );
 }

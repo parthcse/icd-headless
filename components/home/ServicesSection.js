@@ -1,208 +1,164 @@
-"use client";
-
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
-import Reveal from "../animations/Reveal";
-
-const tabs = [
-  { id: "digital-marketing", label: "Digital\nMarketing", icon: "📊" },
-  { id: "magento", label: "Magento\nDevelopment", icon: "🔧" },
-  { id: "shopify", label: "Shopify\nDevelopment", icon: "🛒" },
-  { id: "woocommerce", label: "WooCommerce\nDevelopment", icon: "🔌" },
-  { id: "wordpress", label: "WordPress\nDevelopment", icon: "📝" },
-  { id: "white-label", label: "White Label\nServices", icon: "🏷️" },
-];
-
-const figmaServiceLinksLeft = [
-  { icon: "↗", label: "AI SEO Services", href: "#" },
-  { icon: "↗", label: "AI Digital Marketing Services", href: "#" },
-  { icon: "↗", label: "Answer Engine Optimization Services", href: "#" },
-  { icon: "↗", label: "Digital Marketing Services", href: "#" },
-];
-
-const figmaServiceLinksRight = [
-  { icon: "↗", label: "Professional SEO Services", href: "#" },
-  { icon: "↗", label: "PPC Services", href: "#" },
-  { icon: "↗", label: "Email Marketing Services", href: "#" },
-];
-
-const tabPanels = {
-  "digital-marketing": {
-    body:
-      "From search to social, we build data-led campaigns that scale with your business. Our team blends strategy, creative, and analytics so every touchpoint moves prospects closer to conversion—whether you are launching a new brand or scaling an established store.",
-    linksLeft: figmaServiceLinksLeft,
-    linksRight: figmaServiceLinksRight,
-  },
-  magento: {
-    body:
-      "Enterprise-grade Magento builds with clean architecture, fast storefronts, and integrations that match your operations. We handle custom modules, migrations, performance tuning, and ongoing support so your commerce platform stays reliable at scale.",
-    linksLeft: [
-      { icon: "↗", label: "Magento 2 Development", href: "#" },
-      { icon: "↗", label: "Custom Extensions", href: "#" },
-      { icon: "↗", label: "Performance & Hyvä", href: "#" },
-      { icon: "↗", label: "Migration & Upgrades", href: "#" },
-    ],
-    linksRight: [
-      { icon: "↗", label: "B2B & Multi-store", href: "#" },
-      { icon: "↗", label: "ERP & CRM Integrations", href: "#" },
-      { icon: "↗", label: "Managed Support", href: "#" },
-    ],
-  },
-  shopify: {
-    body:
-      "Launch and grow on Shopify with themes, apps, and checkout experiences tailored to your catalog and brand. We focus on speed, conversion-focused UX, and maintainable code so your team can iterate confidently.",
-    linksLeft: [
-      { icon: "↗", label: "Shopify Plus", href: "#" },
-      { icon: "↗", label: "Custom Theme Development", href: "#" },
-      { icon: "↗", label: "Headless Shopify", href: "#" },
-      { icon: "↗", label: "App Integrations", href: "#" },
-    ],
-    linksRight: [
-      { icon: "↗", label: "Subscriptions & Bundles", href: "#" },
-      { icon: "↗", label: "CRO & Analytics", href: "#" },
-      { icon: "↗", label: "Ongoing Optimization", href: "#" },
-    ],
-  },
-  woocommerce: {
-    body:
-      "Flexible WooCommerce solutions on WordPress—custom product types, subscriptions, memberships, and integrations with your marketing stack. We keep plugins lean, security tight, and checkout friction low.",
-    linksLeft: [
-      { icon: "↗", label: "WooCommerce Builds", href: "#" },
-      { icon: "↗", label: "Custom Checkout Flows", href: "#" },
-      { icon: "↗", label: "Plugin Development", href: "#" },
-      { icon: "↗", label: "Speed & Core Web Vitals", href: "#" },
-    ],
-    linksRight: [
-      { icon: "↗", label: "Payment Gateways", href: "#" },
-      { icon: "↗", label: "ERP / Inventory Sync", href: "#" },
-      { icon: "↗", label: "Maintenance Plans", href: "#" },
-    ],
-  },
-  wordpress: {
-    body:
-      "Editor-friendly WordPress sites and headless setups with modern front ends. We deliver scalable content models, accessible components, and workflows your marketing team can own without filing a ticket for every update.",
-    linksLeft: [
-      { icon: "↗", label: "Custom Themes & Blocks", href: "#" },
-      { icon: "↗", label: "Headless WordPress", href: "#" },
-      { icon: "↗", label: "Multisite & Enterprise", href: "#" },
-      { icon: "↗", label: "Security Hardening", href: "#" },
-    ],
-    linksRight: [
-      { icon: "↗", label: "API & Integrations", href: "#" },
-      { icon: "↗", label: "Editor Training", href: "#" },
-      { icon: "↗", label: "Support & SLAs", href: "#" },
-    ],
-  },
-  "white-label": {
-    body:
-      "Expand your agency’s delivery capacity with a white-label partner that matches your quality bar. We plug into your PM tools, NDAs, and brand voice so your clients see one seamless team—from discovery through launch.",
-    linksLeft: [
-      { icon: "↗", label: "Development Resourcing", href: "#" },
-      { icon: "↗", label: "Design-to-Dev Handoff", href: "#" },
-      { icon: "↗", label: "Dedicated Pods", href: "#" },
-      { icon: "↗", label: "Sprint-Based Engagements", href: "#" },
-    ],
-    linksRight: [
-      { icon: "↗", label: "NDA & White-label SOPs", href: "#" },
-      { icon: "↗", label: "QA & Launch Support", href: "#" },
-      { icon: "↗", label: "Partner Pricing", href: "#" },
-    ],
-  },
-};
-
-function LinkColumn({ items }) {
-  return (
-    <ul className="flex flex-col gap-4">
-      {items.map((item) => (
-        <li key={item.label}>
-          <Link
-            href={item.href}
-            className="group inline-flex items-center gap-3 text-white text-xl font-normal leading-snug hover:text-[#f17e3f] transition-colors"
-          >
-            <span className="text-[#f17e3f] shrink-0 w-6 text-center" aria-hidden>
-              {item.icon}
-            </span>
-            <span>{item.label}</span>
-          </Link>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
 export default function ServicesSection() {
-  const [activeTab, setActiveTab] = useState("digital-marketing");
-  const panel = tabPanels[activeTab];
-
   return (
-    <Reveal>
-      <section className="section-pad border-b border-[#202020]">
-        <div className="site-gutter">
-          <div className="site-container">
-          <header className="mb-8 lg:mb-12">
-            <h2 className="section-heading-light">We Provide The Full Stack of</h2>
-            <h2 className="section-heading-bold mt-1">Creative Services</h2>
-            <p className="section-desc mt-4 text-[22px] max-w-none">
-              Customized solutions for eCommerce and digital marketing
-            </p>
-          </header>
-
-          <div className="flex gap-2 sm:gap-3 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
-            {tabs.map((tab) => {
-              const isActive = activeTab === tab.id;
-              return (
-                <button
-                  key={tab.id}
-                  type="button"
-                  onClick={() => setActiveTab(tab.id)}
-                  className={[
-                    "flex flex-col items-center justify-center gap-2 min-w-[120px] sm:min-w-0 sm:flex-1 px-3 py-4 sm:py-5 transition-colors border-b-2 rounded-t-lg",
-                    isActive
-                      ? "bg-gradient-to-b from-black to-[#1e1e1e] border-[#f17e3f] text-white"
-                      : "bg-transparent border-[#202020] text-white hover:bg-white/5",
-                  ].join(" ")}
-                >
-                  <span
-                    className="text-2xl leading-none"
-                    style={{ color: isActive ? "#f17e3f" : undefined }}
-                    aria-hidden
-                  >
-                    {tab.icon}
-                  </span>
-                  <span className="text-xl font-bold text-white whitespace-pre-line text-center leading-tight">
-                    {tab.label}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-
-          <div className="mt-10 lg:mt-14 border-t border-[#202020] pt-10 lg:pt-14">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeTab}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12 xl:gap-16"
-              >
-                <div className="lg:pr-4">
-                  <p className="text-white text-xl font-normal leading-relaxed">{panel.body}</p>
-                </div>
-                <div className="border-t border-[#202020] lg:border-t-0 lg:border-l lg:border-[#202020] lg:pl-8 pt-8 lg:pt-0">
-                  <LinkColumn items={panel.linksLeft} />
-                </div>
-                <div className="border-t border-[#202020] lg:border-t-0 lg:border-l lg:border-[#202020] lg:pl-8 pt-8 lg:pt-0">
-                  <LinkColumn items={panel.linksRight} />
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </div>
-        </div>
-      </section>
-    </Reveal>
+    <section className="home-services full-section">
+              <div className="container">
+                  <div className="header-wrap pb-space-mini text-center grid gap-[0.4em] animate-init" data-anim="animate__fadeInUp animate__delay-0.4s">
+                    <h3 className="font-30 font-normal mb-0">We Provide The Full Stack of</h3>
+                    <h2 className="main-title mb-0">Creative Services</h2>
+                    <p>Customized solutions for eCommerce and digital marketing</p>
+                  </div>
+                  <div className="tabs grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 text-center font-22 leading-normal pb-space-mini animate-init" data-anim="animate__fadeInUp animate__delay-0.6s">
+                      <button className="tab-btn group cursor-pointer small font-semibold p-[1em] transition bg-black hover:bg-[linear-gradient(0deg,rgb(58,58,58)_0%,rgba(255,255,255,0)_100%)] border-b-2 border-white/10 hover:border-primary active" data-tab="tab1">
+                        <div className="icon text-primary main-title mb-[0.3em]">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 66 67" fill="currentColor" className="mx-auto small">
+                            <path d="M59.0625 0C60.8854 0 62.4349 0.729167 63.7109 2.1875C64.987 3.46354 65.625 5.01302 65.625 6.83594V44.5703C65.625 46.5755 64.8958 48.3073 63.4375 49.7656C62.1615 51.0417 60.612 51.6797 58.7891 51.6797H50.0391C48.2161 51.6797 46.6667 51.0417 45.3906 49.7656C44.1146 48.4896 43.3854 46.9401 43.2031 45.1172L19.6875 40.4688L22.6953 57.6953C23.0599 59.7005 22.6042 61.5234 21.3281 63.1641C20.4167 64.2578 19.4141 65.0781 18.3203 65.625C17.2266 65.9896 16.1328 66.1719 15.0391 66.1719C13.2161 66.1719 11.5755 65.625 10.1172 64.5312C8.65885 63.4375 7.7474 62.0703 7.38281 60.4297L3.55469 39.1016C2.46094 38.5547 1.54948 37.8255 0.820312 36.9141C0.273438 35.8203 0 34.6354 0 33.3594V15.3125C0 13.4896 0.638021 11.9401 1.91406 10.6641C3.1901 9.38802 4.73958 8.75 6.5625 8.75H16.6797L43.2031 6.01562C43.3854 4.375 44.1146 3.00781 45.3906 1.91406C46.849 0.638021 48.3984 0 50.0391 0H59.0625ZM19.1406 13.3984V35.2734L43.2031 40.1953V10.9375L19.1406 13.3984ZM4.92188 15.3125V33.3594C4.92188 33.724 5.10417 34.0885 5.46875 34.4531C5.83333 34.8177 6.19792 35 6.5625 35H14.2188V13.6719H6.5625C6.19792 13.6719 5.83333 13.8542 5.46875 14.2188C5.10417 14.5833 4.92188 14.9479 4.92188 15.3125ZM17.5 60.1562C17.8646 59.6094 17.9557 59.0625 17.7734 58.5156L14.4922 39.9219H8.75L12.3047 59.3359C12.3047 59.8828 12.5781 60.3385 13.125 60.7031C13.6719 61.0677 14.3099 61.25 15.0391 61.25C15.9505 61.25 16.7708 60.8854 17.5 60.1562ZM60.7031 44.5703V6.83594C60.7031 6.28906 60.5208 5.83333 60.1562 5.46875C59.7917 5.10417 59.3359 4.92188 58.7891 4.92188H50.0391C49.4922 4.92188 49.0365 5.10417 48.6719 5.46875C48.3073 5.83333 48.125 6.28906 48.125 6.83594V44.5703C48.125 45.1172 48.3073 45.6641 48.6719 46.2109C49.0365 46.5755 49.4922 46.7578 50.0391 46.7578H58.7891C59.3359 46.7578 59.7917 46.5755 60.1562 46.2109C60.5208 45.6641 60.7031 45.1172 60.7031 44.5703Z"/>
+                          </svg>
+                        </div>
+                        <p className="small">Digital <br />Marketing</p>
+                      </button>
+                      <button className="group cursor-pointer small font-semibold p-[1em] transition bg-black hover:bg-[linear-gradient(0deg,rgb(58,58,58)_0%,rgba(255,255,255,0)_100%)] border-b-2 border-white/10 hover:border-primary tab-btn animate__animated animate__zoomIn animate__delay-0.8s" data-tab="tab2">
+                          <div className="icon group-hover:text-primary main-title mb-[0.3em]">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="59" height="68" viewBox="0 0 59 68" fill="currentColor" className="mx-auto small">
+                              <path d="M29.2578 0L58.5156 16.9531V50.8594L50.3125 55.7812V21.875L29.2578 9.84375L8.20312 21.875V55.7812L0 50.8594V16.9531L29.2578 0ZM33.6328 55.7812V21.875L41.8359 26.7969V60.7031L29.2578 67.8125L16.6797 60.7031V26.7969L25.1562 21.875V55.7812L29.2578 57.9688L33.6328 55.7812Z" />
+                            </svg>
+                          </div>
+                          <p className="small">Magento <br />Development</p>
+                      </button>
+                      <button className="group cursor-pointer small font-semibold p-[1em] transition bg-black hover:bg-[linear-gradient(0deg,rgb(58,58,58)_0%,rgba(255,255,255,0)_100%)] border-b-2 border-white/10 hover:border-primary tab-btn animate__animated animate__zoomIn animate__delay-0.8s" data-tab="tab3">
+                        <div className="icon group-hover:text-primary main-title mb-[0.3em]">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="62" height="70" viewBox="0 0 62 70" fill="currentColor" className="mx-auto small">
+                            <path d="M39.9219 8.75C40.651 8.38542 41.3802 8.20312 42.1094 8.20312L39.375 70L0 62.6172L2.73438 42.3828C4.375 28.8932 5.19531 21.875 5.19531 21.3281C5.19531 20.599 5.28646 20.1432 5.46875 19.9609C5.65104 19.5964 6.28906 19.2318 7.38281 18.8672L13.6719 16.9531C14.5833 12.9427 16.0417 9.38802 18.0469 6.28906C20.9635 2.09635 24.4271 0 28.4375 0C30.0781 0 31.263 0.729167 31.9922 2.1875H32.2656C35.7292 2.1875 38.2812 4.375 39.9219 8.75ZM27.3438 12.8516C29.5312 12.1224 31.0807 11.4844 31.9922 10.9375C31.9922 9.11458 31.7188 7.10938 31.1719 4.92188C29.8958 5.28646 28.7109 6.19792 27.6172 7.65625C26.5234 9.11458 25.612 11.1198 24.8828 13.6719L27.3438 12.8516ZM29.2578 3.00781C29.0755 2.82552 28.6198 2.73438 27.8906 2.73438C25.1562 2.73438 22.6953 4.28385 20.5078 7.38281C18.6849 9.9349 17.4089 12.8516 16.6797 16.1328L21.875 14.4922C22.4219 11.2109 23.5156 8.56771 25.1562 6.5625C26.25 5.10417 27.6172 3.91927 29.2578 3.00781ZM24.6094 31.4453C26.25 31.4453 27.9818 31.901 29.8047 32.8125L31.4453 24.8828L30.0781 24.6094C28.9844 24.2448 27.7083 24.0625 26.25 24.0625C21.6927 24.0625 18.2292 25.3385 15.8594 27.8906C13.4896 30.2604 12.3047 33.1771 12.3047 36.6406C12.3047 38.6458 12.7604 40.3776 13.6719 41.8359C14.401 42.5651 15.4948 43.5677 16.9531 44.8438C18.0469 45.7552 18.8672 46.5755 19.4141 47.3047C19.9609 47.8516 20.2344 48.4896 20.2344 49.2188C20.2344 49.9479 19.9609 50.5859 19.4141 51.1328C19.0495 51.6797 18.4115 51.9531 17.5 51.9531C16.5885 51.9531 15.5859 51.7708 14.4922 51.4062C13.5807 50.8594 12.7604 50.3125 12.0312 49.7656L10.9375 48.9453L9.29688 55.2344L10.3906 56.3281C11.4844 57.0573 12.6693 57.6953 13.9453 58.2422C15.7682 59.1536 17.6823 59.6094 19.6875 59.6094C22.6042 59.6094 24.974 58.6068 26.7969 56.6016C28.8021 54.4141 29.8047 51.7708 29.8047 48.6719C29.8047 46.3021 29.0755 44.2057 27.6172 42.3828C26.7057 41.2891 25.2474 40.013 23.2422 38.5547C22.1484 37.8255 21.3281 37.1875 20.7812 36.6406C20.4167 36.0938 20.2344 35.5469 20.2344 35C20.2344 32.6302 21.6927 31.4453 24.6094 31.4453ZM33.3594 4.92188C33.9062 6.5625 34.1797 8.29427 34.1797 10.1172V10.3906L37.7344 10.1172C36.4583 6.65365 35 4.92188 33.3594 4.92188ZM53.0469 13.125C53.5938 13.125 53.8672 13.3073 53.8672 13.6719L61.25 65.625L40.1953 70L42.9297 8.75H43.2031L47.3047 12.5781L53.0469 13.125Z" />
+                          </svg>
+                        </div>
+                        <p className="small">Shopify <br />Development</p>
+                      </button>
+                      <button className="group cursor-pointer small font-semibold p-[1em] transition bg-black hover:bg-[linear-gradient(0deg,rgb(58,58,58)_0%,rgba(255,255,255,0)_100%)] border-b-2 border-white/10 hover:border-primary tab-btn animate__animated animate__zoomIn animate__delay-0.8s" data-tab="tab4">
+                        <div className="icon group-hover:text-primary main-title mb-[0.3em]">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="95" height="56" viewBox="0 0 95 56" fill="currentColor" className="mx-auto small">
+                            <path d="M79.8247 15.6969C78.2813 15.8719 76.9936 16.8031 76.3308 18.1L76.3181 18.125C75.3713 19.4188 74.6611 20.95 74.2823 22.6031L74.2666 22.6875C74.093 23.4906 73.9951 24.4094 73.9951 25.3531C73.9951 25.4 73.9951 25.4437 73.9951 25.4906V25.4844C74.0141 26.7437 74.2666 27.9406 74.7179 29.0375L74.6927 28.9719C75.2734 30.4625 76.0499 31.2719 76.9778 31.4625C77.0788 31.4719 77.1987 31.4781 77.3187 31.4781C78.4297 31.4781 79.427 30.9969 80.1088 30.2375L80.1119 30.2344C81.6364 28.7531 82.6906 26.8031 83.0441 24.6219L83.0504 24.5656C83.2177 23.7188 83.3187 22.7375 83.325 21.7375V21.7313C83.3092 20.4719 83.0536 19.275 82.6022 18.1781L82.6275 18.2438C82.0436 16.7531 81.2703 15.9469 80.3392 15.7562C80.1845 15.725 80.0078 15.7031 79.8247 15.7V15.6969ZM55.5595 15.6969C54.0161 15.8719 52.7283 16.8031 52.0655 18.1L52.0529 18.125C51.106 19.4188 50.3958 20.95 50.0171 22.6031L50.0013 22.6875C49.8277 23.4813 49.7267 24.3938 49.7267 25.3281C49.7267 25.3813 49.7267 25.4375 49.7267 25.4906V25.4813C49.7457 26.7406 49.9982 27.9375 50.4495 29.0344L50.4243 28.9688C51.005 30.4594 51.7783 31.2687 52.7094 31.4594C52.8104 31.4687 52.9303 31.475 53.0503 31.475C54.1613 31.475 55.1586 30.9937 55.8404 30.2344L55.8435 30.2312C57.368 28.75 58.4222 26.8 58.7757 24.6188L58.782 24.5625C58.9556 23.7656 59.0566 22.8469 59.0566 21.9062C59.0566 21.8438 59.0566 21.7812 59.0566 21.7188V21.7281C59.0408 20.4688 58.7883 19.2719 58.3401 18.175L58.3622 18.2406C57.7783 16.75 57.005 15.9438 56.0739 15.7531C55.9193 15.7219 55.7425 15.7 55.5595 15.7V15.6969ZM79.6448 9.27188C80.3897 9.27812 81.1093 9.3625 81.8037 9.51875L81.7374 9.50625C84.4234 10.0125 86.6454 11.6562 87.9079 13.9L87.93 13.9437C89.1009 15.9812 89.7922 18.4219 89.7922 21.0187C89.7922 21.1844 89.789 21.35 89.7827 21.5156V21.4906C89.7827 21.5469 89.7827 21.6094 89.7827 21.675C89.7827 25.6156 88.6591 29.2969 86.7148 32.4219L86.7653 32.3344C85.0767 35.7062 81.6553 38.0031 77.6848 38.0813H77.6753C76.9304 38.075 76.2108 37.9906 75.5164 37.8375L75.5859 37.85C72.8968 37.3438 70.6748 35.6969 69.4154 33.45L69.3933 33.4062C68.2192 31.3406 67.5311 28.8688 67.5311 26.2406C67.5311 26.0938 67.5343 25.9438 67.5374 25.7969V25.8188C67.5374 25.7594 67.5374 25.6906 67.5374 25.6187C67.5374 21.6938 68.6611 18.0312 70.6053 14.925L70.5548 15.0125C72.2624 11.6531 75.6743 9.36563 79.6354 9.26562H79.648L79.6448 9.27188ZM55.3827 9.27188C56.1276 9.27812 56.8472 9.3625 57.5416 9.51875L57.4753 9.50625C60.1581 10.0219 62.377 11.6625 63.6458 13.9L63.6679 13.9437C64.8389 15.9812 65.5301 18.4187 65.5301 21.0187C65.5301 21.1844 65.5269 21.35 65.5206 21.5156V21.4906C65.5206 21.5469 65.5206 21.6094 65.5206 21.675C65.5206 25.6156 64.397 29.2969 62.4496 32.4219L62.5001 32.3344C60.8115 35.7062 57.3901 38.0031 53.4195 38.0813H53.4101C52.6652 38.075 51.9456 37.9906 51.2512 37.8375L51.3206 37.85C48.6315 37.3438 46.4095 35.6969 45.1502 33.45L45.1281 33.4062C43.9539 31.3406 43.2627 28.8688 43.2627 26.2406C43.2627 26.0938 43.2659 25.9438 43.269 25.7969V25.8188C43.269 25.7594 43.269 25.6906 43.269 25.6219C43.269 21.6969 44.3927 18.0344 46.3401 14.9281L46.2896 15.0156C47.9971 11.6563 51.409 9.36875 55.3701 9.26875H55.3827V9.27188ZM40.6525 5.12187C41.4605 5.1375 42.1959 5.43125 42.7672 5.90625L42.7609 5.90312C43.4426 6.41562 43.894 7.19375 43.9603 8.08125V8.09062C43.9666 8.17187 43.9697 8.2625 43.9697 8.35625C43.9697 8.93125 43.8214 9.47187 43.5626 9.94062L43.572 9.92188C41.7193 13.9563 40.3937 18.6344 39.8413 23.5438L39.8224 23.7531C39.1123 27.5094 38.7051 31.8313 38.7051 36.2469C38.7051 36.9875 38.7177 37.7281 38.7398 38.4625L38.7367 38.3531C38.7524 38.4969 38.7619 38.6656 38.7619 38.8344C38.7619 39.5812 38.5788 40.2844 38.2601 40.9031L38.2727 40.8781C37.8845 41.65 37.1238 42.1875 36.2306 42.2562H36.2211C36.2085 42.2562 36.1927 42.2562 36.1769 42.2562C34.9649 42.2562 33.8823 41.7094 33.169 40.85L33.1627 40.8438C29.1417 36.3531 26.1653 30.8531 24.6629 24.7812L24.6093 24.5219C22.7197 28.1823 20.8618 31.8594 19.0353 35.5531C16.7565 39.8875 14.8186 42.1063 13.1931 42.2219C12.1484 42.3 11.2615 41.4188 10.4819 39.5781C7.73913 31.2875 5.50134 21.4469 4.18519 11.325L4.09681 10.4937C4.06841 10.3281 4.05263 10.1375 4.05263 9.94375C4.05263 9.1875 4.30197 8.48438 4.72491 7.91875L4.71859 7.92812C5.28988 7.20937 6.16731 6.74687 7.15522 6.74062C7.31934 6.70625 7.50556 6.6875 7.69494 6.6875C9.25728 6.6875 10.5229 7.94063 10.5229 9.4875C10.5229 9.49063 10.5229 9.49375 10.5229 9.49688C11.7223 17.5063 13.0385 24.2906 14.4304 29.8437L22.9049 13.8719C23.3815 12.6531 24.4704 11.7688 25.7866 11.575L25.8055 11.5719C27.5067 11.4563 28.5514 12.5281 28.9775 14.7906C29.8897 19.7812 31.1617 24.1812 32.825 28.3875L32.6546 27.8969C33.0617 20.1875 34.9018 12.9969 37.916 6.45312L37.7645 6.82187C38.2348 5.85625 39.1912 5.19063 40.3148 5.1375H40.3211C40.4305 5.12708 40.541 5.12187 40.6525 5.12187ZM8.78384 0.00312477C3.93269 0.00624977 0 3.9 0 8.70312C0 8.71562 0 8.72812 0 8.74062V37.8594C0 42.6812 3.94847 46.5969 8.82172 46.5969H45.3206L62.0014 55.7938L58.2076 46.5969H85.8405C85.8405 46.5969 85.8437 46.5969 85.8468 46.5969C90.7169 46.5969 94.6654 42.6875 94.6654 37.8656C94.6654 37.8625 94.6654 37.8625 94.6654 37.8594V8.7375C94.6654 8.73438 94.6654 8.73437 94.6654 8.73125C94.6654 3.90937 90.7169 0 85.8468 0C85.8437 0 85.8437 0 85.8405 0L8.78384 0.00312477Z" />
+                          </svg>
+                        </div>
+                        <p className="small">WooCommerce <br />Development</p>
+                      </button>
+                      <button className="group cursor-pointer small font-semibold p-[1em] transition bg-black hover:bg-[linear-gradient(0deg,rgb(58,58,58)_0%,rgba(255,255,255,0)_100%)] border-b-2 border-white/10 hover:border-primary tab-btn animate__animated animate__zoomIn animate__delay-0.8s" data-tab="tab5">
+                        <div className="icon group-hover:text-primary main-title mb-[0.3em]">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="68" height="68" viewBox="0 0 68 68" fill="currentColor" className="mx-auto small">
+                            <path d="M33.9062 0C39.9219 0 45.4818 1.54948 50.5859 4.64844C55.8724 7.7474 60.0651 11.9401 63.1641 17.2266C66.263 22.3307 67.8125 27.8906 67.8125 33.9062C67.8125 39.9219 66.263 45.5729 63.1641 50.8594C60.2474 55.9635 56.1458 60.0651 50.8594 63.1641C45.7552 66.263 40.1042 67.8125 33.9062 67.8125C27.7083 67.8125 21.9661 66.3542 16.6797 63.4375C11.5755 60.3385 7.47396 56.237 4.375 51.1328C1.45833 45.8464 0 40.1042 0 33.9062C0 27.7083 1.45833 22.0573 4.375 16.9531C7.47396 11.6667 11.5755 7.5651 16.6797 4.64844C21.9661 1.54948 27.7083 0 33.9062 0ZM63.9844 33.9062C63.9844 30.0781 63.2552 26.3411 61.7969 22.6953C61.0677 26.3411 59.6094 31.0807 57.4219 36.9141L48.3984 60.1562C53.138 57.6042 56.875 54.0495 59.6094 49.4922C62.526 44.7526 63.9844 39.5573 63.9844 33.9062ZM40.4688 19.1406C40.651 19.1406 40.8333 19.2318 41.0156 19.4141C41.3802 19.5964 41.5625 19.8698 41.5625 20.2344C41.5625 20.9635 41.1979 21.3281 40.4688 21.3281H38.8281L47.5781 43.75L51.4062 33.3594C51.9531 32.0833 52.0443 30.8984 51.6797 29.8047C51.4974 28.8932 51.0417 27.7083 50.3125 26.25L50.0391 25.7031C49.3099 24.2448 48.763 23.0599 48.3984 22.1484C48.0339 20.6901 48.0339 19.3229 48.3984 18.0469C48.763 16.5885 49.401 15.4036 50.3125 14.4922C51.4062 13.3984 52.5911 12.7604 53.8672 12.5781C51.3151 10.026 48.3073 8.11198 44.8438 6.83594C41.3802 5.3776 37.7344 4.64844 33.9062 4.64844C28.6198 4.64844 23.6979 5.92448 19.1406 8.47656C14.7656 11.0286 11.3932 14.4922 9.02344 18.8672L20.7812 19.1406C21.5104 19.1406 21.875 19.5052 21.875 20.2344C21.875 20.9635 21.5104 21.3281 20.7812 21.3281H18.0469L26.25 42.9297L30.8984 31.1719L27.0703 21.3281H24.8828C24.1536 21.3281 23.7891 20.9635 23.7891 20.2344C23.7891 19.5052 24.1536 19.1406 24.8828 19.1406H40.4688ZM3.82812 33.9062C3.82812 39.7396 5.3776 45.1172 8.47656 50.0391C11.5755 54.7786 15.6771 58.4245 20.7812 60.9766L6.01562 22.9688C4.55729 26.4323 3.82812 30.0781 3.82812 33.9062ZM34.1797 40.4688L25.7031 62.8906C28.0729 63.6198 30.7161 63.9844 33.6328 63.9844C36.7318 63.9844 39.8307 63.5286 42.9297 62.6172L34.1797 40.4688Z" />
+                          </svg>
+                        </div>
+                        <p className="small">WordPress <br />Development</p>
+                      </button>
+                      <button className="group cursor-pointer small font-semibold p-[1em] transition bg-black hover:bg-[linear-gradient(0deg,rgb(58,58,58)_0%,rgba(255,255,255,0)_100%)] border-b-2 border-white/10 hover:border-primary tab-btn animate__animated animate__zoomIn animate__delay-0.8s" data-tab="tab6">
+                        <div className="icon group-hover:text-primary main-title mb-[0.3em]">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="44" height="67" viewBox="0 0 44 67" fill="currentColor" className="mx-auto small">
+                            <path d="M5.19531 66.1719C4.46615 66.1719 3.64583 65.9896 2.73438 65.625C2.00521 65.2604 1.36719 64.7135 0.820312 63.9844C0.273438 63.0729 0 62.0703 0 60.9766V7.10938C0 5.10417 0.638021 3.46354 1.91406 2.1875C3.3724 0.729167 5.10417 0 7.10938 0H36.9141C38.737 0 40.2865 0.729167 41.5625 2.1875C43.0208 3.46354 43.75 5.10417 43.75 7.10938V60.7031C43.75 61.7969 43.4766 62.7995 42.9297 63.7109C42.3828 64.4401 41.6536 65.0781 40.7422 65.625C39.8307 65.9896 38.8281 66.0807 37.7344 65.8984C36.8229 65.7161 35.9115 65.3516 35 64.8047L22.9688 54.1406C22.2396 53.5938 21.5104 53.5938 20.7812 54.1406L8.75 64.8047C7.65625 65.7161 6.47135 66.1719 5.19531 66.1719ZM6.83594 4.92188C6.28906 4.92188 5.83333 5.19531 5.46875 5.74219C5.10417 6.10677 4.92188 6.5625 4.92188 7.10938V60.9766C4.92188 61.1589 4.92188 61.25 4.92188 61.25H5.19531L17.5 50.5859C18.776 49.4922 20.2344 48.9453 21.875 48.9453C23.5156 48.9453 24.974 49.4922 26.25 50.5859L38.2812 61.25H38.5547C38.737 61.0677 38.8281 60.9766 38.8281 60.9766V7.10938C38.8281 6.5625 38.5547 6.10677 38.0078 5.74219C37.6432 5.19531 37.1875 4.92188 36.6406 4.92188H6.83594Z" />
+                          </svg>
+                        </div>
+                        <p className="small">White Label <br />Services</p>  
+                      </button>
+                  </div>
+                  <div id="tab1" className="tab-content active animate-init" data-anim="animate__fadeInUp animate__delay-0.5s">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 md:gap-space-mini">
+                      <div className="txet-box lg:col-span-5">
+                        <p>Shopify is everywhere, so why not incorporate it into your ecosystem? We transform your brand's vision into a captivating online store, leveraging Shopify's versatile platform. From design customization to app integration, we create Shopify solutions that blend aesthetics and functionality seamlessly.</p>
+                      </div>
+                      <div className="list-box font-semibold lg:col-span-7 xl:pl-16 2xl:pl-20">
+                        <ul className="grid grid-cols-1 lg:grid-cols-2 gap-2">
+                          <li>
+                            <a className="flex gap-3 lg:gap-3 hover:text-primary group" href="#">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="currentColor" className="small w-[0.8em] h-[0.8em] mt-1.5">
+                                <path d="M0.703125 12.0312C0.494792 12.0312 0.3125 11.9792 0.15625 11.875C0.0520833 11.7188 0 11.5365 0 11.3281C0 11.1198 0.078125 10.9635 0.234375 10.8594L9.6875 1.32812H2.10938C1.90104 1.32812 1.71875 1.27604 1.5625 1.17188C1.45833 1.01562 1.40625 0.859375 1.40625 0.703125C1.40625 0.494792 1.45833 0.338542 1.5625 0.234375C1.71875 0.078125 1.90104 0 2.10938 0H11.3281C11.5365 0 11.6927 0.078125 11.7969 0.234375C11.9531 0.338542 12.0312 0.494792 12.0312 0.703125V9.92188C12.0312 10.1302 11.9531 10.3125 11.7969 10.4688C11.6927 10.5729 11.5365 10.625 11.3281 10.625C11.1198 10.625 10.9375 10.5729 10.7812 10.4688C10.6771 10.3125 10.625 10.1302 10.625 9.92188V2.42188L1.17188 11.875C1.06771 11.9792 0.911458 12.0312 0.703125 12.0312Z"/>
+                              </svg>
+                              <span className="my-auto group-hover:underline inline-block">
+                                AI SEO Services
+                              </span>
+                            </a>
+                          </li>
+                          <li>
+                            <a className="flex gap-3 lg:gap-3 hover:text-primary group" href="#">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="currentColor" className="small w-[0.8em] h-[0.8em] mt-1.5">
+                                <path d="M0.703125 12.0312C0.494792 12.0312 0.3125 11.9792 0.15625 11.875C0.0520833 11.7188 0 11.5365 0 11.3281C0 11.1198 0.078125 10.9635 0.234375 10.8594L9.6875 1.32812H2.10938C1.90104 1.32812 1.71875 1.27604 1.5625 1.17188C1.45833 1.01562 1.40625 0.859375 1.40625 0.703125C1.40625 0.494792 1.45833 0.338542 1.5625 0.234375C1.71875 0.078125 1.90104 0 2.10938 0H11.3281C11.5365 0 11.6927 0.078125 11.7969 0.234375C11.9531 0.338542 12.0312 0.494792 12.0312 0.703125V9.92188C12.0312 10.1302 11.9531 10.3125 11.7969 10.4688C11.6927 10.5729 11.5365 10.625 11.3281 10.625C11.1198 10.625 10.9375 10.5729 10.7812 10.4688C10.6771 10.3125 10.625 10.1302 10.625 9.92188V2.42188L1.17188 11.875C1.06771 11.9792 0.911458 12.0312 0.703125 12.0312Z"/>
+                              </svg>
+                              <span className="my-auto group-hover:underline inline-block">
+                                AI Digital Marketing Services
+                              </span>
+                            </a>
+                          </li>
+                          <li>
+                            <a className="flex gap-3 lg:gap-3 hover:text-primary group" href="#">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="currentColor" className="small w-[0.8em] h-[0.8em] mt-1.5">
+                                <path d="M0.703125 12.0312C0.494792 12.0312 0.3125 11.9792 0.15625 11.875C0.0520833 11.7188 0 11.5365 0 11.3281C0 11.1198 0.078125 10.9635 0.234375 10.8594L9.6875 1.32812H2.10938C1.90104 1.32812 1.71875 1.27604 1.5625 1.17188C1.45833 1.01562 1.40625 0.859375 1.40625 0.703125C1.40625 0.494792 1.45833 0.338542 1.5625 0.234375C1.71875 0.078125 1.90104 0 2.10938 0H11.3281C11.5365 0 11.6927 0.078125 11.7969 0.234375C11.9531 0.338542 12.0312 0.494792 12.0312 0.703125V9.92188C12.0312 10.1302 11.9531 10.3125 11.7969 10.4688C11.6927 10.5729 11.5365 10.625 11.3281 10.625C11.1198 10.625 10.9375 10.5729 10.7812 10.4688C10.6771 10.3125 10.625 10.1302 10.625 9.92188V2.42188L1.17188 11.875C1.06771 11.9792 0.911458 12.0312 0.703125 12.0312Z"/>
+                              </svg>
+                              <span className="my-auto group-hover:underline inline-block">
+                                Professional SEO Services
+                              </span>
+                            </a>
+                          </li>
+                          <li>
+                            <a className="flex gap-3 lg:gap-3 hover:text-primary group" href="#">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="currentColor" className="small w-[0.8em] h-[0.8em] mt-1.5">
+                                <path d="M0.703125 12.0312C0.494792 12.0312 0.3125 11.9792 0.15625 11.875C0.0520833 11.7188 0 11.5365 0 11.3281C0 11.1198 0.078125 10.9635 0.234375 10.8594L9.6875 1.32812H2.10938C1.90104 1.32812 1.71875 1.27604 1.5625 1.17188C1.45833 1.01562 1.40625 0.859375 1.40625 0.703125C1.40625 0.494792 1.45833 0.338542 1.5625 0.234375C1.71875 0.078125 1.90104 0 2.10938 0H11.3281C11.5365 0 11.6927 0.078125 11.7969 0.234375C11.9531 0.338542 12.0312 0.494792 12.0312 0.703125V9.92188C12.0312 10.1302 11.9531 10.3125 11.7969 10.4688C11.6927 10.5729 11.5365 10.625 11.3281 10.625C11.1198 10.625 10.9375 10.5729 10.7812 10.4688C10.6771 10.3125 10.625 10.1302 10.625 9.92188V2.42188L1.17188 11.875C1.06771 11.9792 0.911458 12.0312 0.703125 12.0312Z"/>
+                              </svg>
+                              <span className="my-auto group-hover:underline inline-block">
+                                PPC Services
+                              </span>
+                            </a>
+                          </li>
+                          <li>
+                            <a className="flex gap-3 lg:gap-3 hover:text-primary group" href="#">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="currentColor" className="small w-[0.8em] h-[0.8em] mt-1.5">
+                                <path d="M0.703125 12.0312C0.494792 12.0312 0.3125 11.9792 0.15625 11.875C0.0520833 11.7188 0 11.5365 0 11.3281C0 11.1198 0.078125 10.9635 0.234375 10.8594L9.6875 1.32812H2.10938C1.90104 1.32812 1.71875 1.27604 1.5625 1.17188C1.45833 1.01562 1.40625 0.859375 1.40625 0.703125C1.40625 0.494792 1.45833 0.338542 1.5625 0.234375C1.71875 0.078125 1.90104 0 2.10938 0H11.3281C11.5365 0 11.6927 0.078125 11.7969 0.234375C11.9531 0.338542 12.0312 0.494792 12.0312 0.703125V9.92188C12.0312 10.1302 11.9531 10.3125 11.7969 10.4688C11.6927 10.5729 11.5365 10.625 11.3281 10.625C11.1198 10.625 10.9375 10.5729 10.7812 10.4688C10.6771 10.3125 10.625 10.1302 10.625 9.92188V2.42188L1.17188 11.875C1.06771 11.9792 0.911458 12.0312 0.703125 12.0312Z"/>
+                              </svg>
+                              <span className="my-auto group-hover:underline inline-block">
+                                Email Marketing Services
+                              </span>
+                            </a>
+                          </li>
+                          <li>
+                            <a className="flex gap-3 lg:gap-3 hover:text-primary group" href="#">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="currentColor" className="small w-[0.8em] h-[0.8em] mt-1.5">
+                                <path d="M0.703125 12.0312C0.494792 12.0312 0.3125 11.9792 0.15625 11.875C0.0520833 11.7188 0 11.5365 0 11.3281C0 11.1198 0.078125 10.9635 0.234375 10.8594L9.6875 1.32812H2.10938C1.90104 1.32812 1.71875 1.27604 1.5625 1.17188C1.45833 1.01562 1.40625 0.859375 1.40625 0.703125C1.40625 0.494792 1.45833 0.338542 1.5625 0.234375C1.71875 0.078125 1.90104 0 2.10938 0H11.3281C11.5365 0 11.6927 0.078125 11.7969 0.234375C11.9531 0.338542 12.0312 0.494792 12.0312 0.703125V9.92188C12.0312 10.1302 11.9531 10.3125 11.7969 10.4688C11.6927 10.5729 11.5365 10.625 11.3281 10.625C11.1198 10.625 10.9375 10.5729 10.7812 10.4688C10.6771 10.3125 10.625 10.1302 10.625 9.92188V2.42188L1.17188 11.875C1.06771 11.9792 0.911458 12.0312 0.703125 12.0312Z"/>
+                              </svg>
+                              <span className="my-auto group-hover:underline inline-block">
+                                Digital Marketing Services
+                              </span>
+                            </a>
+                          </li>
+                          <li>
+                            <a className="flex gap-3 lg:gap-3 hover:text-primary group" href="#">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="currentColor" className="small w-[0.8em] h-[0.8em] mt-1.5">
+                                <path d="M0.703125 12.0312C0.494792 12.0312 0.3125 11.9792 0.15625 11.875C0.0520833 11.7188 0 11.5365 0 11.3281C0 11.1198 0.078125 10.9635 0.234375 10.8594L9.6875 1.32812H2.10938C1.90104 1.32812 1.71875 1.27604 1.5625 1.17188C1.45833 1.01562 1.40625 0.859375 1.40625 0.703125C1.40625 0.494792 1.45833 0.338542 1.5625 0.234375C1.71875 0.078125 1.90104 0 2.10938 0H11.3281C11.5365 0 11.6927 0.078125 11.7969 0.234375C11.9531 0.338542 12.0312 0.494792 12.0312 0.703125V9.92188C12.0312 10.1302 11.9531 10.3125 11.7969 10.4688C11.6927 10.5729 11.5365 10.625 11.3281 10.625C11.1198 10.625 10.9375 10.5729 10.7812 10.4688C10.6771 10.3125 10.625 10.1302 10.625 9.92188V2.42188L1.17188 11.875C1.06771 11.9792 0.911458 12.0312 0.703125 12.0312Z"/>
+                              </svg>
+                              <span className="my-auto group-hover:underline inline-block">
+                                Digital Marketing Services
+                              </span>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+    
+                  <div id="tab2" className="tab-content animate-init" data-anim="animate__fadeInUp">
+                    <p className="text-center">Features Content</p>
+                  </div>
+    
+                  <div id="tab3" className="tab-content animate-init" data-anim="animate__fadeInUp">
+                    <p className="text-center">Pricing Cdsontent</p>
+                  </div>
+    
+                  <div id="tab4" className="tab-content animate-init" data-anim="animate__fadeInUp">
+                    <p className="text-center">Pricing Conetent</p>
+                  </div>
+    
+                  <div id="tab5" className="tab-content animate-init" data-anim="animate__fadeInUp">
+                    <p className="text-center">Pricing Coxcxzcntent</p>
+                  </div>
+    
+                  <div id="tab6" className="tab-content animate-init" data-anim="animate__fadeInUp">
+                    <p className="text-center">Pricing Contdfnt</p>
+                  </div>
+              </div>
+            </section>
   );
 }

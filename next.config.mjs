@@ -7,6 +7,11 @@ const nextConfig = {
         hostname: "icd.icecubedev.com",
         pathname: "/wp-content/**",
       },
+      {
+        protocol: "https",
+        hostname: "www.icecubedigital.com",
+        pathname: "/**",
+      },
     ],
   },
 };

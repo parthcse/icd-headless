@@ -1,40 +1,31 @@
-import { Suspense } from "react";
-import Footer from "../components/layout/Footer";
+import DesignScripts from "../components/home/DesignScripts";
+import GetQuoteSection from "../components/home/GetQuoteSection";
+import HappyCustomersSection from "../components/home/HappyCustomersSection";
 import HeroSection from "../components/home/HeroSection";
+import LatestNewsSection from "../components/home/LatestNewsSection";
 import ServicesSection from "../components/home/ServicesSection";
 import SuccessStoriesSection from "../components/home/SuccessStoriesSection";
-import WhyChooseUsSection from "../components/home/WhyChooseUsSection";
-import HappyCustomersSection from "../components/home/HappyCustomersSection";
 import TrustedClientsSection from "../components/home/TrustedClientsSection";
-import LatestNewsSection from "../components/home/LatestNewsSection";
-import GetQuoteSection from "../components/home/GetQuoteSection";
 import WeServeSection from "../components/home/WeServeSection";
-import SuccessStoriesSkeleton from "../components/home/skeletons/SuccessStoriesSkeleton";
-import TestimonialsSkeleton from "../components/home/skeletons/TestimonialsSkeleton";
-import BlogSkeleton from "../components/home/skeletons/BlogSkeleton";
+import WhyChooseUsSection from "../components/home/WhyChooseUsSection";
+import Footer from "../components/layout/Footer";
+import Header from "../components/layout/Header";
 
 export default function Home() {
   return (
     <>
+      <Header />
       <HeroSection />
-
-      <main className="relative z-10 w-full min-w-0 bg-black text-white">
-        <ServicesSection />
-        <Suspense fallback={<SuccessStoriesSkeleton />}>
-          <SuccessStoriesSection />
-        </Suspense>
-        <WhyChooseUsSection />
-        <Suspense fallback={<TestimonialsSkeleton />}>
-          <HappyCustomersSection />
-        </Suspense>
-        <TrustedClientsSection />
-        <Suspense fallback={<BlogSkeleton />}>
-          <LatestNewsSection />
-        </Suspense>
-        <GetQuoteSection />
-        <WeServeSection />
-      </main>
+      <ServicesSection />
+      <SuccessStoriesSection />
+      <WhyChooseUsSection />
+      <HappyCustomersSection />
+      <TrustedClientsSection />
+      <LatestNewsSection />
+      <GetQuoteSection />
+      <WeServeSection />
       <Footer />
+      <DesignScripts />
     </>
   );
 }

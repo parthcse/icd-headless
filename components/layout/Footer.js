@@ -1,148 +1,112 @@
-import Image from "next/image";
-import Link from "next/link";
-
-const col1 = [
-  { label: "ECommerce Website Design", href: "#", accent: true },
-  { label: "ECommerce Web Development", href: "#" },
-  { label: "Hire eCommerce Developers", href: "#" },
-  { label: "Magento 2 Upgrade", href: "#" },
-  { label: "Magento Development", href: "#" },
-  { label: "Hire Magento Developers", href: "#" },
-  { label: "Magento 2 Development", href: "#" },
-  { label: "Technical SEO Services", href: "#" },
-  { label: "Hire ReactJS Developers", href: "#" },
-];
-
-const col2 = [
-  { label: "Shopify Development", href: "#" },
-  { label: "Hire Shopify Developers", href: "#" },
-  { label: "Woocommerce Development", href: "#" },
-  { label: "Hire Woocommerce Developers", href: "#" },
-  { label: "WordPress Development", href: "#" },
-  { label: "Hire WordPress Developers", href: "#" },
-  { label: "Custom PHP Development", href: "#" },
-  { label: "Local SEO Services", href: "#" },
-  { label: "Hire Next.js Developers", href: "#" },
-];
-
-const col3 = [
-  { label: "PPC management", href: "#" },
-  { label: "Magento SEO Services", href: "#" },
-  { label: "Shopify SEO Service", href: "#" },
-  { label: "WordPress SEO Service", href: "#" },
-  { label: "Professional SEO Service", href: "#" },
-  { label: "Digital Marketing Service", href: "#" },
-  { label: "Email Marketing Service", href: "#" },
-  { label: "On Page SEO Services", href: "#" },
-  { label: "Hire NodeJS Developers", href: "#" },
-];
-
-const bottomNav = [
-  { label: "Home", href: "/" },
-  { label: "Our Portfolio", href: "#" },
-  { label: "Testimonial", href: "#" },
-  { label: "Our Blog", href: "/blog" },
-  { label: "Sitemap", href: "#" },
-  { label: "Scam Alert", href: "#" },
-  { label: "Privacy", href: "#" },
-];
-
-function ServiceLink({ label, href, accent }) {
-  return (
-    <Link
-      href={href}
-      className={`block text-[18px] leading-[1.9] ${
-        accent ? "text-[#f17e3f] underline" : "text-zinc-300 hover:text-white"
-      }`}
-    >
-      {label}
-    </Link>
-  );
-}
-
 export default function Footer() {
-  const year = new Date().getFullYear();
-
   return (
-    <footer className="relative w-full bg-[#151515] text-white">
-      <div className="site-gutter">
-        <div className="site-container pb-0 pt-[110px]">
-        <div className="flex flex-col gap-12 pb-16 lg:flex-row lg:justify-between lg:gap-10">
-          <div className="min-w-0 flex-1">
-            <h3 className="font-bold text-[24px] text-white">Our Services</h3>
-            <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
-              <nav className="flex flex-col gap-1" aria-label="Services column 1">
-                {col1.map((item) => (
-                  <ServiceLink key={item.label} {...item} />
-                ))}
-              </nav>
-              <nav className="flex flex-col gap-1" aria-label="Services column 2">
-                {col2.map((item) => (
-                  <ServiceLink key={item.label} {...item} />
-                ))}
-              </nav>
-              <nav className="flex flex-col gap-1" aria-label="Services column 3">
-                {col3.map((item) => (
-                  <ServiceLink key={item.label} {...item} />
-                ))}
-              </nav>
-            </div>
-          </div>
-
-          <div className="w-full shrink-0 bg-[#0f0f0f] p-[40px] lg:max-w-[420px]">
-            <div className="mb-6 h-[72px] w-[72px] rounded-lg bg-[#2a2a2a]" aria-hidden />
-            <h4 className="font-bold text-[24px] text-white">Most Trusted Company</h4>
-            <p className="mt-4 text-[16px] leading-relaxed text-zinc-400">
-              IceCube Digital partners with brands worldwide to deliver reliable eCommerce, marketing,
-              and engineering outcomes you can measure.
-            </p>
-          </div>
-        </div>
-
-        <div className="border-t border-[#272727] py-[50px]">
-          <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
-            <div className="flex min-w-0 flex-col gap-4">
-              <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[15px] text-zinc-300">
-                {bottomNav.map((item, i) => (
-                  <span key={item.label} className="inline-flex items-center gap-2">
-                    {i > 0 ? <span className="text-zinc-600" aria-hidden>|</span> : null}
-                    <Link href={item.href} className="hover:text-[#f17e3f]">
-                      {item.label}
-                    </Link>
-                  </span>
-                ))}
+    <footer className="footer-main bg-white/5 pt-space text-base">
+              <div className="container">
+                <h4 className="font-24 mb-[0.8em]">Our Services</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 pb-space gap-4 md:gap-6">
+                  <ul className="[&_a]:transition [&_a:hover]:text-primary [&_a:hover]:underline grid gap-1">
+                    <li><a href="#">ECommerce Website Design</a></li>
+                    <li><a href="#">ECommerce Web Development</a></li>
+                    <li><a href="#">Hire eCommerce Developers</a></li>
+                    <li><a href="#">Magento 2 Upgrade</a></li>
+                    <li><a href="#">Magento Development</a></li>
+                    <li><a href="#">Hire Magento Developers</a></li>
+                    <li><a href="#">Magento 2 Development</a></li>
+                    <li><a href="#">Technical SEO Services</a></li>
+                    <li><a href="#">Hire ReactJS Developers</a></li>
+                  </ul>
+                  <ul className="[&_a]:transition [&_a:hover]:text-primary [&_a:hover]:underline grid gap-1">
+                    <li><a href="#">Shopify Development</a></li>
+                    <li><a href="#">Hire Shopify Developers</a></li>
+                    <li><a href="#">Woocommerce Development</a></li>
+                    <li><a href="#">Hire Woocommerce Developers</a></li>
+                    <li><a href="#">WordPress Development</a></li>
+                    <li><a href="#">Hire WordPress Developers</a></li>
+                    <li><a href="#">Custom PHP Development</a></li>
+                    <li><a href="#">Local SEO Services</a></li>
+                    <li><a href="#">Hire Next.js Developers</a></li>
+                  </ul>
+                  <ul className="[&_a]:transition [&_a:hover]:text-primary [&_a:hover]:underline grid gap-1">
+                    <li><a href="#">PPC Management</a></li>
+                    <li><a href="#">Magento SEO Services</a></li>
+                    <li><a href="#">Shopify SEO Service</a></li>
+                    <li><a href="#">WordPress SEO Service</a></li>
+                    <li><a href="#">Professional SEO Service</a></li>
+                    <li><a href="#">Digital Marketing Service</a></li>
+                    <li><a href="#">Email Marketing Service</a></li>
+                    <li><a href="#">On Page SEO Services</a></li>
+                    <li><a href="#">Hire NodeJS Developers</a></li>
+                  </ul>
+                  <div className="footer-trusted bg-black text-center p-5 xl:p-6">
+                    <img
+                      className="mx-auto mb-3 xl:mb-4"
+                      src="https://www.icecubedigital.com/wp-content/webp-express/webp-images/uploads/2023/08/top-web-development-company.png.webp"
+                      alt="Top web development company"
+                    />
+                    <h4 className="font-22 mb-2">Most Trusted Company</h4>
+                    <p>Icecube Digital Is Rated As The Top Web Development Company By Good Firms</p>
+                  </div>
+                </div>
+                <div className="border-t border-white/10 pt-space-mini pb-space-mini text-center gap-4 flex flex-col lg:flex-row lg:text-left">
+                  <div className="text-white/60 grid gap-2">
+                    <ul className="[&_a]:transition [&_a]:text-white [&_a:hover]:text-primary flex flex-wrap items-center gap-2 justify-center">
+                      <li>
+                        <a href="#">Home</a>
+                      </li>
+                      <li>|</li>
+                      <li>
+                        <a href="#">Our Portfolio</a>
+                      </li>
+                      <li>|</li>
+                      <li>
+                        <a href="#">Testimonial</a>
+                      </li>
+                      <li>|</li>
+                      <li>
+                        <a href="#">Our Blog</a>
+                      </li>
+                      <li>|</li>
+                      <li>
+                        <a href="#">Sitemap</a>
+                      </li>
+                      <li>|</li>
+                      <li>
+                        <a href="#">Scam Alert</a>
+                      </li>
+                      <li>|</li>
+                      <li>
+                        <a href="#">Privacy</a>
+                      </li>
+                    </ul>
+                    <small>Copyright © 2026 Icecube Digital. All rights reserved.</small>
+                  </div>  
+                  <div className="flex flex-col gap-4 justify-center items-center lg:flex-row lg:ml-auto lg:gap-11 xl:gap-16">
+                    <ul className="flex gap-3">
+                      <li>
+                        <a href="#">
+                          <img src="/images/inkedin.svg" alt="" />
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <img src="/images/instagram.svg" alt="" />
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <img src="/images/facebook.svg" alt="" />
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <img src="/images/twitter.svg" alt="" />
+                        </a>
+                      </li>
+                    </ul>
+                    <img src="/images/dmca.png" alt="" />
+                  </div> 
+                </div>
               </div>
-              <p className="text-[15px] text-[#bbb]">
-                &copy; {year} IceCube Digital. All rights reserved.
-              </p>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-6">
-              <div className="flex items-center gap-3" aria-label="Social links">
-                {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="h-10 w-10 rounded-full bg-[#2a2a2a]" aria-hidden />
-                ))}
-              </div>
-              <div className="flex items-center gap-2" aria-label="Payment methods">
-                {[1, 2, 3].map((i) => (
-                  <div key={i} className="h-8 w-12 rounded bg-[#2a2a2a]" aria-hidden />
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-        </div>
-      </div>
-
-      <Link
-        href="https://wa.me/919106060593"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center overflow-hidden rounded-full shadow-lg ring-2 ring-black/20 transition hover:scale-105"
-        aria-label="Chat on WhatsApp"
-      >
-        <Image src="/images/whatsapp.png" alt="" width={56} height={56} className="object-cover" />
-      </Link>
-    </footer>
+            </footer>
   );
 }
