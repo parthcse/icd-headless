@@ -103,7 +103,7 @@ export default function Footer() {
                         </a>
                       </li>
                     </ul>
-                    <img src="/images/dmca.png" alt="" />
+                    <img src="/images/dmca-placeholder.svg" alt="" />
                   </div> 
                 </div>
               </div>

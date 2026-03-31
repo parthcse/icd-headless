@@ -3,7 +3,7 @@ import QuoteBubbleIcon from "../icons/QuoteBubbleIcon";
 import { getTestimonialNodes } from "../../lib/wp-home-data";
 import { stripHtml, testimonialsArchiveUrl } from "../../lib/wp-text";
 
-const FALLBACK_AVATAR = "/images/client.png";
+const FALLBACK_AVATAR = "/images/avatar-placeholder.svg";
 
 const STATIC_CARD = {
   id: "fallback",

@@ -5,7 +5,7 @@ export default function WhyChooseUsSection() {
                 <div className="header-wrap pb-space-mini text-center grid gap-[0.5em] animate-init" data-anim="animate__fadeInUp animate__delay-0.4s">
                   <h3 className="font-30 font-normal mb-0">Count On The Recognized Leader</h3>
                   <h2 className="main-title mb-0">Why Choose Us?</h2>
-                  <p>We've helped businesses increase their revenue on an average by 90% in their first year with us!</p>
+                  <p>We&apos;ve helped businesses increase their revenue on an average by 90% in their first year with us!</p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-space-mini xl:gap-space animate-init" data-anim="animate__fadeInUp animate__delay-0.6s">
                   <div className="column">

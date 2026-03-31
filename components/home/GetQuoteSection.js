@@ -19,16 +19,16 @@ export default function GetQuoteSection() {
         </div>
 
         <div
-          className="contact-quote-layout animate-init mt-8 flex flex-col gap-12 lg:mt-10 lg:flex-row lg:items-start lg:gap-16 xl:gap-[100px]"
+          className="contact-quote-layout animate-init mt-8 grid grid-cols-1 gap-4 md:gap-space-small lg:mt-10 lg:grid-cols-12 xl:gap-x-20"
           data-anim="animate__fadeInUp animate__delay-0.6s"
         >
-          <div className="flex w-full max-w-[500px] shrink-0 flex-col gap-2.5 lg:mx-0">
-            <div className="contact-info-card">
+          <div className="grid gap-2 text-lg lg:col-span-5">
+            <div className="flex items-start gap-space-small border border-white/10 px-space-small py-space-small lg:gap-6 lg:px-8 lg:py-6">
               <IconEmail />
               <div className="min-w-0 flex-1 text-white">
-                <p className="contact-info-card__title">Email Us</p>
+                <p className="font-semibold">Email Us</p>
                 <a
-                  className="contact-info-card__link"
+                  className="hover:text-primary"
                   href="mailto:hello@icecubedigital.com"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -37,12 +37,12 @@ export default function GetQuoteSection() {
                 </a>
               </div>
             </div>
-            <div className="contact-info-card">
+            <div className="flex items-start gap-space-small border border-white/10 px-space-small py-space-small lg:gap-6 lg:px-8 lg:py-6">
               <IconHeadset />
               <div className="min-w-0 flex-1 text-white">
-                <p className="contact-info-card__title">Sales &amp; Support</p>
+                <p className="font-semibold">Sales &amp; Support</p>
                 <a
-                  className="contact-info-card__link"
+                  className="hover:text-primary"
                   href="https://wa.me/919106060593"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -51,12 +51,12 @@ export default function GetQuoteSection() {
                 </a>
               </div>
             </div>
-            <div className="contact-info-card">
+            <div className="flex items-start gap-space-small border border-white/10 px-space-small py-space-small lg:gap-6 lg:px-8 lg:py-6">
               <IconUserHr />
               <div className="min-w-0 flex-1 text-white">
-                <p className="contact-info-card__title">HR</p>
+                <p className="font-semibold">HR</p>
                 <a
-                  className="contact-info-card__link"
+                  className="hover:text-primary"
                   href="https://wa.me/916352955623"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -67,7 +67,9 @@ export default function GetQuoteSection() {
             </div>
           </div>
 
-          <ContactQuoteForm />
+          <div className="lg:col-span-7">
+            <ContactQuoteForm />
+          </div>
         </div>
       </div>
     </section>

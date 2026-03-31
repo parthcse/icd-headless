@@ -2,7 +2,7 @@ import BtnArrowIcon from "../icons/BtnArrowIcon";
 import { getCaseStudyNodes } from "../../lib/wp-home-data";
 import { stripHtml, wpPermalink } from "../../lib/wp-text";
 
-const FALLBACK_IMG = "/images/home-our-client-slider.png";
+const FALLBACK_IMG = "/images/placeholder-card.svg";
 
 const STATIC_SLIDE = {
   id: "fallback",

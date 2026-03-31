@@ -102,9 +102,9 @@ export default function ContactQuoteForm() {
   };
 
   return (
-    <div className="contact-quote-form flex min-w-0 flex-1 flex-col justify-center gap-5">
+    <div className="contact-quote-form min-w-0 flex-1">
       <form
-        className="flex flex-col gap-5"
+        className="grid gap-4 xl:gap-4.5"
         onSubmit={handleSubmit}
         autoComplete="off"
         noValidate
@@ -122,8 +122,8 @@ export default function ContactQuoteForm() {
           />
         </div>
 
-        <div className="flex flex-col gap-5 lg:flex-row lg:gap-5">
-          <div className="min-w-0 flex-1">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:gap-4.5">
+          <div>
             <input
               id="contact-name"
               name="name"
@@ -132,7 +132,7 @@ export default function ContactQuoteForm() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Full Name*"
-              className="contact-form-input"
+              className="border border-white/10 bg-transparent px-5 py-4 outline-none"
               aria-invalid={Boolean(fieldErrors.name)}
               aria-describedby={fieldErrors.name ? "err-name" : undefined}
             />
@@ -142,7 +142,7 @@ export default function ContactQuoteForm() {
               </p>
             ) : null}
           </div>
-          <div className="min-w-0 flex-1">
+          <div>
             <input
               id="contact-email"
               name="email"
@@ -151,7 +151,7 @@ export default function ContactQuoteForm() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email*"
-              className="contact-form-input"
+              className="border border-white/10 bg-transparent px-5 py-4 outline-none"
               aria-invalid={Boolean(fieldErrors.email)}
               aria-describedby={fieldErrors.email ? "err-email" : undefined}
             />
@@ -172,7 +172,7 @@ export default function ContactQuoteForm() {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Message*"
-            className="contact-form-textarea"
+            className="border border-white/10 bg-transparent px-5 py-4 outline-none"
             aria-invalid={Boolean(fieldErrors.message)}
             aria-describedby={fieldErrors.message ? "err-message" : undefined}
           />

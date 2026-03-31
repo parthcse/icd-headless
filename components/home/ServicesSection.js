@@ -60,7 +60,7 @@ export default function ServicesSection() {
                   <div id="tab1" className="tab-content active animate-init" data-anim="animate__fadeInUp animate__delay-0.5s">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 md:gap-space-mini">
                       <div className="txet-box lg:col-span-5">
-                        <p>Shopify is everywhere, so why not incorporate it into your ecosystem? We transform your brand's vision into a captivating online store, leveraging Shopify's versatile platform. From design customization to app integration, we create Shopify solutions that blend aesthetics and functionality seamlessly.</p>
+                        <p>Shopify is everywhere, so why not incorporate it into your ecosystem? We transform your brand&apos;s vision into a captivating online store, leveraging Shopify&apos;s versatile platform. From design customization to app integration, we create Shopify solutions that blend aesthetics and functionality seamlessly.</p>
                       </div>
                       <div className="list-box font-semibold lg:col-span-7 xl:pl-16 2xl:pl-20">
                         <ul className="grid grid-cols-1 lg:grid-cols-2 gap-2">

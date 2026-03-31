@@ -1,7 +1,7 @@
 import { getRecentPostNodes } from "../../lib/wp-home-data";
 import { formatPostDate, stripHtml, wpPermalink } from "../../lib/wp-text";
 
-const FALLBACK_IMG = "/images/home-our-client-slider.png";
+const FALLBACK_IMG = "/images/placeholder-card.svg";
 
 const STATIC_POSTS = [
   {

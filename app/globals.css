@@ -12,6 +12,15 @@ body {
   max-width: 100%;
 }
 
+/* Global button behavior (no jump, subtle icon motion) */
+.btn svg {
+  transition: transform 180ms ease;
+}
+
+.btn:hover svg {
+  transform: translateY(-2px);
+}
+
 /* Contact quote section — aligns with Figma node 14:372 (IceCube Homepage) */
 .contact-info-card {
   display: flex;

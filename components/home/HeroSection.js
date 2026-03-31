@@ -2,19 +2,18 @@ import BtnArrowIcon from "../icons/BtnArrowIcon";
 
 export default function HeroSection() {
   return (
-    <section className="home-banner full-section relative border-t-0 text-center">
-      <div
-        className="animate-init absolute inset-0 opacity-60 xl:opacity-50"
-        data-anim="animate__fadeIn animate__faster"
-      >
+    <section className="home-banner full-section relative border-t-0 text-center xl:py-36">
+      <div className="absolute inset-0">
         <img
-          src="/images/home-banner-bg.png"
+          className="h-full w-full object-cover opacity-90"
+          aria-hidden="true"
+          src="/images/home-banner-bg.svg"
           alt=""
-          className="h-full w-full object-cover"
         />
+        <span className="absolute inset-0 bg-black bg-opacity-25" />
       </div>
 
-      <div className="container relative z-10 grid max-w-6xl gap-[1em]">
+      <div className="container relative z-10 pt-space-mini mt-8 grid max-w-6xl gap-[1em] xl:mt-0">
         <h1 className="main-title animate-init" data-anim="animate__fadeInDown animate__faster">
           Build, Grow, & Scale
         </h1>
@@ -27,7 +26,7 @@ export default function HeroSection() {
         </h2>
 
         <h4
-          className="font-24 animate-init my-4 border-b border-t border-white/10 py-4 lg:my-6 lg:py-6 xl:my-8 xl:py-8"
+          className="font-24 animate-init my-4 border-b border-t border-white/10 py-4 lg:my-6 lg:py-6 xl:my-10 xl:py-10"
           data-anim="animate__fadeInUp animate__delay-0.6s animate__fast"
         >
           Your Success, Our Strategy
