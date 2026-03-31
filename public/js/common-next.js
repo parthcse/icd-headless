@@ -17,6 +17,23 @@ icdDomReady(function () {
   }
 });
 
+// Header scroll effect - add bg-black shadow-lg on scroll
+icdDomReady(function () {
+  const header = document.querySelector(".header-main");
+  if (!header) return;
+
+  function handleScroll() {
+    if (window.scrollY > 50) {
+      header.classList.add("bg-black", "shadow-lg");
+    } else {
+      header.classList.remove("bg-black", "shadow-lg");
+    }
+  }
+
+  window.addEventListener("scroll", handleScroll, { passive: true });
+  handleScroll(); // Check initial state
+});
+
 // Home services tabs
 icdDomReady(function () {
   const buttons = document.querySelectorAll(".home-services .tab-btn");
@@ -105,29 +122,31 @@ icdDomReady(function () {
   observer.observe(section);
 });
 
-// Animate.css on scroll
+// WPB animations - add wpb_start to trigger animations
 icdDomReady(function () {
-  const elements = document.querySelectorAll(".animate-init");
+  const wpbElements = document.querySelectorAll(".wpb_animate");
+  if (!wpbElements.length) return;
+
   const observer = new IntersectionObserver(
     function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          const el = entry.target;
-          const anim = el.getAttribute("data-anim");
-          el.classList.add("animate__animated");
-          if (anim) {
-            anim.split(" ").forEach(function (cls) {
-              if (cls) el.classList.add(cls);
-            });
-          }
-          el.style.opacity = 1;
-          observer.unobserve(el);
+          entry.target.classList.add("wpb_start");
+          observer.unobserve(entry.target);
         }
       });
     },
-    { threshold: 0.2 }
+    { threshold: 0.1 }
   );
-  elements.forEach(function (el) {
-    observer.observe(el);
+
+  wpbElements.forEach(function (el) {
+    // Check if element is already in viewport (above the fold)
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      // Add wpb_start immediately for elements already visible
+      el.classList.add("wpb_start");
+    } else {
+      observer.observe(el);
+    }
   });
 });

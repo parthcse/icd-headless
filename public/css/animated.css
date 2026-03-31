@@ -1,0 +1,121 @@
+.wpb_animate {
+  opacity: 0;
+}
+
+.wpb_animate.wpb_start {
+  opacity: 1;
+}
+
+.wpb_animate.animated {
+  animation-duration: 0.8s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-out;
+}
+@keyframes fadeInDownShort {
+  from {
+    opacity: 0;
+    transform: translateY(-2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.wpb_fadeDown.wpb_start {
+  animation-name: fadeInDownShort;
+}
+
+@keyframes fadeInUpShort {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.wpb_fadeUp.wpb_start {
+  animation-name: fadeInUpShort;
+}
+
+@keyframes lineGrow {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.wpb_line {
+  width: 0;
+  height: 1px;
+}
+
+.wpb_line.wpb_start {
+  animation: lineGrow 0.8s ease forwards;
+}
+
+@keyframes fadeInLeftShort {
+  from {
+    opacity: 0;
+    transform: translateX(-2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.wpb_fadeLeft.wpb_start {
+  animation-name: fadeInLeftShort;
+}
+
+
+@keyframes fadeInRightShort {
+  from {
+    opacity: 0;
+    transform: translateX(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.wpb_fadeRight.wpb_start {
+  animation-name: fadeInRightShort;
+}
+
+@keyframes zoomInShort {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.wpb_zoomIn.wpb_start {
+  animation-name: zoomInShort;
+}
+
+@keyframes zoomOutShort {
+  from {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.wpb_zoomOut.wpb_start {
+  animation-name: zoomOutShort;
+}

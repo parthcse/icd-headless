@@ -9,8 +9,8 @@ module.exports = {
     container: {
       center: true,
       padding: {
-        DEFAULT: "1.5rem",
-        xl: "2rem",
+        DEFAULT: '1.5rem', 
+        xl: '2rem',  
       },
     },
     screens: {
@@ -21,15 +21,17 @@ module.exports = {
       "2xl": "1200px",
     },
     extend: {
+      spacing: {
+        '4.5': '1.125rem',
+      },
       colors: {
         primary: "#F17E3F",
         black: "#202020",
       },
       fontFamily: {
-        gilroy: ["Gilroy", "sans-serif"],
+        gilroy: ['Gilroy', 'sans-serif'],
       },
     },
   },
   plugins: [],
-};
-
+}

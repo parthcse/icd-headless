@@ -1,10 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import BtnArrowIcon from "../icons/BtnArrowIcon";
 
 const SITE_KEY =
   typeof process !== "undefined" ? process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY : undefined;
+
+const SUBMIT_ARROW_PATH =
+  "M0.703125 12.0312C0.494792 12.0312 0.3125 11.9792 0.15625 11.875C0.0520833 11.7188 0 11.5365 0 11.3281C0 11.1198 0.078125 10.9635 0.234375 10.8594L9.6875 1.32812H2.10938C1.90104 1.32812 1.71875 1.27604 1.5625 1.17188C1.45833 1.01562 1.40625 0.859375 1.40625 0.703125C1.40625 0.494792 1.45833 0.338542 1.5625 0.234375C1.71875 0.078125 1.90104 0 2.10938 0H11.3281C11.5365 0 11.6927 0.078125 11.7969 0.234375C11.9531 0.338542 12.0312 0.494792 12.0312 0.703125V9.92188C12.0312 10.1302 11.9531 10.3125 11.7969 10.4688C11.6927 10.5729 11.5365 10.625 11.3281 10.625C11.1198 10.625 10.9375 10.5729 10.7812 10.4688C10.6771 10.3125 10.625 10.1302 10.625 9.92188V2.42188L1.17188 11.875C1.06771 11.9792 0.911458 12.0312 0.703125 12.0312Z";
 
 async function getRecaptchaToken() {
   if (!SITE_KEY || typeof window === "undefined") return "";
@@ -126,15 +128,15 @@ export default function ContactQuoteForm() {
           <div>
             <input
               id="contact-name"
-              name="name"
               type="text"
               required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
               placeholder="Full Name*"
-              className="border border-white/10 bg-transparent px-5 py-4 outline-none"
+              className="w-full border border-white/10 bg-transparent px-5 py-4 outline-none"
               aria-invalid={Boolean(fieldErrors.name)}
               aria-describedby={fieldErrors.name ? "err-name" : undefined}
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
             {fieldErrors.name ? (
               <p id="err-name" className="contact-form-field-error">
@@ -145,15 +147,15 @@ export default function ContactQuoteForm() {
           <div>
             <input
               id="contact-email"
-              name="email"
               type="email"
               required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
               placeholder="Email*"
-              className="border border-white/10 bg-transparent px-5 py-4 outline-none"
+              className="w-full border border-white/10 bg-transparent px-5 py-4 outline-none"
               aria-invalid={Boolean(fieldErrors.email)}
               aria-describedby={fieldErrors.email ? "err-email" : undefined}
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             {fieldErrors.email ? (
               <p id="err-email" className="contact-form-field-error">
@@ -163,25 +165,23 @@ export default function ContactQuoteForm() {
           </div>
         </div>
 
-        <div>
-          <textarea
-            id="contact-message"
-            name="message"
-            required
-            rows={8}
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            placeholder="Message*"
-            className="border border-white/10 bg-transparent px-5 py-4 outline-none"
-            aria-invalid={Boolean(fieldErrors.message)}
-            aria-describedby={fieldErrors.message ? "err-message" : undefined}
-          />
-          {fieldErrors.message ? (
-            <p id="err-message" className="contact-form-field-error">
-              {fieldErrors.message}
-            </p>
-          ) : null}
-        </div>
+        <textarea
+          id="contact-message"
+          name="message"
+          required
+          rows={8}
+          placeholder="Message*"
+          className="w-full border border-white/10 bg-transparent px-5 py-4 outline-none"
+          aria-invalid={Boolean(fieldErrors.message)}
+          aria-describedby={fieldErrors.message ? "err-message" : undefined}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+        {fieldErrors.message ? (
+          <p id="err-message" className="contact-form-field-error">
+            {fieldErrors.message}
+          </p>
+        ) : null}
 
         {error ? <p className="contact-form-banner contact-form-banner--error">{error}</p> : null}
         {success ? (
@@ -192,7 +192,18 @@ export default function ContactQuoteForm() {
 
         <button type="submit" className="btn btn-primary w-fit" disabled={loading}>
           {loading ? "Sending…" : "Send Message"}
-          <BtnArrowIcon />
+          {!loading ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="13"
+              height="13"
+              viewBox="0 0 13 13"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d={SUBMIT_ARROW_PATH} />
+            </svg>
+          ) : null}
         </button>
       </form>
     </div>
