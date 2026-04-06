@@ -12,9 +12,9 @@ icdDomReady(function () {
   if (!header) return;
   function onScroll() {
     if (window.scrollY > 5) {
-      header.classList.add("bg-black-light", "shadow-lg");
+      header.classList.add("header-scrolled");
     } else {
-      header.classList.remove("bg-black-light", "shadow-lg");
+      header.classList.remove("header-scrolled");
     }
   }
   window.addEventListener("scroll", onScroll, { passive: true });
