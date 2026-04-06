@@ -1019,6 +1019,18 @@ h6 {
   }
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 .fixed {
   position: fixed;
 }
@@ -1474,6 +1486,10 @@ h6 {
   text-align: center;
 }
 
+.align-bottom {
+  vertical-align: bottom;
+}
+
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -1591,24 +1607,11 @@ h6 {
   font-size: 0.875em;
 }
 
-.char-animate span {
-  display: inline-block;
-  --tw-translate-y: 1rem;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-  opacity: 0;
-  animation: fadeUp 0.5s ease forwards;
-}
+/* Hero H1: outer clip + Framer Motion per-char wrappers handle the rise */
 
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(1rem);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.char-animate {
+  overflow: hidden;
+  display: block;
 }
 
 @media (min-width: 768px) {

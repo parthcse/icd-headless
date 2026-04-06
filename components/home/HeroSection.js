@@ -1,3 +1,5 @@
+import HeroMainTitle from "./HeroMainTitle";
+
 export default function HeroSection() {
   return (
     <section className="home-banner full-section relative text-center border-t-0 xl:py-36">
@@ -9,7 +11,7 @@ export default function HeroSection() {
 
       {/* Content */}
       <div className="container relative z-10 pt-space-mini mt-8 xl:mt-0">
-        <h1 className="main-title wpb char-animate">Build, Grow, &amp; Scale</h1>
+        <HeroMainTitle />
         <h2 className="font-48 font-normal mb-0 wpb_animate animated wpb_fadeUp" style={{ animationDelay: "0.6s" }}>Your eCommerce Store With Experts</h2>
         <div className="border border-[#202020] my-4 lg:my-6 xl:my-10 wpb_animate animated wpb_line" style={{ animationDelay: "0.8s" }}></div>
         <h4 className="font-30 font-normal my-4 lg:my-6 xl:my-10 wpb_animate animated wpb_fadeUp" style={{ animationDelay: "0.8s" }}>Your Success, Our Strategy</h4>

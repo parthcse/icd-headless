@@ -147,22 +147,3 @@ icdDomReady(function () {
   });
 });
 
-// char-animate (Design/tailwind/js/common.js)
-icdDomReady(function () {
-  document.querySelectorAll(".char-animate").forEach(function (el) {
-    const text = el.textContent;
-    if (!text || !text.trim()) return;
-    el.innerHTML = text
-      .split("")
-      .map(function (char, i) {
-        return (
-          '<span class="animated wpb_animate wpb_fadeUp wpb_start" style="animation-duration: 0.7s; animation-delay:' +
-          (0.5 + i * 0.005) +
-          's">' +
-          (char === " " ? "&nbsp;" : char) +
-          "</span>"
-        );
-      })
-      .join("");
-  });
-});
