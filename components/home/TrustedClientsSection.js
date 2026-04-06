@@ -20,8 +20,8 @@ export default function TrustedClientsSection() {
   return (
     <section className="home-out-client full-section xl:pt-28 xl:pb-36">
       <div className="container">
-        <div className="header-wrap animated wpb_animate wpb_fadeUp grid gap-[0.5em] pb-space-mini text-center xl:pb-16 xl:text-lg">
-          <h3 className="font-48 mb-0 font-normal">Our</h3>
+        <div className="header-wrap grid gap-[0.5em] pb-space-mini text-center animated wpb_animate wpb_fadeUp xl:pb-16 xl:text-lg">
+          <h3 className="mb-0 font-48 font-normal">Our</h3>
           <h2 className="main-title mb-0">Trusted Clients</h2>
           <p>Clients who have worked with. They trust IceCube Digital for over 10 years.</p>
         </div>
@@ -29,10 +29,14 @@ export default function TrustedClientsSection() {
           className="main-title animated wpb_animate wpb_zoomIn grid grid-cols-2 gap-4 text-center sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:gap-6"
           style={{ animationDelay: "0.5s" }}
         >
-          {CLIENT_LOGOS.map((src) => (
+          {CLIENT_LOGOS.map((src, index) => (
             <div
               key={src}
-              className="column flex items-center justify-center border border-white/5 bg-white/5 py-[0.3em] px-[0.2em] transition hover:border-primary"
+              className={
+                index === 0
+                  ? "column flex items-center justify-center border border-white/5 bg-black-light py-[0.3em] px-[0.2em] transition hover:border-primary"
+                  : "column flex items-center justify-center border border-black-light bg-black-light py-[0.3em] px-[0.2em] transition hover:border-primary"
+              }
             >
               <img className="mx-auto max-h-[1.2em] max-w-[2em]" src={src} alt="" />
             </div>

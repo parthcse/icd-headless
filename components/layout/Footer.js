@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="footer-main bg-[#151515] bg-white/5 pt-space text-base xl:pt-28 xl:text-sm">
+    <footer className="footer-main bg-black-light bg-[#151515] pt-space text-base xl:pt-28 xl:text-sm">
       <div className="container">
         <h4 className="font-24 mb-[0.8em]">Our Services</h4>
         <div className="grid grid-cols-1 gap-4 pb-space md:grid-cols-2 md:gap-6 lg:grid-cols-4 xl:pb-28">
@@ -91,7 +91,7 @@ export default function Footer() {
               <a href="#">Hire NodeJS Developers</a>
             </li>
           </ul>
-          <div className="footer-trusted bg-[#0F0F0F] p-5 text-center xl:p-6">
+          <div className="footer-trusted bg-[#0f0f0f] p-5 text-center xl:p-6">
             <img
               className="mx-auto mb-3 max-w-28"
               src="https://www.icecubedigital.com/wp-content/webp-express/webp-images/uploads/2023/08/top-web-development-company.png.webp"

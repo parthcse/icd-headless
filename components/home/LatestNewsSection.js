@@ -50,8 +50,8 @@ export default async function LatestNewsSection() {
   return (
     <section className="home-blog full-section xl:pt-28 xl:pb-36">
       <div className="container">
-        <div className="header-wrap animated wpb_animate wpb_fadeUp grid gap-[0.5em] pb-space-mini text-center xl:pb-20 xl:text-lg">
-          <h3 className="font-48 mb-0 font-normal">Our Blog</h3>
+        <div className="header-wrap grid gap-[0.5em] pb-space-mini text-center animated wpb_animate wpb_fadeUp xl:pb-20 xl:text-lg">
+          <h3 className="mb-0 font-48 font-normal">Our Blog</h3>
           <h2 className="main-title mb-0">Latest News</h2>
           <p>Read our latest news to get updated with markets</p>
         </div>
@@ -60,7 +60,7 @@ export default async function LatestNewsSection() {
           style={{ animationDelay: "0.5s" }}
         >
           {posts.map((post) => (
-            <div key={post.id} className="column bg-white/5">
+            <div key={post.id} className="column bg-black-light">
               <a href={post.href} className="block text-inherit no-underline">
                 <figure>
                   <img src={post.image} alt={post.imageAlt} style={{ opacity: 1 }} />

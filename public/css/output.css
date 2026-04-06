@@ -1,3 +1,5 @@
+/* Source: Design/tailwind/input.css — plus Next-only: .font-32, .header-main.header-scrolled, .char-animate (Framer hero; no .char-animate span keyframes). */
+
 *, ::before, ::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
@@ -106,9 +108,7 @@
   --tw-contain-style:  ;
 }
 
-/*
-! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com
-*/
+/* ! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com */
 
 /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
@@ -1128,6 +1128,18 @@ h6 {
   margin-bottom: 1.25rem;
 }
 
+.mb-\[0\.15em\] {
+  margin-bottom: 0.15em;
+}
+
+.mb-\[0\.25em\] {
+  margin-bottom: 0.25em;
+}
+
+.mb-\[0\.2em\] {
+  margin-bottom: 0.2em;
+}
+
 .mb-\[0\.3em\] {
   margin-bottom: 0.3em;
 }
@@ -1138,10 +1150,6 @@ h6 {
 
 .mb-\[0\.8em\] {
   margin-bottom: 0.8em;
-}
-
-.mb-\[1em\] {
-  margin-bottom: 1em;
 }
 
 .mb-auto {
@@ -1158,6 +1166,10 @@ h6 {
 
 .mt-1\.5 {
   margin-top: 0.375rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
 }
 
 .mt-4 {
@@ -1220,12 +1232,20 @@ h6 {
   height: 100%;
 }
 
+.max-h-\[0\.43em\] {
+  max-height: 0.43em;
+}
+
+.max-h-\[0\.46em\] {
+  max-height: 0.46em;
+}
+
 .max-h-\[1\.2em\] {
   max-height: 1.2em;
 }
 
-.max-h-\[1\.5em\] {
-  max-height: 1.5em;
+.max-h-\[1em\] {
+  max-height: 1em;
 }
 
 .\!w-\[3\.5em\] {
@@ -1242,10 +1262,6 @@ h6 {
 
 .w-\[50px\] {
   width: 50px;
-}
-
-.w-auto {
-  width: auto;
 }
 
 .w-fit {
@@ -1285,8 +1301,16 @@ h6 {
   max-width: 20rem;
 }
 
+.max-w-\[0\.46em\] {
+  max-width: 0.46em;
+}
+
 .max-w-\[1920px\] {
   max-width: 1920px;
+}
+
+.max-w-\[1em\] {
+  max-width: 1em;
 }
 
 .max-w-\[2em\] {
@@ -1394,12 +1418,18 @@ h6 {
   border-color: rgb(32 32 32 / var(--tw-border-opacity, 1));
 }
 
-.border-white\/10 {
-  border-color: rgb(255 255 255 / 0.1);
+.border-\[\#272727\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(39 39 39 / var(--tw-border-opacity, 1));
 }
 
-.border-white\/25 {
-  border-color: rgb(255 255 255 / 0.25);
+.border-black-light {
+  --tw-border-opacity: 1;
+  border-color: rgb(21 21 21 / var(--tw-border-opacity, 1));
+}
+
+.border-white\/10 {
+  border-color: rgb(255 255 255 / 0.1);
 }
 
 .border-white\/5 {
@@ -1410,7 +1440,7 @@ h6 {
   border-color: rgb(255 255 255 / 0.5);
 }
 
-.bg-\[\#0F0F0F\] {
+.bg-\[\#0f0f0f\] {
   --tw-bg-opacity: 1;
   background-color: rgb(15 15 15 / var(--tw-bg-opacity, 1));
 }
@@ -1425,12 +1455,13 @@ h6 {
   background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1));
 }
 
-.bg-transparent {
-  background-color: transparent;
+.bg-black-light {
+  --tw-bg-opacity: 1;
+  background-color: rgb(21 21 21 / var(--tw-bg-opacity, 1));
 }
 
-.bg-white\/5 {
-  background-color: rgb(255 255 255 / 0.05);
+.bg-transparent {
+  background-color: transparent;
 }
 
 .bg-opacity-25 {
@@ -1492,6 +1523,10 @@ h6 {
   padding-top: 1rem;
 }
 
+.pt-\[0\.15em\] {
+  padding-top: 0.15em;
+}
+
 .pt-\[1em\] {
   padding-top: 1em;
 }
@@ -1509,6 +1544,10 @@ h6 {
   line-height: 2rem;
 }
 
+.text-\[0\.592em\] {
+  font-size: 0.592em;
+}
+
 .text-\[1\.3em\] {
   font-size: 1.3em;
 }
@@ -1521,11 +1560,6 @@ h6 {
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
-}
-
-.text-sm {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
 }
 
 .font-bold {
@@ -1848,10 +1882,6 @@ h6 {
     gap: 0.75rem;
   }
 
-  .lg\:gap-5 {
-    gap: 1.25rem;
-  }
-
   .lg\:gap-6 {
     gap: 1.5rem;
   }
@@ -2003,6 +2033,10 @@ h6 {
 
   .xl\:pt-28 {
     padding-top: 7rem;
+  }
+
+  .xl\:text-\[0\.27em\] {
+    font-size: 0.27em;
   }
 
   .xl\:text-lg {

@@ -131,7 +131,7 @@ export default function ContactQuoteForm() {
               type="text"
               required
               placeholder="Full Name*"
-              className="w-full border border-white/10 bg-transparent px-5 py-4 outline-none"
+              className="w-full border border-[#272727] bg-transparent px-5 py-4 outline-none"
               aria-invalid={Boolean(fieldErrors.name)}
               aria-describedby={fieldErrors.name ? "err-name" : undefined}
               name="name"
@@ -150,7 +150,7 @@ export default function ContactQuoteForm() {
               type="email"
               required
               placeholder="Email*"
-              className="w-full border border-white/10 bg-transparent px-5 py-4 outline-none"
+              className="w-full border border-[#272727] bg-transparent px-5 py-4 outline-none"
               aria-invalid={Boolean(fieldErrors.email)}
               aria-describedby={fieldErrors.email ? "err-email" : undefined}
               name="email"
@@ -171,7 +171,7 @@ export default function ContactQuoteForm() {
           required
           rows={8}
           placeholder="Message*"
-          className="w-full border border-white/10 bg-transparent px-5 py-4 outline-none"
+          className="w-full border border-[#272727] bg-transparent px-5 py-4 outline-none"
           aria-invalid={Boolean(fieldErrors.message)}
           aria-describedby={fieldErrors.message ? "err-message" : undefined}
           value={message}

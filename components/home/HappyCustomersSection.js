@@ -61,7 +61,7 @@ export default async function HappyCustomersSection() {
 
   return (
     <section className="home-customer full-section py-space xl:pt-28 xl:pb-36">
-      <div className="header-wrap animated wpb_animate wpb_fadeUp container mx-auto grid gap-[0.5em] pb-space-mini text-center xl:pb-14 xl:text-lg">
+      <div className="header-wrap container mx-auto grid gap-[0.5em] pb-space-mini text-center animated wpb_animate wpb_fadeUp xl:pb-14 xl:text-lg">
         <h3 className="mb-0 font-48 font-normal">Kind Words from Our</h3>
         <h1 className="main-title mb-0">Happy Customers</h1>
       </div>
@@ -70,11 +70,11 @@ export default async function HappyCustomersSection() {
           {items.map((item) => (
             <div
               key={item.id}
-              className="bg-white/5 relative z-20 h-full max-w-72 p-6 text-sm md:max-w-80 md:p-8 md:me-5 lg:max-w-96 lg:p-10 lg:me-8 xl:max-w-sm xl:p-12 me-4"
+              className="relative z-20 h-full max-w-72 bg-black-light p-6 leading-normal md:me-5 md:max-w-80 md:p-8 lg:me-8 lg:max-w-96 lg:p-10 xl:max-w-sm xl:p-12 me-4"
             >
               <QuoteDecoration />
               <p>{item.quote}</p>
-              <div className="mt-auto flex items-center gap-4 pt-4 leading-none md:pt-5 lg:pt-6">
+              <div className="mt-auto flex items-center gap-4 pt-4 md:pt-5 lg:pt-6">
                 <img
                   src={item.avatar}
                   alt={item.avatarAlt}

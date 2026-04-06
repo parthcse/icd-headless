@@ -8,7 +8,7 @@ const ease = [0.16, 1, 0.3, 1];
 
 export default function HeroMainTitle() {
   const reduceMotion = useReducedMotion();
-  const chars = TITLE.split("").map((c) => (c === " " ? " " : c));
+  const chars = TITLE.split("").map((c) => (c === " " ? "\u00A0" : c));
   return (
     <h1 className="main-title wpb">
       <span className="sr-only">{TITLE}</span>

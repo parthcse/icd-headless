@@ -32,7 +32,7 @@ export default async function SuccessStoriesSection() {
   return (
     <section className="home-our-client full-section xl:pt-28 xl:pb-36">
       <div className="header-wrap container pb-space-mini xl:pb-16 text-center mx-auto grid gap-[0.5em] xl:text-lg animated wpb_animate wpb_fadeUp">
-        <h3 className="font-48 font-normal mb-0"> Our Client</h3>
+        <h3 className="mb-0 font-48 font-normal"> Our Client</h3>
         <h2 className="main-title mb-0">Success Stories</h2>
         <p className="max-w-2xl mx-auto">
           This is where we take you on a journey through real-world examples of how we transformed

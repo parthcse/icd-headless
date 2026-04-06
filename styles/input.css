@@ -1,3 +1,4 @@
+/* Source: Design/tailwind/input.css — plus Next-only: .font-32, .header-main.header-scrolled, .char-animate (Framer hero; no .char-animate span keyframes). */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
