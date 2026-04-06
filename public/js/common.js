@@ -1,3 +1,13 @@
+// Start header sticky 
+const header = document.querySelector(".header-main");
+  window.addEventListener("scroll", function () {
+    if (window.scrollY > 5) {
+      header.classList.add("bg-black-light", "shadow-lg");
+    } else {
+      header.classList.remove("bg-black-light", "shadow-lg");
+    }
+  });
+// End header sticky 
 // Start mobile menu
 document.addEventListener("DOMContentLoaded", function () {
   const btn = document.getElementById("menuBtn");
@@ -92,27 +102,30 @@ document.addEventListener("DOMContentLoaded", function () {
   observer.observe(section);
 });
 // End common counter
-document.addEventListener("DOMContentLoaded", () => {
-  const elements = document.querySelectorAll('.animate-init');
 
-  const observer = new IntersectionObserver((entries) => {
+// Start Animation  
+const elements = document.querySelectorAll('.wpb_animate');
+
+  const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const el = entry.target;
-        const anim = el.dataset.anim;
+        entry.target.classList.add('wpb_start');
 
-        el.classList.add('animate__animated');
-
-        if (anim) {
-          anim.split(" ").forEach(cls => el.classList.add(cls));
-        }
-
-        el.style.opacity = 1;
-
-        observer.unobserve(el); // run once
+        // 🔥 Ek baar animation ke baad stop (important)
+        observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.2 });
+  }, {
+    threshold: 0.3 // 30% element visible hone par trigger
+  });
 
   elements.forEach(el => observer.observe(el));
+// End Animation 
+
+document.querySelectorAll('.char-animate').forEach(el => {
+  const text = el.textContent;
+  el.innerHTML = text
+    .split('')
+    .map((char, i) => `<span class="animated wpb_animate wpb_fadeUp wpb_start" style="animation-duration: 0.7s; animation-delay:${0.5 + i * 0.005}s">${char}</span>`)
+    .join('');
 });

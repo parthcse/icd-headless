@@ -15,6 +15,9 @@
     svg {
         @apply w-[1em];
     }
+    a {
+        @apply inline-block outline-none transition-all duration-500 ease-out;
+    }
     h1 {
         @apply text-[calc(1.375rem+1.5vw)] xl:text-5xl font-semibold mb-3;
     }
@@ -37,7 +40,7 @@
 }
 @layer components { /* reusable components (.prose, .btn, etc.) */
     .btn {
-        @apply text-base xl:text-[0.9rem] font-semibold py-[0.653em] px-[1.55em] border-2 border-black transition whitespace-nowrap inline-flex items-center gap-[0.27em] justify-center leading-tight;
+        @apply text-base xl:text-[0.9rem] font-semibold py-[0.653em] px-[1.55em] border-2 border-black transition whitespace-nowrap inline-flex items-center gap-[0.27em] justify-center leading-tight transition-all duration-500 ease-out;
     }
 
     .btn-primary {
@@ -45,7 +48,7 @@
     }
     
     .main-title {
-        @apply text-[calc(1.625rem+4.5vw)] xl:text-[7.6rem] font-bold leading-none;
+        @apply text-[calc(1.625rem+4.5vw)] xl:text-[7.6rem] font-semibold leading-tight;
     }
     .font-48 {
         @apply leading-tight font-semibold text-[calc(1.375rem+1.5vw)] xl:text-5xl;
@@ -112,7 +115,7 @@
 
     
     .full-section {
-        @apply bg-black border-t border-white/10 py-space;
+        @apply border-t border-white/15 py-space;
     }
     .container-left {
         @apply w-full pl-4 sm:pl-[calc((100%-528px)/2)] md:pl-[calc((100%-720px)/2)] lg:pl-[calc((100%-976px)/2)] xl:pl-[calc((100%-1152px)/2)];
@@ -121,7 +124,7 @@
         @apply relative transition;
     }
     .home-services .tab-btn.active {
-        @apply bg-[linear-gradient(0deg,rgb(58,58,58)_0%,rgba(255,255,255,0)_100%)] border-primary;
+        @apply bg-[linear-gradient(0deg,rgb(27,27,27)_50%,rgba(255,255,255,0)_100%)] border-primary;
     }
     .home-services .tab-btn.active svg {
         @apply text-primary;
@@ -151,6 +154,12 @@
         .container-left {
             padding-left: calc((100% - 72rem) / 2);
         }
+        .font-16 {
+            @apply text-[clamp(16px,4px+0.8333vw,20px)];
+        }
+        body {
+            @apply text-[clamp(16px,4px+0.8333vw,20px)];
+        }
     }
 }
 
@@ -162,4 +171,19 @@
         display: flex;
         flex-wrap: wrap;
     }
+    .char-animate span {
+        @apply inline-block opacity-0 translate-y-4;
+        animation: fadeUp 0.5s ease forwards;
+    }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

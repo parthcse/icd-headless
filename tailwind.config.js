@@ -20,13 +20,17 @@ module.exports = {
       xl: "1200px",
       "2xl": "1200px",
     },
+    
     extend: {
       spacing: {
         '4.5': '1.125rem',
       },
       colors: {
         primary: "#F17E3F",
-        black: "#202020",
+        black: {
+          DEFAULT: "#000000",
+          light: "#151515",
+        },
       },
       fontFamily: {
         gilroy: ['Gilroy', 'sans-serif'],

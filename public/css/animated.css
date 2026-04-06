@@ -7,14 +7,14 @@
 }
 
 .wpb_animate.animated {
-  animation-duration: 0.8s;
+  animation-duration: 0.5s;
   animation-fill-mode: both;
   animation-timing-function: ease-out;
 }
 @keyframes fadeInDownShort {
   from {
     opacity: 0;
-    transform: translateY(-2rem);
+    transform: translateY(-1.5rem);
   }
   to {
     opacity: 1;
@@ -29,7 +29,7 @@
 @keyframes fadeInUpShort {
   from {
     opacity: 0;
-    transform: translateY(2rem);
+    transform: translateY(1.5rem);
   }
   to {
     opacity: 1;
@@ -62,7 +62,7 @@
 @keyframes fadeInLeftShort {
   from {
     opacity: 0;
-    transform: translateX(-2rem);
+    transform: translateX(-1.5rem);
   }
   to {
     opacity: 1;
@@ -78,7 +78,7 @@
 @keyframes fadeInRightShort {
   from {
     opacity: 0;
-    transform: translateX(2rem);
+    transform: translateX(1.5rem);
   }
   to {
     opacity: 1;

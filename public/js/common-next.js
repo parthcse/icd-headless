@@ -6,6 +6,21 @@ function icdDomReady(fn) {
   }
 }
 
+// Header sticky (matches Design/tailwind/js/common.js)
+icdDomReady(function () {
+  const header = document.querySelector(".header-main");
+  if (!header) return;
+  function onScroll() {
+    if (window.scrollY > 5) {
+      header.classList.add("bg-black-light", "shadow-lg");
+    } else {
+      header.classList.remove("bg-black-light", "shadow-lg");
+    }
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+});
+
 // Mobile menu
 icdDomReady(function () {
   const btn = document.getElementById("menuBtn");
@@ -15,23 +30,6 @@ icdDomReady(function () {
       menu.classList.toggle("hidden");
     });
   }
-});
-
-// Header scroll effect - add bg-black shadow-lg on scroll
-icdDomReady(function () {
-  const header = document.querySelector(".header-main");
-  if (!header) return;
-
-  function handleScroll() {
-    if (window.scrollY > 50) {
-      header.classList.add("bg-black", "shadow-lg");
-    } else {
-      header.classList.remove("bg-black", "shadow-lg");
-    }
-  }
-
-  window.addEventListener("scroll", handleScroll, { passive: true });
-  handleScroll(); // Check initial state
 });
 
 // Home services tabs
@@ -122,7 +120,7 @@ icdDomReady(function () {
   observer.observe(section);
 });
 
-// WPB animations - add wpb_start to trigger animations
+// WPB animations — Design/tailwind/js/common.js (threshold 0.3) + above-the-fold fix
 icdDomReady(function () {
   const wpbElements = document.querySelectorAll(".wpb_animate");
   if (!wpbElements.length) return;
@@ -136,17 +134,35 @@ icdDomReady(function () {
         }
       });
     },
-    { threshold: 0.1 }
+    { threshold: 0.3 }
   );
 
   wpbElements.forEach(function (el) {
-    // Check if element is already in viewport (above the fold)
     const rect = el.getBoundingClientRect();
     if (rect.top < window.innerHeight && rect.bottom > 0) {
-      // Add wpb_start immediately for elements already visible
       el.classList.add("wpb_start");
     } else {
       observer.observe(el);
     }
+  });
+});
+
+// char-animate (Design/tailwind/js/common.js)
+icdDomReady(function () {
+  document.querySelectorAll(".char-animate").forEach(function (el) {
+    const text = el.textContent;
+    if (!text || !text.trim()) return;
+    el.innerHTML = text
+      .split("")
+      .map(function (char, i) {
+        return (
+          '<span class="animated wpb_animate wpb_fadeUp wpb_start" style="animation-duration: 0.7s; animation-delay:' +
+          (0.5 + i * 0.005) +
+          's">' +
+          (char === " " ? "&nbsp;" : char) +
+          "</span>"
+        );
+      })
+      .join("");
   });
 });
