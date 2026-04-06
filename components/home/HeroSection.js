@@ -3,17 +3,17 @@ export default function HeroSection() {
     <section className="home-banner full-section relative text-center border-t-0 xl:py-36">
       {/* Background Image */}
       <div className="absolute inset-0">
-        <img className="opacity-90 w-full h-full object-cover" aria-hidden="true" src="/images/home-banner-bg.png" alt="" />
+        <img className="w-full h-full object-cover" aria-hidden="true" src="/images/home-banner-bg.png" alt="" />
         <span className="bg-black absolute inset-0 bg-opacity-25"></span>
       </div>
 
       {/* Content */}
       <div className="container relative z-10 pt-space-mini mt-8 xl:mt-0">
-        <h1 className="main-title wpb_animate animated wpb_fadeUp" style={{ animationDelay: "0.5s" }}>Build, Grow, &amp; Scale</h1>
-        <h2 className="font-48 font-normal mb-0 wpb_animate animated wpb_fadeUp" style={{ animationDelay: "0.5s" }}>Your eCommerce Store With Experts</h2>
-        <div className="border border-white/10 my-4 lg:my-6 xl:my-10 wpb_animate animated wpb_line" style={{ animationDelay: "0.8s" }}></div>
-        <h4 className="font-30 font-normal my-4 lg:my-6 xl:my-10 wpb_animate animated wpb_zoomIn" style={{ animationDelay: "0.8s" }}>Your Success, Our Strategy</h4>
-        <div className="border border-white/10 my-4 lg:my-6 xl:my-10 wpb_animate animated wpb_line" style={{ animationDelay: "0.8s" }}></div>
+        <h1 className="main-title wpb char-animate">Build, Grow, &amp; Scale</h1>
+        <h2 className="font-48 font-normal mb-0 wpb_animate animated wpb_fadeUp" style={{ animationDelay: "0.6s" }}>Your eCommerce Store With Experts</h2>
+        <div className="border border-[#202020] my-4 lg:my-6 xl:my-10 wpb_animate animated wpb_line" style={{ animationDelay: "0.8s" }}></div>
+        <h4 className="font-30 font-normal my-4 lg:my-6 xl:my-10 wpb_animate animated wpb_fadeUp" style={{ animationDelay: "0.8s" }}>Your Success, Our Strategy</h4>
+        <div className="border border-[#202020] my-4 lg:my-6 xl:my-10 wpb_animate animated wpb_line" style={{ animationDelay: "0.8s" }}></div>
         <div className="flex flex-col gap-4 md:flex-row md:text-left items-center justify-between max-w-4xl mx-auto wpb_animate animated wpb_fadeUp" style={{ animationDelay: "1s" }}>  
           <p className="max-w-lg">We design, develop, and market high-performing eCommerce websites that drive real growth.</p>
           <a href="#" className="btn btn-primary">

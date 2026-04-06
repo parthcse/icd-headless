@@ -31,27 +31,31 @@ export default async function SuccessStoriesSection() {
 
   return (
     <section className="home-our-client full-section xl:pt-28 xl:pb-36">
-      <div className="header-wrap container animated wpb_animate wpb_fadeUp mx-auto grid gap-[0.5em] pb-space-mini text-center xl:pb-16 xl:text-lg">
-        <h3 className="font-48 mb-0 font-normal"> Our Client</h3>
+      <div className="header-wrap container pb-space-mini xl:pb-16 text-center mx-auto grid gap-[0.5em] xl:text-lg animated wpb_animate wpb_fadeUp">
+        <h3 className="font-48 font-normal mb-0"> Our Client</h3>
         <h2 className="main-title mb-0">Success Stories</h2>
-        <p className="mx-auto max-w-2xl">
+        <p className="max-w-2xl mx-auto">
           This is where we take you on a journey through real-world examples of how we transformed
           challenges into wins and goals into achievements.
         </p>
       </div>
-      <div className="container-left animate-init" data-anim="animate__fadeInUp animate__delay-0.6s">
+      <div className="container-left">
         <div className="home-our-client-slider owl-carousel">
           {slides.map((slide) => (
             <div
               key={slide.id}
-              className="item h-full max-w-80 me-5 md:me-6 md:max-w-96 lg:me-8 lg:max-w-md xl:me-10 xl:max-w-lg"
+              className="item h-full me-5 md:me-6 lg:me-8 xl:me-10 max-w-80 md:max-w-96 lg:max-w-md xl:max-w-lg group"
             >
-              <figure className="mb-5 md:mb-6 lg:mb-8 xl:mb-10">
-                <img src={slide.image} alt={slide.imageAlt} />
+              <figure className="mb-5 md:mb-6 lg:mb-8 xl:mb-10 overflow-hidden">
+                <img
+                  className="transition-all duration-500 group-hover:scale-105 ease-out"
+                  src={slide.image}
+                  alt={slide.imageAlt}
+                />
               </figure>
-              <h2 className="font-32 mb-[0.5em] font-bold">{slide.title}</h2>
+              <h2 className="font-32 font-bold mb-[0.5em]">{slide.title}</h2>
               <p>{slide.body}</p>
-              <div className="btn-wrap mt-auto pt-[1em] font-24">
+              <div className="btn-wrap font-24 pt-[1em] mt-auto">
                 <a className="btn btn-primary" href={slide.href}>
                   Read Case Study
                   <svg
