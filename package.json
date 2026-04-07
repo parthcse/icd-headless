@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:webpack": "next dev --webpack",
     "build": "next build",
     "build:css": "tailwindcss -i ./styles/input.css -o ./public/css/output.css",
     "start": "next start",

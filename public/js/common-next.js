@@ -6,7 +6,7 @@ function icdDomReady(fn) {
   }
 }
 
-// Header sticky (matches Design/tailwind/js/common.js)
+// Header sticky glass state on scroll
 icdDomReady(function () {
   const header = document.querySelector(".header-main");
   if (!header) return;
@@ -21,15 +21,73 @@ icdDomReady(function () {
   onScroll();
 });
 
-// Mobile menu
+
+// Mobile menu: left drawer, backdrop, hamburger → close
 icdDomReady(function () {
   const btn = document.getElementById("menuBtn");
-  const menu = document.getElementById("mobileMenu");
-  if (btn && menu) {
-    btn.addEventListener("click", function () {
-      menu.classList.toggle("hidden");
-    });
+  const backdrop = document.getElementById("mobileMenuBackdrop");
+  const panel = document.getElementById("mobileMenuPanel");
+  if (!btn || !backdrop || !panel) return;
+
+  function isMenuOpen() {
+    return panel.classList.contains("translate-x-0");
   }
+
+  function applyMobileMenuOpen(open) {
+    if (open) {
+      backdrop.classList.remove("opacity-0", "invisible", "pointer-events-none");
+      backdrop.classList.add("opacity-100", "visible", "pointer-events-auto");
+      backdrop.setAttribute("aria-hidden", "false");
+
+      panel.classList.remove("-translate-x-full");
+      panel.classList.add("translate-x-0");
+      panel.setAttribute("aria-hidden", "false");
+
+      btn.classList.add("is-open");
+      btn.setAttribute("aria-expanded", "true");
+      btn.setAttribute("aria-label", "Close menu");
+
+      document.body.classList.add("overflow-hidden");
+    } else {
+      backdrop.classList.add("opacity-0", "invisible", "pointer-events-none");
+      backdrop.classList.remove("opacity-100", "visible", "pointer-events-auto");
+      backdrop.setAttribute("aria-hidden", "true");
+
+      panel.classList.add("-translate-x-full");
+      panel.classList.remove("translate-x-0");
+      panel.setAttribute("aria-hidden", "true");
+
+      btn.classList.remove("is-open");
+      btn.setAttribute("aria-expanded", "false");
+      btn.setAttribute("aria-label", "Open menu");
+
+      document.body.classList.remove("overflow-hidden");
+    }
+  }
+
+  btn.addEventListener("click", function () {
+    applyMobileMenuOpen(!isMenuOpen());
+  });
+
+  backdrop.addEventListener("click", function () {
+    applyMobileMenuOpen(false);
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && isMenuOpen()) applyMobileMenuOpen(false);
+  });
+
+  const mq = window.matchMedia("(min-width: 1024px)");
+  function onBreakpoint() {
+    if (mq.matches && isMenuOpen()) applyMobileMenuOpen(false);
+  }
+  mq.addEventListener("change", onBreakpoint);
+
+  panel.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", function () {
+      applyMobileMenuOpen(false);
+    });
+  });
 });
 
 // Home services tabs
@@ -115,12 +173,12 @@ icdDomReady(function () {
         }
       });
     },
-    { threshold: 0.2 }
+    { threshold: 0.3 }
   );
   observer.observe(section);
 });
 
-// WPB animations — Design/tailwind/js/common.js (threshold 0.3) + above-the-fold fix
+// WPB scroll-in animations (IntersectionObserver) + above-the-fold fix
 icdDomReady(function () {
   const wpbElements = document.querySelectorAll(".wpb_animate");
   if (!wpbElements.length) return;
@@ -134,7 +192,7 @@ icdDomReady(function () {
         }
       });
     },
-    { threshold: 0.3 }
+    { threshold: 0.7 }
   );
 
   wpbElements.forEach(function (el) {

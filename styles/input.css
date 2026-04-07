@@ -146,9 +146,26 @@
          @apply leading-none flex items-center flex-wrap gap-2 right-6 absolute -bottom-14 lg:-bottom-20;
     }
 
-    /* Sticky header: tinted bar + shadow + frosted glass (page content shows through blur) */
+    /* Sticky header: glass bar only — no border-b (was causing a white line + 1px layout shift on toggle) */
     .header-main.header-scrolled {
-        @apply bg-black-light/75 shadow-lg border-b border-white/10 backdrop-blur-xl backdrop-saturate-150;
+        @apply bg-black-light/75 shadow-lg backdrop-blur-xl backdrop-saturate-150;
+    }
+
+    /* Mobile nav: hamburger → close (three bars) */
+    .mobile-menu-btn {
+        @apply relative flex h-10 w-10 flex-shrink-0 flex-col items-center justify-center gap-[6px] p-2;
+    }
+    .mobile-menu-btn-bar {
+        @apply block h-0.5 w-6 origin-center rounded-full bg-white transition-transform duration-300 ease-out;
+    }
+    .mobile-menu-btn.is-open .mobile-menu-btn-bar-1 {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .mobile-menu-btn.is-open .mobile-menu-btn-bar-2 {
+        @apply scale-0 opacity-0;
+    }
+    .mobile-menu-btn.is-open .mobile-menu-btn-bar-3 {
+        transform: translateY(-8px) rotate(-45deg);
     }
     @media screen and (min-width: 1200px) and (max-width:1920px) {
         html {
@@ -177,7 +194,7 @@
         display: flex;
         flex-wrap: wrap;
     }
-    /* Hero H1: outer clip + Framer Motion per-char wrappers handle the rise */
+    /* Hero H1: outer clip + Framer Motion per-word wrappers handle the rise */
     .char-animate {
         overflow: hidden;
         display: block;

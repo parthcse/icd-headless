@@ -3,14 +3,14 @@ import HeroMainTitle from "./HeroMainTitle";
 export default function HeroSection() {
   return (
     <section className="home-banner full-section relative text-center border-t-0 xl:py-36">
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <img className="w-full h-full object-cover" aria-hidden="true" src="/images/home-banner-bg.png" alt="" />
-        <span className="bg-black absolute inset-0 bg-opacity-25"></span>
+      {/* Background Image — pointer-events-none so clicks reach the fixed header above; content uses pointer-events-auto */}
+      <div className="pointer-events-none absolute inset-0">
+        <img className="h-full w-full object-cover" aria-hidden="true" src="/images/home-banner-bg.png" alt="" />
+        <span className="absolute inset-0 bg-black bg-opacity-25" aria-hidden="true" />
       </div>
 
       {/* Content */}
-      <div className="container relative z-10 pt-space-mini mt-8 xl:mt-0">
+      <div className="container relative z-10 pt-space-mini mt-8 xl:mt-0 pointer-events-auto">
         <HeroMainTitle />
         <h2 className="font-48 font-normal mb-0 wpb_animate animated wpb_fadeUp" style={{ animationDelay: "0.6s" }}>Your eCommerce Store With Experts</h2>
         <div className="border border-[#202020] my-4 lg:my-6 xl:my-10 wpb_animate animated wpb_line" style={{ animationDelay: "0.8s" }}></div>

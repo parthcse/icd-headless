@@ -1,10 +1,10 @@
 export default function Footer() {
   return (
-    <footer className="footer-main bg-black-light bg-[#151515] pt-space text-base xl:pt-28 xl:text-sm">
+    <footer className="footer-main bg-black-light pt-space xl:pt-28 bg-[#151515]">
       <div className="container">
         <h4 className="font-24 mb-[0.8em]">Our Services</h4>
-        <div className="grid grid-cols-1 gap-4 pb-space md:grid-cols-2 md:gap-6 lg:grid-cols-4 xl:pb-28">
-          <ul className="mb-auto grid gap-2 [&_a]:transition [&_a:hover]:text-primary [&_a:hover]:underline">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 pb-space xl:pb-28 gap-4 md:gap-6">
+          <ul className="[&_a]:transition [&_a:hover]:text-primary [&_a:hover]:underline grid gap-2 mb-auto">
             <li>
               <a href="#">ECommerce Website Design</a>
             </li>
@@ -33,7 +33,7 @@ export default function Footer() {
               <a href="#">Hire ReactJS Developers</a>
             </li>
           </ul>
-          <ul className="mb-auto grid gap-2 [&_a]:transition [&_a:hover]:text-primary [&_a:hover]:underline">
+          <ul className="[&_a]:transition [&_a:hover]:text-primary [&_a:hover]:underline grid gap-2 mb-auto">
             <li>
               <a href="#">Shopify Development</a>
             </li>
@@ -62,7 +62,7 @@ export default function Footer() {
               <a href="#">Hire Next.js Developers</a>
             </li>
           </ul>
-          <ul className="mb-auto grid gap-2 [&_a]:transition [&_a:hover]:text-primary [&_a:hover]:underline">
+          <ul className="[&_a]:transition [&_a:hover]:text-primary [&_a:hover]:underline grid gap-2 mb-auto">
             <li>
               <a href="#">PPC Management</a>
             </li>
@@ -91,19 +91,19 @@ export default function Footer() {
               <a href="#">Hire NodeJS Developers</a>
             </li>
           </ul>
-          <div className="footer-trusted bg-[#0f0f0f] p-5 text-center xl:p-6">
+          <div className="footer-trusted bg-[#0f0f0f] text-center p-5 xl:p-6">
             <img
               className="mx-auto mb-3 max-w-28"
               src="https://www.icecubedigital.com/wp-content/webp-express/webp-images/uploads/2023/08/top-web-development-company.png.webp"
               alt="Top web development company"
             />
-            <h4 className="font-22 mb-2 leading-tight xl:text-xl">Most Trusted Company</h4>
+            <h4 className="font-22 mb-2 xl:text-xl leading-tight">Most Trusted Company</h4>
             <p>Icecube Digital Is Rated As The Top Web Development Company By Good Firms</p>
           </div>
         </div>
-        <div className="flex flex-col gap-4 border-t border-white/10 pb-space-mini pt-space-mini text-center lg:flex-row lg:text-left xl:pb-10 xl:pt-10">
-          <div className="grid gap-2 text-white/60">
-            <ul className="flex flex-wrap items-center justify-center gap-2 [&_a]:text-white [&_a]:transition [&_a:hover]:text-primary lg:justify-start">
+        <div className="border-t border-white/10 pt-space-mini xl:pt-10 pb-space-mini xl:pb-10 text-center gap-4 flex flex-col lg:flex-row lg:text-left">
+          <div className="text-white/60 grid gap-2">
+            <ul className="[&_a]:transition [&_a]:text-white [&_a:hover]:text-primary flex flex-wrap items-center gap-2 justify-center">
               <li>
                 <a href="#">Home</a>
               </li>
@@ -134,7 +134,7 @@ export default function Footer() {
             </ul>
             <small>Copyright © 2026 Icecube Digital. All rights reserved.</small>
           </div>
-          <div className="flex flex-col items-center justify-center gap-4 lg:ml-auto lg:flex-row lg:gap-11 xl:gap-16">
+          <div className="flex flex-col gap-4 justify-center items-center lg:flex-row lg:ml-auto lg:gap-11 xl:gap-16">
             <ul className="flex gap-3">
               <li>
                 <a href="#">

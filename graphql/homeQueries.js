@@ -23,7 +23,9 @@ export const CASE_STUDIES_QUERY = gql`
   }
 `;
 
-/** Base fields (always valid on icd.icecubedev.com today). */
+/**
+ * Testimonial CPT: designation lives on ACF group `testimonials` (per node), not the root connection.
+ */
 export const TESTIMONIALS_QUERY = gql`
   query TestimonialsForHome($first: Int = 12) {
     testimonials(first: $first, where: { orderby: { field: DATE, order: DESC } }) {
@@ -38,30 +40,8 @@ export const TESTIMONIALS_QUERY = gql`
             altText
           }
         }
-      }
-    }
-  }
-`;
-
-/**
- * When ACF fields are exposed on Testimonial in WPGraphQL (e.g. WPGraphQL for ACF),
- * this query is tried first. Field names: description (testimonial copy), tmDesignation (role line).
- */
-export const TESTIMONIALS_QUERY_WITH_ACF = gql`
-  query TestimonialsForHomeWithAcf($first: Int = 12) {
-    testimonials(first: $first, where: { orderby: { field: DATE, order: DESC } }) {
-      nodes {
-        id
-        title
-        content
-        uri
-        description
-        tmDesignation
-        featuredImage {
-          node {
-            sourceUrl
-            altText
-          }
+        testimonials {
+          tmDesignation
         }
       }
     }

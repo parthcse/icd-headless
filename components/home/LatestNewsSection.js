@@ -56,11 +56,10 @@ export default async function LatestNewsSection() {
           <p>Read our latest news to get updated with markets</p>
         </div>
         <div
-          className="animated wpb_animate wpb_zoomIn grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-8"
-          style={{ animationDelay: "0.5s" }}
+          className="animated wpb_animate wpb_fadeUp grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-8"
         >
-          {posts.map((post) => (
-            <div key={post.id} className="column bg-black-light">
+          {posts.map((post, index) => (
+            <div key={post.id} className="column bg-black-light wpb_animate wpb_fadeUp" style={{ animationDelay: `${(index + 2) * 0.6}s` }}>
               <a href={post.href} className="block text-inherit no-underline">
                 <figure>
                   <img src={post.image} alt={post.imageAlt} style={{ opacity: 1 }} />

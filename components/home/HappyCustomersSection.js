@@ -37,11 +37,27 @@ const STATIC_CARD = {
   avatarAlt: "",
 };
 
+function designationFromNode(node) {
+  const rawNested = node.testimonials;
+  const group =
+    rawNested == null
+      ? null
+      : Array.isArray(rawNested)
+        ? rawNested[0]
+        : rawNested;
+  const raw =
+    group && typeof group === "object"
+      ? group.tm_designation ?? group.tmDesignation
+      : undefined;
+  if (raw == null || raw === "") return "";
+  return stripHtml(String(raw));
+}
+
 function mapTestimonial(node) {
   const descriptionField = node.description != null ? String(node.description) : "";
   const quote =
     stripHtml(descriptionField) || stripHtml(node.content) || stripHtml(node.title);
-  const designation = stripHtml(node.tmDesignation) || "";
+  const designation = designationFromNode(node);
   return {
     id: node.id,
     name: stripHtml(node.title) || "Client",
