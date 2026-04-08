@@ -14,7 +14,7 @@ export default function GetQuoteSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 md:gap-space-small lg:grid-cols-12 xl:gap-x-20">
+        <div className="grid grid-cols-1 gap-4 md:gap-space-small lg:grid-cols-12 xl:gap-x-20 animated wpb_animate wpb_fadeUp" style={{ animationDelay: "0.3s" }}>
           <div className="grid gap-2 text-lg lg:col-span-5">
             <div className="flex items-start gap-space-small border border-[#272727] px-space-small py-space-small lg:gap-6 lg:px-8 lg:py-6">
               <img

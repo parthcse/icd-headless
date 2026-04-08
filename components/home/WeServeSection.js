@@ -6,7 +6,7 @@ export default function WeServeSection() {
           <h3 className="mb-0 font-48 font-normal">Countries</h3>
           <h2 className="main-title mb-0">We Serve</h2>
         </div>
-        <div className="flex flex-wrap justify-center gap-4">
+        <div className="flex flex-wrap justify-center gap-4 animated wpb_animate wpb_fadeUp" style={{ animationDelay: "0.3s" }}>
           <div className="column flex items-center gap-2 bg-black-light px-4 py-2">
             <img
               className="aspect-square w-[1em] rounded-full object-cover"

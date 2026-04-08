@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="container">
         <h4 className="font-24 mb-[0.8em]">Our Services</h4>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 pb-space xl:pb-28 gap-4 md:gap-6">
-          <ul className="[&_a]:transition [&_a:hover]:text-primary [&_a:hover]:underline grid gap-2 mb-auto">
+          <ul className="[&_a]:transition [&_a:hover]:text-primary [&_a:hover]:underline grid gap-2 mb-auto animated wpb_animate wpb_fadeIn" style={{ animationDelay: "0.1s" }} >
             <li>
               <a href="#">ECommerce Website Design</a>
             </li>
@@ -33,7 +33,7 @@ export default function Footer() {
               <a href="#">Hire ReactJS Developers</a>
             </li>
           </ul>
-          <ul className="[&_a]:transition [&_a:hover]:text-primary [&_a:hover]:underline grid gap-2 mb-auto">
+          <ul className="[&_a]:transition [&_a:hover]:text-primary [&_a:hover]:underline grid gap-2 mb-auto animated wpb_animate wpb_fadeUp" style={{ animationDelay: "0.1s" }}>
             <li>
               <a href="#">Shopify Development</a>
             </li>
@@ -62,7 +62,7 @@ export default function Footer() {
               <a href="#">Hire Next.js Developers</a>
             </li>
           </ul>
-          <ul className="[&_a]:transition [&_a:hover]:text-primary [&_a:hover]:underline grid gap-2 mb-auto">
+          <ul className="[&_a]:transition [&_a:hover]:text-primary [&_a:hover]:underline grid gap-2 mb-auto animated wpb_animate wpb_fadeUp" style={{ animationDelay: "0.1s" }}>
             <li>
               <a href="#">PPC Management</a>
             </li>
@@ -91,7 +91,7 @@ export default function Footer() {
               <a href="#">Hire NodeJS Developers</a>
             </li>
           </ul>
-          <div className="footer-trusted bg-[#0f0f0f] text-center p-5 xl:p-6">
+          <div className="footer-trusted bg-[#0f0f0f] text-center p-5 xl:p-6 animated wpb_animate wpb_fadeUp" style={{ animationDelay: "0.1s" }}>
             <img
               className="mx-auto mb-3 max-w-28"
               src="https://www.icecubedigital.com/wp-content/webp-express/webp-images/uploads/2023/08/top-web-development-company.png.webp"
@@ -137,22 +137,22 @@ export default function Footer() {
           <div className="flex flex-col gap-4 justify-center items-center lg:flex-row lg:ml-auto lg:gap-11 xl:gap-16">
             <ul className="flex gap-3">
               <li>
-                <a href="#">
+                <a href="https://www.linkedin.com/company/ice-cube-digital/" target="_blank" rel="noopener noreferrer">
                   <img src="/images/inkedin.svg" alt="" />
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="https://www.instagram.com/icecubedigital/" target="_blank" rel="noopener noreferrer">
                   <img src="/images/instagram.svg" alt="" />
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="https://www.facebook.com/IcecubeDigital" target="_blank" rel="noopener noreferrer">
                   <img src="/images/facebook.svg" alt="" />
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="https://x.com/IcecubeDigital" target="_blank" rel="noopener noreferrer">
                   <img src="/images/twitter.svg" alt="" />
                 </a>
               </li>

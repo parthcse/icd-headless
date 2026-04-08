@@ -192,7 +192,8 @@ icdDomReady(function () {
         }
       });
     },
-    { threshold: 0.7 }
+    /* 0.7 was too strict: tall blocks (e.g. footer link columns) never reach 70% visible, so wpb_start never ran */
+    { threshold: 0.12 }
   );
 
   wpbElements.forEach(function (el) {
