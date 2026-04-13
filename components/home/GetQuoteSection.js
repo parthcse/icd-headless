@@ -4,7 +4,7 @@ export default function GetQuoteSection() {
   return (
     <section className="home-contant full-section xl:pt-28 xl:pb-36">
       <div className="container">
-        <div className="header-wrap mx-auto grid max-w-5xl gap-[0.5em] pb-space-mini text-center animated wpb_animate wpb_fadeUp xl:pb-16 xl:text-lg">
+        <div className="heading-wrap mx-auto max-w-5xl xl:pb-16 animate fadeUp">
           <h3 className="mb-0 font-48 font-normal">Let’s Work Together</h3>
           <h2 className="main-title mb-0">Get a Free Quote</h2>
           <p>
@@ -14,7 +14,7 @@ export default function GetQuoteSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 md:gap-space-small lg:grid-cols-12 xl:gap-x-20 animated wpb_animate wpb_fadeUp" style={{ animationDelay: "0.3s" }}>
+        <div className="grid grid-cols-1 gap-4 md:gap-space-small lg:grid-cols-12 xl:gap-x-20 animate fadeUp" style={{ animationDelay: "0.3s" }}>
           <div className="grid gap-2 text-lg lg:col-span-5">
             <div className="flex items-start gap-space-small border border-[#272727] px-space-small py-space-small lg:gap-6 lg:px-8 lg:py-6">
               <img

@@ -120,3 +120,111 @@
   animation-name: zoomOutShort;
 }
 
+/* Design folder: "animate fadeUp" etc. — same scroll trigger (.wpb_start) as WPB */
+.animate.fadeUp,
+.animate.fadeDown,
+.animate.zoomIn,
+.animate.zoomOut,
+.animate.line {
+  opacity: 0;
+}
+
+.animate.line {
+  width: 0;
+  height: 1px;
+}
+
+.animate.fadeUp.wpb_start {
+  animation-name: fadeInUpShort;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-out;
+}
+
+.animate.fadeDown.wpb_start {
+  animation-name: fadeInDownShort;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-out;
+}
+
+.animate.zoomIn.wpb_start {
+  animation-name: zoomInShort;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-out;
+}
+
+.animate.zoomOut.wpb_start {
+  animation-name: zoomOutShort;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-out;
+}
+
+.animate.line.wpb_start {
+  opacity: 1;
+  animation: lineGrow 0.8s ease forwards;
+}
+
+/* -------------------------------------------------------------------------- */
+/* About banner: WPB-style charsAnimIn (per-character stagger)                */
+/* -------------------------------------------------------------------------- */
+:root {
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out-short: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.splitting .word {
+  --word-percent: calc(var(--word-index) / var(--word-total));
+}
+
+.splitting .word,
+.splitting .char {
+  display: inline-block;
+}
+
+.splitting .char {
+  --char-percent: calc(var(--char-index) / var(--char-total));
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  html:not(.mobile) .wpb_animate_when_almost_visible.charsAnimIn:not(.animated) .char {
+    will-change: opacity, transform;
+  }
+}
+
+.wpb_animate_when_almost_visible.charsAnimIn .char {
+  transform-origin: 0 50%;
+  transition: transform 0.62s var(--ease-out-short), opacity 0.62s var(--ease-default);
+  transition-delay: calc(0.027s * var(--char-index));
+}
+
+.wpb_animate_when_almost_visible.charsAnimIn:not(.animated) .char {
+  opacity: 0;
+  transform: translateY(0.5em) rotate(7deg);
+}
+
+.charsAnimIn.animated .char,
+.mobile .charsAnimIn .char {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 1023px) {
+  .charsAnimIn .char {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .charsAnimIn .char {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+

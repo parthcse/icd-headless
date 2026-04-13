@@ -2,11 +2,11 @@ export default function WeServeSection() {
   return (
     <section className="home-countries-serve full-section xl:pt-28 xl:pb-36">
       <div className="container">
-        <div className="header-wrap grid gap-[0.5em] pb-space-mini text-center animated wpb_animate wpb_fadeUp xl:pb-10 xl:text-lg">
+        <div className="heading-wrap xl:pb-10 animate fadeUp">
           <h3 className="mb-0 font-48 font-normal">Countries</h3>
           <h2 className="main-title mb-0">We Serve</h2>
         </div>
-        <div className="flex flex-wrap justify-center gap-4 animated wpb_animate wpb_fadeUp" style={{ animationDelay: "0.3s" }}>
+        <div className="flex flex-wrap justify-center gap-4 animate fadeUp" style={{ animationDelay: "0.3s" }}>
           <div className="column flex items-center gap-2 bg-black-light px-4 py-2">
             <img
               className="aspect-square w-[1em] rounded-full object-cover"

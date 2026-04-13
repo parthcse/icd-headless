@@ -2,14 +2,14 @@ export default function ServicesSection() {
   return (
     <section className="home-services full-section xl:pt-28 xl:pb-36">
       <div className="container">
-        <div className="header-wrap pb-space-mini xl:pb-8 text-center grid gap-[0.5em] xl:text-lg animated wpb_animate wpb_fadeUp">
+        <div className="heading-wrap xl:pb-8 animate fadeUp">
           <h3 className="font-48 font-normal mb-0">We Provide The Full Stack of</h3>
           <h2 className="main-title mb-0">Creative Services</h2>
           <p>Customized solutions for eCommerce and digital marketing</p>
         </div>
         <div className="tabs grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 text-center font-22 leading-normal pb-space-mini xl:pb-14 leading-tight">
           <button
-            className="tab-btn active group cursor-pointer small transition-all duration-500 font-semibold p-[1em] transition hover:bg-[linear-gradient(0deg,rgb(27,27,27)_50%,rgba(255,255,255,0)_100%)] border-b-2 border-white/10 hover:border-primary wpb_animate animated wpb_zoomIn"
+            className="tab-btn active group cursor-pointer small transition-all duration-500 font-semibold p-[1em] transition hover:bg-[linear-gradient(0deg,rgb(27,27,27)_50%,rgba(255,255,255,0)_100%)] border-b-2 border-white/10 hover:border-primary animate zoomIn"
             data-tab="tab1"
           >
             <div className="icon text-primary font-48 mb-[0.3em] transition-all duration-500 group-hover:-translate-y-2">
@@ -23,7 +23,7 @@ export default function ServicesSection() {
             </p>
           </button>
           <button
-            className="tab-btn group cursor-pointer small transition-all duration-500 font-semibold p-[1em] transition hover:bg-[linear-gradient(0deg,rgb(27,27,27)_50%,rgba(255,255,255,0)_100%)] border-b-2 border-white/10 hover:border-primary wpb_animate animated wpb_zoomIn"
+            className="tab-btn group cursor-pointer small transition-all duration-500 font-semibold p-[1em] transition hover:bg-[linear-gradient(0deg,rgb(27,27,27)_50%,rgba(255,255,255,0)_100%)] border-b-2 border-white/10 hover:border-primary animate zoomIn"
             data-tab="tab2"
           >
             <div className="icon group-hover:text-primary font-48 mb-[0.3em] transition-all duration-500 group-hover:-translate-y-2">
@@ -37,7 +37,7 @@ export default function ServicesSection() {
             </p>
           </button>
           <button
-            className="tab-btn group cursor-pointer small transition-all duration-500 font-semibold p-[1em] transition hover:bg-[linear-gradient(0deg,rgb(27,27,27)_50%,rgba(255,255,255,0)_100%)] border-b-2 border-white/10 hover:border-primary wpb_animate animated wpb_zoomIn"
+            className="tab-btn group cursor-pointer small transition-all duration-500 font-semibold p-[1em] transition hover:bg-[linear-gradient(0deg,rgb(27,27,27)_50%,rgba(255,255,255,0)_100%)] border-b-2 border-white/10 hover:border-primary animate zoomIn"
             data-tab="tab3"
           >
             <div className="icon group-hover:text-primary font-48 mb-[0.3em] transition-all duration-500 group-hover:-translate-y-2">
@@ -51,7 +51,7 @@ export default function ServicesSection() {
             </p>
           </button>
           <button
-            className="tab-btn group cursor-pointer small transition-all duration-500 font-semibold p-[1em] transition hover:bg-[linear-gradient(0deg,rgb(27,27,27)_50%,rgba(255,255,255,0)_100%)] border-b-2 border-white/10 hover:border-primary wpb_animate animated wpb_zoomIn"
+            className="tab-btn group cursor-pointer small transition-all duration-500 font-semibold p-[1em] transition hover:bg-[linear-gradient(0deg,rgb(27,27,27)_50%,rgba(255,255,255,0)_100%)] border-b-2 border-white/10 hover:border-primary animate zoomIn"
             data-tab="tab4"
           >
             <div className="icon group-hover:text-primary font-48 mb-[0.3em] transition-all duration-500 group-hover:-translate-y-2">
@@ -65,7 +65,7 @@ export default function ServicesSection() {
             </p>
           </button>
           <button
-            className="tab-btn group cursor-pointer small transition-all duration-500 font-semibold p-[1em] transition hover:bg-[linear-gradient(0deg,rgb(27,27,27)_50%,rgba(255,255,255,0)_100%)] border-b-2 border-white/10 hover:border-primary wpb_animate animated wpb_zoomIn"
+            className="tab-btn group cursor-pointer small transition-all duration-500 font-semibold p-[1em] transition hover:bg-[linear-gradient(0deg,rgb(27,27,27)_50%,rgba(255,255,255,0)_100%)] border-b-2 border-white/10 hover:border-primary animate zoomIn"
             data-tab="tab5"
           >
             <div className="icon group-hover:text-primary font-48 mb-[0.3em] transition-all duration-500 group-hover:-translate-y-2">
@@ -79,7 +79,7 @@ export default function ServicesSection() {
             </p>
           </button>
           <button
-            className="tab-btn group cursor-pointer small transition-all duration-500 font-semibold p-[1em] transition hover:bg-[linear-gradient(0deg,rgb(27,27,27)_50%,rgba(255,255,255,0)_100%)] border-b-2 border-white/10 hover:border-primary wpb_animate animated wpb_zoomIn"
+            className="tab-btn group cursor-pointer small transition-all duration-500 font-semibold p-[1em] transition hover:bg-[linear-gradient(0deg,rgb(27,27,27)_50%,rgba(255,255,255,0)_100%)] border-b-2 border-white/10 hover:border-primary animate zoomIn"
             data-tab="tab6"
           >
             <div className="icon group-hover:text-primary font-48 mb-[0.3em] transition-all duration-500 group-hover:-translate-y-2">
@@ -93,7 +93,7 @@ export default function ServicesSection() {
             </p>
           </button>
         </div>
-        <div id="tab1" className="tab-content active animated wpb_animate wpb_fadeUp">
+        <div id="tab1" className="tab-content active animate fadeUp">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 md:gap-space-mini">
             <div className="txet-box lg:col-span-5">
                         <p>Shopify is everywhere, so why not incorporate it into your ecosystem? We transform your brand&apos;s vision into a captivating online store, leveraging Shopify&apos;s versatile platform. From design customization to app integration, we create Shopify solutions that blend aesthetics and functionality seamlessly.</p>
@@ -175,23 +175,23 @@ export default function ServicesSection() {
                     </div>
                   </div>
     
-        <div id="tab2" className="tab-content animated wpb_animate wpb_fadeUp">
+        <div id="tab2" className="tab-content animate fadeUp">
           <p className="text-center">Features Content</p>
         </div>
 
-        <div id="tab3" className="tab-content animated wpb_animate wpb_fadeUp">
+        <div id="tab3" className="tab-content animate fadeUp">
           <p className="text-center">Pricing Cdsontent</p>
         </div>
 
-        <div id="tab4" className="tab-content animated wpb_animate wpb_fadeUp">
+        <div id="tab4" className="tab-content animate fadeUp">
           <p className="text-center">Pricing Conetent</p>
         </div>
 
-        <div id="tab5" className="tab-content animated wpb_animate wpb_fadeUp">
+        <div id="tab5" className="tab-content animate fadeUp">
           <p className="text-center">Pricing Coxcxzcntent</p>
         </div>
 
-        <div id="tab6" className="tab-content animated wpb_animate wpb_fadeUp">
+        <div id="tab6" className="tab-content animate fadeUp">
           <p className="text-center">Pricing Contdfnt</p>
         </div>
       </div>

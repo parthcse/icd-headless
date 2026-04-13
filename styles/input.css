@@ -118,6 +118,15 @@
     .full-section {
         @apply border-t border-white/15 py-space;
     }
+    .heading-wrap {
+        @apply pb-space-mini text-center grid gap-[0.5em] xl:text-lg;
+    }
+    .heading-wrap .main-title {
+        @apply mb-0;
+    }
+    .heading-wrap .font-48 {
+        @apply mb-0 font-normal;
+    }
     .container-left {
         @apply w-full pl-4 sm:pl-[calc((100%-528px)/2)] md:pl-[calc((100%-720px)/2)] lg:pl-[calc((100%-976px)/2)] xl:pl-[calc((100%-1152px)/2)];
     }
@@ -144,6 +153,9 @@
     }
     .home-customer .owl-nav {
          @apply leading-none flex items-center flex-wrap gap-2 right-6 absolute -bottom-14 lg:-bottom-20;
+    }
+    .about-our-culture-slider .owl-nav {
+         @apply leading-none flex items-center flex-wrap gap-2 justify-center pt-space-small;
     }
 
     /* Sticky header: glass bar only — no border-b (was causing a white line + 1px layout shift on toggle) */
@@ -189,6 +201,16 @@
 @layer utilities { /* reusable components (.prose, .btn, etc.) */
     .small {
         font-size: 0.875em;
+    }
+    @keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(1rem);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
     .owl-stage {
         display: flex;

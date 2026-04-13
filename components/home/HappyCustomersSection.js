@@ -77,7 +77,7 @@ export default async function HappyCustomersSection() {
 
   return (
     <section className="home-customer full-section py-space xl:pt-28 xl:pb-36">
-      <div className="header-wrap container mx-auto grid gap-[0.5em] pb-space-mini text-center animated wpb_animate wpb_fadeUp xl:pb-14 xl:text-lg">
+      <div className="heading-wrap container mx-auto xl:pb-14 animate fadeUp">
         <h3 className="mb-0 font-48 font-normal">Kind Words from Our</h3>
         <h1 className="main-title mb-0">Happy Customers</h1>
       </div>

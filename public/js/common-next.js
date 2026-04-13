@@ -114,6 +114,10 @@ icdDomReady(function () {
 function icdInitOwl() {
   if (typeof window.jQuery === "undefined") return;
   var $ = window.jQuery;
+  var navSvg = [
+    '<svg xmlns="http://www.w3.org/2000/svg" width="10" height="18" viewBox="0 0 10 18" fill="currentColor"><path d="M9.27999 16.3199C9.62666 16.6666 9.62666 16.9866 9.27999 17.2799C8.93332 17.6266 8.61332 17.6266 8.31999 17.2799L0.47999 9.39992C0.15999 9.07992 0.15999 8.74659 0.47999 8.39992L8.31999 0.519921C8.61332 0.173254 8.93332 0.173254 9.27999 0.519921C9.62666 0.813255 9.62666 1.13325 9.27999 1.47992L2.11999 8.91992L9.27999 16.3199Z"/></svg>',
+    '<svg xmlns="http://www.w3.org/2000/svg" width="10" height="18" viewBox="0 0 10 18" fill="currentColor"><path d="M0.52001 16.3199L7.68001 8.91992L0.52001 1.47992C0.173343 1.13325 0.173343 0.813255 0.52001 0.519921C0.866676 0.173254 1.18668 0.173254 1.48001 0.519921L9.32001 8.39992C9.64001 8.74659 9.64001 9.07992 9.32001 9.39992L1.48001 17.2799C1.18668 17.6266 0.866676 17.6266 0.52001 17.2799C0.173343 16.9866 0.173343 16.6666 0.52001 16.3199Z"/></svg>',
+  ];
   $(".home-our-client-slider").each(function () {
     var $el = $(this);
     if ($el.data("owl.carousel")) {
@@ -126,10 +130,21 @@ function icdInitOwl() {
     nav: true,
     dots: false,
     autoWidth: true,
-    navText: [
-      '<svg xmlns="http://www.w3.org/2000/svg" width="10" height="18" viewBox="0 0 10 18" fill="currentColor"><path d="M9.27999 16.3199C9.62666 16.6666 9.62666 16.9866 9.27999 17.2799C8.93332 17.6266 8.61332 17.6266 8.31999 17.2799L0.47999 9.39992C0.15999 9.07992 0.15999 8.74659 0.47999 8.39992L8.31999 0.519921C8.61332 0.173254 8.93332 0.173254 9.27999 0.519921C9.62666 0.813255 9.62666 1.13325 9.27999 1.47992L2.11999 8.91992L9.27999 16.3199Z"/></svg>',
-      '<svg xmlns="http://www.w3.org/2000/svg" width="10" height="18" viewBox="0 0 10 18" fill="currentColor"><path d="M0.52001 16.3199L7.68001 8.91992L0.52001 1.47992C0.173343 1.13325 0.173343 0.813255 0.52001 0.519921C0.866676 0.173254 1.18668 0.173254 1.48001 0.519921L9.32001 8.39992C9.64001 8.74659 9.64001 9.07992 9.32001 9.39992L1.48001 17.2799C1.18668 17.6266 0.866676 17.6266 0.52001 17.2799C0.173343 16.9866 0.173343 16.6666 0.52001 16.3199Z"/></svg>',
-    ],
+    navText: navSvg,
+  });
+  $(".about-our-culture-slider").each(function () {
+    var $el = $(this);
+    if ($el.data("owl.carousel")) {
+      $el.trigger("destroy.owl.carousel");
+    }
+  });
+  $(".about-our-culture-slider").owlCarousel({
+    loop: true,
+    margin: 16,
+    nav: true,
+    dots: false,
+    autoWidth: true,
+    navText: navSvg,
   });
 }
 
@@ -178,9 +193,11 @@ icdDomReady(function () {
   observer.observe(section);
 });
 
-// WPB scroll-in animations (IntersectionObserver) + above-the-fold fix
+// Scroll-in animations: legacy .wpb_animate + design "animate fadeUp" / fadeDown / zoomIn / line
 icdDomReady(function () {
-  const wpbElements = document.querySelectorAll(".wpb_animate");
+  const wpbElements = document.querySelectorAll(
+    ".wpb_animate, .animate.fadeUp, .animate.fadeDown, .animate.zoomIn, .animate.zoomOut, .animate.line"
+  );
   if (!wpbElements.length) return;
 
   const observer = new IntersectionObserver(
@@ -200,6 +217,33 @@ icdDomReady(function () {
     const rect = el.getBoundingClientRect();
     if (rect.top < window.innerHeight && rect.bottom > 0) {
       el.classList.add("wpb_start");
+    } else {
+      observer.observe(el);
+    }
+  });
+});
+
+// charsAnimIn headings: add .animated + .wpb_start_animation when in view (WPB-style)
+icdDomReady(function () {
+  const headings = document.querySelectorAll(".wpb_animate_when_almost_visible.charsAnimIn");
+  if (!headings.length) return;
+
+  const observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animated", "wpb_start_animation");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  headings.forEach(function (el) {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      el.classList.add("animated", "wpb_start_animation");
     } else {
       observer.observe(el);
     }

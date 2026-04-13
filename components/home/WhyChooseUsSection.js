@@ -2,7 +2,7 @@ export default function WhyChooseUsSection() {
   return (
     <section className="home-why-choose common-counter full-section xl:pt-28 xl:pb-36">
       <div className="container">
-        <div className="header-wrap mx-auto grid gap-[0.5em] pb-space-mini text-center animated wpb_animate wpb_fadeUp xl:pb-16 xl:text-lg">
+        <div className="heading-wrap xl:pb-16 animate fadeUp">
           <h3 className="mb-0 font-48 font-normal">Count On The Recognized Leader</h3>
           <h2 className="main-title mb-0">Why Choose Us?</h2>
           <p>
