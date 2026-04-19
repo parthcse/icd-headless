@@ -40,49 +40,52 @@ export default function Header() {
           </div>
 
           {/* Desktop Menu */}
-          <nav className="hidden items-center gap-9 text-lg lg:flex" aria-label="Primary">
-            {NAV_LINKS.map((item) =>
-              item.children ? (
-                <div key={item.label} className="group relative">
-                  <button
-                    type="button"
-                    className="flex items-center gap-1 transition hover:text-primary"
-                    aria-haspopup="true"
-                    aria-controls="submenu-company-desktop"
-                    aria-expanded="false"
-                    id="nav-company-trigger"
-                  >
-                    {item.label}
-                    {chevronDown}
-                  </button>
-                  {/* pt-2 bridges the gap so hover is not lost between button and panel */}
-                  <div className="absolute left-0 top-full z-[70] hidden pt-2 group-hover:block group-focus-within:block">
-                    <ul
-                      id="submenu-company-desktop"
-                      role="menu"
-                      aria-labelledby="nav-company-trigger"
-                      className="min-w-[12rem] rounded border border-white/10 bg-black-light py-2 shadow-lg"
+          <nav className="hidden lg:block" aria-label="Primary">
+            <ul className="flex items-center gap-9 text-lg">
+              {NAV_LINKS.map((item) =>
+                item.children ? (
+                  <li key={item.label} className="group relative">
+                    <a
+                      href="#"
+                      className="flex items-center gap-1 transition group-hover:text-primary"
+                      aria-haspopup="true"
+                      aria-controls="submenu-company-desktop"
+                      id="nav-company-trigger"
                     >
-                      {item.children.map((sub) => (
-                        <li key={sub.href} role="none">
-                          <Link
-                            role="menuitem"
-                            href={sub.href}
-                            className="block px-4 py-2 text-base transition hover:bg-white/5 hover:text-primary"
-                          >
-                            {sub.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ) : (
-                <a key={item.label} href={item.href} className="transition hover:text-primary">
-                  {item.label}
-                </a>
-              )
-            )}
+                      {item.label}
+                      {chevronDown}
+                    </a>
+                    {/* pt-2 bridges the gap so hover is not lost between trigger and panel */}
+                    <div className="absolute left-0 top-full z-[70] hidden pt-2 group-hover:block group-focus-within:block small">
+                      <ul
+                        id="submenu-company-desktop"
+                        role="menu"
+                        aria-labelledby="nav-company-trigger"
+                        className="min-w-40 border border-white/10 bg-black-light"
+                      >
+                        {item.children.map((sub) => (
+                          <li key={sub.href} role="none" className="border-b border-white/10 last:border-b-0">
+                            <Link
+                              role="menuitem"
+                              href={sub.href}
+                              className="block px-3 py-1.5 transition hover:bg-black-light hover:text-primary"
+                            >
+                              {sub.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </li>
+                ) : (
+                  <li key={item.label}>
+                    <a href={item.href} className="transition hover:text-primary">
+                      {item.label}
+                    </a>
+                  </li>
+                )
+              )}
+            </ul>
           </nav>
 
           {/* CTA */}

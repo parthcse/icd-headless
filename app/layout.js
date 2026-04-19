@@ -1,4 +1,7 @@
+import Script from "next/script";
 import "./globals.css";
+import RouteHandler from "@/components/common/RouteHandler";
+import SmoothScroll from "@/components/common/SmoothScroll";
 
 export const metadata = {
   title: "Icecube Digital",
@@ -15,7 +18,12 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="/css/animated.css" />
         <link rel="stylesheet" href="/css/output.css" />
       </head>
-      <body>{children}</body>
+      <body>
+        <SmoothScroll />
+        <RouteHandler />
+        {children}
+        <Script src="/js/load-design.js" strategy="afterInteractive" />
+      </body>
     </html>
   );
 }

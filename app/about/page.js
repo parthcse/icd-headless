@@ -4,7 +4,6 @@ import AboutOurHeartSection from "../../components/about/AboutOurHeartSection";
 import AboutOurValueSection from "../../components/about/AboutOurValueSection";
 import AboutTeamSection from "../../components/about/AboutTeamSection";
 import AwardsRecognitionSection from "../../components/about/AwardsRecognitionSection";
-import DesignScripts from "../../components/home/DesignScripts";
 import GetQuoteSection from "../../components/home/GetQuoteSection";
 import HappyCustomersSection from "../../components/home/HappyCustomersSection";
 import WeServeSection from "../../components/home/WeServeSection";
@@ -31,7 +30,6 @@ export default function AboutPage() {
       <GetQuoteSection />
       <WeServeSection />
       <Footer />
-      <DesignScripts />
     </>
   );
 }

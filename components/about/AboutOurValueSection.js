@@ -28,10 +28,13 @@ export default function AboutOurValueSection() {
             practices.
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-space-small text-center md:grid-cols-3">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-space-small text-center">
           {items.map((item) => (
             <div key={item.title} className="column">
-              <div className="img-box flex aspect-[433/250] items-center rounded-tl-[12%] rounded-br-[12%] bg-black-light p-4">
+              <div
+                className="img-box bg-black-light rounded-tl-[12%] rounded-br-[12%] aspect-[433/250] flex items-center p-4"
+                style={{ cornerShape: "bevel" }}
+              >
                 <img className="mx-auto max-w-[30%]" src={item.icon} alt="" />
               </div>
               <h2 className="font-30 pt-space-small leading-none lg:pb-1 xl:pb-2">{item.title}</h2>

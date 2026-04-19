@@ -1,4 +1,3 @@
-import DesignScripts from "../components/home/DesignScripts";
 import GetQuoteSection from "../components/home/GetQuoteSection";
 import HappyCustomersSection from "../components/home/HappyCustomersSection";
 import HeroSection from "../components/home/HeroSection";
@@ -25,7 +24,6 @@ export default function Home() {
       <GetQuoteSection />
       <WeServeSection />
       <Footer />
-      <DesignScripts />
     </>
   );
 }

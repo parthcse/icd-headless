@@ -10,9 +10,9 @@ export default function AboutOurCultureSection() {
       </div>
       <div className="owl-carousel about-our-culture-slider px-4">
         {SLIDES.map((n, i) => (
-          <figure key={`${n}-${i}`} className="group flex h-full items-center">
+          <figure key={`${n}-${i}`} className="group flex items-center h-full">
             <img
-              className="cursor-pointer grayscale transition duration-300 group-hover:grayscale-0"
+              className="cursor-pointer grayscale group-hover:grayscale-0 transition duration-300"
               src={`/images/about-our-culture-${n}.png`}
               alt=""
             />

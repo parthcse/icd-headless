@@ -6,7 +6,7 @@ export default function AboutOurHeartSection() {
           <h3 className="font-48">eCommerce lies</h3>
           <h2 className="main-title">At Our Heart</h2>
         </div>
-        <div className="grid grid-cols-1 gap-space-mini md:grid-cols-2 lg:gap-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-space-mini lg:gap-0">
           <figure>
             <img src="/images/about-our-heart.png" alt="" />
           </figure>
@@ -25,8 +25,8 @@ export default function AboutOurHeartSection() {
           </div>
         </div>
         <div className="grid gap-space-mini pt-space-mini md:grid-cols-2">
-          <div className="cart flex flex-col items-start gap-4 bg-black-light px-space-small py-space-small lg:gap-5 xl:p-12">
-            <h2 className="mb-0 flex w-full items-center gap-3 border-b-2 border-white/10 pb-4 lg:pb-5 xl:mb-2 xl:pb-6">
+          <div className="cart bg-black-light py-space-small px-space-small xl:p-12 flex flex-col gap-4 lg:gap-5 items-start">
+            <h2 className="flex items-center gap-3 border-b-2 border-white/10 mb-0 xl:mb-2 pb-4 lg:pb-5 xl:pb-6 w-full">
               <img className="max-h-[1.2em]" src="/images/vision-icon.svg" alt="" /> Our Vision
             </h2>
             <p>
@@ -41,8 +41,8 @@ export default function AboutOurHeartSection() {
               partner.
             </p>
           </div>
-          <div className="cart flex flex-col items-start gap-4 bg-black-light px-space-small py-space-small lg:gap-5 xl:p-12">
-            <h2 className="mb-0 flex w-full items-center gap-3 border-b-2 border-white/10 pb-4 lg:pb-5 xl:mb-2 xl:pb-6">
+          <div className="cart bg-black-light py-space-small px-space-small xl:p-12 flex flex-col gap-4 lg:gap-5 items-start">
+            <h2 className="flex items-center gap-3 border-b-2 border-white/10 mb-0 xl:mb-2 pb-4 lg:pb-5 xl:pb-6 w-full">
               <img className="max-h-[1.2em]" src="/images/mision-icon.svg" alt="" /> Our Mission
             </h2>
             <p>

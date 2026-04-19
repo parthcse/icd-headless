@@ -1,4 +1,4 @@
-/* Source: Design/tailwind/input.css — plus Next-only: .font-32, .header-main.header-scrolled, .char-animate (Framer hero; no .char-animate span keyframes). */
+/* Source: Design/tailwind/input.css — plus Next-only: .font-32, .header-main.header-scrolled, .char-animate (Framer hero; .char-animate span keyframes omitted — conflicts with motion spans). */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -49,7 +49,7 @@
     }
     
     .main-title {
-        @apply text-[calc(1.625rem+4.5vw)] xl:text-[7.6rem] font-semibold leading-tight;
+        @apply text-[calc(1.625rem+4.5vw)] xl:text-[7.6rem] font-semibold leading-none;
     }
     .font-48 {
         @apply leading-tight font-semibold text-[calc(1.375rem+1.5vw)] xl:text-5xl;
@@ -116,7 +116,7 @@
 
     
     .full-section {
-        @apply border-t border-white/15 py-space;
+        @apply border-t border-white/15 py-space xl:pt-28 xl:pb-36;
     }
     .heading-wrap {
         @apply pb-space-mini text-center grid gap-[0.5em] xl:text-lg;
@@ -152,7 +152,7 @@
         @apply w-8 lg:w-10 aspect-square flex items-center justify-center !border-solid !border !border-white/10;
     }
     .home-customer .owl-nav {
-         @apply leading-none flex items-center flex-wrap gap-2 right-6 absolute -bottom-14 lg:-bottom-20;
+        @apply leading-none flex items-center flex-wrap gap-2 right-6 absolute -bottom-14 lg:-bottom-20;
     }
     .about-our-culture-slider .owl-nav {
          @apply leading-none flex items-center flex-wrap gap-2 justify-center pt-space-small;
@@ -212,13 +212,20 @@
             transform: translateY(0);
         }
     }
-    .owl-stage {
+    .owl-carousel .owl-stage {
         display: flex;
         flex-wrap: wrap;
     }
-    /* Hero H1: outer clip + Framer Motion per-word wrappers handle the rise */
+    /* Design static HTML uses JS-injected per-char spans here; Next hero uses Framer (HeroMainTitle) — do not use .char-animate span { … } or it breaks motion children. */
     .char-animate {
         overflow: hidden;
         display: block;
+    }
+    /* Lenis (Design/tailwind/js/common.js) — harmless when Lenis is not loaded */
+    html.lenis {
+        height: auto;
+    }
+    .lenis.lenis-smooth {
+        scroll-behavior: auto;
     }
 }

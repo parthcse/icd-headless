@@ -11,8 +11,8 @@ const TEAM = [
 export default function AboutTeamSection() {
   return (
     <section className="about-team full-section">
-      <div className="container md:grid md:grid-cols-2 md:pb-[6%]">
-        <div className="heading-wrap animate fadeUp md:sticky md:top-40 md:my-auto md:pb-0 md:text-left">
+      <div className="container md:grid grid-cols-2 md:pb-[6%]">
+        <div className="heading-wrap md:my-auto md:pb-0 md:text-left animate fadeUp md:sticky md:top-40">
           <h3 className="font-48">Your</h3>
           <h2 className="main-title">Trusted Team</h2>
           <p>
@@ -25,15 +25,15 @@ export default function AboutTeamSection() {
             </svg>
           </a>
         </div>
-        <div className="grid grid-cols-2 gap-4 text-center md:[&>*:nth-child(2)]:top-[20%] md:[&>*:nth-child(4)]:top-[20%] lg:gap-6 xl:gap-8">
+        <div className="text-center grid grid-cols-2 gap-4 lg:gap-6 xl:gap-8 md:[&>*:nth-child(2)]:top-[20%] md:[&>*:nth-child(4)]:top-[20%]">
           {TEAM.map((m) => (
-            <div key={m.name} className="column relative mb-auto bg-black-light px-4 py-space-small group">
+            <div key={m.name} className="column bg-black-light mb-auto py-space-small px-4 group relative">
               <h5 className="mb-0">{m.name}</h5>
               <p>{m.role}</p>
-              <figure className="mx-auto my-4 w-3/4 overflow-hidden rounded-full lg:my-5 lg:mb-6 xl:mb-7">
-                <img className="w-full grayscale transition duration-300 group-hover:grayscale-0" src={m.img} alt="" />
+              <figure className="mx-auto w-3/4 overflow-hidden rounded-full my-4 lg:my-5 lg:mb-6 xl:mb-7">
+                <img className="w-full grayscale group-hover:grayscale-0 transition duration-300" src={m.img} alt="" />
               </figure>
-              <a href="#" className="btn btn-primary aspect-square rounded-full p-2">
+              <a href="#" className="btn btn-primary p-2 rounded-full aspect-square">
                 <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="currentColor">
                   <path d={ARROW} />
                 </svg>
