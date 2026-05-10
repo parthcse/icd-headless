@@ -79,6 +79,9 @@
     .pb-space {
         @apply pb-[clamp(2.8125rem,0.7933rem+5.609vw,5rem)]; /* 45px to 80px */
     }
+    .px-space {
+        @apply px-[clamp(2.8125rem,0.7933rem+5.609vw,5rem)]; /* 45px to 80px */
+    }
 
     .px-space-mini {
         @apply px-[clamp(1.875rem,0.1442rem+4.8077vw,3.75rem)]; /* 30px to 60px */
@@ -112,6 +115,9 @@
     }
     .gap-space-small {
         @apply gap-[clamp(1.25rem,0.0962rem+3.2051vw,2.5rem)]; /* 20px to 40px */
+    }
+    .mb-space-small {
+        @apply mb-[clamp(1.25rem,0.0962rem+3.2051vw,2.5rem)]; /* 20px to 40px */
     }
 
     
@@ -156,6 +162,20 @@
     }
     .about-our-culture-slider .owl-nav {
          @apply leading-none flex items-center flex-wrap gap-2 justify-center pt-space-small;
+    }
+
+    /* Services FAQ accordion active state (used by vanilla JS fallback; React uses state instead) */
+    .services-accordion-item.active {
+        @apply bg-black-light border-black-light;
+    }
+    .services-accordion-item.active .services-accordion-content {
+        @apply [grid-template-rows:1fr] opacity-100 mt-1;
+    }
+    .services-accordion-item.active .services-accordion-icon {
+        @apply bg-primary rotate-180;
+    }
+    .services-accordion-item.active .icon-line-vertical {
+        @apply opacity-0;
     }
 
     /* Sticky header: glass bar only — no border-b (was causing a white line + 1px layout shift on toggle) */
