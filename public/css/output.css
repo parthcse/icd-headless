@@ -850,10 +850,10 @@ h6 {
   /* 45px to 80px */
 }
 
-.px-space {
-  padding-left: clamp(2.8125rem, 0.7933rem + 5.609vw, 5rem);
-  padding-right: clamp(2.8125rem, 0.7933rem + 5.609vw, 5rem);
-  /* 45px to 80px */
+.px-space-mini {
+  padding-left: clamp(1.875rem, 0.1442rem + 4.8077vw, 3.75rem);
+  padding-right: clamp(1.875rem, 0.1442rem + 4.8077vw, 3.75rem);
+  /* 30px to 60px */
 }
 
 .py-space-mini {
@@ -1286,10 +1286,6 @@ h6 {
   margin-bottom: auto;
 }
 
-.-mt-12 {
-  margin-top: -3rem;
-}
-
 .mb-0 {
   margin-bottom: 0px;
 }
@@ -1356,6 +1352,10 @@ h6 {
 
 .me-5 {
   margin-inline-end: 1.25rem;
+}
+
+.mt-0 {
+  margin-top: 0px;
 }
 
 .mt-1 {
@@ -1532,11 +1532,6 @@ h6 {
 
 .w-\[min\(85vw\2c 20rem\)\] {
   width: min(85vw, 20rem);
-}
-
-.w-fit {
-  width: -moz-fit-content;
-  width: fit-content;
 }
 
 .w-full {
@@ -2302,6 +2297,8 @@ html.lenis {
   grid-template-rows: 1fr;
 }
 
+/* Responsive variants for custom component classes (matches Design output) */
+
 @media (min-width: 768px) {
   .md\:gap-space-mini {
     gap: clamp(1.875rem, 0.1442rem + 4.8077vw, 3.75rem);
@@ -2311,6 +2308,21 @@ html.lenis {
   .md\:gap-space-small {
     gap: clamp(1.25rem, 0.0962rem + 3.2051vw, 2.5rem);
     /* 20px to 40px */
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:font-22 {
+    font-size: calc(1.25rem + 0.3vw);
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  @media (min-width: 1200px) {
+    .lg\:font-22 {
+      font-size: 1.25rem;
+      line-height: 1.75rem;
+    }
   }
 }
 
@@ -2462,6 +2474,10 @@ html.lenis {
     margin-bottom: auto;
   }
 
+  .md\:-mt-12 {
+    margin-top: -3rem;
+  }
+
   .md\:mb-6 {
     margin-bottom: 1.5rem;
   }
@@ -2492,6 +2508,11 @@ html.lenis {
 
   .md\:w-\[60\%\] {
     width: 60%;
+  }
+
+  .md\:w-fit {
+    width: -moz-fit-content;
+    width: fit-content;
   }
 
   .md\:max-w-32 {
@@ -2591,6 +2612,11 @@ html.lenis {
 
   .lg\:col-span-7 {
     grid-column: span 7 / span 7;
+  }
+
+  .lg\:mx-auto {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .lg\:my-5 {
@@ -2819,10 +2845,6 @@ html.lenis {
 
   .xl\:gap-8 {
     gap: 2rem;
-  }
-
-  .xl\:gap-\[1\.125rem\] {
-    gap: 1.125rem;
   }
 
   .xl\:gap-x-20 {

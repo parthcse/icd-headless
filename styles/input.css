@@ -249,3 +249,35 @@
         scroll-behavior: auto;
     }
 }
+
+/* Responsive variants for custom component classes (matches Design output) */
+@layer base {
+    @media (min-width: 1024px) {
+        .lg\:font-22 {
+            font-size: calc(1.25rem + 0.3vw);
+            font-weight: 600;
+            line-height: 1.25;
+        }
+        .lg\:px-space {
+            padding-left: clamp(2.8125rem, 0.7933rem + 5.609vw, 5rem);
+            padding-right: clamp(2.8125rem, 0.7933rem + 5.609vw, 5rem);
+        }
+    }
+    @media (min-width: 1200px) {
+        .lg\:font-22 {
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+        }
+        .xl\:px-space {
+            padding-left: clamp(2.8125rem, 0.7933rem + 5.609vw, 5rem);
+            padding-right: clamp(2.8125rem, 0.7933rem + 5.609vw, 5rem);
+        }
+        .xl\:gap-space {
+            gap: clamp(2.8125rem, 0.7933rem + 5.609vw, 5rem);
+        }
+        .\32xl\:px-space {
+            padding-left: clamp(2.8125rem, 0.7933rem + 5.609vw, 5rem);
+            padding-right: clamp(2.8125rem, 0.7933rem + 5.609vw, 5rem);
+        }
+    }
+}

@@ -190,7 +190,7 @@ export default function ContactQuoteForm() {
           </p>
         ) : null}
 
-        <button type="submit" className="btn btn-primary w-fit" disabled={loading}>
+        <button type="submit" className="btn btn-primary md:w-fit" disabled={loading}>
           {loading ? "Sending…" : "Send Message"}
           {!loading ? (
             <svg

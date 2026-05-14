@@ -7,7 +7,7 @@ export default function ServicesWhyChooseSection({ data }) {
           <h2 className="main-title pb-2">{data.title}</h2>
           <p>{data.subtitle}</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-space-mini xl:gap-space mx-auto max-w-[1280px] font-22 font-normal">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-space-mini xl:gap-space mx-auto max-w-[1280px] lg:font-22 font-normal">
           {[data.benefitsLeft, data.benefitsRight].map((col, ci) => (
             <ul
               key={ci}

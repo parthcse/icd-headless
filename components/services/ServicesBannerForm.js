@@ -80,21 +80,21 @@ export default function ServicesBannerForm({ title, btnArrow }) {
   const inputCls = "border-0 bg-[#252525] outline-none py-3.5 px-5";
 
   return (
-    <div className="border border-primary px-space pb-space-mini pt-space-small backdrop-blur animate fadeUp">
+    <div className="border border-primary px-space-mini pb-space-mini pt-space-small backdrop-blur animate fadeUp">
       <h3 className="font-36 xl:text-[40px] font-semibold text-center mb-4 leading-snug">{title}</h3>
       {success ? (
         <p className="text-center py-8 text-primary font-semibold">
           Thank you! We'll be in touch shortly.
         </p>
       ) : (
-        <form className="grid gap-4 xl:gap-[1.125rem]" onSubmit={handleSubmit} noValidate>
+        <form className="grid gap-4 xl:gap-4.5" onSubmit={handleSubmit} noValidate>
           <input type="text" placeholder="Full Name*" className={inputCls} value={name} onChange={(e) => setName(e.target.value)} required />
           <input type="email" placeholder="Email*" className={inputCls} value={email} onChange={(e) => setEmail(e.target.value)} required />
           <input type="tel" placeholder="Phone*" className={inputCls} value={phone} onChange={(e) => setPhone(e.target.value)} />
           <input type="url" placeholder="Your Agency's URL" className={inputCls} value={website} onChange={(e) => setWebsite(e.target.value)} />
           <textarea rows={4} placeholder="Message*" className={inputCls} value={message} onChange={(e) => setMessage(e.target.value)} required />
           {error && <p className="text-sm text-orange-500">{error}</p>}
-          <button type="submit" disabled={loading} className="btn btn-primary mx-auto">
+          <button type="submit" disabled={loading} className="btn btn-primary lg:mx-auto">
             {loading ? "Sending…" : "Send Message"}
             {!loading && btnArrow && (
               <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="currentColor">
