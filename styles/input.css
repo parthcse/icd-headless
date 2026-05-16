@@ -7,6 +7,18 @@
     html {
         @apply overflow-y-scroll scroll-smooth;
     }
+
+    /* Custom scrollbar — matches Design */
+    ::-webkit-scrollbar {
+        height: 0.375rem;
+        width: 0.375rem;
+    }
+    ::-webkit-scrollbar-track {
+        background-color: rgb(21 21 21); /* bg-black-light */
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: rgb(241 126 63); /* primary */
+    }
     body {
         @apply bg-black text-white font-gilroy font-normal text-base;
     }
@@ -183,21 +195,46 @@
         @apply bg-black-light/75 shadow-lg backdrop-blur-xl backdrop-saturate-150;
     }
 
-    /* Mobile nav: hamburger → close (three bars) */
-    .mobile-menu-btn {
-        @apply relative flex h-10 w-10 flex-shrink-0 flex-col items-center justify-center gap-[6px] p-2;
+    /* Mobile menu overlay */
+    .mobile-ovelay.active {
+        pointer-events: auto;
+        opacity: 1;
     }
-    .mobile-menu-btn-bar {
-        @apply block h-0.5 w-6 origin-center rounded-full bg-white transition-transform duration-300 ease-out;
+
+    /* Mobile menu drawer */
+    .mobile-menu.open {
+        @apply translate-x-0;
     }
-    .mobile-menu-btn.is-open .mobile-menu-btn-bar-1 {
-        transform: translateY(8px) rotate(45deg);
+
+    /* Mobile panel base */
+    .mob-panel {
+        position: absolute;
+        inset: 0px;
+        z-index: 10;
+        overflow-y: auto;
+        overflow-x: hidden;
+        overscroll-behavior: contain;
+        @apply bg-black-light;
+        transition-property: transform;
+        transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+        transition-duration: 320ms;
     }
-    .mobile-menu-btn.is-open .mobile-menu-btn-bar-2 {
-        @apply scale-0 opacity-0;
+
+    /* Level-2 panels slide in from right */
+    .mob-panel.level-2 {
+        @apply translate-x-full;
     }
-    .mobile-menu-btn.is-open .mobile-menu-btn-bar-3 {
-        transform: translateY(-8px) rotate(-45deg);
+
+    .mob-panel.level-2.active {
+        @apply translate-x-0;
+    }
+
+    /* Sticky panel header */
+    .mob-panel-head {
+        position: sticky;
+        top: 0px;
+        z-index: 1;
+        @apply flex items-center gap-3 border-b border-white/10 bg-black-light px-5 py-4;
     }
     @media screen and (min-width: 1200px) and (max-width:1920px) {
         html {

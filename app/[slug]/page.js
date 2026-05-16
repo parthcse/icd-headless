@@ -46,14 +46,13 @@ export default async function ServicePage({ params }) {
     <>
       <Header />
 
-      {/* Banner is always required — every service page must have banner data */}
+      {/* Banner is always required */}
       <ServicesBannerSection data={data.banner} />
 
       {/* All sections below are optional — add the key to a service data file to show it */}
       {data.achievements && <ServicesAchievementsSection data={data.achievements} />}
       {data.clientSuccess && <ServicesClientSuccessSection data={data.clientSuccess} />}
 
-      {/* Shared contact form — identical on all service pages */}
       <GetQuoteSection />
 
       {data.whyChoose && <ServicesWhyChooseSection data={data.whyChoose} />}
@@ -69,7 +68,6 @@ export default async function ServicePage({ params }) {
       {data.faq && <ServicesFaqSection data={data.faq} />}
       {data.ourClients && <ServicesOurClientSection data={data.ourClients} />}
 
-      {/* Shared countries section — identical on all service pages */}
       <WeServeSection />
 
       {data.seoSay && <ServicesSeoSaySection data={data.seoSay} />}
