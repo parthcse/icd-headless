@@ -2,7 +2,7 @@ export default function ServicesDevelopmentSection({ data }) {
   const textBox = (
     <div className="text-box mt-auto space-y-4 xl:space-y-6 leading-relaxed">
       {data.paragraphs.map((p, i) => <p key={i}>{p}</p>)}
-      <div className="btn-wrap">
+      <div className="btn-wrap pt-2">
         <a href={data.ctaHref} className="btn btn-primary">
           {data.ctaLabel}
           {data.btnArrow && (

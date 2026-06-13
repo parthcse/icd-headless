@@ -30,7 +30,7 @@ const SERVICES_CATEGORIES = [
   {
     label: "eCommerce",
     links: [
-      { label: "AI in eCommerce", href: "#" },
+      { label: "AI in eCommerce", href: "/ai-in-ecommerce-solutions" },
       { label: "eCommerce Web Design", href: "#" },
       { label: "eCommerce Web Development", href: "#" },
       { label: "Hire eCommerce Developers", href: "#" },
@@ -117,7 +117,7 @@ const SERVICES_CATEGORIES = [
 
 const MOB_SERVICE_PANELS = [
   { id: "mob-panel-ecommerce", label: "eCommerce", links: [
-    { label: "AI in eCommerce", href: "#" },
+    { label: "AI in eCommerce", href: "/ai-in-ecommerce-solutions" },
     { label: "eCommerce Web Design", href: "#" },
     { label: "eCommerce Web Development", href: "#" },
     { label: "Hire eCommerce Developers", href: "#" },

@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { notFound } from "next/navigation";
 import { SERVICES_SLUGS, getServiceData } from "@/lib/services/index";
 
@@ -22,6 +23,69 @@ import ServicesDevelopmentStepSection from "@/components/services/ServicesDevelo
 import ServicesFaqSection from "@/components/services/ServicesFaqSection";
 import ServicesOurClientSection from "@/components/services/ServicesOurClientSection";
 import ServicesSeoSaySection from "@/components/services/ServicesSeoSaySection";
+import ServicesFacilitySection from "@/components/services/ServicesFacilitySection";
+import ServicesTextBoxSection from "@/components/services/ServicesTextBoxSection";
+import ServicesClientSaySection from "@/components/services/ServicesClientSaySection";
+import ServicesInformationSection from "@/components/services/ServicesInformationSection";
+
+/**
+ * Every renderable section, keyed by the name used in `sectionOrder` / the
+ * service data file. `banner`, `getQuote`, and `weServe` always render;
+ * everything else only renders when the matching `data.<key>` is present.
+ *
+ * To add a new section: build the component and add it here. It will then
+ * be available to use as a key in any service data file.
+ */
+const SECTION_RENDERERS = {
+  banner: (data) => <ServicesBannerSection data={data.banner} />,
+  facility: (data) => data.facility && <ServicesFacilitySection data={data.facility} />,
+  achievements: (data) => data.achievements && <ServicesAchievementsSection data={data.achievements} />,
+  clientSay: (data) => data.clientSay && <ServicesClientSaySection data={data.clientSay} />,
+  clientSuccess: (data) => data.clientSuccess && <ServicesClientSuccessSection data={data.clientSuccess} />,
+  getQuote: () => <GetQuoteSection />,
+  textBox: (data) => data.textBox && <ServicesTextBoxSection data={data.textBox} />,
+  whyChoose: (data) => data.whyChoose && <ServicesWhyChooseSection data={data.whyChoose} />,
+  clientRetention: (data) => data.clientRetention && <ServicesClientRetentionSection data={data.clientRetention} />,
+  development: (data) => data.development && <ServicesDevelopmentSection data={data.development} />,
+  offers: (data) => data.offers && <ServicesOffersSection data={data.offers} />,
+  partner: (data) => data.partner && <ServicesPartnerSection data={data.partner} />,
+  partnerSecondary: (data) => data.partnerSecondary && <ServicesPartnerSection data={data.partnerSecondary} />,
+  pricing: (data) => data.pricing && <ServicesPricingSection data={data.pricing} />,
+  cta: (data) => data.cta && <ServicesCtaSection data={data.cta} />,
+  clientTrust: (data) => data.clientTrust && <ServicesClientTrustSection data={data.clientTrust} />,
+  qualityWebsites: (data) => data.qualityWebsites && <ServicesQualityWebsitesSection data={data.qualityWebsites} />,
+  qualityWebsitesSecondary: (data) =>
+    data.qualityWebsitesSecondary && <ServicesQualityWebsitesSection data={data.qualityWebsitesSecondary} />,
+  developmentStep: (data) => data.developmentStep && <ServicesDevelopmentStepSection data={data.developmentStep} />,
+  information: (data) => data.information && <ServicesInformationSection data={data.information} />,
+  faq: (data) => data.faq && <ServicesFaqSection data={data.faq} />,
+  ourClients: (data) => data.ourClients && <ServicesOurClientSection data={data.ourClients} />,
+  weServe: () => <WeServeSection />,
+  seoSay: (data) => data.seoSay && <ServicesSeoSaySection data={data.seoSay} />,
+};
+
+/**
+ * Builds the section order from the order keys are written in the service
+ * data file itself (object property order), so editing the order of keys
+ * in lib/services/your-slug.js reorders the page. `getQuote` and `weServe`
+ * don't have their own data blocks, so if they're not explicitly placed by
+ * adding e.g. `getQuote: true` / `weServe: true` as a key, they default to
+ * their historical positions (after clientSuccess, and before seoSay).
+ */
+function buildSectionOrder(data) {
+  const order = Object.keys(data).filter((key) => key in SECTION_RENDERERS);
+
+  if (!order.includes("getQuote")) {
+    const i = order.indexOf("clientSuccess");
+    order.splice(i >= 0 ? i + 1 : 1, 0, "getQuote");
+  }
+  if (!order.includes("weServe")) {
+    const i = order.indexOf("seoSay");
+    order.splice(i >= 0 ? i : order.length, 0, "weServe");
+  }
+
+  return order;
+}
 
 export function generateStaticParams() {
   return SERVICES_SLUGS.map((slug) => ({ slug }));
@@ -42,36 +106,14 @@ export default async function ServicePage({ params }) {
   const data = getServiceData(slug);
   if (!data) notFound();
 
+  const order = data.sectionOrder ?? buildSectionOrder(data);
+
   return (
     <>
       <Header />
-
-      {/* Banner is always required */}
-      <ServicesBannerSection data={data.banner} />
-
-      {/* All sections below are optional — add the key to a service data file to show it */}
-      {data.achievements && <ServicesAchievementsSection data={data.achievements} />}
-      {data.clientSuccess && <ServicesClientSuccessSection data={data.clientSuccess} />}
-
-      <GetQuoteSection />
-
-      {data.whyChoose && <ServicesWhyChooseSection data={data.whyChoose} />}
-      {data.clientRetention && <ServicesClientRetentionSection data={data.clientRetention} />}
-      {data.development && <ServicesDevelopmentSection data={data.development} />}
-      {data.offers && <ServicesOffersSection data={data.offers} />}
-      {data.partner && <ServicesPartnerSection data={data.partner} />}
-      {data.pricing && <ServicesPricingSection data={data.pricing} />}
-      {data.cta && <ServicesCtaSection data={data.cta} />}
-      {data.clientTrust && <ServicesClientTrustSection data={data.clientTrust} />}
-      {data.qualityWebsites && <ServicesQualityWebsitesSection data={data.qualityWebsites} />}
-      {data.developmentStep && <ServicesDevelopmentStepSection data={data.developmentStep} />}
-      {data.faq && <ServicesFaqSection data={data.faq} />}
-      {data.ourClients && <ServicesOurClientSection data={data.ourClients} />}
-
-      <WeServeSection />
-
-      {data.seoSay && <ServicesSeoSaySection data={data.seoSay} />}
-
+      {order.map((key) => (
+        <Fragment key={key}>{SECTION_RENDERERS[key]?.(data)}</Fragment>
+      ))}
       <Footer />
     </>
   );
