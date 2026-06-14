@@ -25,7 +25,7 @@ export default function ServicesInformationSection({ data }) {
                 <ul className="list-disc pl-5 space-y-3">
                   {card.listItems.map((item, j) => (
                     <li key={j}>
-                      <strong>{item.title}</strong><br />
+                      {item.title && <><strong>{item.title}</strong><br /></>}
                       {renderParts(item.parts)}
                     </li>
                   ))}

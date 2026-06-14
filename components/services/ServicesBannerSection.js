@@ -1,4 +1,4 @@
-import ServicesBannerForm from "./ServicesBannerForm";
+import ContactForm from "@/components/common/ContactForm";
 
 export default function ServicesBannerSection({ data }) {
   return (
@@ -23,7 +23,7 @@ export default function ServicesBannerSection({ data }) {
             <a href={data.ctaHref} className="btn btn-primary">
               {data.ctaLabel}
               {data.btnArrow && (
-                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor">
                   <path d={data.btnArrow} />
                 </svg>
               )}
@@ -34,7 +34,7 @@ export default function ServicesBannerSection({ data }) {
             </a>
           </div>
         </div>
-        <ServicesBannerForm title={data.formTitle} btnArrow={data.btnArrow} />
+        <ContactForm variant="banner" title={data.formTitle} btnArrow={data.btnArrow} />
       </div>
     </section>
   );

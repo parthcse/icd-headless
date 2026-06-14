@@ -31,17 +31,17 @@ const SERVICES_CATEGORIES = [
     label: "eCommerce",
     links: [
       { label: "AI in eCommerce", href: "/ai-in-ecommerce-solutions" },
-      { label: "eCommerce Web Design", href: "#" },
-      { label: "eCommerce Web Development", href: "#" },
-      { label: "Hire eCommerce Developers", href: "#" },
-      { label: "eCommerce SEO Services", href: "#" },
+      { label: "eCommerce Web Design", href: "/ecommerce-website-design-services" },
+      { label: "eCommerce Web Development", href: "/ecommerce-website-development-services" },
+      { label: "Hire eCommerce Developers", href: "/hire-ecommerce-designers-developers" },
+      { label: "eCommerce SEO Services", href: "/ecommerce-seo-services" },
     ],
   },
   {
     label: "Magento",
     links: [
-      { label: "Magento Development", href: "#" },
-      { label: "Magento 2 Development", href: "#" },
+      { label: "Magento Development", href: "/magento-development-services" },
+      { label: "Magento 2 Development", href: "/magento-2-development-services" },
       { label: "Magento Website Design", href: "#" },
       { label: "Hire Magento Developers", href: "#" },
       { label: "Magento 2 Migration", href: "#" },
@@ -118,13 +118,13 @@ const SERVICES_CATEGORIES = [
 const MOB_SERVICE_PANELS = [
   { id: "mob-panel-ecommerce", label: "eCommerce", links: [
     { label: "AI in eCommerce", href: "/ai-in-ecommerce-solutions" },
-    { label: "eCommerce Web Design", href: "#" },
-    { label: "eCommerce Web Development", href: "#" },
-    { label: "Hire eCommerce Developers", href: "#" },
-    { label: "eCommerce SEO Services", href: "#" },
+    { label: "eCommerce Web Design", href: "/ecommerce-website-design-services" },
+    { label: "eCommerce Web Development", href: "/ecommerce-website-development-services" },
+    { label: "Hire eCommerce Developers", href: "/hire-ecommerce-designers-developers" },
+    { label: "eCommerce SEO Services", href: "/ecommerce-seo-services" },
   ]},
   { id: "mob-panel-magento", label: "Magento", links: [
-    { label: "Magento Development", href: "#" },
+    { label: "Magento Development", href: "/magento-development-services" },
     { label: "Magento 2 Development", href: "#" },
     { label: "Magento Website Design", href: "#" },
     { label: "Hire Magento Developers", href: "#" },
@@ -256,7 +256,7 @@ export default function Header() {
             <div className="hidden lg:block">
               <a href="#" className="btn btn-primary">
                 Get a Quote
-                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor">
                   <path d={BTN_ARROW} />
                 </svg>
               </a>
@@ -320,7 +320,7 @@ export default function Header() {
             <li className="px-5 py-4">
               <a href="#" className="btn btn-primary w-full">
                 Get a Quote
-                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor">
                   <path d={BTN_ARROW} />
                 </svg>
               </a>

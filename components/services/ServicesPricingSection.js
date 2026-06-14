@@ -23,7 +23,7 @@ export default function ServicesPricingSection({ data }) {
                         <a href={bucket.ctaHref} className="btn btn-primary">
                           {bucket.ctaLabel}
                           {data.btnArrow && (
-                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor">
                               <path d={data.btnArrow} />
                             </svg>
                           )}
@@ -40,7 +40,7 @@ export default function ServicesPricingSection({ data }) {
                     <a href={plan.ctaHref} className="btn btn-primary">
                       {plan.ctaLabel}
                       {data.btnArrow && (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor">
                           <path d={data.btnArrow} />
                         </svg>
                       )}
@@ -58,7 +58,7 @@ export default function ServicesPricingSection({ data }) {
                       <a href={plan.altCtaHref || "#"} className="btn btn-primary">
                         {plan.altCtaLabel}
                         {data.btnArrow && (
-                          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="currentColor">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor">
                             <path d={data.btnArrow} />
                           </svg>
                         )}

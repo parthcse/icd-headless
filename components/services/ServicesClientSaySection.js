@@ -15,7 +15,7 @@ export default async function ServicesClientSaySection({ data }) {
         <div className="heading-wrap pb-0">
           <h3 className="font-48">{data.eyebrow}</h3>
           <h2 className="main-title pb-2">{data.title}</h2>
-          <p className="italic mx-auto font-light">&ldquo;{testimonial.quote}&rdquo;</p>
+          <p className="italic mx-auto max-w-5xl font-light">&ldquo;{testimonial.quote}&rdquo;</p>
           <div className="flex items-center text-left justify-center gap-4 pt-space-small">
             <img src={testimonial.avatar} alt={testimonial.avatarAlt} className="!w-[3.5em] aspect-square rounded-full object-cover" />
             <div className="small">

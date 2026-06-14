@@ -5,7 +5,7 @@ export default function ServicesDevelopmentStepSection({ data }) {
         <div className="heading-wrap animate fadeUp start">
           <h3 className="font-48">{data.eyebrow}</h3>
           <h2 className="main-title pb-2">{data.title}</h2>
-          <p className="mx-auto max-w-4xl">{data.subtitle}</p>
+          {data.subtitle && <p className="mx-auto max-w-4xl">{data.subtitle}</p>}
         </div>
         <div className="grid gap-4 leading-relaxed sm:px-4 xl:px-0">
           {data.steps.map((step, i) => (
@@ -25,16 +25,18 @@ export default function ServicesDevelopmentStepSection({ data }) {
             </div>
           ))}
         </div>
-        <div className="btn-wrap text-center pt-space-mini">
-          <a href={data.ctaHref} className="btn btn-primary">
-            {data.ctaLabel}
-            {data.btnArrow && (
-              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="currentColor">
-                <path d={data.btnArrow} />
-              </svg>
-            )}
-          </a>
-        </div>
+        {data.ctaLabel && (
+          <div className="btn-wrap text-center pt-space-mini">
+            <a href={data.ctaHref} className="btn btn-primary">
+              {data.ctaLabel}
+              {data.btnArrow && (
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor">
+                  <path d={data.btnArrow} />
+                </svg>
+              )}
+            </a>
+          </div>
+        )}
       </div>
     </section>
   );

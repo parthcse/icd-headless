@@ -43,7 +43,9 @@ export default async function ServicesClientSuccessSection({ data }) {
         <div className={`heading-wrap ${headingWrapExtra}animate fadeUp`}>
           <h3 className="font-48">{data.eyebrow}</h3>
           <h2 className="main-title pb-2">{data.title}</h2>
-          <p>{data.subtitle}</p>
+          {Array.isArray(data.subtitle)
+            ? data.subtitle.map((p, i) => <p key={i}>{p}</p>)
+            : <p>{data.subtitle}</p>}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-small leading-normal">
           {portfolioItems.map((item, i) => (
@@ -75,7 +77,7 @@ export default async function ServicesClientSuccessSection({ data }) {
           <div className="btn-wrap text-center pt-space-mini">
             <a href={data.portfolioCtaHref || "#"} className="btn btn-primary">
               {data.portfolioCtaLabel}
-              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor">
                 <path d={BTN_ARROW_PATH} />
               </svg>
             </a>

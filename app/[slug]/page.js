@@ -27,6 +27,8 @@ import ServicesFacilitySection from "@/components/services/ServicesFacilitySecti
 import ServicesTextBoxSection from "@/components/services/ServicesTextBoxSection";
 import ServicesClientSaySection from "@/components/services/ServicesClientSaySection";
 import ServicesInformationSection from "@/components/services/ServicesInformationSection";
+import ServicesSeoAuditFormSection from "@/components/services/ServicesSeoAuditFormSection";
+import ServicesSeoPricingSection from "@/components/services/ServicesSeoPricingSection";
 
 /**
  * Every renderable section, keyed by the name used in `sectionOrder` / the
@@ -44,15 +46,26 @@ const SECTION_RENDERERS = {
   clientSuccess: (data) => data.clientSuccess && <ServicesClientSuccessSection data={data.clientSuccess} />,
   getQuote: () => <GetQuoteSection />,
   textBox: (data) => data.textBox && <ServicesTextBoxSection data={data.textBox} />,
+  textBoxSecondary: (data) => data.textBoxSecondary && <ServicesTextBoxSection data={data.textBoxSecondary} />,
+  textBoxTertiary: (data) => data.textBoxTertiary && <ServicesTextBoxSection data={data.textBoxTertiary} />,
+  textBoxQuaternary: (data) => data.textBoxQuaternary && <ServicesTextBoxSection data={data.textBoxQuaternary} />,
   whyChoose: (data) => data.whyChoose && <ServicesWhyChooseSection data={data.whyChoose} />,
   clientRetention: (data) => data.clientRetention && <ServicesClientRetentionSection data={data.clientRetention} />,
+  clientRetentionSecondary: (data) =>
+    data.clientRetentionSecondary && <ServicesClientRetentionSection data={data.clientRetentionSecondary} />,
   development: (data) => data.development && <ServicesDevelopmentSection data={data.development} />,
   offers: (data) => data.offers && <ServicesOffersSection data={data.offers} />,
+  offersSecondary: (data) => data.offersSecondary && <ServicesOffersSection data={data.offersSecondary} />,
   partner: (data) => data.partner && <ServicesPartnerSection data={data.partner} />,
   partnerSecondary: (data) => data.partnerSecondary && <ServicesPartnerSection data={data.partnerSecondary} />,
+  partnerTertiary: (data) => data.partnerTertiary && <ServicesPartnerSection data={data.partnerTertiary} />,
   pricing: (data) => data.pricing && <ServicesPricingSection data={data.pricing} />,
+  seoPricing: (data) => data.seoPricing && <ServicesSeoPricingSection data={data.seoPricing} />,
+  seoAuditForm: (data) => data.seoAuditForm && <ServicesSeoAuditFormSection data={data.seoAuditForm} />,
   cta: (data) => data.cta && <ServicesCtaSection data={data.cta} />,
   clientTrust: (data) => data.clientTrust && <ServicesClientTrustSection data={data.clientTrust} />,
+  clientTrustSecondary: (data) =>
+    data.clientTrustSecondary && <ServicesClientTrustSection data={data.clientTrustSecondary} />,
   qualityWebsites: (data) => data.qualityWebsites && <ServicesQualityWebsitesSection data={data.qualityWebsites} />,
   qualityWebsitesSecondary: (data) =>
     data.qualityWebsitesSecondary && <ServicesQualityWebsitesSection data={data.qualityWebsitesSecondary} />,

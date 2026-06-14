@@ -5,7 +5,9 @@ export default function ServicesQualityWebsitesSection({ data }) {
         <div className="heading-wrap animate fadeUp start">
           <h3 className="font-48">{data.eyebrow}</h3>
           <h2 className="main-title pb-2">{data.title}</h2>
-          <p className="mx-auto max-w-3xl">{data.subtitle}</p>
+          {Array.isArray(data.subtitle)
+            ? data.subtitle.map((p, i) => <p key={i} className={`mx-auto ${data.subtitleClass || "max-w-3xl"}`}>{p}</p>)
+            : <p className={`mx-auto ${data.subtitleClass || "max-w-3xl"}`}>{data.subtitle}</p>}
         </div>
         <div className="grid lg:grid-cols-2 gap-6 leading-relaxed">
           {data.items.map((item, i) => (
@@ -25,7 +27,7 @@ export default function ServicesQualityWebsitesSection({ data }) {
             <a href={data.ctaHref || "#"} className="btn btn-primary">
               {data.ctaLabel}
               {data.btnArrow && (
-                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor">
                   <path d={data.btnArrow} />
                 </svg>
               )}

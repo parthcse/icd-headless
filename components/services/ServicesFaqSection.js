@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 export default function ServicesFaqSection({ data }) {
-  const [openIndex, setOpenIndex] = useState(null);
+  const [openIndex, setOpenIndex] = useState(0);
 
   return (
     <section className="services-faq full-section">
@@ -34,7 +34,12 @@ export default function ServicesFaqSection({ data }) {
                 </div>
                 <div className={`services-accordion-content grid [grid-template-rows:0fr] transition-[grid-template-rows,opacity,margin] duration-[400ms,300ms,300ms] ease-in-out opacity-0 leading-relaxed space-y-4${isOpen ? " [grid-template-rows:1fr] opacity-100 mt-1" : ""}`}>
                   <div className="text-box overflow-hidden">
-                    <p>{faq.answer}</p>
+                    {faq.answer && <p>{faq.answer}</p>}
+                    {faq.answerList && (
+                      <ul className="list-disc pl-5 space-y-1">
+                        {faq.answerList.map((item, j) => <li key={j}>{item}</li>)}
+                      </ul>
+                    )}
                   </div>
                 </div>
               </div>

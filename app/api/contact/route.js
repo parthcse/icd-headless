@@ -63,7 +63,7 @@ export async function POST(request) {
     return NextResponse.json({ error: "Invalid JSON body." }, { status: 400 });
   }
 
-  const honeypot = typeof body.website === "string" ? body.website.trim() : "";
+  const honeypot = typeof body.hp === "string" ? body.hp.trim() : "";
   if (honeypot.length > 0) {
     return NextResponse.json({ error: "Unable to send message." }, { status: 400 });
   }
@@ -71,6 +71,8 @@ export async function POST(request) {
   const { ok, errors, values } = validateContactPayload({
     name: body.name,
     email: body.email,
+    phone: body.phone,
+    website: body.website,
     message: body.message,
   });
 
@@ -102,6 +104,8 @@ export async function POST(request) {
 
   const safeName = escapeHtml(values.name);
   const safeEmail = escapeHtml(values.email);
+  const safePhone = escapeHtml(values.phone);
+  const safeWebsite = escapeHtml(values.website);
   const safeMessage = escapeHtml(values.message).replace(/\n/g, "<br/>");
 
   const html = `
@@ -110,6 +114,8 @@ export async function POST(request) {
       <h2>New contact form submission</h2>
       <p><strong>Name:</strong> ${safeName}</p>
       <p><strong>Email:</strong> <a href="mailto:${safeEmail}">${safeEmail}</a></p>
+      <p><strong>Phone:</strong> ${safePhone}</p>
+      ${values.website ? `<p><strong>Agency's URL:</strong> ${safeWebsite}</p>` : ""}
       <p><strong>Message:</strong></p>
       <p>${safeMessage}</p>
       <hr/>
@@ -123,7 +129,7 @@ export async function POST(request) {
       to,
       replyTo: values.email,
       subject: `Contact form: ${values.name}`,
-      text: `Name: ${values.name}\nEmail: ${values.email}\n\n${values.message}`,
+      text: `Name: ${values.name}\nEmail: ${values.email}\nPhone: ${values.phone}${values.website ? `\nAgency's URL: ${values.website}` : ""}\n\n${values.message}`,
       html,
     });
   } catch (err) {

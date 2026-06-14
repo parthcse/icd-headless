@@ -20,7 +20,7 @@ export default function AboutTeamSection() {
           </p>
           <a href="#" className="btn btn-primary mx-auto mt-3 md:ml-0">
             Join Our Team
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor">
               <path d={ARROW} />
             </svg>
           </a>
@@ -34,7 +34,7 @@ export default function AboutTeamSection() {
                 <img className="w-full grayscale group-hover:grayscale-0 transition duration-300" src={m.img} alt="" />
               </figure>
               <a href="#" className="btn btn-primary p-2 rounded-full aspect-square">
-                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor">
                   <path d={ARROW} />
                 </svg>
               </a>
