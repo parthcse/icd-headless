@@ -1,9 +1,11 @@
+import { Fragment } from 'react';
+
 function renderParts(parts) {
   return parts.map((part, i) =>
     typeof part === "string" ? (
-      <span key={i}>{part}</span>
+      <Fragment key={i}>{part}</Fragment>
     ) : (
-      <a key={i} href={part.href} className="text-primary font-semibold">{part.text}</a>
+      <a key={i} href={part.href} className="text-primary font-semibold inline">{part.text}</a>
     )
   );
 }

@@ -11,15 +11,30 @@ export default function ServicesClientRetentionSection({ data }) {
             <img src={data.image} alt={data.imageAlt} />
           </figure>
           <div className={`text-box space-y-4 xl:space-y-6 leading-relaxed${data.imagePosition === "right" ? " lg:order-1" : ""}`}>
-            {data.paragraphs.map((p, i) => <p key={i}>{p}</p>)}
-            <ul className="space-y-3 font-semibold">
-              {data.checklistItems.map((item, i) => (
-                <li key={i} className="flex items-center gap-3">
-                  <img src="/images/check-primary-icon.svg" alt="" />
-                  {item}
-                </li>
-              ))}
-            </ul>
+            {data.blocks
+              ? data.blocks.map((block, i) =>
+                  block.type === "ul" ? (
+                    <ul key={i} className="list-disc pl-5 space-y-1">
+                      {block.items.map((item, j) => <li key={j}>{item}</li>)}
+                    </ul>
+                  ) : (
+                    <p key={i}>{block.text}</p>
+                  )
+                )
+              : (
+                <>
+                  {data.paragraphs.map((p, i) => <p key={i}>{p}</p>)}
+                  <ul className="space-y-3 font-semibold">
+                    {data.checklistItems.map((item, i) => (
+                      <li key={i} className="flex items-center gap-3">
+                        <img src="/images/check-primary-icon.svg" alt="" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )
+            }
             {data.outro && <p>{data.outro}</p>}
             {data.ctaLabel && (
               <div className="btn-wrap pt-2">

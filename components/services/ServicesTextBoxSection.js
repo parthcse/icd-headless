@@ -1,9 +1,11 @@
+import { Fragment } from 'react';
+
 function renderParts(parts) {
   return parts.map((part, i) =>
     typeof part === "string" ? (
-      <span key={i}>{part}</span>
+      <Fragment key={i}>{part}</Fragment>
     ) : (
-      <a key={i} href={part.href} className="text-primary font-semibold">{part.text}</a>
+      <a key={i} href={part.href} className="text-primary font-semibold inline">{part.text}</a>
     )
   );
 }
@@ -22,20 +24,41 @@ export default function ServicesTextBoxSection({ data }) {
               ? " text-center max-w-5xl mx-auto"
               : data.contentAlign === "left"
               ? " w-full text-left"
+              : data.contentAlign === "left-4xl"
+              ? " w-full text-left max-w-4xl mx-auto"
               : ""
           }`}
         >
-          {data.paragraphs.map((p, i) => <p key={i}>{Array.isArray(p) ? renderParts(p) : p}</p>)}
-          {data.listItems && (
-            <ul className="list-disc pl-5 space-y-1">
-              {data.listItems.map((item, i) => (
-                <li key={i}>
-                  <strong>{item.title}:</strong> {item.body}
-                </li>
-              ))}
-            </ul>
-          )}
-          {data.outro && <p>{data.outro}</p>}
+          {data.blocks
+            ? data.blocks.map((block, i) =>
+                block.type === "ul" ? (
+                  <ul key={i} className="list-disc pl-5 space-y-1">
+                    {block.items.map((item, j) => (
+                      <li key={j}>
+                        {typeof item === "string" ? item : <><strong>{item.title}:</strong> {item.body}</>}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p key={i}>{Array.isArray(block.parts) ? renderParts(block.parts) : block.text}</p>
+                )
+              )
+            : (
+              <>
+                {data.paragraphs.map((p, i) => <p key={i}>{Array.isArray(p) ? renderParts(p) : p}</p>)}
+                {data.listItems && (
+                  <ul className="list-disc pl-5 space-y-1">
+                    {data.listItems.map((item, i) => (
+                      <li key={i}>
+                        {typeof item === "string" ? item : <><strong>{item.title}:</strong> {item.body}</>}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {data.outro && <p>{Array.isArray(data.outro) ? renderParts(data.outro) : data.outro}</p>}
+              </>
+            )
+          }
         </div>
         {data.ctaLabel && (
           <div className="btn-wrap text-center pt-space-small">

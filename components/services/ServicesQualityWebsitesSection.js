@@ -1,3 +1,15 @@
+import { Fragment } from "react";
+
+function renderParts(parts) {
+  return parts.map((part, i) =>
+    typeof part === "string" ? (
+      <Fragment key={i}>{part}</Fragment>
+    ) : (
+      <a key={i} href={part.href} className="text-primary font-semibold inline">{part.text}</a>
+    )
+  );
+}
+
 export default function ServicesQualityWebsitesSection({ data }) {
   return (
     <section className="services-quality-websites full-section">
@@ -17,7 +29,13 @@ export default function ServicesQualityWebsitesSection({ data }) {
               </div>
               <div className="text-box">
                 <h3 className="font-semibold font-22">{item.name}</h3>
-                <p>{item.body}</p>
+                {item.bodyList ? (
+                  <ul className="list-disc pl-5 space-y-1">
+                    {item.bodyList.map((li, j) => <li key={j}>{li}</li>)}
+                  </ul>
+                ) : (
+                  <p>{Array.isArray(item.body) ? renderParts(item.body) : item.body}</p>
+                )}
               </div>
             </div>
           ))}

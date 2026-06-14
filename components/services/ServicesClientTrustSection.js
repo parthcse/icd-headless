@@ -1,9 +1,11 @@
+import { Fragment } from 'react';
+
 function renderParts(parts) {
   return parts.map((part, i) =>
     typeof part === "string" ? (
-      <span key={i}>{part}</span>
+      <Fragment key={i}>{part}</Fragment>
     ) : (
-      <a key={i} href={part.href} className="text-primary font-semibold">{part.text}</a>
+      <a key={i} href={part.href} className="text-primary font-semibold inline">{part.text}</a>
     )
   );
 }
@@ -12,7 +14,7 @@ export default function ServicesClientTrustSection({ data }) {
   return (
     <section className="services-client-trust full-section">
       <div className="container">
-        <div className="heading-wrap mx-auto max-w-4xl animate fadeUp start">
+        <div className="heading-wrap mx-auto max-w-5xl animate fadeUp start">
           <h3 className="font-48">{data.eyebrow}</h3>
           <h2 className="main-title pb-2">{data.title}</h2>
           {data.subtitles ? (
@@ -21,7 +23,7 @@ export default function ServicesClientTrustSection({ data }) {
             <p>
               {data.subtitle}
               {data.subtitleLink && (
-                <a href={data.subtitleLink.href || "#"} className="text-primary font-semibold">
+                <a href={data.subtitleLink.href || "#"} className="text-primary font-semibold inline">
                   {data.subtitleLink.text}
                 </a>
               )}
@@ -29,12 +31,18 @@ export default function ServicesClientTrustSection({ data }) {
             </p>
           ) : null}
         </div>
-        <div className={`grid sm:grid-cols-2 ${data.gridCols === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"} text-center gap-6 leading-relaxed`}>
+        <div className={`grid sm:grid-cols-2 ${data.gridCols === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"} ${data.textAlign === "left" ? "text-left" : "text-center"} gap-6 leading-relaxed`}>
           {data.items.map((item, i) => (
             <div key={i} className="bg-black-light py-space-small px-4 md:px-6 xl:px-8">
-              <img className="mx-auto max-w-20 mb-6" src={item.icon} alt="" />
+              {item.icon && <img className={`max-w-20 mb-6 ${data.textAlign === "left" ? "" : "mx-auto"}`} src={item.icon} alt="" />}
               <h3 className="font-semibold font-22">{item.name}</h3>
-              <p>{Array.isArray(item.body) ? renderParts(item.body) : item.body}</p>
+              {item.body && <p>{Array.isArray(item.body) ? renderParts(item.body) : item.body}</p>}
+              {item.bodyList && (
+                <ul className="list-disc pl-5 space-y-1 text-left">
+                  {item.bodyList.map((li, j) => <li key={j}>{li}</li>)}
+                </ul>
+              )}
+              {item.bodyAfter && <p>{item.bodyAfter}</p>}
             </div>
           ))}
         </div>

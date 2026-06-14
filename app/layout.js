@@ -7,6 +7,9 @@ export const metadata = {
   title: "Icecube Digital",
   description:
     "Build, Grow, and Scale your eCommerce store with experts. Full-stack creative and digital services.",
+  icons: {
+    icon: "/images/icecube-digital-favicon.png",
+  },
 };
 
 export default function RootLayout({ children }) {
