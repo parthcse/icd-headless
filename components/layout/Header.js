@@ -45,8 +45,8 @@ const SERVICES_CATEGORIES = [
       { label: "Magento Website Design", href: "/magento-website-design" },
       { label: "Hire Magento Developers", href: "/hire-magento-2-developers-programmers" },
       { label: "Magento 2 Migration", href: "/magento-2-upgrade-and-migration-services" },
-      { label: "Magento SEO Service", href: "#" },
-      { label: "Magento Maintenance", href: "#" },
+      { label: "Magento SEO Service", href: "/magento-seo-services" },
+      { label: "Magento Maintenance", href: "/magento-maintenance-services" },
     ],
   },
   {
@@ -129,8 +129,8 @@ const MOB_SERVICE_PANELS = [
     { label: "Magento Website Design", href: "#" },
     { label: "Hire Magento Developers", href: "/hire-magento-2-developers-programmers" },
     { label: "Magento 2 Migration", href: "/magento-2-upgrade-and-migration-services" },
-    { label: "Magento SEO Service", href: "#" },
-    { label: "Magento Maintenance", href: "#" },
+    { label: "Magento SEO Service", href: "/magento-seo-services" },
+    { label: "Magento Maintenance", href: "/magento-maintenance-services" },
   ]},
   { id: "mob-panel-wordpress", label: "WordPress", links: [
     { label: "WordPress Development", href: "#" },

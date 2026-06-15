@@ -76,6 +76,7 @@ const SECTION_RENDERERS = {
   developmentStep: (data) => data.developmentStep && <ServicesDevelopmentStepSection data={data.developmentStep} />,
   information: (data) => data.information && <ServicesInformationSection data={data.information} />,
   faq: (data) => data.faq && <ServicesFaqSection data={data.faq} />,
+  faqSecondary: (data) => data.faqSecondary && <ServicesFaqSection data={data.faqSecondary} />,
   ourClients: (data) => data.ourClients && <ServicesOurClientSection data={data.ourClients} />,
   weServe: () => <WeServeSection />,
   seoSay: (data) => data.seoSay && <ServicesSeoSaySection data={data.seoSay} />,

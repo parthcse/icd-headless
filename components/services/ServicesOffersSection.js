@@ -5,7 +5,7 @@ function renderParts(parts) {
     typeof part === "string" ? (
       <Fragment key={i}>{part}</Fragment>
     ) : (
-      <a key={i} href={part.href} className="text-primary font-semibold inline">{part.text}</a>
+      <a key={i} href={part.href} className="text-primary font-semibold inline underline">{part.text}</a>
     )
   );
 }

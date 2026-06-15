@@ -5,7 +5,7 @@ function renderParts(parts) {
     typeof part === "string" ? (
       <Fragment key={i}>{part}</Fragment>
     ) : (
-      <a key={i} href={part.href} className="text-primary font-semibold inline">{part.text}</a>
+      <a key={i} href={part.href} className="text-primary font-semibold inline underline">{part.text}</a>
     )
   );
 }
@@ -23,7 +23,7 @@ export default function ServicesClientTrustSection({ data }) {
             <p>
               {data.subtitle}
               {data.subtitleLink && (
-                <a href={data.subtitleLink.href || "#"} className="text-primary font-semibold inline">
+                <a href={data.subtitleLink.href || "#"} className="text-primary font-semibold inline underline">
                   {data.subtitleLink.text}
                 </a>
               )}

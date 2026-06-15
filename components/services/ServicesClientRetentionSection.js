@@ -8,7 +8,7 @@ function renderParagraph(content, i) {
         typeof part === "string" ? (
           <Fragment key={j}>{part}</Fragment>
         ) : (
-          <a key={j} href={part.href} className="text-primary font-semibold inline">{part.text}</a>
+          <a key={j} href={part.href} className="text-primary font-semibold inline underline">{part.text}</a>
         )
       )}
     </p>
@@ -23,6 +23,7 @@ export default function ServicesClientRetentionSection({ data }) {
           <h3 className="font-48">{data.eyebrow}</h3>
           <h2 className="main-title pb-2">{data.title}</h2>
         </div>
+        {data.subtitle && <p className="text-center max-w-4xl mx-auto pb-10 leading-relaxed">{data.subtitle}</p>}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-space-mini xl:gap-space xl:px-5 items-center">
           <figure className={data.imagePosition === "right" ? "lg:order-2" : undefined}>
             <img src={data.image} alt={data.imageAlt} />

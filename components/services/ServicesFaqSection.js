@@ -8,10 +8,11 @@ export default function ServicesFaqSection({ data }) {
   return (
     <section className="services-faq full-section">
       <div className="container">
-        <div className="heading-wrap animate fadeUp start">
+        <div className={`heading-wrap animate fadeUp start${data.subtitle ? " pb-4" : ""}`}>
           <h3 className="font-48">{data.eyebrow}</h3>
           <h2 className="main-title pb-2">{data.title}</h2>
         </div>
+        {data.subtitle && <p className="text-center max-w-4xl mx-auto mb-10 leading-relaxed">{data.subtitle}</p>}
         <div id="services-accordion" className="space-y-4">
           {data.items.map((faq, i) => {
             const isOpen = openIndex === i;
