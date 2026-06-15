@@ -1,3 +1,20 @@
+import { Fragment } from "react";
+
+function renderParagraph(content, i) {
+  if (!Array.isArray(content)) return <p key={i}>{content}</p>;
+  return (
+    <p key={i}>
+      {content.map((part, j) =>
+        typeof part === "string" ? (
+          <Fragment key={j}>{part}</Fragment>
+        ) : (
+          <a key={j} href={part.href} className="text-primary font-semibold inline">{part.text}</a>
+        )
+      )}
+    </p>
+  );
+}
+
 export default function ServicesClientRetentionSection({ data }) {
   return (
     <section className="services-client-retention full-section">
@@ -23,15 +40,17 @@ export default function ServicesClientRetentionSection({ data }) {
                 )
               : (
                 <>
-                  {data.paragraphs.map((p, i) => <p key={i}>{p}</p>)}
-                  <ul className="space-y-3 font-semibold">
-                    {data.checklistItems.map((item, i) => (
-                      <li key={i} className="flex items-center gap-3">
-                        <img src="/images/check-primary-icon.svg" alt="" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+                  {data.paragraphs.map((p, i) => renderParagraph(p, i))}
+                  {data.checklistItems?.length > 0 && (
+                    <ul className="space-y-3 font-semibold">
+                      {data.checklistItems.map((item, i) => (
+                        <li key={i} className="flex items-center gap-3">
+                          <img src="/images/check-primary-icon.svg" alt="" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </>
               )
             }
