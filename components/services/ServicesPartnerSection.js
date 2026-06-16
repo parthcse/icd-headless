@@ -1,10 +1,22 @@
+import { Fragment } from 'react';
+
+function renderParts(parts) {
+  return parts.map((part, i) =>
+    typeof part === "string" ? (
+      <Fragment key={i}>{part}</Fragment>
+    ) : (
+      <a key={i} href={part.href} className="text-primary font-semibold inline underline">{part.text}</a>
+    )
+  );
+}
+
 export default function ServicesPartnerSection({ data }) {
   const isShaded = data.variant === "shaded";
   const subtitleClass = data.subtitleClass
     ? `mx-auto ${data.subtitleClass}`
     : data.headingWrapClass
     ? undefined
-    : "mx-auto max-w-3xl";
+    : "mx-auto max-w-4xl";
   return (
     <section className="services-partner full-section">
       <div className="container">
@@ -19,7 +31,7 @@ export default function ServicesPartnerSection({ data }) {
           {data.items.map((item, i) => (
             <div key={i} className={isShaded ? "bg-black-light p-8" : "border border-white/15 p-8"}>
               <h3 className="font-semibold font-22">{item.title}</h3>
-              <p>{item.body}</p>
+              <p>{Array.isArray(item.body) ? renderParts(item.body) : item.body}</p>
             </div>
           ))}
         </div>

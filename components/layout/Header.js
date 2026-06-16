@@ -52,8 +52,8 @@ const SERVICES_CATEGORIES = [
   {
     label: "WordPress",
     links: [
-      { label: "WordPress Development", href: "#" },
-      { label: "WordPress Website Design", href: "#" },
+      { label: "WordPress Development", href: "/wordpress-development-services" },
+      { label: "WordPress Website Design", href: "/wordpress-website-design-company" },
       { label: "WordPress VIP Services", href: "#" },
       { label: "Hire WordPress Developers", href: "#" },
       { label: "WordPress SEO Service", href: "#" },
@@ -133,8 +133,8 @@ const MOB_SERVICE_PANELS = [
     { label: "Magento Maintenance", href: "/magento-maintenance-services" },
   ]},
   { id: "mob-panel-wordpress", label: "WordPress", links: [
-    { label: "WordPress Development", href: "#" },
-    { label: "WordPress Website Design", href: "#" },
+    { label: "WordPress Development", href: "/wordpress-development-services" },
+    { label: "WordPress Website Design", href: "/wordpress-website-design-company" },
     { label: "WordPress VIP Services", href: "#" },
     { label: "Hire WordPress Developers", href: "#" },
     { label: "Hire WordPress VIP Developers", href: "#" },
