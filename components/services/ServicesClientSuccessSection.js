@@ -35,7 +35,7 @@ export default async function ServicesClientSuccessSection({ data }) {
   if (!portfolioItems.length) return null;
 
   const sectionClass = data.sectionClass || "services-client-succes";
-  const headingWrapExtra = data.headingWrapClass ? `${data.headingWrapClass} ` : "";
+  const headingWrapExtra = `${data.headingWrapClass || "max-w-5xl mx-auto"} `;
 
   return (
     <section className={`${sectionClass} text-center full-section`}>

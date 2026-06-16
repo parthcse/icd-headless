@@ -30,6 +30,7 @@ import ServicesInformationSection from "@/components/services/ServicesInformatio
 import ServicesSeoAuditFormSection from "@/components/services/ServicesSeoAuditFormSection";
 import ServicesSeoPricingSection from "@/components/services/ServicesSeoPricingSection";
 import ServicesWpPricingSection from "@/components/services/ServicesWpPricingSection";
+import ServicesSupportPlansTable from "@/components/services/ServicesSupportPlansTable";
 
 /**
  * Every renderable section, keyed by the name used in `sectionOrder` / the
@@ -51,13 +52,13 @@ const SECTION_RENDERERS = {
   textBoxTertiary: (data) => data.textBoxTertiary && <ServicesTextBoxSection data={data.textBoxTertiary} />,
   textBoxQuaternary: (data) => data.textBoxQuaternary && <ServicesTextBoxSection data={data.textBoxQuaternary} />,
   checkList: (data) => data.checkList && <ServicesWhyChooseSection data={data.checkList} />,
-  retentionStats: (data) => data.retentionStats && <ServicesClientRetentionSection data={data.retentionStats} />,
-  retentionStatsSecondary: (data) =>
-    data.retentionStatsSecondary && <ServicesClientRetentionSection data={data.retentionStatsSecondary} />,
-  retentionStatsTertiary: (data) =>
-    data.retentionStatsTertiary && <ServicesClientRetentionSection data={data.retentionStatsTertiary} />,
-  retentionStatsQuaternary: (data) =>
-    data.retentionStatsQuaternary && <ServicesClientRetentionSection data={data.retentionStatsQuaternary} />,
+  imageText: (data) => data.imageText && <ServicesClientRetentionSection data={data.imageText} />,
+  imageTextSecondary: (data) =>
+    data.imageTextSecondary && <ServicesClientRetentionSection data={data.imageTextSecondary} />,
+  imageTextTertiary: (data) =>
+    data.imageTextTertiary && <ServicesClientRetentionSection data={data.imageTextTertiary} />,
+  imageTextQuaternary: (data) =>
+    data.imageTextQuaternary && <ServicesClientRetentionSection data={data.imageTextQuaternary} />,
   development: (data) => data.development && <ServicesDevelopmentSection data={data.development} />,
   offers: (data) => data.offers && <ServicesOffersSection data={data.offers} />,
   offersSecondary: (data) => data.offersSecondary && <ServicesOffersSection data={data.offersSecondary} />,
@@ -71,11 +72,17 @@ const SECTION_RENDERERS = {
   cta: (data) => data.cta && <ServicesCtaSection data={data.cta} />,
   iconCards: (data) => data.iconCards && <ServicesClientTrustSection data={data.iconCards} />,
   iconCardsSecondary: (data) => data.iconCardsSecondary && <ServicesClientTrustSection data={data.iconCardsSecondary} />,
+  iconCardsTertiary: (data) => data.iconCardsTertiary && <ServicesClientTrustSection data={data.iconCardsTertiary} />,
+  iconCardsQuaternary: (data) => data.iconCardsQuaternary && <ServicesClientTrustSection data={data.iconCardsQuaternary} />,
+  iconCardsQuinary: (data) => data.iconCardsQuinary && <ServicesClientTrustSection data={data.iconCardsQuinary} />,
   featureCards: (data) => data.featureCards && <ServicesQualityWebsitesSection data={data.featureCards} />,
   featureCardsSecondary: (data) =>
     data.featureCardsSecondary && <ServicesQualityWebsitesSection data={data.featureCardsSecondary} />,
+  featureCardsTertiary: (data) =>
+    data.featureCardsTertiary && <ServicesQualityWebsitesSection data={data.featureCardsTertiary} />,
   processSteps: (data) => data.processSteps && <ServicesDevelopmentStepSection data={data.processSteps} />,
   information: (data) => data.information && <ServicesInformationSection data={data.information} />,
+  supportPlans: (data) => data.supportPlans && <ServicesSupportPlansTable data={data.supportPlans} />,
   faq: (data) => data.faq && <ServicesFaqSection data={data.faq} />,
   faqSecondary: (data) => data.faqSecondary && <ServicesFaqSection data={data.faqSecondary} />,
   ourClients: (data) => data.ourClients && <ServicesOurClientSection data={data.ourClients} />,

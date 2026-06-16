@@ -18,17 +18,11 @@ export default function ServicesClientTrustSection({ data }) {
           <h3 className="font-48">{data.eyebrow}</h3>
           <h2 className="main-title pb-2">{data.title}</h2>
           {data.subtitles ? (
-            data.subtitles.map((p, i) => <p key={i}>{p}</p>)
+            data.subtitles.map((p, i) => (
+              <p key={i}>{Array.isArray(p) ? renderParts(p) : p}</p>
+            ))
           ) : data.subtitle ? (
-            <p>
-              {data.subtitle}
-              {data.subtitleLink && (
-                <a href={data.subtitleLink.href || "#"} className="text-primary font-semibold inline underline">
-                  {data.subtitleLink.text}
-                </a>
-              )}
-              {data.subtitleSuffix}
-            </p>
+            <p>{data.subtitle}</p>
           ) : null}
         </div>
         <div className={`grid sm:grid-cols-2 ${data.gridCols === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"} ${data.textAlign === "left" ? "text-left" : "text-center"} gap-6 leading-relaxed`}>
@@ -46,6 +40,9 @@ export default function ServicesClientTrustSection({ data }) {
             </div>
           ))}
         </div>
+        {data.footerNote && (
+          <p className="text-center max-w-4xl mx-auto mt-10 leading-relaxed">{data.footerNote}</p>
+        )}
       </div>
     </section>
   );

@@ -1,3 +1,15 @@
+import { Fragment } from "react";
+
+function renderParts(parts) {
+  return parts.map((part, i) =>
+    typeof part === "string" ? (
+      <Fragment key={i}>{part}</Fragment>
+    ) : (
+      <a key={i} href={part.href} className="text-primary font-semibold inline underline">{part.text}</a>
+    )
+  );
+}
+
 export default function ServicesDevelopmentStepSection({ data }) {
   return (
     <section className="services-development-step full-section">
@@ -15,7 +27,7 @@ export default function ServicesDevelopmentStepSection({ data }) {
               </div>
               <div className="text-box">
                 <h5 className="font-22 mb-0">{step.title}</h5>
-                <p>{step.body}</p>
+                <p>{Array.isArray(step.body) ? renderParts(step.body) : step.body}</p>
               </div>
               {i < data.steps.length - 1 && (
                 <div className="step-icon hidden sm:block absolute -left-10 xl:-left-14 -bottom-14 w-6 h-[5.5rem]">

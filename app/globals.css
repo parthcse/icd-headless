@@ -1,5 +1,13 @@
 /* App-level overrides. Design tokens live in styles/input.css → public/css/output.css */
 
+.rich-answer ul {
+  list-style-type: disc;
+  padding-left: 1.25rem;
+}
+.rich-answer ul li + li {
+  margin-top: 0.25rem;
+}
+
 .hp-field {
   position: absolute;
   left: -9999px;

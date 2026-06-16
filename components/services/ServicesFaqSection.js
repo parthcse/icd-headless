@@ -35,11 +35,17 @@ export default function ServicesFaqSection({ data }) {
                 </div>
                 <div className={`services-accordion-content grid [grid-template-rows:0fr] transition-[grid-template-rows,opacity,margin] duration-[400ms,300ms,300ms] ease-in-out opacity-0 leading-relaxed space-y-4${isOpen ? " [grid-template-rows:1fr] opacity-100 mt-1" : ""}`}>
                   <div className="text-box overflow-hidden">
-                    {faq.answer && <p>{faq.answer}</p>}
-                    {faq.answerList && (
-                      <ul className="list-disc pl-5 space-y-1">
-                        {faq.answerList.map((item, j) => <li key={j}>{item}</li>)}
-                      </ul>
+                    {faq.answerHtml ? (
+                      <div className="rich-answer space-y-3" dangerouslySetInnerHTML={{ __html: faq.answerHtml }} />
+                    ) : (
+                      <>
+                        {faq.answer && <p>{faq.answer}</p>}
+                        {faq.answerList && (
+                          <ul className="list-disc pl-5 space-y-1">
+                            {faq.answerList.map((item, j) => <li key={j}>{item}</li>)}
+                          </ul>
+                        )}
+                      </>
                     )}
                   </div>
                 </div>
