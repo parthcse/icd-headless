@@ -1,11 +1,7 @@
 import { getTestimonialNodesByIds } from "@/lib/wp-home-data";
 import { FALLBACK_TESTIMONIAL, mapTestimonialNode } from "@/lib/wp-testimonials";
 
-/**
- * Client Say / testimonial section. `data.testimonialId` is a WordPress
- * `testimonial` post ID fetched live via WPGraphQL.
- */
-export default async function ServicesClientSaySection({ data }) {
+export default async function ServicesTestimonialSection({ data }) {
   const nodes = await getTestimonialNodesByIds(data.testimonialId != null ? [data.testimonialId] : []);
   const testimonial = nodes.length ? mapTestimonialNode(nodes[0]) : FALLBACK_TESTIMONIAL;
 

@@ -1,5 +1,5 @@
 /** Awards grid — matches Design/tailwind/about-us.html (home services block on About page). */
-export default function AwardsRecognitionSection() {
+export default function AboutAwardsRecognitionSection() {
   return (
     <section className="home-services full-section">
       <div className="container">

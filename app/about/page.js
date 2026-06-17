@@ -3,7 +3,7 @@ import AboutOurCultureSection from "../../components/about/AboutOurCultureSectio
 import AboutOurHeartSection from "../../components/about/AboutOurHeartSection";
 import AboutOurValueSection from "../../components/about/AboutOurValueSection";
 import AboutTeamSection from "../../components/about/AboutTeamSection";
-import AwardsRecognitionSection from "../../components/about/AwardsRecognitionSection";
+import AboutAwardsRecognitionSection from "../../components/about/AboutAwardsRecognitionSection";
 import GetQuoteSection from "../../components/home/GetQuoteSection";
 import HappyCustomersSection from "../../components/home/HappyCustomersSection";
 import WeServeSection from "../../components/home/WeServeSection";
@@ -22,7 +22,7 @@ export default function AboutPage() {
       <AboutBannerSection />
       <AboutOurHeartSection />
       <AboutOurValueSection />
-      <AwardsRecognitionSection />
+      <AboutAwardsRecognitionSection />
       <WhyChooseUsSection />
       <AboutTeamSection />
       <AboutOurCultureSection />

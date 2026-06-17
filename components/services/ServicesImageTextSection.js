@@ -15,7 +15,7 @@ function renderParagraph(content, i) {
   );
 }
 
-export default function ServicesClientRetentionSection({ data }) {
+export default function ServicesImageTextSection({ data }) {
   return (
     <section className="services-client-retention full-section">
       <div className="container">
@@ -29,6 +29,7 @@ export default function ServicesClientRetentionSection({ data }) {
             <img src={data.image} alt={data.imageAlt} />
           </figure>
           <div className={`text-box space-y-4 xl:space-y-6 leading-relaxed${data.imagePosition === "right" ? " lg:order-1" : ""}`}>
+            {data.contentTitle && <h2 className="font-bold text-3xl leading-snug">{data.contentTitle}</h2>}
             {data.blocks
               ? data.blocks.map((block, i) =>
                   block.type === "ul" ? (

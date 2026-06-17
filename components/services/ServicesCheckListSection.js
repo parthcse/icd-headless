@@ -1,4 +1,4 @@
-export default function ServicesWhyChooseSection({ data }) {
+export default function ServicesCheckListSection({ data }) {
   return (
     <section className="services-why-choose full-section">
       <div className="container">
@@ -29,6 +29,7 @@ export default function ServicesWhyChooseSection({ data }) {
             </ul>
           ))}
         </div>
+        {data.closingParagraph && <p className="mx-auto max-w-4xl text-center mt-space-mini">{data.closingParagraph}</p>}
       </div>
     </section>
   );

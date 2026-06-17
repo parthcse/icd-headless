@@ -10,7 +10,7 @@ function renderParts(parts) {
   );
 }
 
-export default function ServicesInformationSection({ data }) {
+export default function ServicesInfoSection({ data }) {
   return (
     <section className="services-information full-section">
       <div className="container">

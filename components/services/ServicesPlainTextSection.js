@@ -10,7 +10,7 @@ function renderParts(parts) {
   );
 }
 
-export default function ServicesTextBoxSection({ data }) {
+export default function ServicesPlainTextSection({ data }) {
   return (
     <section className="common-text-box full-section">
       <div className="container">

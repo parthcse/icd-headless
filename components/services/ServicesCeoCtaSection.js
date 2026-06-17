@@ -1,4 +1,4 @@
-export default function ServicesSeoSaySection({ data }) {
+export default function ServicesCeoCtaSection({ data }) {
   return (
     <section className="common-seo-say full-section text-center md:text-left pb-0 font-30 md:pt-0">
       <div className="container flex gap-space-small xl:gap-space flex-col md:flex-row-reverse items-center mt-0 md:-mt-12 xl:-mt-20">

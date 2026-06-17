@@ -9,24 +9,22 @@ import WeServeSection from "@/components/home/WeServeSection";
 
 import ServicesBannerSection from "@/components/services/ServicesBannerSection";
 import ServicesAchievementsSection from "@/components/services/ServicesAchievementsSection";
-import ServicesClientSuccessSection from "@/components/services/ServicesClientSuccessSection";
-import ServicesWhyChooseSection from "@/components/services/ServicesWhyChooseSection";
-import ServicesClientRetentionSection from "@/components/services/ServicesClientRetentionSection";
-import ServicesDevelopmentSection from "@/components/services/ServicesDevelopmentSection";
-import ServicesOffersSection from "@/components/services/ServicesOffersSection";
-import ServicesPartnerSection from "@/components/services/ServicesPartnerSection";
+import ServicesPortfolioSection from "@/components/services/ServicesPortfolioSection";
+import ServicesCheckListSection from "@/components/services/ServicesCheckListSection";
+import ServicesImageTextSection from "@/components/services/ServicesImageTextSection";
+import ServicesInfoBoxSection from "@/components/services/ServicesInfoBoxSection";
 import ServicesPricingSection from "@/components/services/ServicesPricingSection";
 import ServicesCtaSection from "@/components/services/ServicesCtaSection";
-import ServicesClientTrustSection from "@/components/services/ServicesClientTrustSection";
-import ServicesQualityWebsitesSection from "@/components/services/ServicesQualityWebsitesSection";
-import ServicesDevelopmentStepSection from "@/components/services/ServicesDevelopmentStepSection";
+import ServicesTopIconBoxSection from "@/components/services/ServicesTopIconBoxSection";
+import ServicesLeftIconBoxSection from "@/components/services/ServicesLeftIconBoxSection";
+import ServicesProcessStepSection from "@/components/services/ServicesProcessStepSection";
 import ServicesFaqSection from "@/components/services/ServicesFaqSection";
 import ServicesOurClientSection from "@/components/services/ServicesOurClientSection";
-import ServicesSeoSaySection from "@/components/services/ServicesSeoSaySection";
-import ServicesFacilitySection from "@/components/services/ServicesFacilitySection";
-import ServicesTextBoxSection from "@/components/services/ServicesTextBoxSection";
-import ServicesClientSaySection from "@/components/services/ServicesClientSaySection";
-import ServicesInformationSection from "@/components/services/ServicesInformationSection";
+import ServicesCeoCtaSection from "@/components/services/ServicesCeoCtaSection";
+import ServicesMilestoneSection from "@/components/services/ServicesMilestoneSection";
+import ServicesPlainTextSection from "@/components/services/ServicesPlainTextSection";
+import ServicesTestimonialSection from "@/components/services/ServicesTestimonialSection";
+import ServicesInfoSection from "@/components/services/ServicesInfoSection";
 import ServicesSeoAuditFormSection from "@/components/services/ServicesSeoAuditFormSection";
 import ServicesSeoPricingSection from "@/components/services/ServicesSeoPricingSection";
 import ServicesWpPricingSection from "@/components/services/ServicesWpPricingSection";
@@ -43,53 +41,53 @@ import ServicesSupportPlansTable from "@/components/services/ServicesSupportPlan
  */
 const SECTION_RENDERERS = {
   banner: (data) => <ServicesBannerSection data={data.banner} />,
-  facility: (data) => data.facility && <ServicesFacilitySection data={data.facility} />,
+  milestone: (data) => data.milestone && <ServicesMilestoneSection data={data.milestone} />,
   achievements: (data) => data.achievements && <ServicesAchievementsSection data={data.achievements} />,
-  testimonials: (data) => data.testimonials && <ServicesClientSaySection data={data.testimonials} />,
-  portfolio: (data) => data.portfolio && <ServicesClientSuccessSection data={data.portfolio} />,
+  testimonials: (data) => data.testimonials && <ServicesTestimonialSection data={data.testimonials} />,
+  portfolio: (data) => data.portfolio && <ServicesPortfolioSection data={data.portfolio} />,
   getQuote: () => <GetQuoteSection />,
-  textBox: (data) => data.textBox && <ServicesTextBoxSection data={data.textBox} />,
-  textBoxSecondary: (data) => data.textBoxSecondary && <ServicesTextBoxSection data={data.textBoxSecondary} />,
-  textBoxTertiary: (data) => data.textBoxTertiary && <ServicesTextBoxSection data={data.textBoxTertiary} />,
-  textBoxQuaternary: (data) => data.textBoxQuaternary && <ServicesTextBoxSection data={data.textBoxQuaternary} />,
-  checkList: (data) => data.checkList && <ServicesWhyChooseSection data={data.checkList} />,
-  imageText: (data) => data.imageText && <ServicesClientRetentionSection data={data.imageText} />,
+  plainText: (data) => data.plainText && <ServicesPlainTextSection data={data.plainText} />,
+  plainTextSecondary: (data) => data.plainTextSecondary && <ServicesPlainTextSection data={data.plainTextSecondary} />,
+  plainTextTertiary: (data) => data.plainTextTertiary && <ServicesPlainTextSection data={data.plainTextTertiary} />,
+  plainTextQuaternary: (data) => data.plainTextQuaternary && <ServicesPlainTextSection data={data.plainTextQuaternary} />,
+  checkList: (data) => data.checkList && <ServicesCheckListSection data={data.checkList} />,
+  checkListSecondary: (data) => data.checkListSecondary && <ServicesCheckListSection data={data.checkListSecondary} />,
+  imageText: (data) => data.imageText && <ServicesImageTextSection data={data.imageText} />,
   imageTextSecondary: (data) =>
-    data.imageTextSecondary && <ServicesClientRetentionSection data={data.imageTextSecondary} />,
+    data.imageTextSecondary && <ServicesImageTextSection data={data.imageTextSecondary} />,
   imageTextTertiary: (data) =>
-    data.imageTextTertiary && <ServicesClientRetentionSection data={data.imageTextTertiary} />,
+    data.imageTextTertiary && <ServicesImageTextSection data={data.imageTextTertiary} />,
   imageTextQuaternary: (data) =>
-    data.imageTextQuaternary && <ServicesClientRetentionSection data={data.imageTextQuaternary} />,
-  development: (data) => data.development && <ServicesDevelopmentSection data={data.development} />,
-  offers: (data) => data.offers && <ServicesOffersSection data={data.offers} />,
-  offersSecondary: (data) => data.offersSecondary && <ServicesOffersSection data={data.offersSecondary} />,
-  infoBoxes: (data) => data.infoBoxes && <ServicesPartnerSection data={data.infoBoxes} />,
-  infoBoxesSecondary: (data) => data.infoBoxesSecondary && <ServicesPartnerSection data={data.infoBoxesSecondary} />,
-  infoBoxesTertiary: (data) => data.infoBoxesTertiary && <ServicesPartnerSection data={data.infoBoxesTertiary} />,
+    data.imageTextQuaternary && <ServicesImageTextSection data={data.imageTextQuaternary} />,
+  infoBox: (data) => data.infoBox && <ServicesInfoBoxSection data={data.infoBox} />,
+  infoBoxSecondary: (data) => data.infoBoxSecondary && <ServicesInfoBoxSection data={data.infoBoxSecondary} />,
+  infoBoxTertiary: (data) => data.infoBoxTertiary && <ServicesInfoBoxSection data={data.infoBoxTertiary} />,
   pricing: (data) => data.pricing && <ServicesPricingSection data={data.pricing} />,
   seoPricing: (data) => data.seoPricing && <ServicesSeoPricingSection data={data.seoPricing} />,
   wpPricing: (data) => data.wpPricing && <ServicesWpPricingSection data={data.wpPricing} />,
   comparisonTable: (data) => data.comparisonTable && <ServicesComparisonTableSection data={data.comparisonTable} />,
   seoAuditForm: (data) => data.seoAuditForm && <ServicesSeoAuditFormSection data={data.seoAuditForm} />,
   cta: (data) => data.cta && <ServicesCtaSection data={data.cta} />,
-  iconCards: (data) => data.iconCards && <ServicesClientTrustSection data={data.iconCards} />,
-  iconCardsSecondary: (data) => data.iconCardsSecondary && <ServicesClientTrustSection data={data.iconCardsSecondary} />,
-  iconCardsTertiary: (data) => data.iconCardsTertiary && <ServicesClientTrustSection data={data.iconCardsTertiary} />,
-  iconCardsQuaternary: (data) => data.iconCardsQuaternary && <ServicesClientTrustSection data={data.iconCardsQuaternary} />,
-  iconCardsQuinary: (data) => data.iconCardsQuinary && <ServicesClientTrustSection data={data.iconCardsQuinary} />,
-  featureCards: (data) => data.featureCards && <ServicesQualityWebsitesSection data={data.featureCards} />,
+  topIconBox: (data) => data.topIconBox && <ServicesTopIconBoxSection data={data.topIconBox} />,
+  topIconBoxSecondary: (data) => data.topIconBoxSecondary && <ServicesTopIconBoxSection data={data.topIconBoxSecondary} />,
+  topIconBoxTertiary: (data) => data.topIconBoxTertiary && <ServicesTopIconBoxSection data={data.topIconBoxTertiary} />,
+  topIconBoxQuaternary: (data) => data.topIconBoxQuaternary && <ServicesTopIconBoxSection data={data.topIconBoxQuaternary} />,
+  topIconBoxQuinary: (data) => data.topIconBoxQuinary && <ServicesTopIconBoxSection data={data.topIconBoxQuinary} />,
+  featureCards: (data) => data.featureCards && <ServicesLeftIconBoxSection data={data.featureCards} />,
   featureCardsSecondary: (data) =>
-    data.featureCardsSecondary && <ServicesQualityWebsitesSection data={data.featureCardsSecondary} />,
+    data.featureCardsSecondary && <ServicesLeftIconBoxSection data={data.featureCardsSecondary} />,
   featureCardsTertiary: (data) =>
-    data.featureCardsTertiary && <ServicesQualityWebsitesSection data={data.featureCardsTertiary} />,
-  processSteps: (data) => data.processSteps && <ServicesDevelopmentStepSection data={data.processSteps} />,
-  information: (data) => data.information && <ServicesInformationSection data={data.information} />,
+    data.featureCardsTertiary && <ServicesLeftIconBoxSection data={data.featureCardsTertiary} />,
+  processSteps: (data) => data.processSteps && <ServicesProcessStepSection data={data.processSteps} />,
+  processStepsSecondary: (data) =>
+    data.processStepsSecondary && <ServicesProcessStepSection data={data.processStepsSecondary} />,
+  information: (data) => data.information && <ServicesInfoSection data={data.information} />,
   supportPlans: (data) => data.supportPlans && <ServicesSupportPlansTable data={data.supportPlans} />,
   faq: (data) => data.faq && <ServicesFaqSection data={data.faq} />,
   faqSecondary: (data) => data.faqSecondary && <ServicesFaqSection data={data.faqSecondary} />,
   ourClients: (data) => data.ourClients && <ServicesOurClientSection data={data.ourClients} />,
   weServe: () => <WeServeSection />,
-  ceoCta: (data) => data.ceoCta && <ServicesSeoSaySection data={data.ceoCta} />,
+  ceoCta: (data) => data.ceoCta && <ServicesCeoCtaSection data={data.ceoCta} />,
 };
 
 /**

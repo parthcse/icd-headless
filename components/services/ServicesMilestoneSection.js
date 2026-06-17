@@ -37,9 +37,9 @@ const ICONS = {
   ),
 };
 
-export default function ServicesFacilitySection({ data }) {
+export default function ServicesMilestoneSection({ data }) {
   return (
-    <section className="services-facility full-section">
+    <section className="services-milestone full-section">
       <div className="container">
         <div className="gap-4 xl:gap-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 text-center leading-relaxed small">
           {data.items.map((item, i) => (

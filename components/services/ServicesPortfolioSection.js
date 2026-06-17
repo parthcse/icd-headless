@@ -28,7 +28,7 @@ function mapNodeToPortfolioItem(node) {
  * Client Success / Portfolio section. `data.postIds` is an array of
  * WordPress `portfolio` post IDs fetched live via WPGraphQL.
  */
-export default async function ServicesClientSuccessSection({ data }) {
+export default async function ServicesPortfolioSection({ data }) {
   const nodes = await getPortfolioNodesByIds(data.postIds);
   const portfolioItems = nodes.map(mapNodeToPortfolioItem);
 

@@ -1,14 +1,3 @@
-/**
- * Generic comparison table — reuses the visual design of the WordPress
- * Development Pricing table (ServicesWpPricingSection): primary header row,
- * alternating shaded body rows, primary cell borders.
- *
- * Unlike the pricing table (fixed type/bestFor/features/investment fields),
- * this renders arbitrary `columns` with `rows` as arrays of cells, so it can
- * back any "X vs Y" comparison (e.g. AEO vs SEO: Key Differences).
- *
- * `data.boldColumns` (default [0]) marks which cell columns render semibold.
- */
 export default function ServicesComparisonTableSection({ data }) {
   const boldColumns = data.boldColumns || [0];
   return (

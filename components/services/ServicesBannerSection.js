@@ -21,6 +21,7 @@ export default function ServicesBannerSection({ data }) {
               ))}
             </ul>
           )}
+          {data.closingParagraph && <p>{data.closingParagraph}</p>}
           <div className="flex flex-wrap items-center gap-4">
             <a href={data.ctaHref} className="btn btn-primary">
               {data.ctaLabel}

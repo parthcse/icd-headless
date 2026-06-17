@@ -10,8 +10,8 @@ function renderParts(parts) {
   );
 }
 
-export default function ServicesPartnerSection({ data }) {
-  const isShaded = data.variant === "shaded";
+export default function ServicesInfoBoxSection({ data }) {
+  const isShaded = data.variant !== "noshade";
   const subtitleClass = data.subtitleClass
     ? `mx-auto ${data.subtitleClass}`
     : data.headingWrapClass
@@ -27,11 +27,17 @@ export default function ServicesPartnerSection({ data }) {
             ? data.subtitle.map((p, i) => <p key={i} className={subtitleClass}>{p}</p>)
             : <p className={subtitleClass}>{data.subtitle}</p>}
         </div>
-        <div className={`grid ${data.gridClass || `sm:grid-cols-2 ${isShaded ? "lg:grid-cols-3" : "lg:grid-cols-4"}`} text-center gap-6 leading-relaxed small`}>
+        <div className={`grid ${data.gridClass || `sm:grid-cols-2 ${data.columns === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`} ${data.textAlign === "left" ? "text-left" : "text-center"} gap-6 leading-relaxed small`}>
           {data.items.map((item, i) => (
             <div key={i} className={isShaded ? "bg-black-light p-8" : "border border-white/15 p-8"}>
               <h3 className="font-semibold font-22">{item.title}</h3>
-              <p>{Array.isArray(item.body) ? renderParts(item.body) : item.body}</p>
+              {item.body && <p>{Array.isArray(item.body) ? renderParts(item.body) : item.body}</p>}
+              {item.bodyList && (
+                <ul className="list-disc pl-5 space-y-1 text-left">
+                  {item.bodyList.map((li, j) => <li key={j}>{li}</li>)}
+                </ul>
+              )}
+              {item.bodyAfter && <p>{item.bodyAfter}</p>}
             </div>
           ))}
         </div>

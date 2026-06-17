@@ -67,8 +67,8 @@ const SERVICES_CATEGORIES = [
     links: [
       { label: "Answer Engine Optimization", href: "/answer-engine-optimization-aeo-services" },
       { label: "Marketing Automation", href: "/marketing-automation-services" },
-      { label: "Digital Marketing Service", href: "#" },
-      { label: "Professional SEO Service", href: "#" },
+      { label: "Digital Marketing Service", href: "/digital-marketing-service" },
+      { label: "Professional SEO Service", href: "/seo-search-engine-optimization" },
       { label: "PPC Service", href: "#" },
       { label: "Conversion Rate Optimization", href: "#" },
       { label: "Email Marketing Service", href: "#" },
@@ -146,8 +146,8 @@ const MOB_SERVICE_PANELS = [
   { id: "mob-panel-dm", label: "Digital Marketing", links: [
     { label: "Answer Engine Optimization", href: "/answer-engine-optimization-aeo-services" },
     { label: "Marketing Automation Services", href: "/marketing-automation-services" },
-    { label: "Digital Marketing Service", href: "#" },
-    { label: "Professional SEO Service", href: "#" },
+    { label: "Digital Marketing Service", href: "/digital-marketing-service" },
+    { label: "Professional SEO Service", href: "/seo-search-engine-optimization" },
     { label: "PPC Service", href: "#" },
     { label: "Conversion Rate Optimization", href: "#" },
     { label: "Email Marketing Service", href: "#" },

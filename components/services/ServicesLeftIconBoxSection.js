@@ -10,7 +10,7 @@ function renderParts(parts) {
   );
 }
 
-export default function ServicesQualityWebsitesSection({ data }) {
+export default function ServicesLeftIconBoxSection({ data }) {
   const isCircle = data.variant === "circle";
   return (
     <section className="services-quality-websites full-section">
@@ -53,11 +53,6 @@ export default function ServicesQualityWebsitesSection({ data }) {
                     <p>{Array.isArray(item.body) ? renderParts(item.body) : item.body}</p>
                   )}
                 </div>
-                {data.showStepIcon && i % 2 === 0 && i + 2 < data.items.length && (
-                  <div className="step-icon hidden sm:block absolute -left-10 xl:-left-14 -bottom-14 w-6 h-[5.5rem]">
-                    <img src="/assets/icons/step-icon.svg" alt="" />
-                  </div>
-                )}
               </div>
             ))}
           </div>
