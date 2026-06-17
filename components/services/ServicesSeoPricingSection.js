@@ -40,7 +40,7 @@ export default function ServicesSeoPricingSection({ data }) {
               <ul className="space-y-0">
                 {data.features.map((feature, i) => (
                   <li key={i} className="flex items-center gap-4 py-3 border-b border-white/15">
-                    <img className="w-[1em] min-w-[1em]" src="/images/check-primary-icon.svg" alt="" />
+                    <img className="w-[1em] min-w-[1em]" src="/assets/icons/check-primary-icon.svg" alt="" />
                     <span className="font-semibold">{feature}</span>
                   </li>
                 ))}

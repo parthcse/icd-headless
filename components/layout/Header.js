@@ -65,8 +65,8 @@ const SERVICES_CATEGORIES = [
   {
     label: "Digital Marketing",
     links: [
-      { label: "Answer Engine Optimization", href: "#" },
-      { label: "Marketing Automation", href: "#" },
+      { label: "Answer Engine Optimization", href: "/answer-engine-optimization-aeo-services" },
+      { label: "Marketing Automation", href: "/marketing-automation-services" },
       { label: "Digital Marketing Service", href: "#" },
       { label: "Professional SEO Service", href: "#" },
       { label: "PPC Service", href: "#" },
@@ -144,8 +144,8 @@ const MOB_SERVICE_PANELS = [
     { label: "WordPress VIP Maintenance", href: "/wordpress-vip-support-and-maintenance" },
   ]},
   { id: "mob-panel-dm", label: "Digital Marketing", links: [
-    { label: "Answer Engine Optimization", href: "#" },
-    { label: "Marketing Automation Services", href: "#" },
+    { label: "Answer Engine Optimization", href: "/answer-engine-optimization-aeo-services" },
+    { label: "Marketing Automation Services", href: "/marketing-automation-services" },
     { label: "Digital Marketing Service", href: "#" },
     { label: "Professional SEO Service", href: "#" },
     { label: "PPC Service", href: "#" },
@@ -192,7 +192,7 @@ export default function Header() {
             {/* Logo */}
             <div className="header-logo max-w-28 md:max-w-32 xl:max-w-36">
               <Link href="/">
-                <img src="/images/header-logo.svg" alt="" />
+                <img src="/assets/icons/header-logo.svg" alt="" />
               </Link>
             </div>
 
@@ -289,7 +289,7 @@ export default function Header() {
         <div id="mob-panel-main" className="mob-panel">
           <div className="mob-panel-head justify-between">
             <Link href="/" className="block w-24">
-              <img src="/images/header-logo.svg" alt="" />
+              <img src="/assets/icons/header-logo.svg" alt="" />
             </Link>
             <button id="drawerClose" className="bg-primary p-1">
               <CloseIcon />

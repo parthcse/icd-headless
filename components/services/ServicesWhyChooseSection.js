@@ -15,8 +15,15 @@ export default function ServicesWhyChooseSection({ data }) {
             >
               {col.map((item, i) => (
                 <li key={i}>
-                  <img className="w-[2.4em] min-w-[2.4em] my-auto" src="/images/check-primary-icon.svg" alt="" />
-                  <p className="font-normal">{item}</p>
+                  <img className="w-[2.4em] min-w-[2.4em] my-auto" src="/assets/icons/check-primary-icon.svg" alt="" />
+                  {typeof item === "object" && item.title ? (
+                    <div>
+                      <p className="font-semibold">{item.title}</p>
+                      <p className="font-normal">{item.body}</p>
+                    </div>
+                  ) : (
+                    <p className="font-normal">{item}</p>
+                  )}
                 </li>
               ))}
             </ul>

@@ -31,7 +31,7 @@ export default function ServicesDevelopmentStepSection({ data }) {
               </div>
               {i < data.steps.length - 1 && (
                 <div className="step-icon hidden sm:block absolute -left-10 xl:-left-14 -bottom-14 w-6 h-[5.5rem]">
-                  <img src="/images/step-icon.svg" alt="" />
+                  <img src="/assets/icons/step-icon.svg" alt="" />
                 </div>
               )}
             </div>

@@ -1,17 +1,17 @@
 export default function AboutOurValueSection() {
   const items = [
     {
-      icon: "/images/learning-icon.svg",
+      icon: "/assets/icons/about-learning-icon.svg",
       title: "Learning",
       text: "Learning that extends beyond simply acquiring knowledge but applying it to the job. We keep our employees updated with our in-house learning programs.",
     },
     {
-      icon: "/images/growth-icon.svg",
+      icon: "/assets/icons/about-growth-icon.svg",
       title: "Growth",
       text: "Mutual growth! With the willingness to apply practical approaches, innovative ideas, and seamless efforts, we believe in growing together.",
     },
     {
-      icon: "/images/happiness-icon.svg",
+      icon: "/assets/icons/about-happiness-icon.svg",
       title: "Happiness",
       text: "Happy employees and happy clients. We truly believe in a holistic approach to keep our talent happy which brings happiness to our clients.",
     },

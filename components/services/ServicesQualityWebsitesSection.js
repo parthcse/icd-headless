@@ -39,8 +39,8 @@ export default function ServicesQualityWebsitesSection({ data }) {
         ) : (
           <div className="grid lg:grid-cols-2 gap-6 leading-relaxed">
             {data.items.map((item, i) => (
-              <div key={i} className="flex bg-black-light py-space-small px-space-small gap-4 sm:gap-6 md:gap-8">
-                <div className="col-img min-w-14 sm:min-w-20">
+              <div key={i} className="flex bg-black-light py-space-small px-space-small gap-4 sm:gap-6 md:gap-8 relative">
+                <div className="col-img w-14 sm:w-20 flex-shrink-0">
                   <img className="w-full" src={item.icon} alt="" />
                 </div>
                 <div className="text-box">
@@ -53,6 +53,11 @@ export default function ServicesQualityWebsitesSection({ data }) {
                     <p>{Array.isArray(item.body) ? renderParts(item.body) : item.body}</p>
                   )}
                 </div>
+                {data.showStepIcon && i % 2 === 0 && i + 2 < data.items.length && (
+                  <div className="step-icon hidden sm:block absolute -left-10 xl:-left-14 -bottom-14 w-6 h-[5.5rem]">
+                    <img src="/assets/icons/step-icon.svg" alt="" />
+                  </div>
+                )}
               </div>
             ))}
           </div>

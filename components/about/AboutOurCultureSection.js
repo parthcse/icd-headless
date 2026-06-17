@@ -13,7 +13,7 @@ export default function AboutOurCultureSection() {
           <figure key={`${n}-${i}`} className="group flex items-center h-full">
             <img
               className="cursor-pointer grayscale group-hover:grayscale-0 transition duration-300"
-              src={`/images/about-our-culture-${n}.png`}
+              src={`/assets/photos/about-our-culture-${n}.png`}
               alt=""
             />
           </figure>

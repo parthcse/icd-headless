@@ -8,7 +8,7 @@ export const metadata = {
   description:
     "Build, Grow, and Scale your eCommerce store with experts. Full-stack creative and digital services.",
   icons: {
-    icon: "/images/icecube-digital-favicon.png",
+    icon: "/assets/photos/icecube-digital-favicon.png",
   },
 };
 

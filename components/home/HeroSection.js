@@ -5,7 +5,7 @@ export default function HeroSection() {
     <section className="home-banner full-section relative text-center border-t-0 xl:py-36">
       {/* Background Image — pointer-events-none so clicks reach the fixed header above; content uses pointer-events-auto */}
       <div className="pointer-events-none absolute inset-0">
-        <img className="h-full w-full object-cover" aria-hidden="true" src="/images/home-banner-bg.png" alt="" />
+        <img className="h-full w-full object-cover" aria-hidden="true" src="/assets/photos/home-banner-bg.png" alt="" />
         <span className="absolute inset-0 bg-black bg-opacity-25" aria-hidden="true" />
       </div>
 

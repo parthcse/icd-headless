@@ -46,7 +46,7 @@ export default function ServicesClientRetentionSection({ data }) {
                     <ul className="space-y-3 font-semibold">
                       {data.checklistItems.map((item, i) => (
                         <li key={i} className="flex items-center gap-3">
-                          <img src="/images/check-primary-icon.svg" alt="" />
+                          <img src="/assets/icons/check-primary-icon.svg" alt="" />
                           {item}
                         </li>
                       ))}

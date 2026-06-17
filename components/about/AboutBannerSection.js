@@ -4,7 +4,7 @@ export default function AboutBannerSection() {
   return (
     <section className="about-banner full-section relative text-center border-t-0 xl:py-36">
       <div className="absolute inset-0">
-        <img className="h-full w-full object-cover" aria-hidden="true" src="/images/home-banner-bg.png" alt="" />
+        <img className="h-full w-full object-cover" aria-hidden="true" src="/assets/photos/home-banner-bg.png" alt="" />
         <span className="absolute inset-0 bg-black bg-opacity-25" aria-hidden="true" />
       </div>
       <div className="container max-w-4xl relative z-10 pt-space-mini mt-8 xl:mt-0">

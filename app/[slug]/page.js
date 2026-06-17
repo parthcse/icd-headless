@@ -30,6 +30,7 @@ import ServicesInformationSection from "@/components/services/ServicesInformatio
 import ServicesSeoAuditFormSection from "@/components/services/ServicesSeoAuditFormSection";
 import ServicesSeoPricingSection from "@/components/services/ServicesSeoPricingSection";
 import ServicesWpPricingSection from "@/components/services/ServicesWpPricingSection";
+import ServicesComparisonTableSection from "@/components/services/ServicesComparisonTableSection";
 import ServicesSupportPlansTable from "@/components/services/ServicesSupportPlansTable";
 
 /**
@@ -68,6 +69,7 @@ const SECTION_RENDERERS = {
   pricing: (data) => data.pricing && <ServicesPricingSection data={data.pricing} />,
   seoPricing: (data) => data.seoPricing && <ServicesSeoPricingSection data={data.seoPricing} />,
   wpPricing: (data) => data.wpPricing && <ServicesWpPricingSection data={data.wpPricing} />,
+  comparisonTable: (data) => data.comparisonTable && <ServicesComparisonTableSection data={data.comparisonTable} />,
   seoAuditForm: (data) => data.seoAuditForm && <ServicesSeoAuditFormSection data={data.seoAuditForm} />,
   cta: (data) => data.cta && <ServicesCtaSection data={data.cta} />,
   iconCards: (data) => data.iconCards && <ServicesClientTrustSection data={data.iconCards} />,

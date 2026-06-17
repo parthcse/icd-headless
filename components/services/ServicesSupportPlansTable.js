@@ -21,7 +21,7 @@ export default function ServicesSupportPlansTable({ data }) {
                   <ul className="space-y-2 font-semibold">
                     {plan.checklistItems.map((item, j) => (
                       <li key={j} className="flex items-center gap-2">
-                        <img className="w-[1em]" src="/images/check-primary-icon.svg" alt="" />
+                        <img className="w-[1em]" src="/assets/icons/check-primary-icon.svg" alt="" />
                         {item}
                       </li>
                     ))}

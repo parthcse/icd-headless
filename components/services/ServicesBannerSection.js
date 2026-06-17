@@ -4,7 +4,7 @@ export default function ServicesBannerSection({ data }) {
   return (
     <section className="services-banner full-section relative border-t-0 xl:py-36">
       <div className="absolute inset-0">
-        <img className="w-full h-full object-cover" aria-hidden="true" src="/images/home-banner-bg.png" alt="" />
+        <img className="w-full h-full object-cover" aria-hidden="true" src="/assets/photos/home-banner-bg.png" alt="" />
         <span className="bg-black absolute inset-0 bg-opacity-25" />
       </div>
       <div className="container relative z-10 pt-space-mini mt-8 md:mt-0 xl:pt-0 grid lg:grid-cols-2 gap-space">
@@ -15,7 +15,7 @@ export default function ServicesBannerSection({ data }) {
             <ul className="space-y-2 font-semibold">
               {data.checklistItems.map((item, i) => (
                 <li key={i} className="flex items-center gap-2">
-                  <img className="w-[1em]" src="/images/check-primary-icon.svg" alt="" />
+                  <img className="w-[1em]" src="/assets/icons/check-primary-icon.svg" alt="" />
                   {item}
                 </li>
               ))}
@@ -32,7 +32,7 @@ export default function ServicesBannerSection({ data }) {
             </a>
             <span className="text-muted font-semibold">OR</span>
             <a href={data.phoneHref} className="btn btn-primary bg-transparent">
-              <img src="/images/mobile-call-icon.svg" alt="" /> {data.phoneLabel}
+              <img src="/assets/icons/mobile-call-icon.svg" alt="" /> {data.phoneLabel}
             </a>
           </div>
         </div>
