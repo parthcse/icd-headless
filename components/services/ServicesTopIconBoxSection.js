@@ -12,7 +12,7 @@ function renderParts(parts) {
 
 export default function ServicesTopIconBoxSection({ data }) {
   return (
-    <section className="services-client-trust full-section">
+    <section className="services-top-icon-box full-section">
       <div className="container">
         <div className="heading-wrap mx-auto max-w-5xl animate fadeUp start">
           <h3 className="font-48">{data.eyebrow}</h3>
@@ -29,7 +29,7 @@ export default function ServicesTopIconBoxSection({ data }) {
           {data.items.map((item, i) => (
             <div key={i} className="bg-black-light py-space-small px-4 md:px-6 xl:px-8">
               {item.icon && <img className="max-w-20 mb-6 mx-auto" src={item.icon} alt="" />}
-              <h3 className="font-semibold font-22">{item.name || item.title}</h3>
+              <h3 className="font-semibold font-22">{item.title}</h3>
               {item.body && <p>{Array.isArray(item.body) ? renderParts(item.body) : item.body}</p>}
               {item.bodyList && (
                 <ul className="list-disc pl-5 space-y-1 text-left">

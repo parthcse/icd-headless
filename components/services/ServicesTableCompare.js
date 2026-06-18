@@ -1,6 +1,6 @@
-export default function ServicesSupportPlansTable({ data }) {
+export default function ServicesTableCompare({ data }) {
   return (
-    <section className="full-section">
+    <section className="services-support-plans-table full-section">
       <div className="container">
         <div className="heading-wrap animate fadeUp">
           <h3 className="font-48">{data.eyebrow}</h3>

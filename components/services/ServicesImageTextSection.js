@@ -17,7 +17,7 @@ function renderParagraph(content, i) {
 
 export default function ServicesImageTextSection({ data }) {
   return (
-    <section className="services-client-retention full-section">
+    <section className="services-image-text full-section">
       <div className="container">
         <div className="heading-wrap animate fadeUp">
           <h3 className="font-48">{data.eyebrow}</h3>

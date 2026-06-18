@@ -34,13 +34,10 @@ export default async function ServicesPortfolioSection({ data }) {
 
   if (!portfolioItems.length) return null;
 
-  const sectionClass = data.sectionClass || "services-client-succes";
-  const headingWrapExtra = `${data.headingWrapClass || "max-w-5xl mx-auto"} `;
-
   return (
-    <section className={`${sectionClass} text-center full-section`}>
+    <section className="services-our-portfolio text-center full-section">
       <div className="container">
-        <div className={`heading-wrap ${headingWrapExtra}animate fadeUp`}>
+        <div className="heading-wrap max-w-5xl mx-auto animate fadeUp">
           <h3 className="font-48">{data.eyebrow}</h3>
           <h2 className="main-title pb-2">{data.title}</h2>
           {Array.isArray(data.subtitle)

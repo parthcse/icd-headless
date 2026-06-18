@@ -2,7 +2,7 @@ import ContactForm from "@/components/common/ContactForm";
 
 export default function ServicesSeoAuditFormSection({ data }) {
   return (
-    <section className="seo-services-form full-section">
+    <section className="services-seo-audit-form full-section">
       <div className="container">
         <div className="heading-wrap xl:pb-16 animate fadeUp">
           <h3 className="font-48">{data.eyebrow}</h3>

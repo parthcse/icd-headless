@@ -1,6 +1,6 @@
 export default function ServicesCeoCtaSection({ data }) {
   return (
-    <section className="common-seo-say full-section text-center md:text-left pb-0 font-30 md:pt-0">
+    <section className="services-ceo-cta full-section text-center md:text-left pb-0 font-30 md:pt-0">
       <div className="container flex gap-space-small xl:gap-space flex-col md:flex-row-reverse items-center mt-0 md:-mt-12 xl:-mt-20">
         <div className="seo-say grid gap-[0.81em] xl:pt-20">
           <p>{data.text}</p>

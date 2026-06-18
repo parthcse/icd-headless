@@ -1,6 +1,6 @@
 export default function ServicesCheckListSection({ data }) {
   return (
-    <section className="services-why-choose full-section">
+    <section className="services-checklist full-section">
       <div className="container">
         <div className="heading-wrap animate fadeUp">
           <h3 className="font-48">{data.eyebrow}</h3>

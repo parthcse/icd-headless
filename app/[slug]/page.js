@@ -13,7 +13,8 @@ import ServicesPortfolioSection from "@/components/services/ServicesPortfolioSec
 import ServicesCheckListSection from "@/components/services/ServicesCheckListSection";
 import ServicesImageTextSection from "@/components/services/ServicesImageTextSection";
 import ServicesInfoBoxSection from "@/components/services/ServicesInfoBoxSection";
-import ServicesPricingSection from "@/components/services/ServicesPricingSection";
+import ServicesTableDevelopmentPackages from "@/components/services/ServicesTableDevelopmentPackages";
+import ServicesTableSeoPackages from "@/components/services/ServicesTableSeoPackages";
 import ServicesCtaSection from "@/components/services/ServicesCtaSection";
 import ServicesTopIconBoxSection from "@/components/services/ServicesTopIconBoxSection";
 import ServicesLeftIconBoxSection from "@/components/services/ServicesLeftIconBoxSection";
@@ -26,10 +27,9 @@ import ServicesPlainTextSection from "@/components/services/ServicesPlainTextSec
 import ServicesTestimonialSection from "@/components/services/ServicesTestimonialSection";
 import ServicesInfoSection from "@/components/services/ServicesInfoSection";
 import ServicesSeoAuditFormSection from "@/components/services/ServicesSeoAuditFormSection";
-import ServicesSeoPricingSection from "@/components/services/ServicesSeoPricingSection";
-import ServicesWpPricingSection from "@/components/services/ServicesWpPricingSection";
-import ServicesComparisonTableSection from "@/components/services/ServicesComparisonTableSection";
-import ServicesSupportPlansTable from "@/components/services/ServicesSupportPlansTable";
+import ServicesTableSeoPlans from "@/components/services/ServicesTableSeoPlans";
+import ServicesTableBasic from "@/components/services/ServicesTableBasic";
+import ServicesTableCompare from "@/components/services/ServicesTableCompare";
 
 /**
  * Every renderable section, keyed by the name used in `sectionOrder` / the
@@ -62,10 +62,11 @@ const SECTION_RENDERERS = {
   infoBox: (data) => data.infoBox && <ServicesInfoBoxSection data={data.infoBox} />,
   infoBoxSecondary: (data) => data.infoBoxSecondary && <ServicesInfoBoxSection data={data.infoBoxSecondary} />,
   infoBoxTertiary: (data) => data.infoBoxTertiary && <ServicesInfoBoxSection data={data.infoBoxTertiary} />,
-  pricing: (data) => data.pricing && <ServicesPricingSection data={data.pricing} />,
-  seoPricing: (data) => data.seoPricing && <ServicesSeoPricingSection data={data.seoPricing} />,
-  wpPricing: (data) => data.wpPricing && <ServicesWpPricingSection data={data.wpPricing} />,
-  comparisonTable: (data) => data.comparisonTable && <ServicesComparisonTableSection data={data.comparisonTable} />,
+  tableDevelopmentPackages: (data) =>
+    data.tableDevelopmentPackages && <ServicesTableDevelopmentPackages data={data.tableDevelopmentPackages} />,
+  tableSeoPlans: (data) => data.tableSeoPlans && <ServicesTableSeoPlans data={data.tableSeoPlans} />,
+  tableBasic: (data) => data.tableBasic && <ServicesTableBasic data={data.tableBasic} />,
+  tableSeoPackages: (data) => data.tableSeoPackages && <ServicesTableSeoPackages data={data.tableSeoPackages} />,
   seoAuditForm: (data) => data.seoAuditForm && <ServicesSeoAuditFormSection data={data.seoAuditForm} />,
   cta: (data) => data.cta && <ServicesCtaSection data={data.cta} />,
   topIconBox: (data) => data.topIconBox && <ServicesTopIconBoxSection data={data.topIconBox} />,
@@ -82,7 +83,7 @@ const SECTION_RENDERERS = {
   processStepsSecondary: (data) =>
     data.processStepsSecondary && <ServicesProcessStepSection data={data.processStepsSecondary} />,
   information: (data) => data.information && <ServicesInfoSection data={data.information} />,
-  supportPlans: (data) => data.supportPlans && <ServicesSupportPlansTable data={data.supportPlans} />,
+  tableCompare: (data) => data.tableCompare && <ServicesTableCompare data={data.tableCompare} />,
   faq: (data) => data.faq && <ServicesFaqSection data={data.faq} />,
   faqSecondary: (data) => data.faqSecondary && <ServicesFaqSection data={data.faqSecondary} />,
   ourClients: (data) => data.ourClients && <ServicesOurClientSection data={data.ourClients} />,

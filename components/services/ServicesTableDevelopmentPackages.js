@@ -1,4 +1,4 @@
-export default function ServicesPricingSection({ data }) {
+export default function ServicesTableDevelopmentPackages({ data }) {
   return (
     <section className="services-pricing full-section">
       <div className="container">

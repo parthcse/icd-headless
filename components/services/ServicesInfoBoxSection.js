@@ -12,15 +12,11 @@ function renderParts(parts) {
 
 export default function ServicesInfoBoxSection({ data }) {
   const isShaded = data.variant !== "noshade";
-  const subtitleClass = data.subtitleClass
-    ? `mx-auto ${data.subtitleClass}`
-    : data.headingWrapClass
-    ? undefined
-    : "mx-auto max-w-4xl";
+  const subtitleClass = data.subtitleClass ? `mx-auto ${data.subtitleClass}` : "mx-auto max-w-4xl";
   return (
-    <section className="services-partner full-section">
+    <section className="services-infobox full-section">
       <div className="container">
-        <div className={`heading-wrap${data.headingWrapClass ? ` ${data.headingWrapClass}` : ""} animate fadeUp`}>
+        <div className="heading-wrap animate fadeUp">
           <h3 className="font-48">{data.eyebrow}</h3>
           <h2 className="main-title pb-2">{data.title}</h2>
           {Array.isArray(data.subtitle)

@@ -14,9 +14,9 @@ export default function ServicesPlainTextSection({ data }) {
   return (
     <section className="common-text-box full-section">
       <div className="container">
-        <div className="heading-wrap pb-1 animate fadeUp">
+        <div className="heading-wrap pb-2 animate fadeUp">
           <h3 className="font-48">{data.eyebrow}</h3>
-          <h2 className="main-title pb-2">{data.title}</h2>
+          <h2 className="main-title">{data.title}</h2>
         </div>
         <div
           className={`space-y-4 animate fadeUp${

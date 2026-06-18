@@ -13,7 +13,7 @@ function renderParts(parts) {
 export default function ServicesProcessStepSection({ data }) {
   const twoCol = data.columns === 2;
   return (
-    <section className="services-development-step full-section">
+    <section className="services-process-step full-section">
       <div className="container">
         <div className="heading-wrap animate fadeUp start">
           <h3 className="font-48">{data.eyebrow}</h3>

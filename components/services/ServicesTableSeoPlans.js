@@ -1,6 +1,6 @@
-export default function ServicesSeoPricingSection({ data }) {
+export default function ServicesTableSeoPlans({ data }) {
   return (
-    <section className="seo-pricing full-section">
+    <section className="services-seo-pricing full-section">
       <div className="container">
         <div className="heading-wrap xl:pb-16 animate fadeUp">
           <h3 className="font-48">{data.eyebrow}</h3>

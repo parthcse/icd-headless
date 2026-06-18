@@ -6,7 +6,7 @@ export default async function ServicesTestimonialSection({ data }) {
   const testimonial = nodes.length ? mapTestimonialNode(nodes[0]) : FALLBACK_TESTIMONIAL;
 
   return (
-    <section className="common-client-say full-section">
+    <section className="services-testimonial full-section">
       <div className="container animate fadeUp">
         <div className="heading-wrap pb-0">
           <h3 className="font-48">{data.eyebrow}</h3>

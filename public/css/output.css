@@ -1525,10 +1525,6 @@ h6 {
   height: 1.6em;
 }
 
-.h-\[108px\] {
-  height: 108px;
-}
-
 .h-\[1em\] {
   height: 1em;
 }
@@ -1613,10 +1609,6 @@ h6 {
   width: 1.6em;
 }
 
-.w-\[108px\] {
-  width: 108px;
-}
-
 .w-\[1em\] {
   width: 1em;
 }
@@ -1647,10 +1639,6 @@ h6 {
 
 .min-w-40 {
   min-width: 10rem;
-}
-
-.min-w-\[108px\] {
-  min-width: 108px;
 }
 
 .min-w-\[1em\] {
@@ -2063,10 +2051,6 @@ h6 {
   padding: 2rem;
 }
 
-.p-\[14px\] {
-  padding: 14px;
-}
-
 .p-\[1em\] {
   padding: 1em;
 }
@@ -2101,11 +2085,6 @@ h6 {
   padding-right: 1.75rem;
 }
 
-.px-8 {
-  padding-left: 2rem;
-  padding-right: 2rem;
-}
-
 .px-\[0\.2em\] {
   padding-left: 0.2em;
   padding-right: 0.2em;
@@ -2114,11 +2093,6 @@ h6 {
 .py-1\.5 {
   padding-top: 0.375rem;
   padding-bottom: 0.375rem;
-}
-
-.py-10 {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
 }
 
 .py-2 {
@@ -2144,11 +2118,6 @@ h6 {
 .py-5 {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
-}
-
-.py-8 {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
 }
 
 .py-\[0\.3em\] {
@@ -3041,6 +3010,10 @@ html.lenis {
     table-layout: fixed;
   }
 
+  .xl\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
   .xl\:gap-16 {
     gap: 4rem;
   }
@@ -3270,4 +3243,32 @@ html.lenis {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+}
+
+.\[\&_li\:last-child\]\:border-b-0 li:last-child {
+  border-bottom-width: 0px;
+}
+
+.\[\&_li\]\:border-b li {
+  border-bottom-width: 1px;
+}
+
+.\[\&_li\]\:border-white\/25 li {
+  border-color: rgb(255 255 255 / 0.25);
+}
+
+.\[\&_li\]\:py-4 li {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.\[\&_li\]\:text-center li {
+  text-align: center;
+}
+
+@media (min-width: 1200px) {
+  .xl\:\[\&_li\]\:py-5 li {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
 }
