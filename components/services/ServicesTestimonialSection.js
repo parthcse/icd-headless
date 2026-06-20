@@ -1,9 +1,14 @@
 import { getTestimonialNodesByIds } from "@/lib/wp-home-data";
-import { FALLBACK_TESTIMONIAL, mapTestimonialNode } from "@/lib/wp-testimonials";
+import { mapTestimonialNode } from "@/lib/wp-testimonials";
 
 export default async function ServicesTestimonialSection({ data }) {
-  const nodes = await getTestimonialNodesByIds(data.testimonialId != null ? [data.testimonialId] : []);
-  const testimonial = nodes.length ? mapTestimonialNode(nodes[0]) : FALLBACK_TESTIMONIAL;
+  // No id configured on the service → no testimonial to fetch, so skip the section entirely.
+  if (data.testimonialId == null) return null;
+
+  const nodes = await getTestimonialNodesByIds([data.testimonialId]);
+  if (!nodes.length) return null;
+
+  const testimonial = mapTestimonialNode(nodes[0]);
 
   return (
     <section className="services-testimonial full-section">

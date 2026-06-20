@@ -22,17 +22,33 @@ export default function ServicesInfoSection({ data }) {
           {data.cards.map((card, i) => (
             <div key={i} className="bg-black-light space-y-3 p-6 lg:p-8">
               <h3 className="font-semibold font-22">{card.title}</h3>
-              {card.paragraphs?.map((p, j) => <p key={j}>{p}</p>)}
-              {card.listItems && (
-                <ul className="list-disc pl-5 space-y-3">
-                  {card.listItems.map((item, j) => (
-                    <li key={j}>
-                      {item.title && <><strong>{item.title}</strong><br /></>}
-                      {renderParts(item.parts)}
-                    </li>
-                  ))}
-                </ul>
-              )}
+              {card.blocks
+                ? card.blocks.map((block, j) =>
+                    block.type === "ul" ? (
+                      <ul key={j} className="list-disc pl-5 space-y-1">
+                        {block.items.map((li, k) => (
+                          <li key={k}>{Array.isArray(li) ? renderParts(li) : li}</li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p key={j}>{Array.isArray(block.parts) ? renderParts(block.parts) : block.text}</p>
+                    )
+                  )
+                : (
+                  <>
+                    {card.paragraphs?.map((p, j) => <p key={j}>{p}</p>)}
+                    {card.listItems && (
+                      <ul className="list-disc pl-5 space-y-3">
+                        {card.listItems.map((item, j) => (
+                          <li key={j}>
+                            {item.title && <><strong>{item.title}</strong><br /></>}
+                            {renderParts(item.parts)}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </>
+                )}
             </div>
           ))}
         </div>

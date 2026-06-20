@@ -1,5 +1,15 @@
 import { Fragment } from "react";
 
+function renderParts(parts) {
+  return parts.map((part, i) =>
+    typeof part === "string" ? (
+      <Fragment key={i}>{part}</Fragment>
+    ) : (
+      <a key={i} href={part.href} className="text-primary font-semibold inline underline">{part.text}</a>
+    )
+  );
+}
+
 function renderParagraph(content, i) {
   if (!Array.isArray(content)) return <p key={i}>{content}</p>;
   return (
@@ -24,7 +34,7 @@ export default function ServicesImageTextSection({ data }) {
           <h2 className="main-title pb-2">{data.title}</h2>
         </div>
         {data.subtitle && <p className="text-center max-w-4xl mx-auto pb-10 leading-relaxed">{data.subtitle}</p>}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-space-mini xl:gap-space xl:px-5 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-space-mini xl:gap-space items-center">
           <figure className={data.imagePosition === "right" ? "lg:order-2" : undefined}>
             <img src={data.image} alt={data.imageAlt} />
           </figure>
@@ -71,6 +81,16 @@ export default function ServicesImageTextSection({ data }) {
             )}
           </div>
         </div>
+        {data.infoBoxes?.length > 0 && (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 text-center small leading-relaxed mt-10">
+            {data.infoBoxes.map((box, i) => (
+              <div key={i} className="bg-black-light p-8">
+                <h3 className="font-semibold font-22">{box.title}</h3>
+                <p>{Array.isArray(box.body) ? renderParts(box.body) : box.body}</p>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

@@ -1,3 +1,15 @@
+import { Fragment } from "react";
+
+function renderParts(parts) {
+  return parts.map((part, i) =>
+    typeof part === "string" ? (
+      <Fragment key={i}>{part}</Fragment>
+    ) : (
+      <a key={i} href={part.href} className="text-primary font-semibold inline underline">{part.text}</a>
+    )
+  );
+}
+
 export default function ServicesCheckListSection({ data }) {
   return (
     <section className="services-checklist full-section">
@@ -5,7 +17,11 @@ export default function ServicesCheckListSection({ data }) {
         <div className="heading-wrap animate fadeUp">
           <h3 className="font-48">{data.eyebrow}</h3>
           <h2 className="main-title pb-2">{data.title}</h2>
-          <p className={`mx-auto ${data.subtitleClass || "max-w-4xl"}`}>{data.subtitle}</p>
+          {Array.isArray(data.subtitle)
+            ? data.subtitle.map((p, i) => (
+                <p key={i} className="mx-auto max-w-5xl">{Array.isArray(p) ? renderParts(p) : p}</p>
+              ))
+            : <p className="mx-auto max-w-5xl">{data.subtitle}</p>}
         </div>
         <div className={`grid grid-cols-1 ${data.benefitsRight ? "md:grid-cols-2" : ""} gap-space-mini xl:gap-space mx-auto max-w-[1280px] lg:font-22 font-normal`}>
           {(data.benefitsRight ? [data.benefitsLeft, data.benefitsRight] : [data.benefitsLeft]).map((col, ci) => (
@@ -29,7 +45,7 @@ export default function ServicesCheckListSection({ data }) {
             </ul>
           ))}
         </div>
-        {data.closingParagraph && <p className="mx-auto max-w-4xl text-center mt-space-mini">{data.closingParagraph}</p>}
+        {data.closingParagraph && <p className="mx-auto max-w-4xl text-center mt-10">{data.closingParagraph}</p>}
       </div>
     </section>
   );

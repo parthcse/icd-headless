@@ -18,8 +18,8 @@ export default function ServicesLeftIconBoxSection({ data }) {
           <h3 className="font-48">{data.eyebrow}</h3>
           <h2 className="main-title pb-2">{data.title}</h2>
           {Array.isArray(data.subtitle)
-            ? data.subtitle.map((p, i) => <p key={i} className={`mx-auto ${data.subtitleClass || "max-w-4xl"}`}>{p}</p>)
-            : <p className={`mx-auto ${data.subtitleClass || "max-w-4xl"}`}>{data.subtitle}</p>}
+            ? data.subtitle.map((p, i) => <p key={i} className="mx-auto max-w-5xl">{p}</p>)
+            : <p className="mx-auto max-w-4xl">{data.subtitle}</p>}
         </div>
         <div className="grid lg:grid-cols-2 gap-6 leading-relaxed">
           {data.items.map((item, i) => (
@@ -29,13 +29,13 @@ export default function ServicesLeftIconBoxSection({ data }) {
               </div>
               <div className="text-box">
                 <h3 className="font-semibold font-22">{item.title}</h3>
-                {item.bodyList ? (
+                {item.body && <p>{Array.isArray(item.body) ? renderParts(item.body) : item.body}</p>}
+                {item.bodyList && (
                   <ul className="list-disc pl-5 space-y-1">
                     {item.bodyList.map((li, j) => <li key={j}>{li}</li>)}
                   </ul>
-                ) : (
-                  <p>{Array.isArray(item.body) ? renderParts(item.body) : item.body}</p>
                 )}
+                {item.bodyAfter && <p>{Array.isArray(item.bodyAfter) ? renderParts(item.bodyAfter) : item.bodyAfter}</p>}
               </div>
             </div>
           ))}

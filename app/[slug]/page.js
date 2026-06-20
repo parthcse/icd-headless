@@ -74,11 +74,11 @@ const SECTION_RENDERERS = {
   topIconBoxTertiary: (data) => data.topIconBoxTertiary && <ServicesTopIconBoxSection data={data.topIconBoxTertiary} />,
   topIconBoxQuaternary: (data) => data.topIconBoxQuaternary && <ServicesTopIconBoxSection data={data.topIconBoxQuaternary} />,
   topIconBoxQuinary: (data) => data.topIconBoxQuinary && <ServicesTopIconBoxSection data={data.topIconBoxQuinary} />,
-  featureCards: (data) => data.featureCards && <ServicesLeftIconBoxSection data={data.featureCards} />,
-  featureCardsSecondary: (data) =>
-    data.featureCardsSecondary && <ServicesLeftIconBoxSection data={data.featureCardsSecondary} />,
-  featureCardsTertiary: (data) =>
-    data.featureCardsTertiary && <ServicesLeftIconBoxSection data={data.featureCardsTertiary} />,
+  leftIconBox: (data) => data.leftIconBox && <ServicesLeftIconBoxSection data={data.leftIconBox} />,
+  leftIconBoxSecondary: (data) =>
+    data.leftIconBoxSecondary && <ServicesLeftIconBoxSection data={data.leftIconBoxSecondary} />,
+  leftIconBoxTertiary: (data) =>
+    data.leftIconBoxTertiary && <ServicesLeftIconBoxSection data={data.leftIconBoxTertiary} />,
   processSteps: (data) => data.processSteps && <ServicesProcessStepSection data={data.processSteps} />,
   processStepsSecondary: (data) =>
     data.processStepsSecondary && <ServicesProcessStepSection data={data.processStepsSecondary} />,
