@@ -19,7 +19,7 @@ export default function GetQuoteSection() {
             <div className="flex items-center gap-space-small border border-[#272727] px-space-small py-space-small lg:gap-6 lg:px-8 lg:py-6">
               <img
                 className="max-h-[1em] max-w-[1em] shrink-0 pt-[0.15em] font-48"
-                src="/assets/icons/email-icon.svg"
+                src="/assets/icons/email-icon-orange.svg"
                 alt=""
               />
               <div className="min-w-0 flex-1">
@@ -32,7 +32,7 @@ export default function GetQuoteSection() {
             <div className="flex items-center gap-space-small border border-[#272727] px-space-small py-space-small lg:gap-6 lg:px-8 lg:py-6">
               <img
                 className="max-h-[1em] max-w-[1em] shrink-0 pt-[0.15em] font-48"
-                src="/assets/icons/call-icon.svg"
+                src="/assets/icons/support-icon-orange.svg"
                 alt=""
               />
               <div className="min-w-0 flex-1">
@@ -45,7 +45,7 @@ export default function GetQuoteSection() {
             <div className="flex items-center gap-space-small border border-[#272727] px-space-small py-space-small lg:gap-6 lg:px-8 lg:py-6">
               <img
                 className="max-h-[1em] max-w-[1em] shrink-0 pt-[0.15em] font-48"
-                src="/assets/icons/user-icon.svg"
+                src="/assets/icons/user-icon-orange.svg"
                 alt=""
               />
               <div className="min-w-0 flex-1">

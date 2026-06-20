@@ -12,9 +12,9 @@ export default function AboutOurHeartSection() {
           </figure>
           <div className="my-auto grid gap-6 text-center sm:text-left lg:gap-8 lg:pl-20 xl:pl-24">
             <div className="flex flex-wrap items-center justify-center gap-3 sm:justify-start sm:gap-5">
-              <img className="max-w-20 xl:max-w-24" src="/assets/icons/magento-icon.svg" alt="" />
-              <img className="max-w-20 xl:max-w-24" src="/assets/icons/shopify-icon.svg" alt="" />
-              <img className="max-w-20 xl:max-w-24" src="/assets/icons/woocommerce-icon.svg" alt="" />
+              <img className="max-w-20 xl:max-w-24" src="/assets/icons/magento-icon-orange.svg" alt="" />
+              <img className="max-w-20 xl:max-w-24" src="/assets/icons/shopify-icon-orange.svg" alt="" />
+              <img className="max-w-20 xl:max-w-24" src="/assets/icons/woocommerce-icon-orange.svg" alt="" />
             </div>
             <p>
               Icecube Digital, a prominent eCommerce agency is famous for its creative eCommerce solutions with
