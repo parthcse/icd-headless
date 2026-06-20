@@ -1224,6 +1224,14 @@ h6 {
   visibility: visible;
 }
 
+.invisible {
+  visibility: hidden;
+}
+
+.static {
+  position: static;
+}
+
 .fixed {
   position: fixed;
 }
@@ -1669,10 +1677,6 @@ h6 {
   max-width: 42rem;
 }
 
-.max-w-3xl {
-  max-width: 48rem;
-}
-
 .max-w-4xl {
   max-width: 56rem;
 }
@@ -1737,6 +1741,10 @@ h6 {
   flex-grow: 1;
 }
 
+.table-fixed {
+  table-layout: fixed;
+}
+
 .-translate-x-full {
   --tw-translate-x: -100%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -1758,6 +1766,10 @@ h6 {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.resize {
+  resize: both;
 }
 
 .list-disc {
@@ -1826,6 +1838,11 @@ h6 {
 
 .gap-\[0\.81em\] {
   gap: 0.81em;
+}
+
+.gap-x-2 {
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
 }
 
 .space-y-0 > :not([hidden]) ~ :not([hidden]) {
@@ -1968,6 +1985,10 @@ h6 {
 
 .border-white\/15 {
   border-color: rgb(255 255 255 / 0.15);
+}
+
+.border-white\/25 {
+  border-color: rgb(255 255 255 / 0.25);
 }
 
 .bg-\[\#0f0f0f\] {
@@ -2186,6 +2207,10 @@ h6 {
   text-align: center;
 }
 
+.align-middle {
+  vertical-align: middle;
+}
+
 .align-bottom {
   vertical-align: bottom;
 }
@@ -2332,6 +2357,10 @@ h6 {
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
+}
+
+.outline {
+  outline-style: solid;
 }
 
 .grayscale {
@@ -3010,10 +3039,6 @@ html.lenis {
     table-layout: fixed;
   }
 
-  .xl\:grid-cols-4 {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
   .xl\:gap-16 {
     gap: 4rem;
   }
@@ -3069,11 +3094,6 @@ html.lenis {
   .xl\:px-0 {
     padding-left: 0px;
     padding-right: 0px;
-  }
-
-  .xl\:px-5 {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
   }
 
   .xl\:px-6 {
@@ -3243,32 +3263,4 @@ html.lenis {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
-}
-
-.\[\&_li\:last-child\]\:border-b-0 li:last-child {
-  border-bottom-width: 0px;
-}
-
-.\[\&_li\]\:border-b li {
-  border-bottom-width: 1px;
-}
-
-.\[\&_li\]\:border-white\/25 li {
-  border-color: rgb(255 255 255 / 0.25);
-}
-
-.\[\&_li\]\:py-4 li {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
-.\[\&_li\]\:text-center li {
-  text-align: center;
-}
-
-@media (min-width: 1200px) {
-  .xl\:\[\&_li\]\:py-5 li {
-    padding-top: 1.25rem;
-    padding-bottom: 1.25rem;
-  }
 }

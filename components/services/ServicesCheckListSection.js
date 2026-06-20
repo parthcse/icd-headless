@@ -45,7 +45,13 @@ export default function ServicesCheckListSection({ data }) {
             </ul>
           ))}
         </div>
-        {data.closingParagraph && <p className="mx-auto max-w-4xl text-center mt-10">{data.closingParagraph}</p>}
+        {data.textContent && (
+          <div className="mx-auto max-w-5xl text-center mt-10 space-y-4">
+            {(Array.isArray(data.textContent) ? data.textContent : [data.textContent]).map((p, i) => (
+              <p key={i}>{Array.isArray(p) ? renderParts(p) : p}</p>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

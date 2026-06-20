@@ -14,7 +14,8 @@ import ServicesCheckListSection from "@/components/services/ServicesCheckListSec
 import ServicesImageTextSection from "@/components/services/ServicesImageTextSection";
 import ServicesInfoBoxSection from "@/components/services/ServicesInfoBoxSection";
 import ServicesTableDevelopmentPackages from "@/components/services/ServicesTableDevelopmentPackages";
-import ServicesTableSeoPackages from "@/components/services/ServicesTableSeoPackages";
+import ServicesTablePackages from "@/components/services/ServicesTablePackages";
+import ServicesTablePricingPlans from "@/components/services/ServicesTablePricingPlans";
 import ServicesCtaSection from "@/components/services/ServicesCtaSection";
 import ServicesTopIconBoxSection from "@/components/services/ServicesTopIconBoxSection";
 import ServicesLeftIconBoxSection from "@/components/services/ServicesLeftIconBoxSection";
@@ -66,7 +67,8 @@ const SECTION_RENDERERS = {
     data.tableDevelopmentPackages && <ServicesTableDevelopmentPackages data={data.tableDevelopmentPackages} />,
   tableSeoPlans: (data) => data.tableSeoPlans && <ServicesTableSeoPlans data={data.tableSeoPlans} />,
   tableBasic: (data) => data.tableBasic && <ServicesTableBasic data={data.tableBasic} />,
-  tableSeoPackages: (data) => data.tableSeoPackages && <ServicesTableSeoPackages data={data.tableSeoPackages} />,
+  tablePackages: (data) => data.tablePackages && <ServicesTablePackages data={data.tablePackages} />,
+  tablePricingPlans: (data) => data.tablePricingPlans && <ServicesTablePricingPlans data={data.tablePricingPlans} />,
   seoAuditForm: (data) => data.seoAuditForm && <ServicesSeoAuditFormSection data={data.seoAuditForm} />,
   cta: (data) => data.cta && <ServicesCtaSection data={data.cta} />,
   topIconBox: (data) => data.topIconBox && <ServicesTopIconBoxSection data={data.topIconBox} />,

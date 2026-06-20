@@ -10,6 +10,57 @@ function renderParts(parts) {
   );
 }
 
+/** A single bullet — plain string, inline-link parts array, or a bold lead-in `{ title, text }`. */
+function renderBullet(li, k) {
+  if (typeof li === "string") return <li key={k}>{li}</li>;
+  if (Array.isArray(li)) return <li key={k}>{renderParts(li)}</li>;
+  return (
+    <li key={k}>
+      <strong>{li.title}</strong>
+      {li.text ? <> {li.text}</> : null}
+    </li>
+  );
+}
+
+/**
+ * Table block inside an information card — same visual design as ServicesTableBasic
+ * (orange header row, alternating dark rows, primary-bordered cells).
+ */
+function InfoTable({ columns, rows }) {
+  return (
+    <div className="table-data-content overflow-x-auto">
+      <table className="w-full table-fixed border border-primary text-center">
+        <thead>
+          <tr className="bg-primary font-22">
+            {columns.map((col, i) => (
+              <th
+                key={i}
+                className={`p-4 xl:px-6 xl:py-5 font-semibold${i < columns.length - 1 ? " border-r border-black/50" : ""}`}
+              >
+                {col}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row, i) => (
+            <tr key={i} className={i % 2 !== 0 ? "bg-black" : ""}>
+              {row.map((cell, j) => (
+                <td
+                  key={j}
+                  className={`p-4 xl:px-6 xl:py-5 align-middle${j < row.length - 1 ? " border-r border-primary" : ""}`}
+                >
+                  {cell}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 export default function ServicesInfoSection({ data }) {
   return (
     <section className="services-information full-section">
@@ -24,11 +75,11 @@ export default function ServicesInfoSection({ data }) {
               <h3 className="font-semibold font-22">{card.title}</h3>
               {card.blocks
                 ? card.blocks.map((block, j) =>
-                    block.type === "ul" ? (
+                    block.type === "table" ? (
+                      <InfoTable key={j} columns={block.columns} rows={block.rows} />
+                    ) : block.type === "ul" ? (
                       <ul key={j} className="list-disc pl-5 space-y-1">
-                        {block.items.map((li, k) => (
-                          <li key={k}>{Array.isArray(li) ? renderParts(li) : li}</li>
-                        ))}
+                        {block.items.map((li, k) => renderBullet(li, k))}
                       </ul>
                     ) : (
                       <p key={j}>{Array.isArray(block.parts) ? renderParts(block.parts) : block.text}</p>
