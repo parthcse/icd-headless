@@ -285,6 +285,66 @@
     .lenis.lenis-smooth {
         scroll-behavior: auto;
     }
+    /* Tabbed pricing table — ServicesTablePricingPlansTabs (ported from Design prototype) */
+    .pricing-tab.active {
+        @apply bg-primary border-primary text-white;
+    }
+    .pricing-tab.active span {
+        @apply text-black;
+    }
+    .pricing-content {
+        @apply hidden;
+    }
+    .pricing-content.active {
+        @apply block;
+    }
+    .plan-sel-btn.active {
+        @apply border-primary text-primary bg-primary/10;
+    }
+    .pricing-content tbody tr > * {
+        position: relative;
+        padding: 0.5rem 1rem;
+        height: 3.2em;
+        min-height: 4em;
+    }
+    .pricing-content tbody tr > *:not(:first-child):before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-left: solid 1px #f17e3f;
+        border-right: solid 1px #f17e3f;
+        width: calc(100% - 0.5rem);
+        left: 0.25rem;
+        pointer-events: none;
+    }
+    .pricing-content tbody tr > *:after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-bottom: solid 1px rgb(255 255 255 / 0.2);
+        left: 1rem;
+        width: calc(100% - 2rem);
+        pointer-events: none;
+    }
+    .pricing-content tbody tr > *:last-child:before {
+        border-left-width: 4px;
+        border-right-width: 4px;
+    }
+    .pricing-content thead tr > * {
+        padding-bottom: 0;
+    }
+    .pricing-content tfoot tr > * {
+        padding-top: 0;
+    }
+    .pricing-content tbody tr:first-child > *:after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-top: solid 1px rgb(255 255 255 / 0.2);
+        left: 1rem;
+        width: calc(100% - 2rem);
+        pointer-events: none;
+    }
 }
 
 /* Responsive variants for custom component classes (matches Design output) */

@@ -109,13 +109,13 @@ const SERVICES_CATEGORIES = [
   {
     label: "White Label",
     links: [
-      { label: "White Label Web Design and Development", href: "#" },
+      { label: "White Label Web Design and Development", href: "/white-label-web-design-and-development-services" },
       { label: "White Label WordPress Development", href: "/white-label-wordpress-development" },
-      { label: "White Label Magento Development", href: "#" },
-      { label: "White Label Shopify Development", href: "#" },
-      { label: "White Label SEO Services", href: "#" },
-      { label: "White Label PPC Services", href: "#" },
-      { label: "White Label Wordpress Maintenance", href: "#" },
+      { label: "White Label Magento Development", href: "/white-label-magento-development" },
+      { label: "White Label Shopify Development", href: "/white-label-shopify-development" },
+      { label: "White Label SEO Services", href: "/white-label-seo-services" },
+      { label: "White Label PPC Services", href: "/white-label-ppc-services" },
+      { label: "White Label Wordpress Maintenance", href: "/white-label-wordpress-maintenance-services" },
     ],
   },
 ];
@@ -180,13 +180,13 @@ const MOB_SERVICE_PANELS = [
     { label: "Hire Webflow Developers", href: "/hire-webflow-developers" },
   ]},
   { id: "mob-panel-wl", label: "White Label", links: [
-    { label: "White Label Web Design and Development", href: "#" },
+    { label: "White Label Web Design and Development", href: "/white-label-web-design-and-development-services" },
     { label: "White Label WordPress Development", href: "/white-label-wordpress-development" },
-    { label: "White Label Magento Development", href: "#" },
-    { label: "White Label Shopify Development", href: "#" },
-    { label: "White Label SEO Services", href: "#" },
-    { label: "White Label PPC Services", href: "#" },
-    { label: "White Label Wordpress Maintenance", href: "#" },
+    { label: "White Label Magento Development", href: "/white-label-magento-development" },
+    { label: "White Label Shopify Development", href: "/white-label-shopify-development" },
+    { label: "White Label SEO Services", href: "/white-label-seo-services" },
+    { label: "White Label PPC Services", href: "/white-label-ppc-services" },
+    { label: "White Label Wordpress Maintenance", href: "/white-label-wordpress-maintenance-services" },
   ]},
 ];
 

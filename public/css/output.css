@@ -1677,6 +1677,10 @@ h6 {
   max-width: 42rem;
 }
 
+.max-w-3xl {
+  max-width: 48rem;
+}
+
 .max-w-4xl {
   max-width: 56rem;
 }
@@ -1743,6 +1747,16 @@ h6 {
 
 .table-fixed {
   table-layout: fixed;
+}
+
+.border-collapse {
+  border-collapse: collapse;
+}
+
+.border-spacing-0 {
+  --tw-border-spacing-x: 0px;
+  --tw-border-spacing-y: 0px;
+  border-spacing: var(--tw-border-spacing-x) var(--tw-border-spacing-y);
 }
 
 .-translate-x-full {
@@ -1885,6 +1899,16 @@ h6 {
   margin-bottom: calc(1.25rem * var(--tw-space-y-reverse));
 }
 
+.divide-y > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-y-reverse: 0;
+  border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
+  border-bottom-width: calc(1px * var(--tw-divide-y-reverse));
+}
+
+.divide-white\/10 > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgb(255 255 255 / 0.1);
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
@@ -1929,6 +1953,20 @@ h6 {
   border-width: 0px;
 }
 
+.border-2 {
+  border-width: 2px;
+}
+
+.border-x {
+  border-left-width: 1px;
+  border-right-width: 1px;
+}
+
+.border-x-4 {
+  border-left-width: 4px;
+  border-right-width: 4px;
+}
+
 .border-y {
   border-top-width: 1px;
   border-bottom-width: 1px;
@@ -1940,6 +1978,10 @@ h6 {
 
 .border-b-2 {
   border-bottom-width: 2px;
+}
+
+.border-b-4 {
+  border-bottom-width: 4px;
 }
 
 .border-r {
@@ -1989,6 +2031,10 @@ h6 {
 
 .border-white\/15 {
   border-color: rgb(255 255 255 / 0.15);
+}
+
+.border-white\/20 {
+  border-color: rgb(255 255 255 / 0.2);
 }
 
 .border-white\/25 {
@@ -2058,6 +2104,10 @@ h6 {
 
 .p-2 {
   padding: 0.5rem;
+}
+
+.p-3\.5 {
+  padding: 0.875rem;
 }
 
 .p-4 {
@@ -2143,6 +2193,11 @@ h6 {
 .py-5 {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
+}
+
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 .py-\[0\.3em\] {
@@ -2326,8 +2381,16 @@ h6 {
   color: rgb(255 255 255 / 0.05);
 }
 
+.text-white\/50 {
+  color: rgb(255 255 255 / 0.5);
+}
+
 .text-white\/60 {
   color: rgb(255 255 255 / 0.6);
+}
+
+.text-white\/70 {
+  color: rgb(255 255 255 / 0.7);
 }
 
 .text-white\/80 {
@@ -2340,6 +2403,10 @@ h6 {
 
 .underline {
   text-decoration-line: underline;
+}
+
+.line-through {
+  text-decoration-line: line-through;
 }
 
 .no-underline {
@@ -2487,6 +2554,89 @@ html.lenis {
 
 .lenis.lenis-smooth {
   scroll-behavior: auto;
+}
+
+/* Tabbed pricing table — ServicesTablePricingPlansTabs (ported from Design prototype) */
+
+.pricing-tab.active {
+  --tw-border-opacity: 1;
+  border-color: rgb(241 126 63 / var(--tw-border-opacity, 1));
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 126 63 / var(--tw-bg-opacity, 1));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.pricing-tab.active span {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
+}
+
+.pricing-content {
+  display: none;
+}
+
+.pricing-content.active {
+  display: block;
+}
+
+.plan-sel-btn.active {
+  --tw-border-opacity: 1;
+  border-color: rgb(241 126 63 / var(--tw-border-opacity, 1));
+  background-color: rgb(241 126 63 / 0.1);
+  --tw-text-opacity: 1;
+  color: rgb(241 126 63 / var(--tw-text-opacity, 1));
+}
+
+.pricing-content tbody tr > * {
+  position: relative;
+  padding: 0.5rem 1rem;
+  height: 3.2em;
+  min-height: 4em;
+}
+
+.pricing-content tbody tr > *:not(:first-child):before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-left: solid 1px #f17e3f;
+  border-right: solid 1px #f17e3f;
+  width: calc(100% - 0.5rem);
+  left: 0.25rem;
+  pointer-events: none;
+}
+
+.pricing-content tbody tr > *:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-bottom: solid 1px rgb(255 255 255 / 0.2);
+  left: 1rem;
+  width: calc(100% - 2rem);
+  pointer-events: none;
+}
+
+.pricing-content tbody tr > *:last-child:before {
+  border-left-width: 4px;
+  border-right-width: 4px;
+}
+
+.pricing-content thead tr > * {
+  padding-bottom: 0;
+}
+
+.pricing-content tfoot tr > * {
+  padding-top: 0;
+}
+
+.pricing-content tbody tr:first-child > *:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-top: solid 1px rgb(255 255 255 / 0.2);
+  left: 1rem;
+  width: calc(100% - 2rem);
+  pointer-events: none;
 }
 
 .\[grid-template-rows\:0fr\] {
@@ -2698,8 +2848,16 @@ html.lenis {
     margin-top: 1.5rem;
   }
 
+  .md\:block {
+    display: block;
+  }
+
   .md\:grid {
     display: grid;
+  }
+
+  .md\:hidden {
+    display: none;
   }
 
   .md\:w-\[60\%\] {
@@ -2863,6 +3021,10 @@ html.lenis {
 
   .lg\:hidden {
     display: none;
+  }
+
+  .lg\:max-w-2xl {
+    max-width: 42rem;
   }
 
   .lg\:max-w-96 {

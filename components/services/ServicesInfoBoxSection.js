@@ -11,7 +11,6 @@ function renderParts(parts) {
 }
 
 export default function ServicesInfoBoxSection({ data }) {
-  const isShaded = data.variant !== "noshade";
   return (
     <section className="services-infobox full-section">
       <div className="container">
@@ -24,7 +23,7 @@ export default function ServicesInfoBoxSection({ data }) {
         </div>
         <div className={`grid ${data.gridClass || `sm:grid-cols-2 ${data.columns === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`} ${data.textAlign === "left" ? "text-left" : "text-center"} gap-6 leading-relaxed small`}>
           {data.items.map((item, i) => (
-            <div key={i} className={isShaded ? "bg-black-light p-8" : "border border-white/15 p-8"}>
+            <div key={i} className="bg-black-light p-8">
               <h3 className="font-semibold font-22">{item.title}</h3>
               {item.body && <p>{Array.isArray(item.body) ? renderParts(item.body) : item.body}</p>}
               {item.bodyList && (

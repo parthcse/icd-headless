@@ -1,4 +1,4 @@
-export default function ServicesTableDevelopmentPackages({ data }) {
+export default function ServicesTableCompareAdvanced({ data }) {
   return (
     <section className="services-pricing full-section">
       <div className="container">

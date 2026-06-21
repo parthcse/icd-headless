@@ -32,13 +32,19 @@ export default function ServicesProcessStepSection({ data }) {
               ? i % 2 === 0 && i + 2 < data.steps.length
               : i < data.steps.length - 1;
             return (
-              <div key={i} className="step-box relative bg-black-light p-6 lg:p-8 flex gap-6 lg:gap-8 items-start">
+              <div key={i} className={`step-box relative bg-black-light p-6 lg:p-8 flex gap-6 lg:gap-8 ${data.align === "center" ? "items-center" : "items-start"}`}>
                 <div className="number-box bg-white rounded-full aspect-square text-black font-30 font-semibold min-w-[2.6em] flex items-center justify-center overflow-hidden">
                   {i + 1}
                 </div>
                 <div className="text-box">
                   <h5 className="font-22 mb-0">{step.title}</h5>
-                  <p>{Array.isArray(step.body) ? renderParts(step.body) : step.body}</p>
+                  {step.body && <p>{Array.isArray(step.body) ? renderParts(step.body) : step.body}</p>}
+                  {step.bodyList && (
+                    <ul className="list-disc pl-5 space-y-1">
+                      {step.bodyList.map((li, j) => <li key={j}>{li}</li>)}
+                    </ul>
+                  )}
+                  {step.bodyAfter && <p>{Array.isArray(step.bodyAfter) ? renderParts(step.bodyAfter) : step.bodyAfter}</p>}
                 </div>
                 {showStepIcon && (
                   <div className="step-icon hidden sm:block absolute -left-10 xl:-left-14 -bottom-14 w-6 h-[5.5rem]">

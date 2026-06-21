@@ -13,7 +13,8 @@ import ServicesPortfolioSection from "@/components/services/ServicesPortfolioSec
 import ServicesCheckListSection from "@/components/services/ServicesCheckListSection";
 import ServicesImageTextSection from "@/components/services/ServicesImageTextSection";
 import ServicesInfoBoxSection from "@/components/services/ServicesInfoBoxSection";
-import ServicesTableDevelopmentPackages from "@/components/services/ServicesTableDevelopmentPackages";
+import ServicesTableCompareAdvanced from "@/components/services/ServicesTableCompareAdvanced";
+import ServicesTablePricingPlansTabs from "@/components/services/ServicesTablePricingPlansTabs";
 import ServicesTablePackages from "@/components/services/ServicesTablePackages";
 import ServicesTablePricingPlans from "@/components/services/ServicesTablePricingPlans";
 import ServicesCtaSection from "@/components/services/ServicesCtaSection";
@@ -53,6 +54,8 @@ const SECTION_RENDERERS = {
   plainTextQuaternary: (data) => data.plainTextQuaternary && <ServicesPlainTextSection data={data.plainTextQuaternary} />,
   checkList: (data) => data.checkList && <ServicesCheckListSection data={data.checkList} />,
   checkListSecondary: (data) => data.checkListSecondary && <ServicesCheckListSection data={data.checkListSecondary} />,
+  checkListTertiary: (data) => data.checkListTertiary && <ServicesCheckListSection data={data.checkListTertiary} />,
+  checkListQuaternary: (data) => data.checkListQuaternary && <ServicesCheckListSection data={data.checkListQuaternary} />,
   imageText: (data) => data.imageText && <ServicesImageTextSection data={data.imageText} />,
   imageTextSecondary: (data) =>
     data.imageTextSecondary && <ServicesImageTextSection data={data.imageTextSecondary} />,
@@ -63,8 +66,10 @@ const SECTION_RENDERERS = {
   infoBox: (data) => data.infoBox && <ServicesInfoBoxSection data={data.infoBox} />,
   infoBoxSecondary: (data) => data.infoBoxSecondary && <ServicesInfoBoxSection data={data.infoBoxSecondary} />,
   infoBoxTertiary: (data) => data.infoBoxTertiary && <ServicesInfoBoxSection data={data.infoBoxTertiary} />,
-  tableDevelopmentPackages: (data) =>
-    data.tableDevelopmentPackages && <ServicesTableDevelopmentPackages data={data.tableDevelopmentPackages} />,
+  tableCompareAdvanced: (data) =>
+    data.tableCompareAdvanced && <ServicesTableCompareAdvanced data={data.tableCompareAdvanced} />,
+  tablePricingPlansTabs: (data) =>
+    data.tablePricingPlansTabs && <ServicesTablePricingPlansTabs data={data.tablePricingPlansTabs} />,
   tableSeoPlans: (data) => data.tableSeoPlans && <ServicesTableSeoPlans data={data.tableSeoPlans} />,
   tableBasic: (data) => data.tableBasic && <ServicesTableBasic data={data.tableBasic} />,
   tablePackages: (data) => data.tablePackages && <ServicesTablePackages data={data.tablePackages} />,

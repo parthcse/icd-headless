@@ -48,8 +48,17 @@ export default function ServicesImageTextSection({ data }) {
                     <ul key={i} className="list-disc pl-5 space-y-1">
                       {block.items.map((item, j) => <li key={j}>{item}</li>)}
                     </ul>
+                  ) : block.type === "checklist" ? (
+                    <ul key={i} className="space-y-3 font-semibold">
+                      {block.items.map((item, j) => (
+                        <li key={j} className="flex items-center gap-3">
+                          <img src="/assets/icons/check-primary-icon.svg" alt="" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
                   ) : (
-                    <p key={i}>{block.text}</p>
+                    renderParagraph(block.text, i)
                   )
                 )
               : (
