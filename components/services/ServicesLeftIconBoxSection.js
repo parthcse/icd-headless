@@ -23,7 +23,7 @@ export default function ServicesLeftIconBoxSection({ data }) {
               ))
             : <p className="mx-auto max-w-5xl">{data.subtitle}</p>}
         </div>
-        <div className="grid lg:grid-cols-2 gap-6 leading-relaxed">
+        <div className={`grid ${data.columns === 1 ? "" : "lg:grid-cols-2"} gap-6 leading-relaxed`}>
           {data.items.map((item, i) => (
             <div key={i} className="flex bg-black-light py-space-small px-space-small gap-4 sm:gap-6 md:gap-8 relative">
               <div className="col-img w-14 sm:w-20 flex-shrink-0">

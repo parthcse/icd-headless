@@ -19,8 +19,8 @@ export default function ServicesInfoBoxSection({ data }) {
           <h3 className="font-48">{data.eyebrow}</h3>
           <h2 className="main-title pb-2">{data.title}</h2>
           {Array.isArray(data.subtitle)
-            ? data.subtitle.map((p, i) => <p key={i} className="mx-auto max-w-5xl">{p}</p>)
-            : <p className="mx-auto max-w-5xl">{data.subtitle}</p>}
+            ? data.subtitle.map((p, i) => <p key={i} className="mx-auto max-w-5xl">{Array.isArray(p) ? renderParts(p) : p}</p>)
+            : data.subtitle && <p className="mx-auto max-w-5xl">{data.subtitle}</p>}
         </div>
         <div className={`grid ${data.gridClass || `sm:grid-cols-2 ${data.columns === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`} ${data.textAlign === "left" ? "text-left" : "text-center"} gap-6 leading-relaxed small`}>
           {data.items.map((item, i) => (

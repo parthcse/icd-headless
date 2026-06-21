@@ -71,6 +71,8 @@ const SECTION_RENDERERS = {
   tablePricingPlans: (data) => data.tablePricingPlans && <ServicesTablePricingPlans data={data.tablePricingPlans} />,
   seoAuditForm: (data) => data.seoAuditForm && <ServicesSeoAuditFormSection data={data.seoAuditForm} />,
   cta: (data) => data.cta && <ServicesCtaSection data={data.cta} />,
+  ctaSecondary: (data) => data.ctaSecondary && <ServicesCtaSection data={data.ctaSecondary} />,
+  ctaTertiary: (data) => data.ctaTertiary && <ServicesCtaSection data={data.ctaTertiary} />,
   topIconBox: (data) => data.topIconBox && <ServicesTopIconBoxSection data={data.topIconBox} />,
   topIconBoxSecondary: (data) => data.topIconBoxSecondary && <ServicesTopIconBoxSection data={data.topIconBoxSecondary} />,
   topIconBoxTertiary: (data) => data.topIconBoxTertiary && <ServicesTopIconBoxSection data={data.topIconBoxTertiary} />,

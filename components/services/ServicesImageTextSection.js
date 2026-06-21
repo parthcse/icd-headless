@@ -29,10 +29,12 @@ export default function ServicesImageTextSection({ data }) {
   return (
     <section className="services-image-text full-section">
       <div className="container">
-        <div className="heading-wrap animate fadeUp">
-          <h3 className="font-48">{data.eyebrow}</h3>
-          <h2 className="main-title pb-2">{data.title}</h2>
-        </div>
+        {(data.eyebrow || data.title) && (
+          <div className="heading-wrap animate fadeUp">
+            <h3 className="font-48">{data.eyebrow}</h3>
+            <h2 className="main-title pb-2">{data.title}</h2>
+          </div>
+        )}
         {data.subtitle && <p className="text-center max-w-4xl mx-auto pb-10 leading-relaxed">{data.subtitle}</p>}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-space-mini xl:gap-space items-center">
           <figure className={data.imagePosition === "right" ? "lg:order-2" : undefined}>
@@ -81,6 +83,11 @@ export default function ServicesImageTextSection({ data }) {
             )}
           </div>
         </div>
+        {data.footerParagraphs?.length > 0 && (
+          <div className="leading-relaxed mt-10">
+            {data.footerParagraphs.map((p, i) => renderParagraph(p, i))}
+          </div>
+        )}
         {data.infoBoxes?.length > 0 && (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 text-center small leading-relaxed mt-10">
             {data.infoBoxes.map((box, i) => (
