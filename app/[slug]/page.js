@@ -48,6 +48,7 @@ const SECTION_RENDERERS = {
   testimonials: (data) => data.testimonials && <ServicesTestimonialSection data={data.testimonials} />,
   portfolio: (data) => data.portfolio && <ServicesPortfolioSection data={data.portfolio} />,
   getQuote: () => <GetQuoteSection />,
+  getQuoteSecondary: (data) => data.getQuoteSecondary && <GetQuoteSection />,
   plainText: (data) => data.plainText && <ServicesPlainTextSection data={data.plainText} />,
   plainTextSecondary: (data) => data.plainTextSecondary && <ServicesPlainTextSection data={data.plainTextSecondary} />,
   plainTextTertiary: (data) => data.plainTextTertiary && <ServicesPlainTextSection data={data.plainTextTertiary} />,
