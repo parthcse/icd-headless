@@ -253,6 +253,10 @@ function icdInitOwl() {
       1024: { items: 5 },
     },
   });
+
+  // a11y: owl renders nav as <button role="presentation"> — make them proper labeled buttons
+  $(".owl-nav button.owl-prev").removeAttr("role").attr("aria-label", "Previous");
+  $(".owl-nav button.owl-next").removeAttr("role").attr("aria-label", "Next");
 }
 
 icdDomReady(function () {
