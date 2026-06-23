@@ -340,7 +340,7 @@ export default function Header() {
         {/* PANEL 2: Company */}
         <div id="mob-panel-company" className="mob-panel level-2">
           <div className="mob-panel-head">
-            <button className="back-btn text-white/60"><BackArrow /></button>
+            <button className="back-btn text-white/60" aria-label="Back"><BackArrow /></button>
             <span className="font-semibold text-primary uppercase leading-none pt-1">Company</span>
           </div>
           <ul>
@@ -353,7 +353,7 @@ export default function Header() {
         {/* PANEL 2: Services — shows sub-group buttons */}
         <div id="mob-panel-services" className="mob-panel level-2">
           <div className="mob-panel-head">
-            <button className="back-btn text-white/60"><BackArrow /></button>
+            <button className="back-btn text-white/60" aria-label="Back"><BackArrow /></button>
             <span className="font-semibold text-primary uppercase leading-none pt-1">Services</span>
           </div>
           {MOB_SERVICE_PANELS.map((panel) => (
@@ -369,7 +369,7 @@ export default function Header() {
         {MOB_SERVICE_PANELS.map((panel) => (
           <div key={panel.id} id={panel.id} className="mob-panel level-2">
             <div className="mob-panel-head">
-              <button className="back-btn text-white/60"><BackArrow /></button>
+              <button className="back-btn text-white/60" aria-label="Back"><BackArrow /></button>
               <span className="font-semibold text-primary uppercase leading-none pt-1">{panel.label}</span>
             </div>
             <ul>

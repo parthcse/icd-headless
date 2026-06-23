@@ -138,22 +138,22 @@ export default function Footer() {
             <ul className="flex gap-3">
               <li>
                 <a href="https://www.linkedin.com/company/ice-cube-digital/" target="_blank" rel="noopener noreferrer">
-                  <img src="/assets/icons/inkedin.svg" alt="" />
+                  <img src="/assets/icons/inkedin.svg" alt="LinkedIn" />
                 </a>
               </li>
               <li>
                 <a href="https://www.instagram.com/icecubedigital/" target="_blank" rel="noopener noreferrer">
-                  <img src="/assets/icons/instagram.svg" alt="" />
+                  <img src="/assets/icons/instagram.svg" alt="Instagram" />
                 </a>
               </li>
               <li>
                 <a href="https://www.facebook.com/IcecubeDigital" target="_blank" rel="noopener noreferrer">
-                  <img src="/assets/icons/facebook.svg" alt="" />
+                  <img src="/assets/icons/facebook.svg" alt="Facebook" />
                 </a>
               </li>
               <li>
                 <a href="https://x.com/IcecubeDigital" target="_blank" rel="noopener noreferrer">
-                  <img src="/assets/icons/twitter.svg" alt="" />
+                  <img src="/assets/icons/twitter.svg" alt="X (Twitter)" />
                 </a>
               </li>
             </ul>
