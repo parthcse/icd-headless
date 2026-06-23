@@ -16,6 +16,8 @@ export default function WhyChooseUsSection() {
                 <img
                   className="w-full max-h-[0.46em] max-w-[0.46em]"
                   src="/assets/icons/home-why-choose-1.svg"
+                  width="67"
+                  height="44"
                   alt=""
                 />
               </figure>
@@ -39,6 +41,8 @@ export default function WhyChooseUsSection() {
                 <img
                   className="w-full max-h-[0.43em] max-w-[0.46em]"
                   src="/assets/icons/home-why-choose-2.svg"
+                  width="70"
+                  height="70"
                   alt=""
                 />
               </figure>
@@ -62,6 +66,8 @@ export default function WhyChooseUsSection() {
                 <img
                   className="w-full max-h-[0.46em] max-w-[0.46em]"
                   src="/assets/icons/home-why-choose-3.svg"
+                  width="70"
+                  height="70"
                   alt=""
                 />
               </figure>
@@ -85,6 +91,8 @@ export default function WhyChooseUsSection() {
                 <img
                   className="w-full max-h-[0.46em] max-w-[0.46em]"
                   src="/assets/icons/home-why-choose-4.svg"
+                  width="70"
+                  height="70"
                   alt=""
                 />
               </figure>
