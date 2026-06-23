@@ -4,7 +4,7 @@ export default function ServicesBannerSection({ data }) {
   return (
     <section className="services-banner full-section relative border-t-0 xl:py-36">
       <div className="absolute inset-0">
-        <img className="w-full h-full object-cover" aria-hidden="true" src="/assets/photos/home-banner-bg.png" alt="" />
+        <img className="w-full h-full object-cover" aria-hidden="true" src="/assets/photos/home-banner-bg.png" alt="" fetchPriority="high" />
         <span className="bg-black absolute inset-0 bg-opacity-25" />
       </div>
       <div className="container relative z-10 pt-space-mini mt-8 md:mt-0 xl:pt-0 grid lg:grid-cols-2 gap-space">

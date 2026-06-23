@@ -2,6 +2,7 @@ import Script from "next/script";
 import "./globals.css";
 import RouteHandler from "@/components/common/RouteHandler";
 import SmoothScroll from "@/components/common/SmoothScroll";
+import DeferredStyles from "@/components/common/DeferredStyles";
 
 export const metadata = {
   title: "Icecube Digital",
@@ -20,14 +21,18 @@ export default function RootLayout({ children }) {
         <link rel="preload" href="/fonts/Gilroy-Medium.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/Gilroy-SemiBold.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/Gilroy-Bold.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="stylesheet" href="/css/owl.carousel.min.css" />
         <link rel="stylesheet" href="/css/fonts.css" />
         <link rel="stylesheet" href="/css/animated.css" />
         <link rel="stylesheet" href="/css/output.css" />
+        {/* owl.carousel CSS is deferred (loaded after hydration by <DeferredStyles/>) to avoid render-blocking; noscript fallback for no-JS users. */}
+        <noscript>
+          <link rel="stylesheet" href="/css/owl.carousel.min.css" />
+        </noscript>
       </head>
       <body>
         <SmoothScroll />
         <RouteHandler />
+        <DeferredStyles />
         {children}
         <Script src="/js/load-design.js" strategy="afterInteractive" />
       </body>
