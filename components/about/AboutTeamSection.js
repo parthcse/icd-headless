@@ -28,7 +28,7 @@ export default function AboutTeamSection() {
         <div className="text-center grid grid-cols-2 gap-4 lg:gap-6 xl:gap-8 md:[&>*:nth-child(2)]:top-[20%] md:[&>*:nth-child(4)]:top-[20%]">
           {TEAM.map((m) => (
             <div key={m.name} className="column bg-black-light mb-auto py-space-small px-4 group relative">
-              <h5 className="mb-0">{m.name}</h5>
+              <h3 className="mb-0">{m.name}</h3>
               <p>{m.role}</p>
               <figure className="mx-auto w-3/4 overflow-hidden rounded-full my-4 lg:my-5 lg:mb-6 xl:mb-7">
                 <img className="w-full grayscale group-hover:grayscale-0 transition duration-300" src={m.img} alt="" />

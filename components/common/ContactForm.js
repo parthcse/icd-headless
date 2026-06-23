@@ -267,7 +267,7 @@ export default function ContactForm({ variant = "split", title, btnArrow }) {
   if (isBanner) {
     return (
       <div className="border border-primary px-space-mini pb-space-mini pt-space-small backdrop-blur animate fadeUp">
-        {title && <h3 className="font-36 xl:text-[40px] font-semibold text-center mb-4 leading-snug">{title}</h3>}
+        {title && <h2 className="font-36 xl:text-[40px] font-semibold text-center mb-4 leading-snug">{title}</h2>}
         <form className="grid gap-4 xl:gap-4.5" onSubmit={handleSubmit} autoComplete="off" noValidate>
           {fields}
         </form>

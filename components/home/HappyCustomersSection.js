@@ -37,7 +37,7 @@ export default async function HappyCustomersSection() {
     <section className="home-customer full-section py-space xl:pt-28 xl:pb-36">
       <div className="heading-wrap container mx-auto xl:pb-14 animate fadeUp">
         <h3 className="mb-0 font-48 font-normal">Kind Words from Our</h3>
-        <h1 className="main-title mb-0">Happy Customers</h1>
+        <h2 className="main-title mb-0">Happy Customers</h2>
       </div>
       <div className="container-left">
         <div className="home-our-client-slider owl-carousel">

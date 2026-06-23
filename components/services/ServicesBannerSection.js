@@ -32,7 +32,7 @@ export default function ServicesBannerSection({ data }) {
               )}
             </a>
             <span className="text-muted font-semibold">OR</span>
-            <a href={data.phoneHref} className="btn btn-primary bg-transparent">
+            <a href={data.phoneHref} className="btn btn-secondary">
               <img src="/assets/icons/call-icon-orange.svg" alt="" /> {data.phoneLabel}
             </a>
           </div>

@@ -37,7 +37,7 @@ export default function ServicesProcessStepSection({ data }) {
                   {i + 1}
                 </div>
                 <div className="text-box">
-                  <h5 className="font-22 mb-0">{step.title}</h5>
+                  <h3 className="font-22 mb-0">{step.title}</h3>
                   {step.body && <p>{Array.isArray(step.body) ? renderParts(step.body) : step.body}</p>}
                   {step.bodyList && (
                     <ul className="list-disc pl-5 space-y-1">

@@ -14,7 +14,7 @@ export default function HeroSection() {
         <HeroMainTitle />
         <h2 className="font-48 font-normal mb-0 animate fadeUp" style={{ animationDelay: "0.6s" }}>Your eCommerce Store With Experts</h2>
         <div className="border border-[#202020] my-4 lg:my-6 xl:my-10 animate line" style={{ animationDelay: "0.8s" }}></div>
-        <h4 className="font-30 font-normal my-4 lg:my-6 xl:my-10 animate fadeUp" style={{ animationDelay: "0.8s" }}>Your Success, Our Strategy</h4>
+        <h3 className="font-30 font-normal my-4 lg:my-6 xl:my-10 animate fadeUp" style={{ animationDelay: "0.8s" }}>Your Success, Our Strategy</h3>
         <div className="border border-[#202020] my-4 lg:my-6 xl:my-10 animate line" style={{ animationDelay: "0.8s" }}></div>
         <div className="flex flex-col gap-4 md:flex-row md:text-left items-center justify-between max-w-4xl mx-auto animate fadeUp" style={{ animationDelay: "1s" }}>  
           <p className="max-w-lg">We design, develop, and market high-performing eCommerce websites that drive real growth.</p>

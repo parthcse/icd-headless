@@ -2,7 +2,7 @@ export default function Footer() {
   return (
     <footer className="footer-main bg-black-light pt-space xl:pt-28 bg-[#151515]">
       <div className="container">
-        <h4 className="font-24 mb-[0.8em]">Our Services</h4>
+        <h2 className="font-24 mb-[0.8em]">Our Services</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 pb-space xl:pb-28 gap-4 md:gap-6">
           <ul className="[&_a]:transition [&_a:hover]:text-primary [&_a:hover]:underline grid gap-2 mb-auto animate fadeUp" style={{ animationDelay: "0.1s" }} >
             <li>
@@ -97,7 +97,7 @@ export default function Footer() {
               src="https://www.icecubedigital.com/wp-content/webp-express/webp-images/uploads/2023/08/top-web-development-company.png.webp"
               alt="Top web development company"
             />
-            <h4 className="font-22 mb-2 xl:text-xl leading-tight">Most Trusted Company</h4>
+            <h3 className="font-22 mb-2 xl:text-xl leading-tight">Most Trusted Company</h3>
             <p>Icecube Digital Is Rated As The Top Web Development Company By Good Firms</p>
           </div>
         </div>

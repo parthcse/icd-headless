@@ -148,9 +148,11 @@ export default async function ServicePage({ params }) {
   return (
     <>
       <Header />
-      {order.map((key) => (
-        <Fragment key={key}>{SECTION_RENDERERS[key]?.(data)}</Fragment>
-      ))}
+      <main>
+        {order.map((key) => (
+          <Fragment key={key}>{SECTION_RENDERERS[key]?.(data)}</Fragment>
+        ))}
+      </main>
       <Footer />
     </>
   );

@@ -747,19 +747,50 @@ h6 {
   }
 }
 
+/* Dark text on brand orange: white-on-orange failed WCAG contrast (~2.7:1); #151515-on-orange is ~7:1. */
+
 .btn-primary {
   --tw-border-opacity: 1;
   border-color: rgb(241 126 63 / var(--tw-border-opacity, 1));
   --tw-bg-opacity: 1;
   background-color: rgb(241 126 63 / var(--tw-bg-opacity, 1));
   --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+  color: rgb(21 21 21 / var(--tw-text-opacity, 1));
 }
 
 .btn-primary:hover {
   background-color: transparent;
   --tw-text-opacity: 1;
   color: rgb(241 126 63 / var(--tw-text-opacity, 1));
+}
+
+/* Outline/ghost variant: orange outline + orange text by default (visible on dark sections),
+       fills with orange + dark text on hover. Inverse of .btn-primary. */
+
+.btn-secondary {
+  --tw-border-opacity: 1;
+  border-color: rgb(241 126 63 / var(--tw-border-opacity, 1));
+  background-color: transparent;
+  --tw-text-opacity: 1;
+  color: rgb(241 126 63 / var(--tw-text-opacity, 1));
+}
+
+.btn-secondary:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 126 63 / var(--tw-bg-opacity, 1));
+  --tw-text-opacity: 1;
+  color: rgb(21 21 21 / var(--tw-text-opacity, 1));
+}
+
+/* The call icon is an orange SVG <img>; darken it on hover so it stays visible on the orange fill.
+       Transition the filter to match the button's bg transition (.btn: duration-500 ease-out). */
+
+.btn-secondary img {
+  transition: filter 500ms ease-out;
+}
+
+.btn-secondary:hover img {
+  filter: brightness(0);
 }
 
 .main-title {

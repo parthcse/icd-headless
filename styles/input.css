@@ -56,10 +56,25 @@
         @apply text-base xl:text-[0.9rem] font-semibold py-[0.653em] px-[1.55em] border-2 border-black transition whitespace-nowrap inline-flex items-center gap-[0.27em] justify-center leading-tight transition-all duration-500 ease-out;
     }
 
+    /* Dark text on brand orange: white-on-orange failed WCAG contrast (~2.7:1); #151515-on-orange is ~7:1. */
     .btn-primary {
-        @apply bg-primary border-primary text-white hover:text-primary hover:bg-transparent;
+        @apply bg-primary border-primary text-black-light hover:text-primary hover:bg-transparent;
     }
-    
+
+    /* Outline/ghost variant: orange outline + orange text by default (visible on dark sections),
+       fills with orange + dark text on hover. Inverse of .btn-primary. */
+    .btn-secondary {
+        @apply bg-transparent border-primary text-primary hover:bg-primary hover:text-black-light;
+    }
+    /* The call icon is an orange SVG <img>; darken it on hover so it stays visible on the orange fill.
+       Transition the filter to match the button's bg transition (.btn: duration-500 ease-out). */
+    .btn-secondary img {
+        transition: filter 500ms ease-out;
+    }
+    .btn-secondary:hover img {
+        filter: brightness(0);
+    }
+
     .main-title {
         @apply text-[calc(1.625rem+4.5vw)] xl:text-[7.6rem] font-semibold leading-none;
     }

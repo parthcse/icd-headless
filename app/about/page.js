@@ -19,16 +19,18 @@ export default function AboutPage() {
   return (
     <>
       <Header />
-      <AboutBannerSection />
-      <AboutOurHeartSection />
-      <AboutOurValueSection />
-      <AboutAwardsRecognitionSection />
-      <WhyChooseUsSection />
-      <AboutTeamSection />
-      <AboutOurCultureSection />
-      <HappyCustomersSection />
-      <GetQuoteSection />
-      <WeServeSection />
+      <main>
+        <AboutBannerSection />
+        <AboutOurHeartSection />
+        <AboutOurValueSection />
+        <AboutAwardsRecognitionSection />
+        <WhyChooseUsSection />
+        <AboutTeamSection />
+        <AboutOurCultureSection />
+        <HappyCustomersSection />
+        <GetQuoteSection />
+        <WeServeSection />
+      </main>
       <Footer />
     </>
   );
