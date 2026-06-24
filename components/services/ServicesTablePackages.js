@@ -10,7 +10,7 @@ export default function ServicesTablePackages({ data }) {
         <div className="heading-wrap animate fadeUp">
           <h3 className="font-48">{data.eyebrow}</h3>
           <h2 className="main-title">{data.title}</h2>
-          {data.subtitle && <p className="mx-auto max-w-4xl">{data.subtitle}</p>}
+          {data.subtitle && <p className="mx-auto max-w-5xl">{data.subtitle}</p>}
         </div>
 
         <div className="overflow-x-auto">

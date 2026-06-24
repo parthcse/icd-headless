@@ -151,8 +151,7 @@ html,
   /* 2 */
   -moz-tab-size: 4;
   /* 3 */
-  -o-tab-size: 4;
-     tab-size: 4;
+  tab-size: 4;
   /* 3 */
   font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   /* 4 */
@@ -2120,13 +2119,11 @@ h6 {
 }
 
 .object-contain {
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
 }
 
 .object-cover {
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .p-1 {
@@ -2803,6 +2800,10 @@ html.lenis {
     width: 5rem;
   }
 
+  .sm\:w-\[calc\(50\%_-_12px\)\] {
+    width: calc(50% - 12px);
+  }
+
   .sm\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -3052,6 +3053,18 @@ html.lenis {
 
   .lg\:hidden {
     display: none;
+  }
+
+  .lg\:w-\[calc\(25\%_-_18px\)\] {
+    width: calc(25% - 18px);
+  }
+
+  .lg\:w-\[calc\(33\.333\%_-_16px\)\] {
+    width: calc(33.333% - 16px);
+  }
+
+  .lg\:w-\[calc\(50\%_-_12px\)\] {
+    width: calc(50% - 12px);
   }
 
   .lg\:max-w-2xl {

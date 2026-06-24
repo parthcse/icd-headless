@@ -2,7 +2,7 @@
   opacity: 0;
 }
 
-.wpb_animate.wpb_start {
+.wpb_animate.start {
   opacity: 1;
 }
 
@@ -22,7 +22,7 @@
   }
 }
 
-.wpb_fadeDown.wpb_start {
+.wpb_fadeDown.start {
   animation-name: fadeInDownShort;
 }
 
@@ -37,7 +37,7 @@
   }
 }
 
-.wpb_fadeUp.wpb_start {
+.wpb_fadeUp.start {
   animation-name: fadeInUpShort;
 }
 
@@ -55,7 +55,7 @@
   height: 1px;
 }
 
-.wpb_line.wpb_start {
+.wpb_line.start {
   animation: lineGrow 0.8s ease forwards;
 }
 
@@ -70,7 +70,7 @@
   }
 }
 
-.wpb_fadeLeft.wpb_start {
+.wpb_fadeLeft.start {
   animation-name: fadeInLeftShort;
 }
 
@@ -86,7 +86,7 @@
   }
 }
 
-.wpb_fadeRight.wpb_start {
+.wpb_fadeRight.start {
   animation-name: fadeInRightShort;
 }
 
@@ -101,7 +101,7 @@
   }
 }
 
-.wpb_zoomIn.wpb_start {
+.wpb_zoomIn.start {
   animation-name: zoomInShort;
 }
 
@@ -116,11 +116,11 @@
   }
 }
 
-.wpb_zoomOut.wpb_start {
+.wpb_zoomOut.start {
   animation-name: zoomOutShort;
 }
 
-/* Design folder: "animate fadeUp" etc. — same scroll trigger (.wpb_start) as WPB */
+/* Design folder: "animate fadeUp" etc. — same scroll trigger (.start) as WPB */
 .animate.fadeUp,
 .animate.fadeDown,
 .animate.zoomIn,
@@ -134,35 +134,35 @@
   height: 1px;
 }
 
-.animate.fadeUp.wpb_start {
+.animate.fadeUp.start {
   animation-name: fadeInUpShort;
   animation-duration: 0.5s;
   animation-fill-mode: both;
   animation-timing-function: ease-out;
 }
 
-.animate.fadeDown.wpb_start {
+.animate.fadeDown.start {
   animation-name: fadeInDownShort;
   animation-duration: 0.5s;
   animation-fill-mode: both;
   animation-timing-function: ease-out;
 }
 
-.animate.zoomIn.wpb_start {
+.animate.zoomIn.start {
   animation-name: zoomInShort;
   animation-duration: 0.5s;
   animation-fill-mode: both;
   animation-timing-function: ease-out;
 }
 
-.animate.zoomOut.wpb_start {
+.animate.zoomOut.start {
   animation-name: zoomOutShort;
   animation-duration: 0.5s;
   animation-fill-mode: both;
   animation-timing-function: ease-out;
 }
 
-.animate.line.wpb_start {
+.animate.line.start {
   opacity: 1;
   animation: lineGrow 0.8s ease forwards;
 }

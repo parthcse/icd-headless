@@ -11,23 +11,29 @@ function renderParts(parts) {
 }
 
 export default function ServicesTopIconBoxSection({ data }) {
+  const itemW =
+    data.columns === 4
+      ? "w-full sm:w-[calc(50%_-_12px)] lg:w-[calc(25%_-_18px)]"
+      : data.columns === 2
+      ? "w-full sm:w-[calc(50%_-_12px)]"
+      : "w-full sm:w-[calc(50%_-_12px)] lg:w-[calc(33.333%_-_16px)]";
   return (
     <section className="services-top-icon-box full-section">
       <div className="container">
-        <div className="heading-wrap mx-auto max-w-5xl animate fadeUp start">
+        <div className="heading-wrap animate fadeUp">
           <h3 className="font-48">{data.eyebrow}</h3>
           <h2 className="main-title pb-2">{data.title}</h2>
           {data.subtitles ? (
             data.subtitles.map((p, i) => (
-              <p key={i}>{Array.isArray(p) ? renderParts(p) : p}</p>
+              <p key={i} className="mx-auto max-w-5xl">{Array.isArray(p) ? renderParts(p) : p}</p>
             ))
           ) : data.subtitle ? (
-            <p>{data.subtitle}</p>
+            <p className="mx-auto max-w-5xl">{data.subtitle}</p>
           ) : null}
         </div>
-        <div className={`grid sm:grid-cols-2 ${data.columns === 4 ? "lg:grid-cols-4" : data.columns === 2 ? "lg:grid-cols-2" : "lg:grid-cols-3"} ${data.textAlign === "left" ? "text-left" : "text-center"} gap-6 leading-relaxed`}>
+        <div className={`flex flex-wrap justify-center ${data.textAlign === "left" ? "text-left" : "text-center"} gap-6 leading-relaxed`}>
           {data.items.map((item, i) => (
-            <div key={i} className="bg-black-light py-space-small px-4 md:px-6 xl:px-8">
+            <div key={i} className={`${itemW} bg-black-light py-space-small px-4 md:px-6 xl:px-8`}>
               {item.icon && <img className="max-w-20 mb-6 mx-auto" src={item.icon} alt="" />}
               <h3 className="font-semibold font-22">{item.title}</h3>
               {item.body && <p>{Array.isArray(item.body) ? renderParts(item.body) : item.body}</p>}

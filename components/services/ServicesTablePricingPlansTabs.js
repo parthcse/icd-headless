@@ -32,10 +32,10 @@ export default function ServicesTablePricingPlansTabs({ data }) {
   return (
     <section className="pricing-main full-section">
       <div className="container">
-        <div className="heading-wrap mx-auto max-w-3xl animate fadeUp">
+        <div className="heading-wrap animate fadeUp">
           <h3 className="font-48">{data.eyebrow}</h3>
           <h2 className="main-title">{data.title}</h2>
-          {data.subtitle && <p>{data.subtitle}</p>}
+          {data.subtitle && <p className="mx-auto max-w-5xl">{data.subtitle}</p>}
         </div>
 
         <div className="pricing-tabs flex flex-col md:flex-row gap-2 justify-center mb-space-small font-22 mx-auto max-w-3xl lg:max-w-2xl">

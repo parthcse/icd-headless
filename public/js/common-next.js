@@ -171,7 +171,7 @@ window.icdInitPage = function () {
       function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            entry.target.classList.add("wpb_start");
+            entry.target.classList.add("start");
             animObserver.unobserve(entry.target);
           }
         });
@@ -182,7 +182,7 @@ window.icdInitPage = function () {
     wpbElements.forEach(function (el) {
       var rect = el.getBoundingClientRect();
       if (rect.top < window.innerHeight && rect.bottom > 0) {
-        el.classList.add("wpb_start");
+        el.classList.add("start");
       } else {
         animObserver.observe(el);
       }

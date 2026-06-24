@@ -37,12 +37,12 @@ export default async function ServicesPortfolioSection({ data }) {
   return (
     <section className="services-our-portfolio text-center full-section">
       <div className="container">
-        <div className="heading-wrap max-w-5xl mx-auto animate fadeUp">
+        <div className="heading-wrap animate fadeUp">
           <h3 className="font-48">{data.eyebrow}</h3>
           <h2 className="main-title pb-2">{data.title}</h2>
           {Array.isArray(data.subtitle)
-            ? data.subtitle.map((p, i) => <p key={i}>{p}</p>)
-            : <p>{data.subtitle}</p>}
+            ? data.subtitle.map((p, i) => <p key={i} className="mx-auto max-w-5xl">{p}</p>)
+            : <p className="mx-auto max-w-5xl">{data.subtitle}</p>}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-small leading-normal">
           {portfolioItems.map((item, i) => (

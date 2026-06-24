@@ -11,10 +11,11 @@ function renderParts(parts) {
 }
 
 export default function ServicesLeftIconBoxSection({ data }) {
+  const itemW = data.columns === 1 ? "w-full" : "w-full lg:w-[calc(50%_-_12px)]";
   return (
     <section className="services-left-icon-box full-section">
       <div className="container">
-        <div className="heading-wrap animate fadeUp start">
+        <div className="heading-wrap animate fadeUp">
           <h3 className="font-48">{data.eyebrow}</h3>
           <h2 className="main-title pb-2">{data.title}</h2>
           {Array.isArray(data.subtitle)
@@ -23,9 +24,9 @@ export default function ServicesLeftIconBoxSection({ data }) {
               ))
             : <p className="mx-auto max-w-5xl">{data.subtitle}</p>}
         </div>
-        <div className={`grid ${data.columns === 1 ? "" : "lg:grid-cols-2"} gap-6 leading-relaxed`}>
+        <div className="flex flex-wrap justify-center gap-6 leading-relaxed">
           {data.items.map((item, i) => (
-            <div key={i} className="flex bg-black-light py-space-small px-space-small gap-4 sm:gap-6 md:gap-8 relative">
+            <div key={i} className={`${itemW} flex bg-black-light py-space-small px-space-small gap-4 sm:gap-6 md:gap-8 relative`}>
               <div className="col-img w-14 sm:w-20 flex-shrink-0">
                 <img className="w-full" src={item.icon} alt="" />
               </div>

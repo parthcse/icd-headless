@@ -15,7 +15,7 @@ export default function ServicesProcessStepSection({ data }) {
   return (
     <section className="services-process-step full-section">
       <div className="container">
-        <div className="heading-wrap animate fadeUp start">
+        <div className="heading-wrap animate fadeUp">
           <h3 className="font-48">{data.eyebrow}</h3>
           <h2 className="main-title pb-2">{data.title}</h2>
           {Array.isArray(data.subtitle)

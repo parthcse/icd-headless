@@ -7,7 +7,7 @@ export default function ServicesBannerSection({ data }) {
         <img className="w-full h-full object-cover" aria-hidden="true" src="/assets/photos/home-banner-bg.png" alt="" fetchPriority="high" />
         <span className="bg-black absolute inset-0 bg-opacity-25" />
       </div>
-      <div className="container relative z-10 pt-space-mini mt-8 md:mt-0 xl:pt-0 grid lg:grid-cols-2 gap-space">
+      <div className="container relative z-10 pt-space-mini mt-8 md:mt-0 xl:pt-0 grid lg:grid-cols-2 gap-space items-center">
         <div className="text-box leading-relaxed space-y-5 my-auto animate fadeUp">
           <h1 className="font-48 font-bold leading-tight">{data.heading}</h1>
           {data.paragraphs.map((p, i) => <p key={i}>{p}</p>)}

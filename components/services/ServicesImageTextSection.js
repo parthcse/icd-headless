@@ -29,13 +29,13 @@ export default function ServicesImageTextSection({ data }) {
   return (
     <section className="services-image-text full-section">
       <div className="container">
-        {(data.eyebrow || data.title) && (
+        {(data.eyebrow || data.title || data.subtitle) && (
           <div className="heading-wrap animate fadeUp">
             <h3 className="font-48">{data.eyebrow}</h3>
             <h2 className="main-title pb-2">{data.title}</h2>
+            {data.subtitle && <p className="mx-auto max-w-5xl">{data.subtitle}</p>}
           </div>
         )}
-        {data.subtitle && <p className="text-center max-w-4xl mx-auto pb-10 leading-relaxed">{data.subtitle}</p>}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-space-mini xl:gap-space items-center">
           <figure className={data.imagePosition === "right" ? "lg:order-2" : undefined}>
             <img src={data.image} alt={data.imageAlt} />

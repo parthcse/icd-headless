@@ -11,6 +11,16 @@ function renderParts(parts) {
 }
 
 export default function ServicesInfoBoxSection({ data }) {
+  const gc = data.gridClass;
+  const itemW = gc
+    ? gc.includes("lg:grid-cols-4")
+      ? "w-full sm:w-[calc(50%_-_12px)] lg:w-[calc(25%_-_18px)]"
+      : gc.includes("lg:grid-cols-3")
+      ? "w-full sm:w-[calc(50%_-_12px)] lg:w-[calc(33.333%_-_16px)]"
+      : "w-full sm:w-[calc(50%_-_12px)]"
+    : data.columns === 4
+    ? "w-full sm:w-[calc(50%_-_12px)] lg:w-[calc(25%_-_18px)]"
+    : "w-full sm:w-[calc(50%_-_12px)] lg:w-[calc(33.333%_-_16px)]";
   return (
     <section className="services-infobox full-section">
       <div className="container">
@@ -21,9 +31,9 @@ export default function ServicesInfoBoxSection({ data }) {
             ? data.subtitle.map((p, i) => <p key={i} className="mx-auto max-w-5xl">{Array.isArray(p) ? renderParts(p) : p}</p>)
             : data.subtitle && <p className="mx-auto max-w-5xl">{data.subtitle}</p>}
         </div>
-        <div className={`grid ${data.gridClass || `sm:grid-cols-2 ${data.columns === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`} ${data.textAlign === "left" ? "text-left" : "text-center"} gap-6 leading-relaxed small`}>
+        <div className={`flex flex-wrap justify-center ${data.textAlign === "left" ? "text-left" : "text-center"} gap-6 leading-relaxed small`}>
           {data.items.map((item, i) => (
-            <div key={i} className="bg-black-light p-8">
+            <div key={i} className={`${itemW} bg-black-light p-8`}>
               <h3 className="font-semibold font-22">{item.title}</h3>
               {item.body && <p>{Array.isArray(item.body) ? renderParts(item.body) : item.body}</p>}
               {item.bodyList && (

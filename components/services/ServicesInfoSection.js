@@ -65,7 +65,7 @@ export default function ServicesInfoSection({ data }) {
   return (
     <section className="services-information full-section">
       <div className="container">
-        <div className="heading-wrap animate fadeUp start">
+        <div className="heading-wrap animate fadeUp">
           <h3 className="font-48">{data.eyebrow}</h3>
           <h2 className="main-title pb-2">{data.title}</h2>
         </div>
