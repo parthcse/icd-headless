@@ -1,6 +1,5 @@
-import { getTestimonialNodes } from "../../lib/wp-home-data";
 import { testimonialsArchiveUrl, truncateWords } from "../../lib/wp-text";
-import { mapTestimonialNode } from "../../lib/wp-testimonials";
+import { TESTIMONIALS } from "../../lib/testimonials";
 
 const REVIEW_ARROW_PATH =
   "M0.703125 12.0312C0.494792 12.0312 0.3125 11.9792 0.15625 11.875C0.0520833 11.7188 0 11.5365 0 11.3281C0 11.1198 0.078125 10.9635 0.234375 10.8594L9.6875 1.32812H2.10938C1.90104 1.32812 1.71875 1.27604 1.5625 1.17188C1.45833 1.01562 1.40625 0.859375 1.40625 0.703125C1.40625 0.494792 1.45833 0.338542 1.5625 0.234375C1.71875 0.078125 1.90104 0 2.10938 0H11.3281C11.5365 0 11.6927 0.078125 11.7969 0.234375C11.9531 0.338542 12.0312 0.494792 12.0312 0.703125V9.92188C12.0312 10.1302 11.9531 10.3125 11.7969 10.4688C11.6927 10.5729 11.5365 10.625 11.3281 10.625C11.1198 10.625 10.9375 10.5729 10.7812 10.4688C10.6771 10.3125 10.625 10.1302 10.625 9.92188V2.42188L1.17188 11.875C1.06771 11.9792 0.911458 12.0312 0.703125 12.0312Z";
@@ -26,11 +25,20 @@ function QuoteDecoration() {
   );
 }
 
-export default async function HappyCustomersSection() {
-  const nodes = await getTestimonialNodes();
-  const items = nodes.map(mapTestimonialNode);
+// Flatten a quote (string | array of paragraphs, each string | array of {text}/string parts)
+// to plain text for the truncated slider preview.
+function quoteText(quote) {
+  const paras = Array.isArray(quote) ? quote : [quote];
+  return paras
+    .map((para) =>
+      Array.isArray(para) ? para.map((part) => (typeof part === "string" ? part : part.text)).join("") : para
+    )
+    .join(" ");
+}
 
-  // Only render real testimonials — nothing to show if none are returned.
+export default function HappyCustomersSection() {
+  const items = TESTIMONIALS;
+
   if (items.length === 0) return null;
 
   return (
@@ -43,11 +51,11 @@ export default async function HappyCustomersSection() {
         <div className="home-our-client-slider owl-carousel">
           {items.map((item) => (
             <div
-              key={item.id}
+              key={item.slug}
               className="relative z-20 h-full max-w-72 bg-black-light p-6 leading-normal md:me-5 md:max-w-80 md:p-8 lg:me-8 lg:max-w-96 lg:p-10 xl:max-w-sm xl:p-12 me-4"
             >
               <QuoteDecoration />
-              <p>{truncateWords(item.quote, 32)}</p>
+              <p>{truncateWords(quoteText(item.quote), 32)}</p>
               <div className="mt-auto flex items-center gap-4 pt-4 md:pt-5 lg:pt-6">
                 <img
                   src={item.avatar}

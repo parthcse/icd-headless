@@ -1,5 +1,4 @@
 import Script from "next/script";
-import "./globals.css";
 import RouteHandler from "@/components/common/RouteHandler";
 import SmoothScroll from "@/components/common/SmoothScroll";
 import DeferredStyles from "@/components/common/DeferredStyles";
