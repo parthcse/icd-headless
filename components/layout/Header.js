@@ -229,24 +229,29 @@ export default function Header() {
                   </a>
                   {/* Level 2: the 8 primary services as a vertical list */}
                   <div className="invisible absolute left-0 top-full z-50 -translate-y-2 pt-2 opacity-0 transition duration-200 ease-in-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
-                    <ul className="min-w-56 rounded-lg border border-white/10 bg-black-light/95 py-2 text-base shadow-2xl shadow-black/40 backdrop-blur-md">
-                      {SERVICES_CATEGORIES.map((cat) => (
-                        <li key={cat.label} className="group/cat relative">
-                          <span className="mx-1 flex cursor-pointer items-center justify-between gap-3 rounded-md px-4 py-2.5 transition-colors hover:bg-white/5 hover:text-primary group-hover/cat:bg-white/5 group-hover/cat:text-primary">
-                            {cat.label} <ChevronRight />
-                          </span>
-                          {/* Level 3: flyout with this category's links */}
-                          <div className="invisible absolute left-full top-0 z-50 -translate-x-2 pl-2 opacity-0 transition duration-200 ease-in-out group-hover/cat:visible group-hover/cat:translate-x-0 group-hover/cat:opacity-100 group-focus-within/cat:visible group-focus-within/cat:translate-x-0 group-focus-within/cat:opacity-100">
-                            <ul data-lenis-prevent className="max-h-[80vh] min-w-64 overflow-y-auto overscroll-y-contain rounded-lg border border-white/10 bg-black-light/95 py-2 text-base shadow-2xl shadow-black/40 backdrop-blur-md">
-                              {cat.links.map((link) => (
-                                <li key={link.label}>
-                                  <a href={link.href} className="mx-1 block rounded-md px-4 py-2 text-white/80 transition-colors hover:bg-white/5 hover:text-primary">{link.label}</a>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        </li>
-                      ))}
+                    <ul className="min-w-56 rounded-lg border border-white/10 bg-black-light/[0.98] py-2 text-base shadow-2xl shadow-black/40 backdrop-blur-md">
+                      {SERVICES_CATEGORIES.map((cat, i) => {
+                        // The last category sits lowest; open its flyout upward (bottom-aligned)
+                        // so its long list (White Label) stays within the viewport.
+                        const openUp = i === SERVICES_CATEGORIES.length - 1;
+                        return (
+                          <li key={cat.label} className="group/cat relative">
+                            <span className="mx-1 flex cursor-pointer items-center justify-between gap-3 rounded-md px-4 py-2.5 transition-colors hover:bg-white/5 hover:text-primary group-hover/cat:bg-white/5 group-hover/cat:text-primary">
+                              {cat.label} <ChevronRight />
+                            </span>
+                            {/* Level 3: flyout with this category's links */}
+                            <div className={`invisible absolute left-full z-50 -translate-x-2 pl-2 opacity-0 transition duration-200 ease-in-out group-hover/cat:visible group-hover/cat:translate-x-0 group-hover/cat:opacity-100 group-focus-within/cat:visible group-focus-within/cat:translate-x-0 group-focus-within/cat:opacity-100 ${openUp ? "bottom-0" : "top-0"}`}>
+                              <ul data-lenis-prevent className="max-h-[80vh] min-w-64 overflow-y-auto overscroll-y-contain rounded-lg border border-white/10 bg-black-light/[0.98] py-2 text-base shadow-2xl shadow-black/40 backdrop-blur-md">
+                                {cat.links.map((link) => (
+                                  <li key={link.label}>
+                                    <a href={link.href} className="mx-1 block rounded-md px-4 py-1.5 leading-snug text-white/80 transition-colors hover:bg-white/5 hover:text-primary">{link.label}</a>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
                 </li>
