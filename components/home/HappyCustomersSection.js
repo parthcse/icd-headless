@@ -25,8 +25,6 @@ function QuoteDecoration() {
   );
 }
 
-// Flatten a quote (string | array of paragraphs, each string | array of {text}/string parts)
-// to plain text for the truncated slider preview.
 function quoteText(quote) {
   const paras = Array.isArray(quote) ? quote : [quote];
   return paras
@@ -55,7 +53,7 @@ export default function HappyCustomersSection() {
               className="relative z-20 h-full max-w-72 bg-black-light p-6 leading-normal md:me-5 md:max-w-80 md:p-8 lg:me-8 lg:max-w-96 lg:p-10 xl:max-w-sm xl:p-12 me-4"
             >
               <QuoteDecoration />
-              <p>{truncateWords(quoteText(item.quote), 32)}</p>
+              <p>{truncateWords(quoteText(item.quote), 26)}</p>
               <div className="mt-auto flex items-center gap-4 pt-4 md:pt-5 lg:pt-6">
                 <img
                   src={item.avatar}
