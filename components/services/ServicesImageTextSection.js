@@ -10,13 +10,15 @@ function renderParts(parts) {
   );
 }
 
-function renderParagraph(content, i) {
-  if (!Array.isArray(content)) return <p key={i}>{content}</p>;
+function renderParagraph(content, i, className) {
+  if (!Array.isArray(content)) return <p key={i} className={className}>{content}</p>;
   return (
-    <p key={i}>
+    <p key={i} className={className}>
       {content.map((part, j) =>
         typeof part === "string" ? (
           <Fragment key={j}>{part}</Fragment>
+        ) : part.bold ? (
+          <strong key={j} className="font-semibold">{part.bold}</strong>
         ) : (
           <a key={j} href={part.href} className="text-primary font-semibold inline underline">{part.text}</a>
         )
@@ -58,7 +60,7 @@ export default function ServicesImageTextSection({ data }) {
                       ))}
                     </ul>
                   ) : (
-                    renderParagraph(block.text, i)
+                    renderParagraph(block.text, i, block.strong ? "font-semibold" : undefined)
                   )
                 )
               : (

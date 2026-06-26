@@ -18,6 +18,8 @@ export default function ServicesInfoBoxSection({ data }) {
       : gc.includes("lg:grid-cols-3")
       ? "w-full sm:w-[calc(50%_-_12px)] lg:w-[calc(33.333%_-_16px)]"
       : "w-full sm:w-[calc(50%_-_12px)]"
+    : data.columns === 2
+    ? "w-full sm:w-[calc(50%_-_12px)] lg:w-[calc(50%_-_12px)]"
     : data.columns === 4
     ? "w-full sm:w-[calc(50%_-_12px)] lg:w-[calc(25%_-_18px)]"
     : "w-full sm:w-[calc(50%_-_12px)] lg:w-[calc(33.333%_-_16px)]";
