@@ -1,6 +1,25 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const BTN_ARROW = "M0.703125 12.0312C0.494792 12.0312 0.3125 11.9792 0.15625 11.875C0.0520833 11.7188 0 11.5365 0 11.3281C0 11.1198 0.078125 10.9635 0.234375 10.8594L9.6875 1.32812H2.10938C1.90104 1.32812 1.71875 1.27604 1.5625 1.17188C1.45833 1.01562 1.40625 0.859375 1.40625 0.703125C1.40625 0.494792 1.45833 0.338542 1.5625 0.234375C1.71875 0.078125 1.90104 0 2.10938 0H11.3281C11.5365 0 11.6927 0.078125 11.7969 0.234375C11.9531 0.338542 12.0312 0.494792 12.0312 0.703125V9.92188C12.0312 10.1302 11.9531 10.3125 11.7969 10.4688C11.6927 10.5729 11.5365 10.625 11.3281 10.625C11.1198 10.625 10.9375 10.5729 10.7812 10.4688C10.6771 10.3125 10.625 10.1302 10.625 9.92188V2.42188L1.17188 11.875C1.06771 11.9792 0.911458 12.0312 0.703125 12.0312Z";
+
+/* ── Active-nav helpers ───────────────────────────────────────────────────
+   Compare the current route to each link href so the open page (and its
+   parent submenu + top-level menu) highlight, like a typical site nav.
+   ────────────────────────────────────────────────────────────────────────── */
+const normPath = (p) => {
+  const clean = (p || "/").split(/[?#]/)[0];
+  return clean.replace(/\/+$/, "") || "/";
+};
+const isLinkActive = (href, current) =>
+  typeof href === "string" && href.startsWith("/") && normPath(href) === current;
+const isGroupActive = (links, current) =>
+  Array.isArray(links) && links.some((l) => isLinkActive(l.href, current));
+const areItemsActive = (items, current) =>
+  Array.isArray(items) &&
+  items.some((it) => (it.links ? isGroupActive(it.links, current) : isLinkActive(it.href, current)));
 
 const ChevronDown = () => (
   <svg className="h-[1em] w-[1em] shrink-0 transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -194,20 +213,22 @@ const MOB_RESOURCE_SUBPANELS = RESOURCES_NAV.filter((it) => it.links);
 /* ── Desktop dropdown components ─────────────────────────────────────────── */
 
 const PANEL_UL = "rounded-lg border border-white/10 bg-black-light py-2 text-base shadow-lg";
-const PANEL_LINK = "mx-1 block whitespace-nowrap rounded-md px-4 py-1.5 leading-snug text-white/80 transition-colors hover:bg-white/5 hover:text-primary";
+const PANEL_LINK_BASE = "mx-1 block whitespace-nowrap rounded-md px-4 py-1.5 leading-snug transition-colors hover:bg-white/5";
+const panelLink = (active) => `${PANEL_LINK_BASE} ${active ? "text-primary font-medium" : "text-white/80 hover:text-primary"}`;
 
 // Simple one-level dropdown (Company, Industry, Our Work).
-function NavDropdown({ label, links }) {
+function NavDropdown({ label, links, current }) {
+  const active = isGroupActive(links, current);
   return (
     <li className="group relative flex items-center self-stretch">
-      <a href="#" className="flex cursor-pointer items-center gap-1 transition group-hover:text-primary">
+      <a href="#" className={`flex cursor-pointer items-center gap-1 transition group-hover:text-primary${active ? " text-primary" : ""}`}>
         {label} <ChevronDown />
       </a>
       <div className="invisible absolute left-0 top-full z-50 -translate-y-2 pt-4 xl:pt-6 opacity-0 transition duration-200 ease-in-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
         <ul className={`min-w-56 ${PANEL_UL}`}>
           {links.map((link) => (
             <li key={link.label}>
-              <a href={link.href} className={PANEL_LINK}>{link.label}</a>
+              <a href={link.href} className={panelLink(isLinkActive(link.href, current))}>{link.label}</a>
             </li>
           ))}
         </ul>
@@ -217,11 +238,12 @@ function NavDropdown({ label, links }) {
 }
 
 // Two-level dropdown (Services, Resources). Items may be direct links or have a flyout.
-function NavNestedDropdown({ label, items, flyoutSide = "right" }) {
+function NavNestedDropdown({ label, items, flyoutSide = "right", current }) {
   const flyoutPos = flyoutSide === "left" ? "right-full translate-x-2 pr-2" : "left-full -translate-x-2 pl-2";
+  const active = areItemsActive(items, current);
   return (
     <li className="group relative flex items-center self-stretch">
-      <a href="#" className="flex cursor-pointer items-center gap-1 transition group-hover:text-primary">
+      <a href="#" className={`flex cursor-pointer items-center gap-1 transition group-hover:text-primary${active ? " text-primary" : ""}`}>
         {label} <ChevronDown />
       </a>
       <div className="invisible absolute left-0 top-full z-50 -translate-y-2 pt-4 xl:pt-6 opacity-0 transition duration-200 ease-in-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
@@ -230,22 +252,24 @@ function NavNestedDropdown({ label, items, flyoutSide = "right" }) {
             // The lowest item with a flyout opens upward so a long list stays in-viewport.
             const openUp = i === items.length - 1;
             if (!item.links) {
+              const itemActive = isLinkActive(item.href, current);
               return (
                 <li key={item.label}>
-                  <a href={item.href} className="mx-1 block whitespace-nowrap rounded-md px-4 py-2.5 leading-snug transition-colors hover:bg-white/5 hover:text-primary">{item.label}</a>
+                  <a href={item.href} className={`mx-1 block whitespace-nowrap rounded-md px-4 py-2.5 leading-snug transition-colors hover:bg-white/5 ${itemActive ? "text-primary font-medium" : "hover:text-primary"}`}>{item.label}</a>
                 </li>
               );
             }
+            const catActive = isGroupActive(item.links, current);
             return (
               <li key={item.label} className="group/cat relative">
-                <span className="mx-1 flex cursor-pointer items-center justify-between gap-3 whitespace-nowrap rounded-md px-4 py-2.5 transition-colors hover:bg-white/5 hover:text-primary group-hover/cat:bg-white/5 group-hover/cat:text-primary">
+                <span className={`mx-1 flex cursor-pointer items-center justify-between gap-3 whitespace-nowrap rounded-md px-4 py-2.5 transition-colors hover:bg-white/5 hover:text-primary group-hover/cat:bg-white/5 group-hover/cat:text-primary${catActive ? " text-primary" : ""}`}>
                   {item.label} <ChevronRight />
                 </span>
                 <div className={`invisible absolute z-50 opacity-0 transition duration-200 ease-in-out group-hover/cat:visible group-hover/cat:translate-x-0 group-hover/cat:opacity-100 group-focus-within/cat:visible group-focus-within/cat:translate-x-0 group-focus-within/cat:opacity-100 ${flyoutPos} ${openUp ? "bottom-[-9px]" : "top-0"}`}>
                   <ul data-lenis-prevent className={`max-h-[80vh] w-max overflow-y-auto overscroll-y-contain ${PANEL_UL}`}>
                     {item.links.map((link) => (
                       <li key={link.label}>
-                        <a href={link.href} className={PANEL_LINK}>{link.label}</a>
+                        <a href={link.href} className={panelLink(isLinkActive(link.href, current))}>{link.label}</a>
                       </li>
                     ))}
                   </ul>
@@ -271,14 +295,14 @@ const MOB_LINK = "block px-5 py-4 hover:text-primary transition-colors";
 const MOB_SUB_BTN = "open-sub w-full flex items-center justify-between px-5 py-4 text-white font-medium hover:text-primary transition-colors text-left";
 
 // A leaf panel: a back header + a flat list of links.
-function MobLinkPanel({ id, label, links }) {
+function MobLinkPanel({ id, label, links, current }) {
   return (
     <div id={id} className="mob-panel level-2">
       {MOB_HEAD(label)}
       <ul>
         {links.map((link) => (
           <li key={link.label} className="border-b border-white/10">
-            <a href={link.href} className={MOB_LINK}>{link.label}</a>
+            <a href={link.href} className={`${MOB_LINK}${isLinkActive(link.href, current) ? " text-primary" : ""}`}>{link.label}</a>
           </li>
         ))}
       </ul>
@@ -287,6 +311,15 @@ function MobLinkPanel({ id, label, links }) {
 }
 
 export default function Header() {
+  const current = normPath(usePathname());
+
+  const companyActive = isGroupActive(COMPANY_LINKS, current);
+  const servicesActive = areItemsActive(SERVICES_CATEGORIES, current);
+  const industryActive = isGroupActive(INDUSTRY_LINKS, current);
+  const ourWorkActive = isGroupActive(OUR_WORK_LINKS, current);
+  const resourcesActive = areItemsActive(RESOURCES_ITEMS, current);
+  const contactActive = isLinkActive("/contact-us/", current);
+
   return (
     <>
       <header className="header-main w-full fixed top-0 left-0 z-50 py-4 xl:py-6 transition-all duration-300 animate fadeDown">
@@ -303,12 +336,12 @@ export default function Header() {
             {/* Desktop Menu */}
             <nav className="hidden self-stretch lg:flex">
               <ul className="flex items-center self-stretch gap-8 xl:gap-9 text-lg">
-                <NavDropdown label="Company" links={COMPANY_LINKS} />
-                <NavNestedDropdown label="Services" items={SERVICES_CATEGORIES} />
-                <NavDropdown label="Industry" links={INDUSTRY_LINKS} />
-                <NavDropdown label="Our Work" links={OUR_WORK_LINKS} />
-                <NavNestedDropdown label="Resources" items={RESOURCES_ITEMS} flyoutSide="left" />
-                <li className="flex items-center self-stretch"><a href="/contact-us/" className="hover:text-primary transition">Contact Us</a></li>
+                <NavDropdown label="Company" links={COMPANY_LINKS} current={current} />
+                <NavNestedDropdown label="Services" items={SERVICES_CATEGORIES} current={current} />
+                <NavDropdown label="Industry" links={INDUSTRY_LINKS} current={current} />
+                <NavDropdown label="Our Work" links={OUR_WORK_LINKS} current={current} />
+                <NavNestedDropdown label="Resources" items={RESOURCES_ITEMS} flyoutSide="left" current={current} />
+                <li className="flex items-center self-stretch"><a href="/contact-us/" className={`transition ${contactActive ? "text-primary" : "hover:text-primary"}`}>Contact Us</a></li>
               </ul>
             </nav>
 
@@ -356,32 +389,32 @@ export default function Header() {
           </div>
           <ul className="font-medium">
             <li className="border-b border-white/10">
-              <button className="open-sub w-full flex items-center justify-between px-5 py-4 hover:text-primary transition-colors text-left" data-panel="mob-panel-company">
+              <button className={`open-sub w-full flex items-center justify-between px-5 py-4 hover:text-primary transition-colors text-left${companyActive ? " text-primary" : ""}`} data-panel="mob-panel-company">
                 Company <ChevronRight />
               </button>
             </li>
             <li className="border-b border-white/10">
-              <button className="open-sub w-full flex items-center justify-between px-5 py-4 hover:text-primary transition-colors text-left" data-panel="mob-panel-services">
+              <button className={`open-sub w-full flex items-center justify-between px-5 py-4 hover:text-primary transition-colors text-left${servicesActive ? " text-primary" : ""}`} data-panel="mob-panel-services">
                 Services <ChevronRight />
               </button>
             </li>
             <li className="border-b border-white/10">
-              <button className="open-sub w-full flex items-center justify-between px-5 py-4 hover:text-primary transition-colors text-left" data-panel="mob-panel-industry">
+              <button className={`open-sub w-full flex items-center justify-between px-5 py-4 hover:text-primary transition-colors text-left${industryActive ? " text-primary" : ""}`} data-panel="mob-panel-industry">
                 Industry <ChevronRight />
               </button>
             </li>
             <li className="border-b border-white/10">
-              <button className="open-sub w-full flex items-center justify-between px-5 py-4 hover:text-primary transition-colors text-left" data-panel="mob-panel-ourwork">
+              <button className={`open-sub w-full flex items-center justify-between px-5 py-4 hover:text-primary transition-colors text-left${ourWorkActive ? " text-primary" : ""}`} data-panel="mob-panel-ourwork">
                 Our Work <ChevronRight />
               </button>
             </li>
             <li className="border-b border-white/10">
-              <button className="open-sub w-full flex items-center justify-between px-5 py-4 hover:text-primary transition-colors text-left" data-panel="mob-panel-resources">
+              <button className={`open-sub w-full flex items-center justify-between px-5 py-4 hover:text-primary transition-colors text-left${resourcesActive ? " text-primary" : ""}`} data-panel="mob-panel-resources">
                 Resources <ChevronRight />
               </button>
             </li>
             <li className="border-b border-white/10">
-              <a href="/contact-us/" className="flex items-center justify-between px-5 py-4 hover:text-primary transition-colors">Contact Us</a>
+              <a href="/contact-us/" className={`flex items-center justify-between px-5 py-4 hover:text-primary transition-colors${contactActive ? " text-primary" : ""}`}>Contact Us</a>
             </li>
             <li className="px-5 py-4">
               <a href="#" className="btn btn-primary w-full">
@@ -396,7 +429,7 @@ export default function Header() {
 
         {/* Simple leaf panels: Company, Industry, Our Work */}
         {MOB_SIMPLE_PANELS.map((panel) => (
-          <MobLinkPanel key={panel.id} id={panel.id} label={panel.label} links={panel.links} />
+          <MobLinkPanel key={panel.id} id={panel.id} label={panel.label} links={panel.links} current={current} />
         ))}
 
         {/* PANEL 2: Services — sub-group buttons */}
@@ -404,7 +437,7 @@ export default function Header() {
           {MOB_HEAD("Services")}
           {MOB_SERVICE_PANELS.map((panel) => (
             <div key={panel.id} className="border-b border-white/10">
-              <button className={MOB_SUB_BTN} data-panel={panel.id}>
+              <button className={`${MOB_SUB_BTN}${isGroupActive(panel.links, current) ? " text-primary" : ""}`} data-panel={panel.id}>
                 {panel.label} <ChevronRight />
               </button>
             </div>
@@ -412,7 +445,7 @@ export default function Header() {
         </div>
         {/* Service category leaf panels */}
         {MOB_SERVICE_PANELS.map((panel) => (
-          <MobLinkPanel key={panel.id} id={panel.id} label={panel.label} links={panel.links} />
+          <MobLinkPanel key={panel.id} id={panel.id} label={panel.label} links={panel.links} current={current} />
         ))}
 
         {/* PANEL 2: Resources — mix of sub-groups and direct links */}
@@ -422,11 +455,11 @@ export default function Header() {
             {RESOURCES_NAV.map((item) => (
               <li key={item.label} className="border-b border-white/10">
                 {item.links ? (
-                  <button className={MOB_SUB_BTN} data-panel={item.id}>
+                  <button className={`${MOB_SUB_BTN}${isGroupActive(item.links, current) ? " text-primary" : ""}`} data-panel={item.id}>
                     {item.label} <ChevronRight />
                   </button>
                 ) : (
-                  <a href={item.href} className={MOB_LINK}>{item.label}</a>
+                  <a href={item.href} className={`${MOB_LINK}${isLinkActive(item.href, current) ? " text-primary" : ""}`}>{item.label}</a>
                 )}
               </li>
             ))}
@@ -434,7 +467,7 @@ export default function Header() {
         </div>
         {/* Resources sub-group leaf panels (Our Approach, Pricing Guides) */}
         {MOB_RESOURCE_SUBPANELS.map((panel) => (
-          <MobLinkPanel key={panel.id} id={panel.id} label={panel.label} links={panel.links} />
+          <MobLinkPanel key={panel.id} id={panel.id} label={panel.label} links={panel.links} current={current} />
         ))}
 
       </div>

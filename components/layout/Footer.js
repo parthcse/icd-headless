@@ -1,96 +1,81 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+
+const normPath = (p) => {
+  const clean = (p || "/").split(/[?#]/)[0];
+  return clean.replace(/\/+$/, "") || "/";
+};
+
+/* Footer service columns — data-driven so the active page can highlight. */
+const SERVICE_COLUMNS = [
+  [
+    { label: "ECommerce Website Design", href: "/ecommerce-website-design-services/" },
+    { label: "ECommerce Web Development", href: "/ecommerce-website-development-services/" },
+    { label: "Hire eCommerce Developers", href: "/hire-ecommerce-designers-developers/" },
+    { label: "Magento 2 Upgrade", href: "/magento-2-upgrade-and-migration-services/" },
+    { label: "Magento Development", href: "/magento-development-services/" },
+    { label: "Hire Magento Developers", href: "/hire-magento-2-developers-programmers/" },
+    { label: "Magento 2 Development", href: "/magento-2-development-services/" },
+    { label: "Technical SEO Services", href: "#" },
+    { label: "Hire ReactJS Developers", href: "#" },
+  ],
+  [
+    { label: "Shopify Development", href: "/shopify-development-services/" },
+    { label: "Hire Shopify Developers", href: "/hire-shopify-developers-experts/" },
+    { label: "Woocommerce Development", href: "/woocommerce-development-services/" },
+    { label: "Hire Woocommerce Developers", href: "/hire-woocommerce-developers-experts/" },
+    { label: "WordPress Development", href: "/wordpress-development-services/" },
+    { label: "Hire WordPress Developers", href: "/hire-wordpress-developers-designers/" },
+    { label: "Custom PHP Development", href: "#" },
+    { label: "Local SEO Services", href: "#" },
+    { label: "Hire Next.js Developers", href: "#" },
+  ],
+  [
+    { label: "PPC Management", href: "/ppc-management-services/" },
+    { label: "Magento SEO Services", href: "/magento-seo-services/" },
+    { label: "Shopify SEO Service", href: "/shopify-seo-service/" },
+    { label: "WordPress SEO Service", href: "/wordpress-seo-service/" },
+    { label: "Professional SEO Service", href: "/seo-search-engine-optimization/" },
+    { label: "Digital Marketing Service", href: "/digital-marketing-service/" },
+    { label: "Email Marketing Service", href: "/email-marketing-company/" },
+    { label: "On Page SEO Services", href: "#" },
+    { label: "Hire NodeJS Developers", href: "#" },
+  ],
+];
+
+const BOTTOM_LINKS = [
+  { label: "Home", href: "/" },
+  { label: "Our Portfolio", href: "#" },
+  { label: "Testimonial", href: "#" },
+  { label: "Our Blog", href: "#" },
+  { label: "Sitemap", href: "#" },
+  { label: "Scam Alert", href: "#" },
+  { label: "Privacy", href: "#" },
+];
+
 export default function Footer() {
+  const current = normPath(usePathname());
+  const isActive = (href) => typeof href === "string" && href.startsWith("/") && normPath(href) === current;
+
   return (
     <footer className="footer-main bg-black-light pt-space xl:pt-28 bg-[#151515]">
       <div className="container">
         <h2 className="font-24 mb-[0.8em]">Our Services</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 pb-space xl:pb-28 gap-4 md:gap-6">
-          <ul className="[&_a]:transition [&_a:hover]:text-primary [&_a:hover]:underline grid gap-2 mb-auto animate fadeUp" style={{ animationDelay: "0.1s" }} >
-            <li>
-              <a href="/ecommerce-website-design-services/">ECommerce Website Design</a>
-            </li>
-            <li>
-              <a href="/ecommerce-website-development-services/">ECommerce Web Development</a>
-            </li>
-            <li>
-              <a href="/hire-ecommerce-designers-developers/">Hire eCommerce Developers</a>
-            </li>
-            <li>
-              <a href="/magento-2-upgrade-and-migration-services/">Magento 2 Upgrade</a>
-            </li>
-            <li>
-              <a href="/magento-development-services/">Magento Development</a>
-            </li>
-            <li>
-              <a href="/hire-magento-2-developers-programmers/">Hire Magento Developers</a>
-            </li>
-            <li>
-              <a href="/magento-2-development-services/">Magento 2 Development</a>
-            </li>
-            <li>
-              <a href="#">Technical SEO Services</a>
-            </li>
-            <li>
-              <a href="#">Hire ReactJS Developers</a>
-            </li>
-          </ul>
-          <ul className="[&_a]:transition [&_a:hover]:text-primary [&_a:hover]:underline grid gap-2 mb-auto animate fadeUp" style={{ animationDelay: "0.2s" }}>
-            <li>
-              <a href="/shopify-development-services/">Shopify Development</a>
-            </li>
-            <li>
-              <a href="/hire-shopify-developers-experts/">Hire Shopify Developers</a>
-            </li>
-            <li>
-              <a href="/woocommerce-development-services/">Woocommerce Development</a>
-            </li>
-            <li>
-              <a href="/hire-woocommerce-developers-experts/">Hire Woocommerce Developers</a>
-            </li>
-            <li>
-              <a href="/wordpress-development-services/">WordPress Development</a>
-            </li>
-            <li>
-              <a href="/hire-wordpress-developers-designers/">Hire WordPress Developers</a>
-            </li>
-            <li>
-              <a href="#">Custom PHP Development</a>
-            </li>
-            <li>
-              <a href="#">Local SEO Services</a>
-            </li>
-            <li>
-              <a href="#">Hire Next.js Developers</a>
-            </li>
-          </ul>
-          <ul className="[&_a]:transition [&_a:hover]:text-primary [&_a:hover]:underline grid gap-2 mb-auto animate fadeUp" style={{ animationDelay: "0.3s" }}>
-            <li>
-              <a href="/ppc-management-services/">PPC Management</a>
-            </li>
-            <li>
-              <a href="/magento-seo-services/">Magento SEO Services</a>
-            </li>
-            <li>
-              <a href="/shopify-seo-service/">Shopify SEO Service</a>
-            </li>
-            <li>
-              <a href="/wordpress-seo-service/">WordPress SEO Service</a>
-            </li>
-            <li>
-              <a href="/seo-search-engine-optimization/">Professional SEO Service</a>
-            </li>
-            <li>
-              <a href="/digital-marketing-service/">Digital Marketing Service</a>
-            </li>
-            <li>
-              <a href="/email-marketing-company/">Email Marketing Service</a>
-            </li>
-            <li>
-              <a href="#">On Page SEO Services</a>
-            </li>
-            <li>
-              <a href="#">Hire NodeJS Developers</a>
-            </li>
-          </ul>
+          {SERVICE_COLUMNS.map((column, i) => (
+            <ul
+              key={i}
+              className="[&_a]:transition [&_a:hover]:text-primary [&_a:hover]:underline grid gap-2 mb-auto animate fadeUp"
+              style={{ animationDelay: `0.${i + 1}s` }}
+            >
+              {column.map((link) => (
+                <li key={link.label}>
+                  <a href={link.href} className={isActive(link.href) ? "text-primary underline" : undefined}>{link.label}</a>
+                </li>
+              ))}
+            </ul>
+          ))}
           <div className="footer-trusted bg-[#0f0f0f] text-center p-5 xl:p-6 animate fadeUp" style={{ animationDelay: "0.4s" }}>
             <img
               className="mx-auto mb-3 max-w-28"
@@ -104,33 +89,12 @@ export default function Footer() {
         <div className="border-t border-white/10 pt-space-mini xl:pt-10 pb-space-mini xl:pb-10 text-center gap-4 flex flex-col lg:flex-row lg:text-left">
           <div className="text-white/60 grid gap-2">
             <ul className="[&_a]:transition [&_a]:text-white [&_a:hover]:text-primary flex flex-wrap items-center gap-2 justify-center">
-              <li>
-                <a href="/">Home</a>
-              </li>
-              <li>|</li>
-              <li>
-                <a href="#">Our Portfolio</a>
-              </li>
-              <li>|</li>
-              <li>
-                <a href="#">Testimonial</a>
-              </li>
-              <li>|</li>
-              <li>
-                <a href="#">Our Blog</a>
-              </li>
-              <li>|</li>
-              <li>
-                <a href="#">Sitemap</a>
-              </li>
-              <li>|</li>
-              <li>
-                <a href="#">Scam Alert</a>
-              </li>
-              <li>|</li>
-              <li>
-                <a href="#">Privacy</a>
-              </li>
+              {BOTTOM_LINKS.map((link, i) => (
+                <li key={link.label} className="flex items-center gap-2">
+                  {i > 0 && <span aria-hidden="true">|</span>}
+                  <a href={link.href} className={isActive(link.href) ? "!text-primary" : undefined}>{link.label}</a>
+                </li>
+              ))}
             </ul>
             <small>Copyright © 2026 Icecube Digital. All rights reserved.</small>
           </div>
