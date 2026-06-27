@@ -41,7 +41,7 @@ export default function ServicesProcessStepSection({ data }) {
                   {step.body && <p>{Array.isArray(step.body) ? renderParts(step.body) : step.body}</p>}
                   {step.bodyList && (
                     <ul className="list-disc pl-5 space-y-1">
-                      {step.bodyList.map((li, j) => <li key={j}>{li}</li>)}
+                      {step.bodyList.map((li, j) => <li key={j}>{Array.isArray(li) ? renderParts(li) : li}</li>)}
                     </ul>
                   )}
                   {step.bodyAfter && <p>{Array.isArray(step.bodyAfter) ? renderParts(step.bodyAfter) : step.bodyAfter}</p>}

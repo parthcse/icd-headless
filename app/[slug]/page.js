@@ -85,6 +85,8 @@ const SECTION_RENDERERS = {
     data.tablePricingPlansTabs && <ServicesTablePricingPlansTabs data={data.tablePricingPlansTabs} />,
   tableSeoPlans: (data) => data.tableSeoPlans && <ServicesTableSeoPlans data={data.tableSeoPlans} />,
   tableBasic: (data) => data.tableBasic && <ServicesTableBasic data={data.tableBasic} />,
+  tableBasicSecondary: (data) => data.tableBasicSecondary && <ServicesTableBasic data={data.tableBasicSecondary} />,
+  tableBasicTertiary: (data) => data.tableBasicTertiary && <ServicesTableBasic data={data.tableBasicTertiary} />,
   tablePackages: (data) => data.tablePackages && <ServicesTablePackages data={data.tablePackages} />,
   tablePricingPlans: (data) => data.tablePricingPlans && <ServicesTablePricingPlans data={data.tablePricingPlans} />,
   seoAuditForm: (data) => data.seoAuditForm && <ServicesSeoAuditFormSection data={data.seoAuditForm} />,

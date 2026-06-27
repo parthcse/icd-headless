@@ -54,6 +54,18 @@ export default function ServicesCheckListSection({ data }) {
             ))}
           </div>
         )}
+        {data.ctaLabel && (
+          <div className="btn-wrap pt-space-mini text-center">
+            <a href={data.ctaHref || "#"} className="btn btn-primary">
+              {data.ctaLabel}
+              {data.btnArrow && (
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor">
+                  <path d={data.btnArrow} />
+                </svg>
+              )}
+            </a>
+          </div>
+        )}
       </div>
     </section>
   );
