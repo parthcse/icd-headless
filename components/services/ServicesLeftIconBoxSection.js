@@ -43,6 +43,9 @@ export default function ServicesLeftIconBoxSection({ data }) {
             </div>
           ))}
         </div>
+        {data.footerNote && (
+          <p className="text-center max-w-4xl mx-auto mt-10 leading-relaxed">{data.footerNote}</p>
+        )}
         {data.ctaLabel && (
           <div className="btn-wrap pt-space-mini text-center">
             <a href={data.ctaHref || "#"} className="btn btn-primary">

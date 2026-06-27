@@ -1,6 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { Fragment, useState } from "react";
+
+function renderParts(parts) {
+  return parts.map((part, i) =>
+    typeof part === "string" ? (
+      <Fragment key={i}>{part}</Fragment>
+    ) : part.bold ? (
+      <strong key={i} className="font-semibold">{part.bold}</strong>
+    ) : (
+      <a key={i} href={part.href} className="text-primary font-semibold inline underline">{part.text}</a>
+    )
+  );
+}
 
 export default function ServicesFaqSection({ data }) {
   const [openIndex, setOpenIndex] = useState(0);
@@ -41,7 +53,7 @@ export default function ServicesFaqSection({ data }) {
                       <div className="rich-answer space-y-3" dangerouslySetInnerHTML={{ __html: faq.answerHtml }} />
                     ) : (
                       <>
-                        {faq.answer && <p>{faq.answer}</p>}
+                        {faq.answer && <p>{Array.isArray(faq.answer) ? renderParts(faq.answer) : faq.answer}</p>}
                         {faq.answerList && (
                           <ul className="list-disc pl-5 space-y-1">
                             {faq.answerList.map((item, j) => <li key={j}>{item}</li>)}
