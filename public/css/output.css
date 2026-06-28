@@ -1323,6 +1323,10 @@ h6 {
   position: relative;
 }
 
+.sticky {
+  position: sticky;
+}
+
 .inset-0 {
   inset: 0px;
 }
@@ -1575,6 +1579,10 @@ h6 {
 
 .aspect-\[260\/170\] {
   aspect-ratio: 260/170;
+}
+
+.aspect-\[3\/2\] {
+  aspect-ratio: 3/2;
 }
 
 .aspect-\[433\/250\] {

@@ -1,14 +1,13 @@
 import { gql } from "@apollo/client";
 
-/**
- * Case study CPT: caseStudy / caseStudies
- * Card description = stripped `content`. Button = `uri` (permalink).
- */
+// Home case studies. Pass `in` (array of database IDs) to hand-pick a set;
+// omit it (null) to fall back to the latest `first` by date.
 export const CASE_STUDIES_QUERY = gql`
-  query CaseStudiesForHome($first: Int = 12) {
-    caseStudies(first: $first, where: { orderby: { field: DATE, order: DESC } }) {
+  query CaseStudiesForHome($first: Int = 6, $in: [ID!]) {
+    caseStudies(first: $first, where: { in: $in, orderby: { field: DATE, order: DESC } }) {
       nodes {
         id
+        databaseId
         title
         content
         uri

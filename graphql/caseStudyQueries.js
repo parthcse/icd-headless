@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
-export const PORTFOLIO_BY_IDS_QUERY = gql`
-  query PortfolioByIds($in: [ID!]) {
-    portfolios(first: 3, where: { in: $in }) {
+export const CASE_STUDY_BY_IDS_QUERY = gql`
+  query CaseStudiesByIds($in: [ID!]) {
+    caseStudies(first: 3, where: { in: $in }) {
       nodes {
         id
         databaseId
@@ -13,14 +13,14 @@ export const PORTFOLIO_BY_IDS_QUERY = gql`
             altText
           }
         }
-        portfolioFields {
-          portfolioMetrics {
+        caseStudiesFields {
+          caseStudyMetrics {
             metricsValue
             metricsLabel
           }
-          portfolioShortDescription
-          portfolioAuthorName
-          portfolioAuthorDesignation
+          caseStudyShortDescription
+          caseStudyAuthorName
+          caseStudyAuthorDesignation
         }
       }
     }

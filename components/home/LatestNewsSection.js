@@ -30,9 +30,14 @@ export default async function LatestNewsSection() {
         >
           {posts.map((post, index) => (
             <div key={post.id} className="column bg-black-light animate fadeUp" style={{ animationDelay: `${(index) * 0.1}s` }}>
-              <a href={post.href} className="block text-inherit no-underline">
-                <figure>
-                  <img src={post.image} alt={post.imageAlt} style={{ opacity: 1 }} />
+              <a href={post.href} className="group block text-inherit no-underline">
+                <figure className="overflow-hidden">
+                  <img
+                    src={post.image}
+                    alt={post.imageAlt}
+                    style={{ opacity: 1 }}
+                    className="w-full transition-all duration-500 group-hover:scale-105 ease-out"
+                  />
                 </figure>
                 <div className="px-space-small py-space-small">
                   <h2 className="font-22 pb-2 font-bold">{post.title}</h2>

@@ -10,6 +10,7 @@ import WeServeSection from "@/components/home/WeServeSection";
 import ServicesBannerSection from "@/components/services/ServicesBannerSection";
 import ServicesAchievementsSection from "@/components/services/ServicesAchievementsSection";
 import ServicesPortfolioSection from "@/components/services/ServicesPortfolioSection";
+import ServicesCaseStudySection from "@/components/services/ServicesCaseStudySection";
 import ServicesCheckListSection from "@/components/services/ServicesCheckListSection";
 import ServicesImageTextSection from "@/components/services/ServicesImageTextSection";
 import ServicesInfoBoxSection from "@/components/services/ServicesInfoBoxSection";
@@ -47,6 +48,7 @@ const SECTION_RENDERERS = {
   achievements: (data) => data.achievements && <ServicesAchievementsSection data={data.achievements} />,
   testimonials: (data) => data.testimonials && <ServicesTestimonialSection data={data.testimonials} />,
   portfolio: (data) => data.portfolio && <ServicesPortfolioSection data={data.portfolio} />,
+  caseStudy: (data) => data.caseStudy && <ServicesCaseStudySection data={data.caseStudy} />,
   getQuote: () => <GetQuoteSection />,
   getQuoteSecondary: (data) => data.getQuoteSecondary && <GetQuoteSection />,
   plainText: (data) => data.plainText && <ServicesPlainTextSection data={data.plainText} />,
