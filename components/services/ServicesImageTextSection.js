@@ -4,6 +4,8 @@ function renderParts(parts) {
   return parts.map((part, i) =>
     typeof part === "string" ? (
       <Fragment key={i}>{part}</Fragment>
+    ) : part.bold ? (
+      <strong key={i} className="font-semibold">{part.bold}</strong>
     ) : (
       <a key={i} href={part.href} className="text-primary font-semibold inline underline">{part.text}</a>
     )
@@ -35,7 +37,7 @@ export default function ServicesImageTextSection({ data }) {
           <div className="heading-wrap animate fadeUp">
             <h3 className="font-48">{data.eyebrow}</h3>
             <h2 className="main-title pb-2">{data.title}</h2>
-            {data.subtitle && <p className="mx-auto max-w-5xl">{data.subtitle}</p>}
+            {data.subtitle && <p className="mx-auto max-w-5xl">{Array.isArray(data.subtitle) ? renderParts(data.subtitle) : data.subtitle}</p>}
           </div>
         )}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-space-mini xl:gap-space items-center">
@@ -48,7 +50,7 @@ export default function ServicesImageTextSection({ data }) {
               ? data.blocks.map((block, i) =>
                   block.type === "ul" ? (
                     <ul key={i} className="list-disc pl-5 space-y-1">
-                      {block.items.map((item, j) => <li key={j}>{item}</li>)}
+                      {block.items.map((item, j) => <li key={j}>{Array.isArray(item) ? renderParts(item) : item}</li>)}
                     </ul>
                   ) : block.type === "checklist" ? (
                     <ul key={i} className="space-y-3 font-semibold">

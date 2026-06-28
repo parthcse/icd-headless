@@ -1,4 +1,17 @@
+import { Fragment } from "react";
 import ContactForm from "@/components/common/ContactForm";
+
+function renderParts(parts) {
+  return parts.map((part, i) =>
+    typeof part === "string" ? (
+      <Fragment key={i}>{part}</Fragment>
+    ) : part.bold ? (
+      <strong key={i} className="font-semibold">{part.bold}</strong>
+    ) : (
+      <a key={i} href={part.href} className="text-primary font-semibold inline underline">{part.text}</a>
+    )
+  );
+}
 
 export default function ServicesBannerSection({ data }) {
   return (
@@ -10,7 +23,7 @@ export default function ServicesBannerSection({ data }) {
       <div className="container relative z-10 pt-space-mini mt-8 md:mt-0 xl:pt-0 grid lg:grid-cols-2 gap-space items-center">
         <div className="text-box leading-relaxed space-y-5 my-auto animate fadeUp">
           <h1 className="font-48 font-bold leading-tight">{data.heading}</h1>
-          {data.paragraphs.map((p, i) => <p key={i}>{p}</p>)}
+          {data.paragraphs.map((p, i) => <p key={i}>{Array.isArray(p) ? renderParts(p) : p}</p>)}
           {data.checklistItems?.length > 0 && (
             <ul className="space-y-2 font-semibold">
               {data.checklistItems.map((item, i) => (

@@ -4,6 +4,8 @@ function renderParts(parts) {
   return parts.map((part, i) =>
     typeof part === "string" ? (
       <Fragment key={i}>{part}</Fragment>
+    ) : part.bold ? (
+      <strong key={i} className="font-semibold">{part.bold}</strong>
     ) : (
       <a key={i} href={part.href} className="text-primary font-semibold inline underline">{part.text}</a>
     )
@@ -14,10 +16,12 @@ export default function ServicesPlainTextSection({ data }) {
   return (
     <section className="common-text-box full-section">
       <div className="container">
-        <div className="heading-wrap pb-2 animate fadeUp">
-          <h3 className="font-48">{data.eyebrow}</h3>
-          <h2 className="main-title">{data.title}</h2>
-        </div>
+        {(data.eyebrow || data.title) && (
+          <div className="heading-wrap pb-2 animate fadeUp">
+            {data.eyebrow && <h3 className="font-48">{data.eyebrow}</h3>}
+            {data.title && <h2 className="main-title">{data.title}</h2>}
+          </div>
+        )}
         <div
           className={`space-y-4 animate fadeUp${
             data.contentAlign === "center"
@@ -35,7 +39,7 @@ export default function ServicesPlainTextSection({ data }) {
                   <ul key={i} className="list-disc pl-5 space-y-1">
                     {block.items.map((item, j) => (
                       <li key={j}>
-                        {typeof item === "string" ? item : <><strong>{item.title}:</strong> {item.body}</>}
+                        {Array.isArray(item) ? renderParts(item) : typeof item === "string" ? item : <><strong>{item.title}:</strong> {item.body}</>}
                       </li>
                     ))}
                   </ul>
@@ -50,7 +54,7 @@ export default function ServicesPlainTextSection({ data }) {
                   <ul className="list-disc pl-5 space-y-1">
                     {data.listItems.map((item, i) => (
                       <li key={i}>
-                        {typeof item === "string" ? item : <><strong>{item.title}:</strong> {item.body}</>}
+                        {Array.isArray(item) ? renderParts(item) : typeof item === "string" ? item : <><strong>{item.title}:</strong> {item.body}</>}
                       </li>
                     ))}
                   </ul>
