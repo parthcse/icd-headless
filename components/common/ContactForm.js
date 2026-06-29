@@ -25,7 +25,7 @@ async function getRecaptchaToken() {
  *   Message is full width, submit button is left-aligned.
  * variant="banner": every field is full width, submit button is centered.
  */
-export default function ContactForm({ variant = "split", title, btnArrow }) {
+export default function ContactForm({ variant = "split", title, btnArrow, animate = true, bordered = true, compact = false }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -126,7 +126,7 @@ export default function ContactForm({ variant = "split", title, btnArrow }) {
 
   const isBanner = variant === "banner";
   const inputCls = isBanner
-    ? "w-full border-0 bg-[#252525] outline-none py-3.5 px-5"
+    ? `w-full border-0 bg-[#252525] outline-none px-5 ${compact ? "rounded-lg py-2.5" : "py-3.5"}`
     : "w-full border border-[#272727] bg-transparent px-5 py-4 outline-none";
 
   const fields = (
@@ -144,7 +144,7 @@ export default function ContactForm({ variant = "split", title, btnArrow }) {
         />
       </div>
 
-      <div className={isBanner ? "grid gap-4 xl:gap-4.5" : "grid grid-cols-1 gap-4 sm:grid-cols-2 xl:gap-4.5"}>
+      <div className={isBanner ? `grid ${compact ? "gap-3" : "gap-4 xl:gap-4.5"}` : "grid grid-cols-1 gap-4 sm:grid-cols-2 xl:gap-4.5"}>
         <div>
           <input
             id="contact-name"
@@ -220,7 +220,7 @@ export default function ContactForm({ variant = "split", title, btnArrow }) {
           id="contact-message"
           name="message"
           required
-          rows={isBanner ? 4 : 6}
+          rows={isBanner ? (compact ? 3 : 4) : 6}
           placeholder="Message*"
           className={inputCls}
           aria-invalid={Boolean(fieldErrors.message)}
@@ -265,10 +265,16 @@ export default function ContactForm({ variant = "split", title, btnArrow }) {
   );
 
   if (isBanner) {
+    const boxCls = [
+      bordered ? "border border-primary px-space-mini pb-space-mini pt-space-small backdrop-blur" : "",
+      animate ? "animate fadeUp" : "",
+    ]
+      .filter(Boolean)
+      .join(" ");
     return (
-      <div className="border border-primary px-space-mini pb-space-mini pt-space-small backdrop-blur animate fadeUp">
+      <div className={boxCls}>
         {title && <h2 className="font-36 xl:text-[40px] font-semibold text-center mb-4 leading-snug">{title}</h2>}
-        <form className="grid gap-4 xl:gap-4.5" onSubmit={handleSubmit} autoComplete="off" noValidate>
+        <form className={`grid ${compact ? "gap-3" : "gap-4 xl:gap-4.5"}`} onSubmit={handleSubmit} autoComplete="off" noValidate>
           {fields}
         </form>
       </div>

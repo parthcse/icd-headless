@@ -2,6 +2,8 @@ import Script from "next/script";
 import RouteHandler from "@/components/common/RouteHandler";
 import SmoothScroll from "@/components/common/SmoothScroll";
 import DeferredStyles from "@/components/common/DeferredStyles";
+import GetQuotePopup from "@/components/common/GetQuotePopup";
+import WhatsAppButton from "@/components/common/WhatsAppButton";
 
 export const metadata = {
   title: "Icecube Digital",
@@ -33,6 +35,8 @@ export default function RootLayout({ children }) {
         <RouteHandler />
         <DeferredStyles />
         {children}
+        <GetQuotePopup />
+        <WhatsAppButton />
         <Script src="/js/load-design.js" strategy="afterInteractive" />
       </body>
     </html>

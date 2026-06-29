@@ -10,6 +10,10 @@ export default function SmoothScroll() {
       smoothWheel: true,
     });
 
+    // Expose so overlays (e.g. the quote popup) can pause/resume page scroll
+    // while they're open — otherwise Lenis keeps scrolling the page behind.
+    window.lenis = lenis;
+
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -17,7 +21,10 @@ export default function SmoothScroll() {
 
     requestAnimationFrame(raf);
 
-    return () => lenis.destroy();
+    return () => {
+      lenis.destroy();
+      if (window.lenis === lenis) delete window.lenis;
+    };
   }, []);
 
   return null;
