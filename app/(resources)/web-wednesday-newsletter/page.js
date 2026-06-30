@@ -9,18 +9,12 @@ export const metadata = {
     "Join the Web Wednesday newsletter by Icecube Digital. Every Wednesday, get 2 practical tips you can implement yourself to grow your online business faster. Free, no spam.",
 };
 
-const BENEFITS = [
-  "2 practical tips every Wednesday",
-  "Implement them yourself",
-  "Free — no spam, ever",
-];
-
 export default function NewsletterPage() {
   return (
     <>
       <Header />
       <main>
-        <section className="services-banner full-section relative border-t-0 xl:py-28">
+        <section className="services-banner full-section relative border-t-0 pt-32 pb-16 xl:pt-48 xl:pb-28">
           <div className="absolute inset-0">
             <img
               className="h-full w-full object-cover"
@@ -32,8 +26,8 @@ export default function NewsletterPage() {
             <span className="absolute inset-0 bg-black bg-opacity-50" />
           </div>
 
-          <div className="container relative z-10 grid items-center gap-space lg:grid-cols-2">
-            {/* Left — title + pitch */}
+          <div className="container relative z-10 grid gap-space lg:grid-cols-2">
+            {/* Left — title + pitch (copy from live site) */}
             <div className="animate fadeUp">
               <p className="mb-3 font-semibold uppercase tracking-[0.2em] text-primary">Free Weekly Newsletter</p>
               <h1 className="font-48 font-semibold leading-tight xl:text-[52px]">
@@ -43,30 +37,21 @@ export default function NewsletterPage() {
                 &ldquo;The most praised newsletter for online business growth.&rdquo;
               </p>
               <p className="mt-4 max-w-xl leading-relaxed text-muted">
-                Every Wednesday, the latest issue lands in your inbox with 2 practical tips — that you can
-                implement yourself — to grow your online business faster than your competitors.
+                The Web Wednesday newsletter is one of the most popular newsletters on practical tips to grow
+                your online business. Every Wednesday, the latest issue is sent with 2 practical tips, that you
+                can implement yourself, to grow your business faster than your competitors.
               </p>
-              <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm">
-                {BENEFITS.map((b) => (
-                  <li key={b} className="flex items-center gap-2">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#F76724" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
-                      <path d="M20 6 9 17l-5-5" />
-                    </svg>
-                    {b}
-                  </li>
-                ))}
-              </ul>
             </div>
 
-            {/* Right — signup form */}
-            <div className="rounded-xl border border-[#2a2a2a] bg-black-light/80 p-6 backdrop-blur animate fadeUp sm:p-8" style={{ animationDelay: "0.15s" }}>
+            {/* Right — signup form (fills the column height) */}
+            <div className="flex flex-col rounded-xl border border-[#2a2a2a] bg-black-light/80 p-6 backdrop-blur animate fadeUp sm:p-8" style={{ animationDelay: "0.15s" }}>
               <h2 className="font-30 font-semibold leading-snug">
                 Get the &ldquo;Web Wednesday&rdquo; newsletter in your inbox
               </h2>
-              <p className="mb-5 mt-1 text-muted">Enter your email and sign up for free right now.</p>
+              <p className="mb-5 mt-2 text-muted">Enter your email and sign up for free right now.</p>
               <NewsletterSignupForm />
-              <p className="mt-4 text-sm text-muted">
-                No spam. Just the highest quality ideas you&apos;ll find on the web.
+              <p className="mt-auto border-t border-white/10 pt-5 text-sm text-muted">
+                No spam. Just the highest quality ideas you&apos;ll find on the web. Unsubscribe anytime.
               </p>
             </div>
           </div>

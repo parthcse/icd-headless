@@ -61,6 +61,66 @@
     .rich-answer ul li + li {
         margin-top: 0.25rem;
     }
+
+    /* Rendered WordPress post HTML (blog single + left-sidebar WYSIWYG). */
+    .blog-content {
+        @apply leading-relaxed text-white/85;
+    }
+    .blog-content > * + * { @apply mt-5; }
+    .blog-content h2 { @apply text-2xl font-semibold text-white mt-10 mb-1; }
+    .blog-content h3 { @apply text-xl font-semibold text-white mt-8 mb-1; }
+    .blog-content h4 { @apply text-lg font-semibold text-white mt-6 mb-1; }
+    /* TOC anchor links land below the fixed header, not under it. */
+    .blog-content h2, .blog-content h3, .blog-content h4 { @apply scroll-mt-28; }
+    .blog-content p { @apply leading-relaxed; }
+    .blog-content a { @apply text-primary underline underline-offset-2 hover:no-underline; }
+    .blog-content strong, .blog-content b { @apply font-semibold text-white; }
+    .blog-content ul { @apply list-disc space-y-2 pl-6; }
+    .blog-content ol { @apply list-decimal space-y-2 pl-6; }
+    .blog-content li { @apply leading-relaxed; }
+    .blog-content img { @apply my-6 h-auto max-w-full rounded-lg; }
+    .blog-content figure { @apply my-6; }
+    .blog-content figure figcaption { @apply mt-2 text-center text-sm text-white/55; }
+    .blog-content blockquote { @apply my-6 border-l-4 border-primary pl-4 italic text-white/70; }
+    .blog-content table { @apply my-6 w-full border-collapse text-sm; }
+    .blog-content th, .blog-content td { @apply border border-[#2a2a2a] px-3 py-2 text-left align-top; }
+    .blog-content th { @apply bg-black-light font-semibold text-white; }
+    .blog-content hr { @apply my-8 border-white/10; }
+    .blog-content iframe { @apply my-6 aspect-video w-full rounded-lg; }
+
+    /* "AI summary" box ships a light theme via inline styles — re-skin for dark
+       (orange header + white title stay; body bg/border/text fixed). */
+    .blog-content .ai-wordpress-summary {
+        @apply !border-white/10 !bg-black-light;
+        box-shadow: none !important;
+        max-width: 100% !important;
+    }
+    .blog-content .ai-wordpress-summary p { @apply text-white/80; }
+
+    /* Author-typed inline post meta is redundant — we render it dynamically in
+       the banner, so hide the in-content copy. */
+    .blog-content .post-meta { @apply hidden; }
+
+    /* Compact variant for the narrow sticky sidebar. */
+    .blog-content--sm { @apply text-sm; }
+    .blog-content--sm > * + * { @apply mt-3; }
+    .blog-content--sm h2 { @apply text-lg mt-6; }
+    .blog-content--sm h3 { @apply text-base mt-5; }
+    .blog-content--sm img { @apply my-4; }
+
+    /* Sticky Table of Contents (parent h2 / child h3 rail). */
+    .blog-toc ul { @apply m-0 list-none space-y-1 p-0; }
+    .blog-toc li { @apply m-0; }
+    .blog-toc a {
+        @apply block border-l-2 border-white/10 py-2 pl-4 text-[0.95rem] leading-snug text-white/55 transition-colors;
+    }
+    .blog-toc > ul > li > a { @apply text-base font-medium text-white/80; }
+    .blog-toc a:hover { @apply border-white/40 text-white; }
+    .blog-toc a.toc-active { @apply border-primary font-semibold text-primary; }
+    /* nested (child) headings: deeper indent + slightly smaller */
+    .blog-toc ul ul { @apply mt-1; }
+    .blog-toc ul ul a { @apply pl-7 text-[0.9rem] text-white/50; }
+    .blog-toc ul ul a.toc-active { @apply text-primary; }
     .hp-field {
         position: absolute;
         left: -9999px;

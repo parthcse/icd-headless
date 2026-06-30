@@ -16,7 +16,7 @@ export default function MetaLengthCheckerPage() {
     <>
       <Header />
       <main>
-        <section className="services-banner full-section relative border-t-0 xl:py-24">
+        <section className="services-banner full-section relative border-t-0 pt-28 pb-16 xl:pt-40 xl:pb-28">
           <div className="absolute inset-0">
             <img
               className="h-full w-full object-cover"

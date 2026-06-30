@@ -152,7 +152,7 @@ export default function GetQuotePopup() {
                 {VISION_CARDS.map((card) => (
                   <div
                     key={card.title}
-                    className="group/card flex cursor-pointer items-center gap-4 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/50 hover:bg-white/[0.06]"
+                    className="group/card flex cursor-pointer items-center gap-4 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 transition-colors duration-200 hover:bg-white/[0.06]"
                   >
                     <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-primary/[0.05] ring-1 ring-inset ring-primary/20 transition-colors duration-200 group-hover/card:from-primary/40 group-hover/card:ring-primary/40">
                       <img src={card.icon} alt="" className="h-7 w-7" />

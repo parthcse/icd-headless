@@ -1,6 +1,6 @@
 export default function ContactBannerSection() {
   return (
-    <section className="services-banner full-section relative border-t-0 xl:py-28">
+    <section className="services-banner full-section relative border-t-0 pt-28 pb-16 xl:pt-40 xl:pb-28">
       <div className="absolute inset-0">
         <img
           className="h-full w-full object-cover"
@@ -15,8 +15,8 @@ export default function ContactBannerSection() {
         <p className="mb-3 font-semibold uppercase tracking-[0.2em] text-primary">Get in Touch</p>
         <h1 className="font-48 font-semibold leading-tight xl:text-[56px]">Contact Us</h1>
         <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-muted">
-          Have a project in mind or a question for our team? We&apos;d love to hear from you — reach out
-          and let&apos;s build something great together.
+          Have a project in mind or a question for our team? We&apos;d love to hear from you.
+          <br />Reach out and let&apos;s build something great together.
         </p>
       </div>
     </section>

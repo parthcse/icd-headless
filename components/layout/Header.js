@@ -222,7 +222,7 @@ const MOB_RESOURCE_SUBPANELS = RESOURCES_NAV.filter((it) => it.links);
 /* ── Desktop dropdown components ─────────────────────────────────────────── */
 
 const PANEL_UL = "rounded-lg border border-white/10 bg-black-light py-2 text-base shadow-lg";
-const PANEL_LINK_BASE = "mx-1 block whitespace-nowrap rounded-md px-4 py-1.5 leading-snug transition-colors hover:bg-white/5";
+const PANEL_LINK_BASE = "mx-1 block whitespace-nowrap rounded-md px-4 py-1.5 font-medium leading-snug transition-colors hover:bg-white/5";
 const panelLink = (active) => `${PANEL_LINK_BASE} ${active ? "text-primary font-medium" : "text-white/80 hover:text-primary"}`;
 
 // Simple one-level dropdown (Company, Industry, Our Work).
@@ -264,14 +264,14 @@ function NavNestedDropdown({ label, items, flyoutSide = "right", current }) {
               const itemActive = isLinkActive(item.href, current);
               return (
                 <li key={item.label}>
-                  <a href={item.href} className={`mx-1 block whitespace-nowrap rounded-md px-4 py-2.5 leading-snug transition-colors hover:bg-white/5 ${itemActive ? "text-primary font-medium" : "hover:text-primary"}`}>{item.label}</a>
+                  <a href={item.href} className={`mx-1 block whitespace-nowrap rounded-md px-4 py-2.5 font-medium leading-snug transition-colors hover:bg-white/5 ${itemActive ? "text-primary" : "hover:text-primary"}`}>{item.label}</a>
                 </li>
               );
             }
             const catActive = isGroupActive(item.links, current);
             return (
               <li key={item.label} className="group/cat relative">
-                <span className={`mx-1 flex cursor-pointer items-center justify-between gap-3 whitespace-nowrap rounded-md px-4 py-2.5 transition-colors hover:bg-white/5 hover:text-primary group-hover/cat:bg-white/5 group-hover/cat:text-primary${catActive ? " text-primary" : ""}`}>
+                <span className={`mx-1 flex cursor-pointer items-center justify-between gap-3 whitespace-nowrap rounded-md px-4 py-2.5 font-medium transition-colors hover:bg-white/5 hover:text-primary group-hover/cat:bg-white/5 group-hover/cat:text-primary${catActive ? " text-primary" : ""}`}>
                   {item.label} <ChevronRight />
                 </span>
                 <div className={`invisible absolute z-50 opacity-0 transition duration-200 ease-in-out group-hover/cat:visible group-hover/cat:translate-x-0 group-hover/cat:opacity-100 group-focus-within/cat:visible group-focus-within/cat:translate-x-0 group-focus-within/cat:opacity-100 ${flyoutPos} ${openUp ? "bottom-[-9px]" : "top-0"}`}>
