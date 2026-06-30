@@ -66,17 +66,12 @@ const SECTION_RENDERERS = {
     data.imageTextTertiary && <ServicesImageTextSection data={data.imageTextTertiary} />,
   imageTextQuaternary: (data) =>
     data.imageTextQuaternary && <ServicesImageTextSection data={data.imageTextQuaternary} />,
-  imageText5: (data) => data.imageText5 && <ServicesImageTextSection data={data.imageText5} />,
-  imageText6: (data) => data.imageText6 && <ServicesImageTextSection data={data.imageText6} />,
-  imageText7: (data) => data.imageText7 && <ServicesImageTextSection data={data.imageText7} />,
-  imageText8: (data) => data.imageText8 && <ServicesImageTextSection data={data.imageText8} />,
-  imageText9: (data) => data.imageText9 && <ServicesImageTextSection data={data.imageText9} />,
-  imageText10: (data) => data.imageText10 && <ServicesImageTextSection data={data.imageText10} />,
-  imageText11: (data) => data.imageText11 && <ServicesImageTextSection data={data.imageText11} />,
-  imageText12: (data) => data.imageText12 && <ServicesImageTextSection data={data.imageText12} />,
-  imageText13: (data) => data.imageText13 && <ServicesImageTextSection data={data.imageText13} />,
-  imageText14: (data) => data.imageText14 && <ServicesImageTextSection data={data.imageText14} />,
-  imageText15: (data) => data.imageText15 && <ServicesImageTextSection data={data.imageText15} />,
+  // Repeatable image-text sections: an array renders one ServicesImageTextSection per entry,
+  // in place. Use this instead of numbered imageText keys when a page stacks several.
+  imageTextBlocks: (data) =>
+    data.imageTextBlocks?.map((block, i) => <ServicesImageTextSection key={i} data={block} />),
+  imageTextBlocksSecondary: (data) =>
+    data.imageTextBlocksSecondary?.map((block, i) => <ServicesImageTextSection key={i} data={block} />),
   infoBox: (data) => data.infoBox && <ServicesInfoBoxSection data={data.infoBox} />,
   infoBoxSecondary: (data) => data.infoBoxSecondary && <ServicesInfoBoxSection data={data.infoBoxSecondary} />,
   infoBoxTertiary: (data) => data.infoBoxTertiary && <ServicesInfoBoxSection data={data.infoBoxTertiary} />,
