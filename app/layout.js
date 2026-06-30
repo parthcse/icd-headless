@@ -6,11 +6,17 @@ import GetQuotePopup from "@/components/common/GetQuotePopup";
 import WhatsAppButton from "@/components/common/WhatsAppButton";
 
 export const metadata = {
-  title: "Icecube Digital",
+  title: "eCommerce Website Design &amp; Development Company - Icecube Digital",
   description:
-    "Build, Grow, and Scale your eCommerce store with experts. Full-stack creative and digital services.",
+    "IceCube Digital is a top-rated eCommerce website design, development and digital marketing company, creating beautiful web experiences to grow brands online.",
   icons: {
     icon: "/assets/photos/icecube-digital-favicon.png",
+  },
+  verification: {
+    google: "NLMzlxrO0ZL8kU6jmuehVaL8LrtGWJJNMtn-MC-Wc_s",
+    other: {
+      "p:domain_verify": "6b10f602e5191523b91adb421d3993f8",
+    },
   },
 };
 
@@ -18,6 +24,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        {/* Google Tag Manager */}
+        <Script id="gtm" strategy="afterInteractive">
+          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K9WNLJ5');`}
+        </Script>
+        {/* End Google Tag Manager */}
         <link rel="preload" href="/fonts/Gilroy-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/Gilroy-Medium.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/Gilroy-SemiBold.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
@@ -31,6 +46,17 @@ export default function RootLayout({ children }) {
         </noscript>
       </head>
       <body>
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-K9WNLJ5"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+            title="Google Tag Manager"
+          />
+        </noscript>
+        {/* End Google Tag Manager (noscript) */}
         <SmoothScroll />
         <RouteHandler />
         <DeferredStyles />

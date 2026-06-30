@@ -12,7 +12,7 @@ export default function HeroSection() {
       {/* Content */}
       <div className="container relative z-10 pt-space-mini mt-8 xl:mt-0 pointer-events-auto">
         <HeroMainTitle />
-        <h2 className="font-48 font-normal mb-0 animate fadeUp" style={{ animationDelay: "0.6s" }}>Your eCommerce Store With Experts</h2>
+        <h2 className="font-48 font-normal mb-0 animate fadeUp" style={{ animationDelay: "0.6s" }}>Your eCommerce Store With AI Experts</h2>
         <div className="border border-[#202020] my-4 lg:my-6 xl:my-10 animate line" style={{ animationDelay: "0.8s" }}></div>
         <h3 className="font-30 font-normal my-4 lg:my-6 xl:my-10 animate fadeUp" style={{ animationDelay: "0.8s" }}>Your Success, Our Strategy</h3>
         <div className="border border-[#202020] my-4 lg:my-6 xl:my-10 animate line" style={{ animationDelay: "0.8s" }}></div>

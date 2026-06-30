@@ -1,3 +1,36 @@
+// Shared arrow glyph used by the service links (same path as the first tab).
+const ARROW_PATH =
+  "M0.703125 12.0312C0.494792 12.0312 0.3125 11.9792 0.15625 11.875C0.0520833 11.7188 0 11.5365 0 11.3281C0 11.1198 0.078125 10.9635 0.234375 10.8594L9.6875 1.32812H2.10938C1.90104 1.32812 1.71875 1.27604 1.5625 1.17188C1.45833 1.01562 1.40625 0.859375 1.40625 0.703125C1.40625 0.494792 1.45833 0.338542 1.5625 0.234375C1.71875 0.078125 1.90104 0 2.10938 0H11.3281C11.5365 0 11.6927 0.078125 11.7969 0.234375C11.9531 0.338542 12.0312 0.494792 12.0312 0.703125V9.92188C12.0312 10.1302 11.9531 10.3125 11.7969 10.4688C11.6927 10.5729 11.5365 10.625 11.3281 10.625C11.1198 10.625 10.9375 10.5729 10.7812 10.4688C10.6771 10.3125 10.625 10.1302 10.625 9.92188V2.42188L1.17188 11.875C1.06771 11.9792 0.911458 12.0312 0.703125 12.0312Z";
+
+// One tab's content panel: intro paragraph + two-column list of service links.
+// Mirrors the first (Digital Marketing) tab's markup so the tab-switch script
+// (keyed on #tabN + .tab-content) keeps working unchanged.
+function TabContent({ id, description, links, active = false }) {
+  return (
+    <div id={id} className={`tab-content animate fadeUp${active ? " active" : ""}`}>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 md:gap-space-mini">
+        <div className="txet-box lg:col-span-5">
+          <p>{description}</p>
+        </div>
+        <div className="list-box font-semibold lg:col-span-7 xl:pl-16">
+          <ul className="grid grid-cols-1 lg:grid-cols-2 gap-2">
+            {links.map((link) => (
+              <li key={link.label}>
+                <a className="flex gap-3 lg:gap-3 hover:text-primary group" href={link.href}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor" className="small w-[0.8em] h-[0.8em] mt-1.5">
+                    <path d={ARROW_PATH} />
+                  </svg>
+                  <span className="my-auto group-hover:underline inline-block">{link.label}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function ServicesSection() {
   return (
     <section className="home-services full-section xl:pt-28 xl:pb-36">
@@ -93,107 +126,81 @@ export default function ServicesSection() {
             </p>
           </button>
         </div>
-        <div id="tab1" className="tab-content active animate fadeUp">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 md:gap-space-mini">
-            <div className="txet-box lg:col-span-5">
-                        <p>Shopify is everywhere, so why not incorporate it into your ecosystem? We transform your brand&apos;s vision into a captivating online store, leveraging Shopify&apos;s versatile platform. From design customization to app integration, we create Shopify solutions that blend aesthetics and functionality seamlessly.</p>
-                      </div>
-                      <div className="list-box font-semibold lg:col-span-7 xl:pl-16">
-                        <ul className="grid grid-cols-1 lg:grid-cols-2 gap-2">
-                          <li>
-                            <a className="flex gap-3 lg:gap-3 hover:text-primary group" href="#">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor" className="small w-[0.8em] h-[0.8em] mt-1.5">
-                                <path d="M0.703125 12.0312C0.494792 12.0312 0.3125 11.9792 0.15625 11.875C0.0520833 11.7188 0 11.5365 0 11.3281C0 11.1198 0.078125 10.9635 0.234375 10.8594L9.6875 1.32812H2.10938C1.90104 1.32812 1.71875 1.27604 1.5625 1.17188C1.45833 1.01562 1.40625 0.859375 1.40625 0.703125C1.40625 0.494792 1.45833 0.338542 1.5625 0.234375C1.71875 0.078125 1.90104 0 2.10938 0H11.3281C11.5365 0 11.6927 0.078125 11.7969 0.234375C11.9531 0.338542 12.0312 0.494792 12.0312 0.703125V9.92188C12.0312 10.1302 11.9531 10.3125 11.7969 10.4688C11.6927 10.5729 11.5365 10.625 11.3281 10.625C11.1198 10.625 10.9375 10.5729 10.7812 10.4688C10.6771 10.3125 10.625 10.1302 10.625 9.92188V2.42188L1.17188 11.875C1.06771 11.9792 0.911458 12.0312 0.703125 12.0312Z"/>
-                              </svg>
-                              <span className="my-auto group-hover:underline inline-block">
-                                AI SEO Services
-                              </span>
-                            </a>
-                          </li>
-                          <li>
-                            <a className="flex gap-3 lg:gap-3 hover:text-primary group" href="#">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor" className="small w-[0.8em] h-[0.8em] mt-1.5">
-                                <path d="M0.703125 12.0312C0.494792 12.0312 0.3125 11.9792 0.15625 11.875C0.0520833 11.7188 0 11.5365 0 11.3281C0 11.1198 0.078125 10.9635 0.234375 10.8594L9.6875 1.32812H2.10938C1.90104 1.32812 1.71875 1.27604 1.5625 1.17188C1.45833 1.01562 1.40625 0.859375 1.40625 0.703125C1.40625 0.494792 1.45833 0.338542 1.5625 0.234375C1.71875 0.078125 1.90104 0 2.10938 0H11.3281C11.5365 0 11.6927 0.078125 11.7969 0.234375C11.9531 0.338542 12.0312 0.494792 12.0312 0.703125V9.92188C12.0312 10.1302 11.9531 10.3125 11.7969 10.4688C11.6927 10.5729 11.5365 10.625 11.3281 10.625C11.1198 10.625 10.9375 10.5729 10.7812 10.4688C10.6771 10.3125 10.625 10.1302 10.625 9.92188V2.42188L1.17188 11.875C1.06771 11.9792 0.911458 12.0312 0.703125 12.0312Z"/>
-                              </svg>
-                              <span className="my-auto group-hover:underline inline-block">
-                                AI Digital Marketing Services
-                              </span>
-                            </a>
-                          </li>
-                          <li>
-                            <a className="flex gap-3 lg:gap-3 hover:text-primary group" href="#">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor" className="small w-[0.8em] h-[0.8em] mt-1.5">
-                                <path d="M0.703125 12.0312C0.494792 12.0312 0.3125 11.9792 0.15625 11.875C0.0520833 11.7188 0 11.5365 0 11.3281C0 11.1198 0.078125 10.9635 0.234375 10.8594L9.6875 1.32812H2.10938C1.90104 1.32812 1.71875 1.27604 1.5625 1.17188C1.45833 1.01562 1.40625 0.859375 1.40625 0.703125C1.40625 0.494792 1.45833 0.338542 1.5625 0.234375C1.71875 0.078125 1.90104 0 2.10938 0H11.3281C11.5365 0 11.6927 0.078125 11.7969 0.234375C11.9531 0.338542 12.0312 0.494792 12.0312 0.703125V9.92188C12.0312 10.1302 11.9531 10.3125 11.7969 10.4688C11.6927 10.5729 11.5365 10.625 11.3281 10.625C11.1198 10.625 10.9375 10.5729 10.7812 10.4688C10.6771 10.3125 10.625 10.1302 10.625 9.92188V2.42188L1.17188 11.875C1.06771 11.9792 0.911458 12.0312 0.703125 12.0312Z"/>
-                              </svg>
-                              <span className="my-auto group-hover:underline inline-block">
-                                Professional SEO Services
-                              </span>
-                            </a>
-                          </li>
-                          <li>
-                            <a className="flex gap-3 lg:gap-3 hover:text-primary group" href="#">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor" className="small w-[0.8em] h-[0.8em] mt-1.5">
-                                <path d="M0.703125 12.0312C0.494792 12.0312 0.3125 11.9792 0.15625 11.875C0.0520833 11.7188 0 11.5365 0 11.3281C0 11.1198 0.078125 10.9635 0.234375 10.8594L9.6875 1.32812H2.10938C1.90104 1.32812 1.71875 1.27604 1.5625 1.17188C1.45833 1.01562 1.40625 0.859375 1.40625 0.703125C1.40625 0.494792 1.45833 0.338542 1.5625 0.234375C1.71875 0.078125 1.90104 0 2.10938 0H11.3281C11.5365 0 11.6927 0.078125 11.7969 0.234375C11.9531 0.338542 12.0312 0.494792 12.0312 0.703125V9.92188C12.0312 10.1302 11.9531 10.3125 11.7969 10.4688C11.6927 10.5729 11.5365 10.625 11.3281 10.625C11.1198 10.625 10.9375 10.5729 10.7812 10.4688C10.6771 10.3125 10.625 10.1302 10.625 9.92188V2.42188L1.17188 11.875C1.06771 11.9792 0.911458 12.0312 0.703125 12.0312Z"/>
-                              </svg>
-                              <span className="my-auto group-hover:underline inline-block">
-                                PPC Services
-                              </span>
-                            </a>
-                          </li>
-                          <li>
-                            <a className="flex gap-3 lg:gap-3 hover:text-primary group" href="#">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor" className="small w-[0.8em] h-[0.8em] mt-1.5">
-                                <path d="M0.703125 12.0312C0.494792 12.0312 0.3125 11.9792 0.15625 11.875C0.0520833 11.7188 0 11.5365 0 11.3281C0 11.1198 0.078125 10.9635 0.234375 10.8594L9.6875 1.32812H2.10938C1.90104 1.32812 1.71875 1.27604 1.5625 1.17188C1.45833 1.01562 1.40625 0.859375 1.40625 0.703125C1.40625 0.494792 1.45833 0.338542 1.5625 0.234375C1.71875 0.078125 1.90104 0 2.10938 0H11.3281C11.5365 0 11.6927 0.078125 11.7969 0.234375C11.9531 0.338542 12.0312 0.494792 12.0312 0.703125V9.92188C12.0312 10.1302 11.9531 10.3125 11.7969 10.4688C11.6927 10.5729 11.5365 10.625 11.3281 10.625C11.1198 10.625 10.9375 10.5729 10.7812 10.4688C10.6771 10.3125 10.625 10.1302 10.625 9.92188V2.42188L1.17188 11.875C1.06771 11.9792 0.911458 12.0312 0.703125 12.0312Z"/>
-                              </svg>
-                              <span className="my-auto group-hover:underline inline-block">
-                                Email Marketing Services
-                              </span>
-                            </a>
-                          </li>
-                          <li>
-                            <a className="flex gap-3 lg:gap-3 hover:text-primary group" href="#">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor" className="small w-[0.8em] h-[0.8em] mt-1.5">
-                                <path d="M0.703125 12.0312C0.494792 12.0312 0.3125 11.9792 0.15625 11.875C0.0520833 11.7188 0 11.5365 0 11.3281C0 11.1198 0.078125 10.9635 0.234375 10.8594L9.6875 1.32812H2.10938C1.90104 1.32812 1.71875 1.27604 1.5625 1.17188C1.45833 1.01562 1.40625 0.859375 1.40625 0.703125C1.40625 0.494792 1.45833 0.338542 1.5625 0.234375C1.71875 0.078125 1.90104 0 2.10938 0H11.3281C11.5365 0 11.6927 0.078125 11.7969 0.234375C11.9531 0.338542 12.0312 0.494792 12.0312 0.703125V9.92188C12.0312 10.1302 11.9531 10.3125 11.7969 10.4688C11.6927 10.5729 11.5365 10.625 11.3281 10.625C11.1198 10.625 10.9375 10.5729 10.7812 10.4688C10.6771 10.3125 10.625 10.1302 10.625 9.92188V2.42188L1.17188 11.875C1.06771 11.9792 0.911458 12.0312 0.703125 12.0312Z"/>
-                              </svg>
-                              <span className="my-auto group-hover:underline inline-block">
-                                Digital Marketing Services
-                              </span>
-                            </a>
-                          </li>
-                          <li>
-                            <a className="flex gap-3 lg:gap-3 hover:text-primary group" href="#">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor" className="small w-[0.8em] h-[0.8em] mt-1.5">
-                                <path d="M0.703125 12.0312C0.494792 12.0312 0.3125 11.9792 0.15625 11.875C0.0520833 11.7188 0 11.5365 0 11.3281C0 11.1198 0.078125 10.9635 0.234375 10.8594L9.6875 1.32812H2.10938C1.90104 1.32812 1.71875 1.27604 1.5625 1.17188C1.45833 1.01562 1.40625 0.859375 1.40625 0.703125C1.40625 0.494792 1.45833 0.338542 1.5625 0.234375C1.71875 0.078125 1.90104 0 2.10938 0H11.3281C11.5365 0 11.6927 0.078125 11.7969 0.234375C11.9531 0.338542 12.0312 0.494792 12.0312 0.703125V9.92188C12.0312 10.1302 11.9531 10.3125 11.7969 10.4688C11.6927 10.5729 11.5365 10.625 11.3281 10.625C11.1198 10.625 10.9375 10.5729 10.7812 10.4688C10.6771 10.3125 10.625 10.1302 10.625 9.92188V2.42188L1.17188 11.875C1.06771 11.9792 0.911458 12.0312 0.703125 12.0312Z"/>
-                              </svg>
-                              <span className="my-auto group-hover:underline inline-block">
-                                Digital Marketing Services
-                              </span>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
+        <TabContent
+          id="tab1"
+          active
+          description="We are a digital marketing company comprising many strategies tailored to your goals. From social media marketing that builds an engaging community to email campaigns that nurture leads, we work tirelessly to create campaigns that drive impactful results."
+          links={[
+            { label: "AI SEO Services", href: "/ai-seo-services/" },
+            { label: "AI Digital Marketing Services", href: "/ai-digital-marketing-services/" },
+            { label: "Answer Engine Optimization Services", href: "/answer-engine-optimization-aeo-services/" },
+            { label: "Digital Marketing Services", href: "/digital-marketing-service/" },
+            { label: "Professional SEO Services", href: "/seo-search-engine-optimization/" },
+            { label: "PPC Services", href: "/ppc-management-services/" },
+            { label: "Email Marketing Services", href: "/email-marketing-company/" },
+          ]}
+        />
     
-        <div id="tab2" className="tab-content animate fadeUp">
-          <p className="text-center">Features Content</p>
-        </div>
+        <TabContent
+          id="tab2"
+          description="Unlock the power of e-commerce with our Magento development expertise. We specialize in building robust and scalable online stores that provide a seamless shopping experience. From customizing themes to integrating extensions, we tailor Magento solutions that cater to your business's unique needs."
+          links={[
+            { label: "Magento Development", href: "/magento-development-services/" },
+            { label: "Magento 2 Development", href: "/magento-2-development-services/" },
+            { label: "Hire Magento Developers", href: "/hire-magento-2-developers-programmers/" },
+            { label: "Magento 2 Migration", href: "/magento-2-upgrade-and-migration-services/" },
+            { label: "Magento SEO Service", href: "/magento-seo-services/" },
+            { label: "Magento Maintenance Services", href: "/magento-maintenance-services/" },
+          ]}
+        />
 
-        <div id="tab3" className="tab-content animate fadeUp">
-          <p className="text-center">Pricing Cdsontent</p>
-        </div>
+        <TabContent
+          id="tab3"
+          description="Shopify is everywhere, so why not incorporate it into your ecosystem? We transform your brand's vision into a captivating online store, leveraging Shopify's versatile platform. From design customization to app integration, we create Shopify solutions that blend aesthetics and functionality seamlessly."
+          links={[
+            { label: "Shopify Development", href: "/shopify-development-services/" },
+            { label: "Hire Shopify Developers", href: "/hire-shopify-developers-experts/" },
+            { label: "Shopify SEO Service", href: "/shopify-seo-service/" },
+            { label: "Shopify Plus Development", href: "/shopify-plus-development-agency/" },
+            { label: "Shopify Plus SEO Services", href: "/shopify-plus-seo-services/" },
+            { label: "Shopify Maintenance Services", href: "/shopify-maintenance-services/" },
+          ]}
+        />
 
-        <div id="tab4" className="tab-content animate fadeUp">
-          <p className="text-center">Pricing Conetent</p>
-        </div>
+        <TabContent
+          id="tab4"
+          description="We take our responsibilities seriously and handling your e-commerce game is no different. With our WooCommerce development expertise, we create intuitive and feature-packed online stores that convert visitors into loyal customers. From product catalogues to secure payment gateways."
+          links={[
+            { label: "Woocommerce Development", href: "/woocommerce-development-services/" },
+            { label: "Hire Woocommerce Developers", href: "/hire-woocommerce-developers-experts/" },
+            { label: "Woocommerce SEO Service", href: "/woocommerce-seo-service/" },
+          ]}
+        />
 
-        <div id="tab5" className="tab-content animate fadeUp">
-          <p className="text-center">Pricing Coxcxzcntent</p>
-        </div>
+        <TabContent
+          id="tab5"
+          description="Our WordPress development services breathe life into your online presence. With a deep understanding of the WordPress ecosystem, we build visually stunning and functionally brilliant websites. Whether it's a corporate site, blog, or portfolio, we tailor WordPress solutions that reflect your brand story."
+          links={[
+            { label: "WordPress Development", href: "/wordpress-development-services/" },
+            { label: "Hire WordPress Developers", href: "/hire-wordpress-developers-designers/" },
+            { label: "WordPress SEO Service", href: "/wordpress-seo-service/" },
+            { label: "WordPress Maintenance Service", href: "/wordpress-maintenance-service/" },
+            { label: "White Label WordPress Development", href: "/white-label-wordpress-development/" },
+          ]}
+        />
 
-        <div id="tab6" className="tab-content animate fadeUp">
-          <p className="text-center">Pricing Contdfnt</p>
-        </div>
+        <TabContent
+          id="tab6"
+          description="We assist agencies in overcoming bandwidth and capacity challenges with our White Label Services. Our partnership helps you save time, avoid hiring hassles, and streamline team management, all while maintaining profitability without adding extra overhead costs."
+          links={[
+            { label: "White Label Web Design and Development", href: "/white-label-web-design-and-development-services/" },
+            { label: "White Label WordPress Development", href: "/white-label-wordpress-development/" },
+            { label: "White Label Magento Development", href: "/white-label-magento-development/" },
+            { label: "White Label Shopify Development", href: "/white-label-shopify-development/" },
+            { label: "White Label SEO Services", href: "/white-label-seo-services/" },
+            { label: "White Label PPC Services", href: "/white-label-ppc-services/" },
+          ]}
+        />
       </div>
     </section>
   );
