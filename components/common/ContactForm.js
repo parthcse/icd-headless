@@ -273,7 +273,7 @@ export default function ContactForm({ variant = "split", title, btnArrow, animat
       .join(" ");
     return (
       <div className={boxCls}>
-        {title && <h2 className="font-36 xl:text-[40px] font-semibold text-center mb-4 leading-snug">{title}</h2>}
+        {title && <h2 className="font-36 font-semibold text-center mb-4 leading-snug">{title}</h2>}
         <form className={`grid ${compact ? "gap-3" : "gap-4 xl:gap-4.5"}`} onSubmit={handleSubmit} autoComplete="off" noValidate>
           {fields}
         </form>

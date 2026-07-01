@@ -49,18 +49,18 @@ export default function ClientTestimonialsPage() {
           </div>
           <div className="container relative z-10 mx-auto max-w-4xl text-center animate fadeUp">
             <p className="mb-3 font-semibold uppercase tracking-[0.2em] text-primary">Client Testimonials</p>
-            <h1 className="font-48 font-semibold leading-tight xl:text-[58px]">
+            <h1 className="font-48 font-semibold leading-tight">
               Loved by Clients <span className="text-primary">Around the World</span>
             </h1>
-            <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-muted">
+            <p className="mx-auto mt-4 max-w-3xl text-lg leading-relaxed text-muted">
               Don&apos;t just take our word for it — hear it straight from the businesses we&apos;ve helped grow.
             </p>
 
-            <div className="mx-auto mt-9 grid max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4">
+            <div className="mx-auto mt-9 grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-4">
               {STATS.map((s) => (
-                <div key={s.label} className="rounded-xl border border-white/10 bg-white/[0.03] px-4 py-5 backdrop-blur">
+                <div key={s.label} className="rounded-xl border border-white/10 bg-gradient-to-br from-primary/[0.12] via-white/[0.05] to-transparent px-4 py-5 backdrop-blur">
                   <p className="font-36 font-semibold text-primary">{s.value}</p>
-                  <p className="mt-1 text-sm text-white/70">{s.label}</p>
+                  <p className="mt-1 text-base font-semibold text-white/70">{s.label}</p>
                 </div>
               ))}
             </div>
@@ -95,7 +95,7 @@ export default function ClientTestimonialsPage() {
               {TEXT_TESTIMONIALS.map((t, i) => (
                 <figure
                   key={i}
-                  className="mb-6 break-inside-avoid rounded-2xl border border-[#272727] bg-black-light p-6 transition-colors duration-300 hover:border-primary/30"
+                  className="mb-6 break-inside-avoid rounded-2xl border border-[#272727] bg-black-light p-6 transition-colors duration-300 hover:border-primary/30 animate fadeUp"
                 >
                   <div className="flex items-center justify-between">
                     <QuoteMark />

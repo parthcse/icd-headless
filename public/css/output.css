@@ -3036,6 +3036,12 @@ h6 {
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
+.from-primary\/\[0\.12\] {
+  --tw-gradient-from: rgb(241 126 63 / 0.12) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(241 126 63 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
 .from-transparent {
   --tw-gradient-from: transparent var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(0 0 0 / 0) var(--tw-gradient-to-position);
@@ -3050,6 +3056,11 @@ h6 {
 .via-transparent {
   --tw-gradient-to: rgb(0 0 0 / 0)  var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), transparent var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
+.via-white\/\[0\.05\] {
+  --tw-gradient-to: rgb(255 255 255 / 0)  var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), rgb(255 255 255 / 0.05) var(--tw-gradient-via-position), var(--tw-gradient-to);
 }
 
 .to-\[\#0c0c0c\] {
@@ -4878,34 +4889,6 @@ html.lenis {
 
   .xl\:text-\[1em\] {
     font-size: 1em;
-  }
-
-  .xl\:text-\[26px\] {
-    font-size: 26px;
-  }
-
-  .xl\:text-\[28px\] {
-    font-size: 28px;
-  }
-
-  .xl\:text-\[40px\] {
-    font-size: 40px;
-  }
-
-  .xl\:text-\[44px\] {
-    font-size: 44px;
-  }
-
-  .xl\:text-\[52px\] {
-    font-size: 52px;
-  }
-
-  .xl\:text-\[56px\] {
-    font-size: 56px;
-  }
-
-  .xl\:text-\[58px\] {
-    font-size: 58px;
   }
 
   .xl\:text-xl {

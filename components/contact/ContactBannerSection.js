@@ -13,7 +13,7 @@ export default function ContactBannerSection() {
       </div>
       <div className="container relative z-10 mx-auto max-w-3xl py-10 text-center animate fadeUp">
         <p className="mb-3 font-semibold uppercase tracking-[0.2em] text-primary">Get in Touch</p>
-        <h1 className="font-48 font-semibold leading-tight xl:text-[56px]">Contact Us</h1>
+        <h1 className="font-48 font-semibold leading-tight">Contact Us</h1>
         <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-muted">
           Have a project in mind or a question for our team? We&apos;d love to hear from you.
           <br />Reach out and let&apos;s build something great together.

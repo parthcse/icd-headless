@@ -42,7 +42,7 @@ export default function LearningPage() {
           </div>
           <div className="container relative z-10 mx-auto max-w-3xl py-8 text-center animate fadeUp">
             <p className="mb-3 font-semibold uppercase tracking-[0.2em] text-primary">Watch &amp; Learn</p>
-            <h1 className="font-48 font-semibold leading-tight xl:text-[56px]">Learning</h1>
+            <h1 className="font-48 font-semibold leading-tight">Learning</h1>
             <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-muted">
               Free tutorials, guides and insights from our team to help you grow your digital presence.
             </p>

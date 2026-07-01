@@ -76,7 +76,7 @@ export default function BlogPostBanner({ post }) {
         )}
 
         <h1
-          className="font-48 font-semibold leading-tight xl:text-[44px]"
+          className="font-48 font-semibold leading-tight"
           dangerouslySetInnerHTML={{ __html: post.title }}
         />
 

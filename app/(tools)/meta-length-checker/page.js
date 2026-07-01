@@ -29,7 +29,7 @@ export default function MetaLengthCheckerPage() {
           </div>
           <div className="container relative z-10 mx-auto max-w-3xl py-8 text-center animate fadeUp">
             <p className="mb-3 font-semibold uppercase tracking-[0.2em] text-primary">Free SEO Tool</p>
-            <h1 className="font-48 font-semibold leading-tight xl:text-[56px]">Meta Length Checker</h1>
+            <h1 className="font-48 font-semibold leading-tight">Meta Length Checker</h1>
             <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-muted">
               Optimize your meta titles &amp; descriptions and rank your pages on SERPs easily with our title
               and meta description length checker.

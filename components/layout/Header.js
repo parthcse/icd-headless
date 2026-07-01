@@ -300,7 +300,7 @@ const MOB_HEAD = (label) => (
     <span className="font-semibold text-primary uppercase leading-none pt-1">{label}</span>
   </div>
 );
-const MOB_LINK = "block px-5 py-4 hover:text-primary transition-colors";
+const MOB_LINK = "block px-5 py-4 font-medium hover:text-primary transition-colors";
 const MOB_SUB_BTN = "open-sub w-full flex items-center justify-between px-5 py-4 text-white font-medium hover:text-primary transition-colors text-left";
 
 // A leaf panel: a back header + a flat list of links.
@@ -344,13 +344,13 @@ export default function Header() {
 
             {/* Desktop Menu */}
             <nav className="hidden self-stretch lg:flex">
-              <ul className="flex items-center self-stretch gap-8 xl:gap-9 text-lg">
+              <ul className="flex items-center self-stretch gap-8 xl:gap-9 text-lg font-medium">
                 <NavDropdown label="Company" links={COMPANY_LINKS} current={current} />
                 <NavNestedDropdown label="Services" items={SERVICES_CATEGORIES} current={current} />
                 <NavDropdown label="Industry" links={INDUSTRY_LINKS} current={current} />
                 <NavDropdown label="Our Work" links={OUR_WORK_LINKS} current={current} />
                 <NavNestedDropdown label="Resources" items={RESOURCES_ITEMS} flyoutSide="left" current={current} />
-                <li className="flex items-center self-stretch"><a href="/contact-us/" className={`transition ${contactActive ? "text-primary" : "hover:text-primary"}`}>Contact Us</a></li>
+                <li className="flex items-center self-stretch"><Link href="/contact-us/" className={`transition ${contactActive ? "text-primary" : "hover:text-primary"}`}>Contact Us</Link></li>
               </ul>
             </nav>
 
@@ -423,7 +423,7 @@ export default function Header() {
               </button>
             </li>
             <li className="border-b border-white/10">
-              <a href="/contact-us/" className={`flex items-center justify-between px-5 py-4 hover:text-primary transition-colors${contactActive ? " text-primary" : ""}`}>Contact Us</a>
+              <Link href="/contact-us/" className={`flex items-center justify-between px-5 py-4 hover:text-primary transition-colors${contactActive ? " text-primary" : ""}`}>Contact Us</Link>
             </li>
             <li className="px-5 py-4">
               <a href="#" onClick={openQuotePopup} className="btn btn-primary w-full">

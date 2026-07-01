@@ -25,7 +25,7 @@ export default function BlogListing({
         </div>
         <div className="container relative z-10 mx-auto max-w-3xl py-6 text-center animate fadeUp">
           {eyebrow && <p className="mb-3 font-semibold uppercase tracking-[0.2em] text-primary">{eyebrow}</p>}
-          <h1 className="font-48 font-semibold leading-tight xl:text-[56px]">{title}</h1>
+          <h1 className="font-48 font-semibold leading-tight">{title}</h1>
           {subtitle && <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-muted">{subtitle}</p>}
         </div>
       </section>

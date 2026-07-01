@@ -141,7 +141,7 @@ export default function GetQuotePopup() {
               <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
                 <span className="h-1.5 w-1.5 rounded-full bg-primary" /> Icecube Digital
               </p>
-              <h2 className="text-2xl font-bold leading-tight xl:text-[28px]">
+              <h2 className="font-30 font-bold">
                 Your Vision, Our Solutions{" "}
                 <span className="bg-gradient-to-r from-primary to-[#ffa46b] bg-clip-text text-transparent">
                   For Ultimate Growth
@@ -169,7 +169,7 @@ export default function GetQuotePopup() {
 
           {/* Right — contact form */}
           <div className="relative border-t border-white/10 bg-white/[0.02] p-7 sm:p-8 lg:border-l lg:border-t-0 lg:p-9">
-            <h2 className="mb-1 whitespace-nowrap text-2xl font-semibold xl:text-[26px]">Get A Free Quote</h2>
+            <h2 className="mb-1 whitespace-nowrap font-24">Get A Free Quote</h2>
             <p className="mb-5 text-sm text-muted">Tell us about your project — we reply within one business day.</p>
             <ContactForm variant="banner" animate={false} bordered={false} compact />
           </div>

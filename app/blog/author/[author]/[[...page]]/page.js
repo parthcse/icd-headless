@@ -52,7 +52,7 @@ export default async function AuthorArchivePage({ params }) {
           </div>
           <div className="container relative z-10 mx-auto max-w-3xl text-center animate fadeUp">
             <p className="mb-3 font-semibold uppercase tracking-[0.2em] text-primary">Author</p>
-            <h1 className="font-48 font-semibold leading-tight xl:text-[52px]">{info.name}</h1>
+            <h1 className="font-48 font-semibold leading-tight">{info.name}</h1>
           </div>
         </section>
 

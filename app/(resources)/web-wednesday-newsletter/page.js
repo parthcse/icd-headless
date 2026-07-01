@@ -30,7 +30,7 @@ export default function NewsletterPage() {
             {/* Left — title + pitch (copy from live site) */}
             <div className="animate fadeUp">
               <p className="mb-3 font-semibold uppercase tracking-[0.2em] text-primary">Free Weekly Newsletter</p>
-              <h1 className="font-48 font-semibold leading-tight xl:text-[52px]">
+              <h1 className="font-48 font-semibold leading-tight">
                 The Web Wednesday Newsletter <span className="text-primary">by Icecube Digital</span>
               </h1>
               <p className="mt-5 max-w-xl text-xl font-medium italic leading-relaxed text-white/90">
