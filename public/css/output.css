@@ -3272,6 +3272,10 @@ h6 {
   padding-top: 0.25rem;
 }
 
+.pt-12 {
+  padding-top: 3rem;
+}
+
 .pt-2 {
   padding-top: 0.5rem;
 }
@@ -4683,6 +4687,10 @@ html.lenis {
 
   .xl\:mt-0 {
     margin-top: 0px;
+  }
+
+  .xl\:mt-16 {
+    margin-top: 4rem;
   }
 
   .xl\:w-\[45\%\] {

@@ -30,7 +30,7 @@ export default function BlogCard({ post }) {
         />
         {/* orange separator between the title and the meta */}
         <span className="h-0.5 w-9 rounded-full bg-primary" />
-        <div className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 text-sm font-medium text-primary">
+        <div className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 text-sm font-semibold text-primary">
           {author ? <span>{author}</span> : null}
           {author && date ? <span className="h-1 w-1 rounded-full bg-primary/60" /> : null}
           {date ? <span>{date}</span> : null}

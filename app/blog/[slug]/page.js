@@ -49,6 +49,13 @@ export default async function BlogPostPage({ params }) {
         />
       )}
       <div className="blog-content" dangerouslySetInnerHTML={{ __html: post.content }} />
+
+      <div className="mt-10">
+        <a href="/blog/" className="btn btn-secondary inline-flex">
+          <BackArrow /> Back to Blog
+        </a>
+      </div>
+
       <BlogShare url={shareUrl} title={stripHtml(post.title)} />
       <BlogAuthorBox authorNode={post.author?.node} />
     </article>
@@ -60,7 +67,7 @@ export default async function BlogPostPage({ params }) {
       <main>
         <BlogPostBanner post={post} />
 
-        <section className="full-section">
+        <section className="single-post-main full-section">
           <div className="container">
             {hasSidebar ? (
               <div className="grid gap-8 lg:grid-cols-[300px_1fr] xl:grid-cols-[340px_1fr] xl:gap-12">
@@ -77,16 +84,10 @@ export default async function BlogPostPage({ params }) {
             ) : (
               <div className="mx-auto max-w-3xl">{article}</div>
             )}
+
+            <RelatedPosts posts={related} />
           </div>
         </section>
-
-        <RelatedPosts posts={related} />
-
-        <div className="container pb-space-small text-center">
-          <a href="/blog/" className="btn btn-secondary inline-flex">
-            <BackArrow /> Back to Blog
-          </a>
-        </div>
 
         <GetQuoteSection />
       </main>
