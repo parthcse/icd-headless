@@ -4,6 +4,7 @@ import AboutOurHeartSection from "@/components/about/AboutOurHeartSection";
 import AboutOurValueSection from "@/components/about/AboutOurValueSection";
 import AboutTeamSection from "@/components/about/AboutTeamSection";
 import AboutAwardsRecognitionSection from "@/components/about/AboutAwardsRecognitionSection";
+import AboutLastAgencySection from "@/components/about/AboutLastAgencySection";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
 import HappyCustomersSection from "@/components/home/HappyCustomersSection";
 import WeServeSection from "@/components/home/WeServeSection";
@@ -26,6 +27,7 @@ export default function AboutPage() {
         <AboutOurHeartSection />
         <AboutOurValueSection />
         <AboutAwardsRecognitionSection />
+        <AboutLastAgencySection />
         <WhyChooseUsSection />
         <AboutTeamSection />
         <AboutOurCultureSection />
