@@ -50,7 +50,7 @@ export default function ClientTestimonialsPage() {
           <div className="container relative z-10 mx-auto max-w-4xl text-center animate fadeUp">
             <p className="mb-3 font-semibold uppercase tracking-[0.2em] text-primary">Client Testimonials</p>
             <h1 className="font-48 font-semibold leading-tight">
-              Loved by Clients <span className="text-primary">Around the World</span>
+              Loved by Clients Around the World
             </h1>
             <p className="mx-auto mt-4 max-w-3xl text-lg leading-relaxed text-muted">
               Don&apos;t just take our word for it — hear it straight from the businesses we&apos;ve helped grow.
