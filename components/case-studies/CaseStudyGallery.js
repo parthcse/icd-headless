@@ -2,24 +2,48 @@
 
 import { useCallback, useState } from "react";
 
-// Square card in the blog-card style: image zooms, dark blur overlay fades in
-// with the title + category on hover.
-function PortfolioCard({ item }) {
+const ARROW_PATH =
+  "M0.703125 12.0312C0.494792 12.0312 0.3125 11.9792 0.15625 11.875C0.0520833 11.7188 0 11.5365 0 11.3281C0 11.1198 0.078125 10.9635 0.234375 10.8594L9.6875 1.32812H2.10938C1.90104 1.32812 1.71875 1.27604 1.5625 1.17188C1.45833 1.01562 1.40625 0.859375 1.40625 0.703125C1.40625 0.494792 1.45833 0.338542 1.5625 0.234375C1.71875 0.078125 1.90104 0 2.10938 0H11.3281C11.5365 0 11.6927 0.078125 11.7969 0.234375C11.9531 0.338542 12.0312 0.494792 12.0312 0.703125V9.92188C12.0312 10.1302 11.9531 10.3125 11.7969 10.4688C11.6927 10.5729 11.5365 10.625 11.3281 10.625C11.1198 10.625 10.9375 10.5729 10.7812 10.4688C10.6771 10.3125 10.625 10.1302 10.625 9.92188V2.42188L1.17188 11.875C1.06771 11.9792 0.911458 12.0312 0.703125 12.0312Z";
+
+// Whole card links to the case study. Only the image zooms on hover; the title
+// and paragraph sit below the image (not overlaid).
+function CaseStudyCard({ item }) {
   return (
     <a
       href={item.href || "#"}
-      className="group relative block aspect-[37/32] overflow-hidden rounded-md border border-white/5 transition-shadow duration-300 hover:shadow-xl hover:shadow-black/60"
+      className="group flex flex-col overflow-hidden rounded-xl border border-white/10 bg-black-light transition-colors duration-300 hover:border-primary/40"
     >
-      <img
-        src={item.image}
-        alt={item.imageAlt}
-        loading="lazy"
-        className="h-full w-full object-cover transition-transform duration-[600ms] ease-out group-hover:scale-110"
-      />
-      <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-black/60 px-5 text-center opacity-0 backdrop-blur-md transition-opacity duration-300 ease-out group-hover:opacity-100">
-        <h3 className="mb-0 font-30 font-semibold leading-snug text-white line-clamp-4">{item.title}</h3>
-        <span className="h-0.5 w-9 rounded-full bg-primary" />
-        {item.categories[0] && <span className="text-base font-medium text-primary">{item.categories[0].name}</span>}
+      <figure className="relative m-0 aspect-[16/10] overflow-hidden">
+        <img
+          src={item.image}
+          alt={item.imageAlt}
+          loading="lazy"
+          className="h-full w-full object-cover transition-transform duration-[600ms] ease-out group-hover:scale-110"
+        />
+        {item.categories[0] && (
+          <span className="absolute left-3 top-3 rounded-full bg-black/65 px-3 py-1 text-xs font-semibold text-primary backdrop-blur">
+            {item.categories[0].name}
+          </span>
+        )}
+      </figure>
+      <div className="flex flex-1 flex-col p-5 lg:p-6">
+        <h3 className="mb-2 font-22 font-semibold leading-snug transition-colors duration-300 group-hover:text-primary line-clamp-2">
+          {item.title}
+        </h3>
+        {item.excerpt && <p className="leading-relaxed text-white/70 line-clamp-3">{item.excerpt}</p>}
+        <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary">
+          Read Case Study
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="11"
+            height="11"
+            viewBox="0 0 13 13"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path d={ARROW_PATH} />
+          </svg>
+        </span>
       </div>
     </a>
   );
@@ -28,12 +52,12 @@ function PortfolioCard({ item }) {
 async function fetchPage(category, after) {
   const params = new URLSearchParams({ category });
   if (after) params.set("after", after);
-  const res = await fetch(`/api/portfolios/?${params.toString()}`);
-  if (!res.ok) throw new Error("Failed to load portfolios");
+  const res = await fetch(`/api/case-studies/?${params.toString()}`);
+  if (!res.ok) throw new Error("Failed to load case studies");
   return res.json(); // { items, endCursor, hasNextPage }
 }
 
-export default function PortfolioGallery({ categories, initialItems, initialEndCursor, initialHasNextPage }) {
+export default function CaseStudyGallery({ categories, initialItems, initialEndCursor, initialHasNextPage }) {
   const [active, setActive] = useState("all");
   // Independent state per tab, so "Load More" on one tab never affects another.
   const [tabs, setTabs] = useState({
@@ -99,17 +123,17 @@ export default function PortfolioGallery({ categories, initialItems, initialEndC
 
       {current.items.length > 0 && (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-          {current.items.map((it) => <PortfolioCard key={it.id} item={it} />)}
+          {current.items.map((it) => <CaseStudyCard key={it.id} item={it} />)}
         </div>
       )}
 
       {current.loading && current.items.length === 0 && (
-        <div className="flex justify-center py-20" role="status" aria-label="Loading projects">
+        <div className="flex justify-center py-20" role="status" aria-label="Loading case studies">
           <span className="h-12 w-12 animate-spin rounded-full border-4 border-primary/20 border-t-primary" />
         </div>
       )}
       {!current.loading && current.items.length === 0 && (
-        <p className="py-12 text-center text-muted">No projects in this category yet.</p>
+        <p className="py-12 text-center text-muted">No case studies in this category yet.</p>
       )}
 
       {current.hasNextPage && (

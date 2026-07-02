@@ -21,7 +21,7 @@ export default async function OurPortfolioPage() {
       <Header />
       <main>
         {/* Top section */}
-        <section className="services-banner full-section relative border-t-0 pt-32 pb-16 xl:pt-48 xl:pb-24">
+        <section className="portfolio-banner full-section relative border-t-0 pt-32 pb-16 xl:pt-48 xl:pb-24">
           <div className="absolute inset-0">
             <img className="h-full w-full object-cover" aria-hidden="true" src="/assets/photos/home-banner-bg.png" alt="" fetchPriority="high" />
             <span className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/65 to-black-light" />
@@ -39,7 +39,7 @@ export default async function OurPortfolioPage() {
         </section>
 
         {/* Portfolio gallery — category filter + paginated load more */}
-        <section className="full-section">
+        <section className="portfolio-gallery full-section">
           <div className="container">
             <PortfolioGallery
               categories={categories}
