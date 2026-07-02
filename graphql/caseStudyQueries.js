@@ -77,6 +77,66 @@ export const CASE_STUDY_CATEGORY_PAGE_QUERY = gql`
   }
 `;
 
+// All case study slugs — for generateStaticParams on the single page.
+export const CASE_STUDY_SLUGS_QUERY = gql`
+  query CaseStudySlugs {
+    caseStudies(first: 100) {
+      nodes {
+        slug
+      }
+    }
+  }
+`;
+
+// Single case study by URI (e.g. /case-studies/<slug>/) — the detail page.
+// `caseStudy` doesn't accept SLUG as an idType, so we query by URI.
+export const CASE_STUDY_SINGLE_QUERY = gql`
+  query CaseStudySingle($uri: ID!) {
+    caseStudy(id: $uri, idType: URI) {
+      title
+      caseStudiesFields {
+        csliveWebsiteUrl
+        caseStudyTopSection {
+          topSectionEyebrow
+          csTopSectionTitle
+          csTopSectionContent
+        }
+        caseStudyResults {
+          csResultsContent
+          csResultsImage {
+            node {
+              sourceUrl
+              altText
+            }
+          }
+          csResultsMetrics {
+            csMetricsValue
+            csMetricsLabel
+          }
+        }
+        caseStudyChallenges {
+          csChallengesContent
+          csChallengesImages {
+            nodes {
+              sourceUrl
+              altText
+            }
+          }
+        }
+        caseStudySolutions {
+          csSolutionsContent
+          csSolutionsImages {
+            nodes {
+              sourceUrl
+              altText
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const CASE_STUDY_BY_IDS_QUERY = gql`
   query CaseStudiesByIds($in: [ID!]) {
     caseStudies(first: 3, where: { in: $in }) {

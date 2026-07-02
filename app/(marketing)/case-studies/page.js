@@ -4,7 +4,7 @@ import GetQuoteSection from "@/components/home/GetQuoteSection";
 import WeServeSection from "@/components/home/WeServeSection";
 import CaseStudyGallery from "@/components/case-studies/CaseStudyGallery";
 import CaseStudyClientsSection from "@/components/case-studies/CaseStudyClientsSection";
-import TestimonialSlider from "@/components/case-studies/TestimonialSlider";
+import CaseStudyTestimonials from "@/components/case-studies/CaseStudyTestimonials";
 import { getCaseStudyCategories, getCaseStudyPage } from "@/lib/case-studies";
 
 export const metadata = {
@@ -68,16 +68,8 @@ export default async function CaseStudiesPage() {
         {/* Our Clients */}
         <CaseStudyClientsSection />
 
-        {/* Testimonials — slider */}
-        <section className="full-section">
-          <div className="container">
-            <div className="heading-wrap animate fadeUp xl:pb-16">
-              <h3 className="mb-0 font-48 font-normal">What Our</h3>
-              <h2 className="main-title mb-0">Clients Say</h2>
-            </div>
-            <TestimonialSlider />
-          </div>
-        </section>
+        {/* Testimonials — slider + View more reviews (shared) */}
+        <CaseStudyTestimonials />
 
         <GetQuoteSection />
 

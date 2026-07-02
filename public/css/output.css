@@ -3423,6 +3423,11 @@ h6 {
   padding-bottom: 1.5rem;
 }
 
+.py-7 {
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
+}
+
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
@@ -4324,18 +4329,8 @@ html.lenis {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.group:hover .group-hover\:-translate-y-0\.5 {
-  --tw-translate-y: -0.125rem;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
 .group:hover .group-hover\:-translate-y-2 {
   --tw-translate-y: -0.5rem;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.group:hover .group-hover\:translate-x-0\.5 {
-  --tw-translate-x: 0.125rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -4749,10 +4744,6 @@ html.lenis {
     margin-left: auto;
   }
 
-  .lg\:mt-14 {
-    margin-top: 3.5rem;
-  }
-
   .lg\:mt-9 {
     margin-top: 2.25rem;
   }
@@ -5012,6 +5003,10 @@ html.lenis {
     margin-top: 0px;
   }
 
+  .xl\:mt-14 {
+    margin-top: 3.5rem;
+  }
+
   .xl\:mt-16 {
     margin-top: 4rem;
   }
@@ -5214,6 +5209,10 @@ html.lenis {
     padding-top: 10rem;
   }
 
+  .xl\:pt-44 {
+    padding-top: 11rem;
+  }
+
   .xl\:pt-48 {
     padding-top: 12rem;
   }
@@ -5304,4 +5303,18 @@ html.lenis {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+}
+
+.\[\&_p\]\:text-center p {
+  text-align: center;
+}
+
+.\[\&_p\]\:text-lg p {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.\[\&_p\]\:text-white p {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
