@@ -5,12 +5,16 @@ import MetaLengthChecker from "@/components/tools/MetaLengthChecker";
 import MetaGuideSection from "@/components/tools/MetaGuideSection";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
 import QuotePopupButton from "@/components/common/QuotePopupButton";
+import { getYoastMetadataByUri } from "@/lib/seo";
 
-export const metadata = {
+export async function generateMetadata() {
+  const yoast = await getYoastMetadataByUri("/meta-length-checker/");
+  return yoast || {
   title: "Meta Length Checker | Free SEO Title & Description Tool | Icecube Digital",
   description:
     "Optimize your meta titles and descriptions and rank your pages on SERPs easily with our free title and meta description length checker. Live Google preview, character and pixel counts.",
 };
+}
 
 export default function MetaLengthCheckerPage() {
   return (

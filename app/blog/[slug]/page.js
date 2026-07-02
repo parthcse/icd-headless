@@ -8,6 +8,7 @@ import BlogShare from "@/components/blog/BlogShare";
 import BlogAuthorBox from "@/components/blog/BlogAuthorBox";
 import RelatedPosts from "@/components/blog/RelatedPosts";
 import { getBlogPost, getRelatedPosts } from "@/lib/blog";
+import { getYoastMetadataByUri } from "@/lib/seo";
 import YoastSchema from "@/components/common/YoastSchema";
 import { stripHtml, truncateWords, wpPermalink } from "@/lib/wp-text";
 
@@ -17,7 +18,8 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const post = await getBlogPost(slug);
   if (!post) return { title: "Blog | Icecube Digital" };
-  return {
+  const yoast = await getYoastMetadataByUri(`/blog/${slug}/`);
+  return yoast || {
     title: `${stripHtml(post.title)} | Icecube Digital`,
     description: truncateWords(stripHtml(post.content), 30),
   };

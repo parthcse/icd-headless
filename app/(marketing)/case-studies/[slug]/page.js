@@ -7,6 +7,7 @@ import CaseStudyTestimonials from "@/components/case-studies/CaseStudyTestimonia
 import CountUp from "@/components/case-studies/CountUp";
 import YoastSchema from "@/components/common/YoastSchema";
 import { getAllCaseStudySlugs, getCaseStudyBySlug } from "@/lib/case-studies";
+import { getYoastMetadataByUri } from "@/lib/seo";
 import { stripHtml, truncateWords } from "@/lib/wp-text";
 
 const BTN_ARROW =
@@ -46,7 +47,8 @@ export async function generateMetadata({ params }) {
   const cs = await getCaseStudyBySlug(slug);
   if (!cs) return {};
   const desc = truncateWords(stripHtml(cs.top.contentHtml), 30);
-  return {
+  const yoast = await getYoastMetadataByUri(`/case-studies/${slug}/`);
+  return yoast || {
     title: `${cs.top.title || cs.title} | Case Study | Icecube Digital`,
     description: desc || `${cs.title} — a case study by Icecube Digital.`,
   };

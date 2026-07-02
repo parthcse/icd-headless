@@ -4,6 +4,7 @@ import Footer from "@/components/layout/Footer";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
 import WeServeSection from "@/components/home/WeServeSection";
 import { getPortfolioBySlug, getAllPortfolioSlugs } from "@/lib/portfolio";
+import { getYoastMetadataByUri } from "@/lib/seo";
 import YoastSchema from "@/components/common/YoastSchema";
 
 const BTN_ARROW =
@@ -18,7 +19,8 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const portfolio = await getPortfolioBySlug(slug);
   if (!portfolio) return {};
-  return {
+  const yoast = await getYoastMetadataByUri(`/portfolio/${slug}/`);
+  return yoast || {
     title: `${portfolio.title} | Portfolio | Icecube Digital`,
     description: portfolio.label || `${portfolio.title} — a project by Icecube Digital.`,
   };

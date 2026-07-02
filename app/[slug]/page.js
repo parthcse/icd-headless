@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { notFound } from "next/navigation";
 import { SERVICES_SLUGS, getServiceData } from "@/lib/services/index";
+import { getYoastMetadataByUri } from "@/lib/seo";
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -145,9 +146,13 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const data = getServiceData(slug);
   if (!data) return {};
+  // Prefer live Yoast SEO (title/description/OG/canonical); fall back to the
+  // hardcoded values in the service data file when Yoast is unavailable.
+  const yoast = await getYoastMetadataByUri(`/${slug}/`);
   return {
     title: data.pageTitle,
     description: data.metaDescription,
+    ...(yoast || {}),
   };
 }
 

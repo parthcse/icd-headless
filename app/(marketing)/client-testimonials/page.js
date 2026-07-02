@@ -6,12 +6,16 @@ import WeServeSection from "@/components/home/WeServeSection";
 import TestimonialVideoCard from "@/components/testimonials/TestimonialVideoCard";
 import CountUp from "@/components/case-studies/CountUp";
 import { VIDEO_TESTIMONIALS, TEXT_TESTIMONIALS } from "@/lib/client-testimonials";
+import { getYoastMetadataByUri } from "@/lib/seo";
 
-export const metadata = {
+export async function generateMetadata() {
+  const yoast = await getYoastMetadataByUri("/client-testimonials/");
+  return yoast || {
   title: "Client Testimonials | Icecube Digital",
   description:
     "See why clients around the world trust Icecube Digital — video testimonials and dozens of written reviews on our eCommerce, design, development and SEO work.",
 };
+}
 
 const FALLBACK_AVATAR = "/assets/testimonial/user-avatar-dark.png";
 

@@ -10,6 +10,11 @@ import WhyChooseUsSection from "../components/home/WhyChooseUsSection";
 import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
 import YoastSchema from "../components/common/YoastSchema";
+import { getYoastMetadataByUri } from "../lib/seo";
+
+export async function generateMetadata() {
+  return (await getYoastMetadataByUri("/")) || {};
+}
 
 export default function Home() {
   return (

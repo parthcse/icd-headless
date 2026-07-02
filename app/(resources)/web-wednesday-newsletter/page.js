@@ -3,12 +3,16 @@ import YoastSchema from "@/components/common/YoastSchema";
 import Footer from "@/components/layout/Footer";
 import NewsletterSignupForm from "@/components/newsletter/NewsletterSignupForm";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
+import { getYoastMetadataByUri } from "@/lib/seo";
 
-export const metadata = {
+export async function generateMetadata() {
+  const yoast = await getYoastMetadataByUri("/web-wednesday-newsletter/");
+  return yoast || {
   title: "The Web Wednesday Newsletter | Icecube Digital",
   description:
     "Join the Web Wednesday newsletter by Icecube Digital. Every Wednesday, get 2 practical tips you can implement yourself to grow your online business faster. Free, no spam.",
 };
+}
 
 export default function NewsletterPage() {
   return (

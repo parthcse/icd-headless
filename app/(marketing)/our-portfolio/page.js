@@ -4,12 +4,16 @@ import Footer from "@/components/layout/Footer";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
 import PortfolioGallery from "@/components/portfolio/PortfolioGallery";
 import { getPortfolioCategories, getPortfolioPage } from "@/lib/portfolio";
+import { getYoastMetadataByUri } from "@/lib/seo";
 
-export const metadata = {
+export async function generateMetadata() {
+  const yoast = await getYoastMetadataByUri("/our-portfolio/");
+  return yoast || {
   title: "Our Portfolio | Icecube Digital",
   description:
     "Explore our portfolio — eCommerce stores and websites we've designed, built and grown across fashion, furniture, jewelry, automotive, healthcare and more.",
 };
+}
 
 export default async function OurPortfolioPage() {
   const [categories, firstPage] = await Promise.all([

@@ -3,12 +3,16 @@ import YoastSchema from "@/components/common/YoastSchema";
 import Footer from "@/components/layout/Footer";
 import LearningVideoCard from "@/components/learning/LearningVideoCard";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
+import { getYoastMetadataByUri } from "@/lib/seo";
 
-export const metadata = {
+export async function generateMetadata() {
+  const yoast = await getYoastMetadataByUri("/learning/");
+  return yoast || {
   title: "Learning | Tutorials & Guides | Icecube Digital",
   description:
     "Free tutorials, guides and insights from the Icecube Digital team — covering Google Tag Manager, eCommerce, Google Ads conversion tracking and more.",
 };
+}
 
 const VIDEOS = [
   {

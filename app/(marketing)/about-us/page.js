@@ -12,10 +12,14 @@ import WhyChooseUsSection from "@/components/home/WhyChooseUsSection";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import YoastSchema from "@/components/common/YoastSchema";
+import { getYoastMetadataByUri } from "@/lib/seo";
 
-export const metadata = {
+export async function generateMetadata() {
+  const yoast = await getYoastMetadataByUri("/about-us/");
+  return yoast || {
   title: "About Us | Icecube Digital",
 };
+}
 
 export default function AboutPage() {
   return (

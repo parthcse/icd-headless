@@ -7,12 +7,16 @@ import ServicesOurClientSection from "@/components/services/ServicesOurClientSec
 import ourClientsSection from "@/lib/services/common-section/our-clients-section";
 import CareerOpenings from "@/components/career/CareerOpenings";
 import { WHY_WORK, JOB_OPENINGS, CAREERS_APPLY_URL } from "@/lib/careers";
+import { getYoastMetadataByUri } from "@/lib/seo";
 
-export const metadata = {
+export async function generateMetadata() {
+  const yoast = await getYoastMetadataByUri("/career/");
+  return yoast || {
   title: "Careers | Icecube Digital",
   description:
     "Join the Icecube Digital team. Explore open roles in Shopify, web development and performance marketing — and see why you'll love building your career with us.",
 };
+}
 
 export default function CareerPage() {
   return (

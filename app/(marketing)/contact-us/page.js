@@ -7,12 +7,16 @@ import GetQuoteSection from "@/components/home/GetQuoteSection";
 import WeServeSection from "@/components/home/WeServeSection";
 import ServicesCeoCtaSection from "@/components/services/ServicesCeoCtaSection";
 import ceoCtaSection from "@/lib/services/common-section/ceo-cta-section";
+import { getYoastMetadataByUri } from "@/lib/seo";
 
-export const metadata = {
+export async function generateMetadata() {
+  const yoast = await getYoastMetadataByUri("/contact-us/");
+  return yoast || {
   title: "Contact Us | Icecube Digital",
   description:
     "Get in touch with Icecube Digital. Request a free quote, reach our Sales, Support and HR teams, or visit one of our offices in the USA, UK, Australia and India.",
 };
+}
 
 export default function ContactPage() {
   return (

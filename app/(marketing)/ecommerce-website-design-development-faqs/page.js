@@ -5,12 +5,16 @@ import GetQuoteSection from "@/components/home/GetQuoteSection";
 import { getRecentPostNodes } from "@/lib/wp-home-data";
 import { stripHtml, wpPermalink } from "@/lib/wp-text";
 import FaqAccordion from "@/components/common/FaqAccordion";
+import { getYoastMetadataByUri } from "@/lib/seo";
 
-export const metadata = {
+export async function generateMetadata() {
+  const yoast = await getYoastMetadataByUri("/ecommerce-website-design-development-faqs/");
+  return yoast || {
   title: "eCommerce Website Design & Development FAQs | Icecube Digital",
   description:
     "Answers to the most common questions about eCommerce website design and development — costs, timelines, customization, support, SEO, security, payments and more.",
 };
+}
 
 const FALLBACK_IMG = "/assets/photos/home-our-client-slider.png";
 

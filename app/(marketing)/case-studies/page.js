@@ -7,12 +7,16 @@ import CaseStudyGallery from "@/components/case-studies/CaseStudyGallery";
 import CaseStudyClientsSection from "@/components/case-studies/CaseStudyClientsSection";
 import CaseStudyTestimonials from "@/components/case-studies/CaseStudyTestimonials";
 import { getCaseStudyCategories, getCaseStudyPage } from "@/lib/case-studies";
+import { getYoastMetadataByUri } from "@/lib/seo";
 
-export const metadata = {
+export async function generateMetadata() {
+  const yoast = await getYoastMetadataByUri("/case-studies/");
+  return yoast || {
   title: "Case Studies | Icecube Digital",
   description:
     "Real results, real businesses — explore our case studies across eCommerce, healthcare, HVAC, automotive, food, furniture and more, and see how we turned challenges into growth.",
 };
+}
 
 export default async function CaseStudiesPage() {
   const [categories, firstPage] = await Promise.all([
