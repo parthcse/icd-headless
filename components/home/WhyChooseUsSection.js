@@ -28,10 +28,8 @@ export default function WhyChooseUsSection() {
             </div>
             <div className="discription border-t border-[#202020] pt-space-small xl:pt-10">
               <p>
-                Over 35 experts in eCommerce & digital marketing. Lorem ipsum dolor sit amet, consectetur adipiscing
-                elit. In sem dolor, rhoncus eleifend fermentum vel, bibendum vel neque. Cras eu elementum enim.
-                Curabitur elit leo, fringilla in velit at, fermentum semper augue. Vestibulum sit amet venenatis metus.
-                Aenean a arcu sed augue consequat sagittis.
+                Over 35 experts in eCommerce & digital marketing. Our team includes certified developers, designers,
+                SEO specialists, marketers, and project managers working together to deliver measurable business growth.
               </p>
             </div>
           </div>
@@ -53,10 +51,8 @@ export default function WhyChooseUsSection() {
             </div>
             <div className="discription border-t border-[#202020] pt-space-small xl:pt-10">
               <p>
-                Over 14 years as an independent eCommerce agency. Lorem ipsum dolor sit amet, consectetur adipiscing
-                elit. In sem dolor, rhoncus eleifend fermentum vel, bibendum vel neque. Cras eu elementum enim.
-                Curabitur elit leo, fringilla in velit at, fermentum semper augue. Vestibulum sit amet venenatis metus.
-                Aenean a arcu sed augue consequat sagittis.
+                Over 14 years as an independent eCommerce agency. With more than a decade of industry experience, we&apos;ve
+                successfully delivered scalable digital solutions for startups, SMBs, and enterprise businesses.
               </p>
             </div>
           </div>
@@ -78,10 +74,8 @@ export default function WhyChooseUsSection() {
             </div>
             <div className="discription border-t border-[#202020] pt-space-small xl:pt-10">
               <p>
-                250+ current clients in ecommerce development, SEO & more. Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit. In sem dolor, rhoncus eleifend fermentum vel, bibendum vel neque. Cras eu elementum
-                enim. Curabitur elit leo, fringilla in velit at, fermentum semper augue. Vestibulum sit amet venenatis
-                metus. Aenean a arcu sed augue consequat sagittis.
+                250+ current clients in ecommerce development, SEO & more. Businesses across multiple industries trust
+                us for long-term partnerships, reliable support, and results-driven digital services.
               </p>
             </div>
           </div>
@@ -99,14 +93,12 @@ export default function WhyChooseUsSection() {
               <p className="counter text-[0.592em] font-semibold" data-target="500" data-prefix="$" data-suffix="M">
                 0
               </p>
-              <p className="mt-2 font-22 font-normal xl:text-[0.27em]">Annual Revenue</p>
+              <p className="mt-2 font-22 font-normal xl:text-[0.27em]">Annual Billings</p>
             </div>
             <div className="discription border-t border-[#202020] pt-space-small xl:pt-10">
               <p>
-                $500 million in annual revenue for our customers. Lorem ipsum dolor sit amet, consectetur adipiscing
-                elit. In sem dolor, rhoncus eleifend fermentum vel, bibendum vel neque. Cras eu elementum enim.
-                Curabitur elit leo, fringilla in velit at, fermentum semper augue. Vestibulum sit amet venenatis metus.
-                Aenean a arcu sed augue consequat sagittis.
+                $500 million in annual revenue for our customers. Our eCommerce solutions and digital marketing
+                strategies have helped clients generate over $500 million in combined annual revenue.
               </p>
             </div>
           </div>

@@ -39,7 +39,7 @@ export default async function ServicesCaseStudySection({ data }) {
     <section className="services-our-portfolio text-center full-section">
       <div className="container">
         <div className="heading-wrap animate fadeUp">
-          <h3 className="font-48">{data.eyebrow}</h3>
+          {data.eyebrow && <h3 className="font-48">{data.eyebrow}</h3>}
           <h2 className="main-title pb-2">{data.title}</h2>
           {Array.isArray(data.subtitle)
             ? data.subtitle.map((p, i) => <p key={i} className="mx-auto max-w-5xl">{p}</p>)

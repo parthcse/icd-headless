@@ -4,6 +4,7 @@ import Footer from "@/components/layout/Footer";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
 import WeServeSection from "@/components/home/WeServeSection";
 import TestimonialVideoCard from "@/components/testimonials/TestimonialVideoCard";
+import CountUp from "@/components/case-studies/CountUp";
 import { VIDEO_TESTIMONIALS, TEXT_TESTIMONIALS } from "@/lib/client-testimonials";
 
 export const metadata = {
@@ -61,7 +62,7 @@ export default function ClientTestimonialsPage() {
             <div className="mx-auto mt-9 grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-4">
               {STATS.map((s) => (
                 <div key={s.label} className="rounded-xl border border-white/10 bg-gradient-to-br from-primary/[0.12] via-white/[0.05] to-transparent px-4 py-5 backdrop-blur">
-                  <p className="font-36 font-semibold text-primary">{s.value}</p>
+                  <CountUp value={s.value} className="block font-36 font-semibold text-primary" />
                   <p className="mt-1 text-base font-semibold text-white/70">{s.label}</p>
                 </div>
               ))}

@@ -26,7 +26,7 @@ export default async function OurPortfolioPage() {
         <section className="portfolio-banner full-section relative border-t-0 pt-32 pb-16 xl:pt-48 xl:pb-24">
           <div className="absolute inset-0">
             <img className="h-full w-full object-cover" aria-hidden="true" src="/assets/photos/home-banner-bg.png" alt="" fetchPriority="high" />
-            <span className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/65 to-black-light" />
+            <span className="absolute inset-0 bg-black bg-opacity-50" />
           </div>
           <div className="container relative z-10 mx-auto max-w-3xl py-8 text-center animate fadeUp">
             <p className="mb-3 font-semibold uppercase tracking-[0.2em] text-primary">Our Work</p>
