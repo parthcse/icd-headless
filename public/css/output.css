@@ -5138,9 +5138,17 @@ html.lenis {
   text-decoration-line: underline;
 }
 
+.\[\&_a\]\:font-semibold a {
+  font-weight: 600;
+}
+
 .\[\&_a\]\:text-white a {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.\[\&_a\]\:\!underline a {
+  text-decoration-line: underline !important;
 }
 
 .\[\&_a\]\:transition a {

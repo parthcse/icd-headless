@@ -71,6 +71,37 @@ export const PORTFOLIO_PAGE_QUERY = gql`
   }
 `;
 
+// All portfolio slugs — for generateStaticParams on the single page.
+export const PORTFOLIO_SLUGS_QUERY = gql`
+  query PortfolioSlugs {
+    portfolios(first: 100) {
+      nodes {
+        slug
+      }
+    }
+  }
+`;
+
+// Single portfolio by slug — for the /portfolio/<slug>/ detail page.
+export const PORTFOLIO_BY_SLUG_QUERY = gql`
+  query PortfolioBySlug($slug: ID!) {
+    portfolio(id: $slug, idType: SLUG) {
+      title
+      portfolioFields {
+        portfolioLabel
+        liveWebsiteUrl
+        workPerformedList
+        portfolioWebsiteImage {
+          node {
+            sourceUrl
+            altText
+          }
+        }
+      }
+    }
+  }
+`;
+
 // One page of portfolios for a single category, cursor-paginated.
 export const PORTFOLIO_CATEGORY_PAGE_QUERY = gql`
   query PortfolioCategoryPage($slug: ID!, $first: Int!, $after: String) {

@@ -2,7 +2,7 @@ import ContactForm from "@/components/common/ContactForm";
 
 export default function GetQuoteSection() {
   return (
-    <section className="home-contant full-section xl:pt-28 xl:pb-36">
+    <section className="get-quote-section full-section xl:pt-28 xl:pb-36">
       <div className="container">
         <div className="heading-wrap xl:pb-16 animate fadeUp">
           <h3 className="mb-0 font-48 font-normal">Let’s Work Together</h3>

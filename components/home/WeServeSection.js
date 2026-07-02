@@ -1,6 +1,6 @@
 export default function WeServeSection() {
   return (
-    <section className="home-countries-serve full-section xl:pt-28 xl:pb-36">
+    <section className="countries-we-serve-section full-section xl:pt-28 xl:pb-36">
       <div className="container">
         <div className="heading-wrap xl:pb-10 animate fadeUp">
           <h3 className="mb-0 font-48 font-normal">Countries</h3>
