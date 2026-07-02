@@ -2,17 +2,100 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const SITE_KEY =
-  typeof process !== "undefined" ? process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY : undefined;
+// Cloudflare Turnstile site key used by the live Contact Form 7 form (id 4751).
+const TURNSTILE_SITE_KEY =
+  process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "0x4AAAAAABnARYR1_ICkLUDJ";
+const CF7_FORM_ID = process.env.NEXT_PUBLIC_CF7_FORM_ID || "4751";
+
+// CF7 REST feedback endpoint on the WordPress site. Origin is derived from the
+// existing GraphQL endpoint so there's a single source of truth for the host.
+function cf7Endpoint() {
+  let origin = "https://www.icecubedigital.com";
+  try {
+    origin = new URL(process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL_ENDPOINT).origin;
+  } catch {
+    /* keep default */
+  }
+  return `${origin}/wp-json/contact-form-7/v1/contact-forms/${CF7_FORM_ID}/feedback`;
+}
+
+// Map CF7 field names → our logical field keys (for inline error display).
+const CF7_FIELD_TO_KEY = {
+  "full-name": "name",
+  "email-id": "email",
+  phone: "phone",
+  "your-message": "message",
+  "website-url": "website",
+};
 
 const SUBMIT_ARROW_PATH =
   "M0.703125 12.0312C0.494792 12.0312 0.3125 11.9792 0.15625 11.875C0.0520833 11.7188 0 11.5365 0 11.3281C0 11.1198 0.078125 10.9635 0.234375 10.8594L9.6875 1.32812H2.10938C1.90104 1.32812 1.71875 1.27604 1.5625 1.17188C1.45833 1.01562 1.40625 0.859375 1.40625 0.703125C1.40625 0.494792 1.45833 0.338542 1.5625 0.234375C1.71875 0.078125 1.90104 0 2.10938 0H11.3281C11.5365 0 11.6927 0.078125 11.7969 0.234375C11.9531 0.338542 12.0312 0.494792 12.0312 0.703125V9.92188C12.0312 10.1302 11.9531 10.3125 11.7969 10.4688C11.6927 10.5729 11.5365 10.625 11.3281 10.625C11.1198 10.625 10.9375 10.5729 10.7812 10.4688C10.6771 10.3125 10.625 10.1302 10.625 9.92188V2.42188L1.17188 11.875C1.06771 11.9792 0.911458 12.0312 0.703125 12.0312Z";
 
-async function getRecaptchaToken() {
-  if (!SITE_KEY || typeof window === "undefined") return "";
-  const g = window.grecaptcha;
-  if (!g?.execute) return "";
-  return g.execute(SITE_KEY, { action: "contact_submit" });
+// Load the Cloudflare Turnstile script once (shared across all form instances).
+let turnstilePromise = null;
+function loadTurnstile() {
+  if (typeof window === "undefined") return Promise.resolve(null);
+  if (window.turnstile) return Promise.resolve(window.turnstile);
+  if (turnstilePromise) return turnstilePromise;
+
+  turnstilePromise = new Promise((resolve, reject) => {
+    const waitReady = () => {
+      const start = Date.now();
+      const iv = setInterval(() => {
+        if (window.turnstile) {
+          clearInterval(iv);
+          resolve(window.turnstile);
+        } else if (Date.now() - start > 10000) {
+          clearInterval(iv);
+          reject(new Error("Turnstile load timeout"));
+        }
+      }, 50);
+    };
+    const existing = document.querySelector('script[src*="challenges.cloudflare.com/turnstile"]');
+    if (existing) {
+      waitReady();
+      return;
+    }
+    const s = document.createElement("script");
+    s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+    s.async = true;
+    s.defer = true;
+    s.onload = waitReady;
+    s.onerror = () => reject(new Error("Turnstile failed to load"));
+    document.head.appendChild(s);
+  });
+  return turnstilePromise;
+}
+
+// Best-effort visitor country from IP (free, keyless, CORS-enabled). Memoized so
+// multiple form instances on a page share one lookup. Returns "" on failure.
+let countryPromise = null;
+function detectCountry() {
+  if (typeof window === "undefined") return Promise.resolve("");
+  if (countryPromise) return countryPromise;
+  countryPromise = (async () => {
+    try {
+      const r = await fetch("https://get.geojs.io/v1/ip/country.json");
+      if (r.ok) {
+        const d = await r.json();
+        if (d?.name) return d.name; // full name, e.g. "India"
+        if (d?.country) return d.country; // code fallback, e.g. "IN"
+      }
+    } catch {
+      /* try fallback */
+    }
+    try {
+      const r = await fetch("https://ipwho.is/?fields=success,country");
+      if (r.ok) {
+        const d = await r.json();
+        if (d?.success && d?.country) return d.country;
+      }
+    } catch {
+      /* give up */
+    }
+    return "";
+  })();
+  return countryPromise;
 }
 
 /**
@@ -21,9 +104,10 @@ async function getRecaptchaToken() {
  *  - "SEO Audit Report Now!" section (variant="split")
  *  - Services banner form (variant="banner")
  *
- * variant="split": Name/Email/Phone/Agency URL are 50% width (2-col grid),
- *   Message is full width, submit button is left-aligned.
- * variant="banner": every field is full width, submit button is centered.
+ * Submits directly to the live WordPress Contact Form 7 form (id 4751) via its
+ * REST feedback endpoint, so WP handles the entry (Flamingo), the notification
+ * email and the rest of the CF7 pipeline. A Cloudflare Turnstile widget provides
+ * the spam token the form requires.
  */
 export default function ContactForm({ variant = "split", title, btnArrow, animate = true, bordered = true, compact = false }) {
   const [name, setName] = useState("");
@@ -31,24 +115,49 @@ export default function ContactForm({ variant = "split", title, btnArrow, animat
   const [phone, setPhone] = useState("");
   const [website, setWebsite] = useState("");
   const [message, setMessage] = useState("");
-  const [hp, setHp] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
   const [fieldErrors, setFieldErrors] = useState({});
-  const scriptAdded = useRef(false);
 
+  const turnstileRef = useRef(null);
+  const widgetIdRef = useRef(null);
+  const countryRef = useRef("");
+
+  // Detect the visitor's country early so it's ready by submit time.
   useEffect(() => {
-    if (!SITE_KEY || scriptAdded.current) return;
-    if (document.querySelector(`script[src*="google.com/recaptcha/api.js"]`)) {
-      scriptAdded.current = true;
-      return;
-    }
-    const s = document.createElement("script");
-    s.src = `https://www.google.com/recaptcha/api.js?render=${SITE_KEY}`;
-    s.async = true;
-    document.head.appendChild(s);
-    scriptAdded.current = true;
+    let cancelled = false;
+    detectCountry().then((c) => {
+      if (!cancelled) countryRef.current = c;
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // Render the Turnstile widget for this form instance.
+  useEffect(() => {
+    let cancelled = false;
+    loadTurnstile()
+      .then((ts) => {
+        if (cancelled || !ts || !turnstileRef.current || widgetIdRef.current != null) return;
+        widgetIdRef.current = ts.render(turnstileRef.current, {
+          sitekey: TURNSTILE_SITE_KEY,
+          size: "compact",
+        });
+      })
+      .catch(() => {
+        /* widget won't render — submit will prompt the user */
+      });
+    return () => {
+      cancelled = true;
+      try {
+        if (widgetIdRef.current != null && window.turnstile) window.turnstile.remove(widgetIdRef.current);
+      } catch {
+        /* noop */
+      }
+      widgetIdRef.current = null;
+    };
   }, []);
 
   const resetFeedback = useCallback(() => {
@@ -57,70 +166,87 @@ export default function ContactForm({ variant = "split", title, btnArrow, animat
     setSuccess(false);
   }, []);
 
+  const resetTurnstile = useCallback(() => {
+    try {
+      if (widgetIdRef.current != null && window.turnstile) window.turnstile.reset(widgetIdRef.current);
+    } catch {
+      /* noop */
+    }
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     resetFeedback();
-    setLoading(true);
 
-    if (hp.trim().length > 0) {
-      setError("Unable to send message.");
-      setLoading(false);
+    const token =
+      typeof window !== "undefined" && window.turnstile && widgetIdRef.current != null
+        ? window.turnstile.getResponse(widgetIdRef.current)
+        : "";
+    if (!token) {
+      setError("Please complete the security check and try again.");
       return;
     }
 
-    try {
-      let recaptchaToken = "";
+    setLoading(true);
+
+    const fd = new FormData();
+    fd.set("_wpcf7", CF7_FORM_ID);
+    fd.set("_wpcf7_version", "6.1");
+    fd.set("_wpcf7_locale", "en_US");
+    fd.set("_wpcf7_unit_tag", `wpcf7-f${CF7_FORM_ID}-headless`);
+    fd.set("_wpcf7_container_post", "0");
+    fd.set("_wpcf7_posted_data_hash", "");
+    fd.set("full-name", name);
+    fd.set("email-id", email);
+    fd.set("phone", phone);
+    fd.set("website-url", website);
+    fd.set("your-message", message);
+    // Headless page context → CF7 hidden fields [page-title] / [page-url], since
+    // the server-side [_post_title] / [_url] tags can't see a headless page.
+    if (typeof window !== "undefined") {
+      fd.set("page-title", document.title || "");
+      fd.set("page-url", window.location.href || "");
+    }
+    // IP-based country → CF7 hidden field [country] (mail already references it).
+    let country = countryRef.current;
+    if (!country) {
       try {
-        recaptchaToken = await getRecaptchaToken();
+        country = await detectCountry();
       } catch {
-        recaptchaToken = "";
+        country = "";
       }
+    }
+    fd.set("country", country || "");
+    fd.set("_wpcf7_turnstile_response", token);
 
-      if (SITE_KEY && !recaptchaToken) {
-        setError("Security check is still loading. Please try again in a moment.");
-        setLoading(false);
-        return;
-      }
-
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          email,
-          phone,
-          website,
-          message,
-          hp,
-          recaptchaToken,
-        }),
-      });
-
+    try {
+      const res = await fetch(cf7Endpoint(), { method: "POST", body: fd });
       const data = await res.json().catch(() => ({}));
 
-      if (res.status === 422 && data.fields) {
-        setFieldErrors(data.fields);
-        setError(data.error || "Please fix the highlighted fields.");
-        setLoading(false);
-        return;
+      if (data.status === "mail_sent") {
+        setSuccess(true);
+        setName("");
+        setEmail("");
+        setPhone("");
+        setWebsite("");
+        setMessage("");
+      } else if (data.status === "validation_failed") {
+        const fe = {};
+        (data.invalid_fields || []).forEach((f) => {
+          const key = CF7_FIELD_TO_KEY[f.field];
+          if (key) fe[key] = f.message;
+        });
+        setFieldErrors(fe);
+        setError(data.message || "Please fix the highlighted fields.");
+      } else {
+        // spam / aborted / mail_failed
+        setError(data.message || "Something went wrong. Please try again.");
       }
-
-      if (!res.ok) {
-        setError(data.error || "Something went wrong. Please try again.");
-        setLoading(false);
-        return;
-      }
-
-      setSuccess(true);
-      setName("");
-      setEmail("");
-      setPhone("");
-      setWebsite("");
-      setMessage("");
     } catch {
       setError("Network error. Please try again.");
     } finally {
       setLoading(false);
+      resetTurnstile();
     }
   };
 
@@ -131,19 +257,6 @@ export default function ContactForm({ variant = "split", title, btnArrow, animat
 
   const fields = (
     <>
-      <div className="hp-field" aria-hidden="true">
-        <label htmlFor="contact-website-hp">Website</label>
-        <input
-          id="contact-website-hp"
-          name="hp-website"
-          type="text"
-          tabIndex={-1}
-          value={hp}
-          onChange={(e) => setHp(e.target.value)}
-          autoComplete="off"
-        />
-      </div>
-
       <div className={isBanner ? `grid ${compact ? "gap-3" : "gap-4 xl:gap-4.5"}` : "grid grid-cols-1 gap-4 sm:grid-cols-2 xl:gap-4.5"}>
         <div>
           <input
@@ -206,12 +319,19 @@ export default function ContactForm({ variant = "split", title, btnArrow, animat
           <input
             id="contact-agency-url"
             type="url"
-            placeholder="Your Agency's URL"
+            placeholder="Your Website URL"
             className={inputCls}
-            name="agencyUrl"
+            aria-invalid={Boolean(fieldErrors.website)}
+            aria-describedby={fieldErrors.website ? "err-website" : undefined}
+            name="website-url"
             value={website}
             onChange={(e) => setWebsite(e.target.value)}
           />
+          {fieldErrors.website ? (
+            <p id="err-website" className="contact-form-field-error">
+              {fieldErrors.website}
+            </p>
+          ) : null}
         </div>
       </div>
 
@@ -234,6 +354,9 @@ export default function ContactForm({ variant = "split", title, btnArrow, animat
           </p>
         ) : null}
       </div>
+
+      {/* Cloudflare Turnstile — spam token required by the CF7 form */}
+      <div ref={turnstileRef} className={isBanner ? "flex justify-center" : ""} />
 
       {error ? <p className="contact-form-banner contact-form-banner--error">{error}</p> : null}
       {success ? (
