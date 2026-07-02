@@ -1,4 +1,5 @@
 import Header from "@/components/layout/Header";
+import YoastSchema from "@/components/common/YoastSchema";
 import Footer from "@/components/layout/Footer";
 import MetaLengthChecker from "@/components/tools/MetaLengthChecker";
 import MetaGuideSection from "@/components/tools/MetaGuideSection";
@@ -14,6 +15,7 @@ export const metadata = {
 export default function MetaLengthCheckerPage() {
   return (
     <>
+      <YoastSchema uri="/meta-length-checker/" />
       <Header />
       <main>
         <section className="services-banner full-section relative border-t-0 pt-28 pb-16 xl:pt-40 xl:pb-28">

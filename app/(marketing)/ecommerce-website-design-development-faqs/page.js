@@ -1,4 +1,5 @@
 import Header from "@/components/layout/Header";
+import YoastSchema from "@/components/common/YoastSchema";
 import Footer from "@/components/layout/Footer";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
 import { getRecentPostNodes } from "@/lib/wp-home-data";
@@ -170,6 +171,7 @@ export default async function EcommerceFaqsPage() {
 
   return (
     <>
+      <YoastSchema uri="/ecommerce-website-design-development-faqs/" />
       <Header />
       <main>
         {/* Hero */}

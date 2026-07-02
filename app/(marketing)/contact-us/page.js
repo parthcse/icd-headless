@@ -1,4 +1,5 @@
 import Header from "@/components/layout/Header";
+import YoastSchema from "@/components/common/YoastSchema";
 import Footer from "@/components/layout/Footer";
 import ContactBannerSection from "@/components/contact/ContactBannerSection";
 import ContactOfficesSection from "@/components/contact/ContactOfficesSection";
@@ -16,6 +17,7 @@ export const metadata = {
 export default function ContactPage() {
   return (
     <>
+      <YoastSchema uri="/contact-us/" />
       <Header />
       <main>
         <ContactBannerSection />

@@ -1,4 +1,5 @@
 import Header from "@/components/layout/Header";
+import YoastSchema from "@/components/common/YoastSchema";
 import Footer from "@/components/layout/Footer";
 import BlogListing from "@/components/blog/BlogListing";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
@@ -17,6 +18,7 @@ export default async function BlogPage() {
 
   return (
     <>
+      <YoastSchema uri="/blog/" />
       <Header />
       <main>
         <BlogListing posts={posts} page={page} totalPages={totalPages} />

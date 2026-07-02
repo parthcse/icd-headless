@@ -4,6 +4,7 @@ import { SERVICES_SLUGS, getServiceData } from "@/lib/services/index";
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import YoastSchema from "@/components/common/YoastSchema";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
 import WeServeSection from "@/components/home/WeServeSection";
 
@@ -159,6 +160,7 @@ export default async function ServicePage({ params }) {
 
   return (
     <>
+      <YoastSchema uri={`/${slug}/`} />
       <Header />
       <main>
         {order.map((key) => (

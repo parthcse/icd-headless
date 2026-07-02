@@ -1,4 +1,5 @@
 import Header from "@/components/layout/Header";
+import YoastSchema from "@/components/common/YoastSchema";
 import Footer from "@/components/layout/Footer";
 import NewsletterSignupForm from "@/components/newsletter/NewsletterSignupForm";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
@@ -12,6 +13,7 @@ export const metadata = {
 export default function NewsletterPage() {
   return (
     <>
+      <YoastSchema uri="/web-wednesday-newsletter/" />
       <Header />
       <main>
         <section className="services-banner full-section relative border-t-0 pt-32 pb-16 xl:pt-48 xl:pb-28">

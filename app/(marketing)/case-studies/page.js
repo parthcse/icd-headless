@@ -1,4 +1,5 @@
 import Header from "@/components/layout/Header";
+import YoastSchema from "@/components/common/YoastSchema";
 import Footer from "@/components/layout/Footer";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
 import WeServeSection from "@/components/home/WeServeSection";
@@ -21,6 +22,7 @@ export default async function CaseStudiesPage() {
 
   return (
     <>
+      <YoastSchema uri="/case-studies/" />
       <Header />
       <main>
         {/* Top section */}

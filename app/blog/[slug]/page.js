@@ -8,6 +8,7 @@ import BlogShare from "@/components/blog/BlogShare";
 import BlogAuthorBox from "@/components/blog/BlogAuthorBox";
 import RelatedPosts from "@/components/blog/RelatedPosts";
 import { getBlogPost, getRelatedPosts } from "@/lib/blog";
+import YoastSchema from "@/components/common/YoastSchema";
 import { stripHtml, truncateWords, wpPermalink } from "@/lib/wp-text";
 
 export const revalidate = 600;
@@ -63,6 +64,7 @@ export default async function BlogPostPage({ params }) {
 
   return (
     <>
+      <YoastSchema uri={`/blog/${slug}/`} />
       <Header />
       <main>
         <BlogPostBanner post={post} />

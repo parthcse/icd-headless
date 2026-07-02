@@ -9,10 +9,12 @@ import WeServeSection from "../components/home/WeServeSection";
 import WhyChooseUsSection from "../components/home/WhyChooseUsSection";
 import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
+import YoastSchema from "../components/common/YoastSchema";
 
 export default function Home() {
   return (
     <>
+      <YoastSchema uri="/" />
       <Header />
       <main>
         <HeroSection />

@@ -1,4 +1,5 @@
 import Header from "@/components/layout/Header";
+import YoastSchema from "@/components/common/YoastSchema";
 import Footer from "@/components/layout/Footer";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
 import WeServeSection from "@/components/home/WeServeSection";
@@ -39,6 +40,7 @@ const QuoteMark = () => (
 export default function ClientTestimonialsPage() {
   return (
     <>
+      <YoastSchema uri="/client-testimonials/" />
       <Header />
       <main>
         {/* Banner + stats */}

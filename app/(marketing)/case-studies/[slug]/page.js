@@ -5,6 +5,7 @@ import GetQuoteSection from "@/components/home/GetQuoteSection";
 import WeServeSection from "@/components/home/WeServeSection";
 import CaseStudyTestimonials from "@/components/case-studies/CaseStudyTestimonials";
 import CountUp from "@/components/case-studies/CountUp";
+import YoastSchema from "@/components/common/YoastSchema";
 import { getAllCaseStudySlugs, getCaseStudyBySlug } from "@/lib/case-studies";
 import { stripHtml, truncateWords } from "@/lib/wp-text";
 
@@ -60,6 +61,7 @@ export default async function CaseStudySinglePage({ params }) {
 
   return (
     <>
+      <YoastSchema uri={`/case-studies/${slug}/`} />
       <Header />
       <main>
         {/* Top section — simple page-title banner */}

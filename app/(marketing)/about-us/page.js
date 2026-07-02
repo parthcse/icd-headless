@@ -10,6 +10,7 @@ import WeServeSection from "@/components/home/WeServeSection";
 import WhyChooseUsSection from "@/components/home/WhyChooseUsSection";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
+import YoastSchema from "@/components/common/YoastSchema";
 
 export const metadata = {
   title: "About Us | Icecube Digital",
@@ -18,6 +19,7 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <>
+      <YoastSchema uri="/about-us/" />
       <Header />
       <main>
         <AboutBannerSection />

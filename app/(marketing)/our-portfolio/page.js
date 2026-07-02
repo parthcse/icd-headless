@@ -1,4 +1,5 @@
 import Header from "@/components/layout/Header";
+import YoastSchema from "@/components/common/YoastSchema";
 import Footer from "@/components/layout/Footer";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
 import PortfolioGallery from "@/components/portfolio/PortfolioGallery";
@@ -18,6 +19,7 @@ export default async function OurPortfolioPage() {
 
   return (
     <>
+      <YoastSchema uri="/our-portfolio/" />
       <Header />
       <main>
         {/* Top section */}

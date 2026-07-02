@@ -1,4 +1,5 @@
 import Header from "@/components/layout/Header";
+import YoastSchema from "@/components/common/YoastSchema";
 import Footer from "@/components/layout/Footer";
 import LearningVideoCard from "@/components/learning/LearningVideoCard";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
@@ -27,6 +28,7 @@ const VIDEOS = [
 export default function LearningPage() {
   return (
     <>
+      <YoastSchema uri="/learning/" />
       <Header />
       <main>
         <section className="services-banner full-section relative border-t-0 pt-28 pb-16 xl:pt-40 xl:pb-28">
