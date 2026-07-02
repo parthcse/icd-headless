@@ -3,6 +3,7 @@ import RouteHandler from "@/components/common/RouteHandler";
 import SmoothScroll from "@/components/common/SmoothScroll";
 import DeferredStyles from "@/components/common/DeferredStyles";
 import GetQuotePopup from "@/components/common/GetQuotePopup";
+import CtaPopupDelegator from "@/components/common/CtaPopupDelegator";
 import WhatsAppButton from "@/components/common/WhatsAppButton";
 
 export const metadata = {
@@ -62,6 +63,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <DeferredStyles />
         {children}
         <GetQuotePopup />
+        <CtaPopupDelegator />
         <WhatsAppButton />
         <Script src="/js/load-design.js" strategy="afterInteractive" />
       </body>

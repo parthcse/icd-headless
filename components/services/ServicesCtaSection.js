@@ -1,3 +1,5 @@
+import ServiceCtaButton from "@/components/services/ServiceCtaButton";
+
 export default function ServicesCtaSection({ data }) {
   return (
     <section className="services-cta bg-black-light font-30 font-semibold py-space-mini">
@@ -6,14 +8,12 @@ export default function ServicesCtaSection({ data }) {
           <p>{data.text}</p>
           {data.subtitle && <p className="font-16 font-normal mt-2">{data.subtitle}</p>}
         </div>
-        <a href={data.ctaHref} className="btn btn-primary whitespace-normal lg:whitespace-nowrap">
-          {data.ctaLabel}
-          {data.btnArrow && (
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor">
-              <path d={data.btnArrow} />
-            </svg>
-          )}
-        </a>
+        <ServiceCtaButton
+          href={data.ctaHref}
+          label={data.ctaLabel}
+          btnArrow={data.btnArrow}
+          className="btn btn-primary whitespace-normal lg:whitespace-nowrap"
+        />
       </div>
     </section>
   );

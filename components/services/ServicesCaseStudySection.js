@@ -36,7 +36,7 @@ export default async function ServicesCaseStudySection({ data }) {
   if (!caseStudyItems.length) return null;
 
   return (
-    <section className="services-our-portfolio text-center full-section">
+    <section className="services-case-studies text-center full-section">
       <div className="container">
         <div className="heading-wrap animate fadeUp">
           {data.eyebrow && <h3 className="font-48">{data.eyebrow}</h3>}

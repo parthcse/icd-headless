@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import ContactForm from "@/components/common/ContactForm";
+import ServiceCtaButton from "@/components/services/ServiceCtaButton";
 
 function renderParts(parts) {
   return parts.map((part, i) =>
@@ -36,14 +37,7 @@ export default function ServicesBannerSection({ data }) {
           )}
           {data.closingParagraph && <p>{data.closingParagraph}</p>}
           <div className="flex flex-wrap items-center gap-4">
-            <a href={data.ctaHref} className="btn btn-primary">
-              {data.ctaLabel}
-              {data.btnArrow && (
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor">
-                  <path d={data.btnArrow} />
-                </svg>
-              )}
-            </a>
+            <ServiceCtaButton href={data.ctaHref} label={data.ctaLabel} btnArrow={data.btnArrow} />
             <span className="text-muted font-semibold">OR</span>
             <a href={data.phoneHref} className="btn btn-secondary">
               <img src="/assets/icons/call-icon-orange.svg" alt="" /> {data.phoneLabel}

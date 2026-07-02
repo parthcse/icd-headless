@@ -35,7 +35,7 @@ export default async function ServicesPortfolioSection({ data }) {
   if (!portfolioItems.length) return null;
 
   return (
-    <section className="services-our-portfolio text-center full-section">
+    <section className="services-portfolio text-center full-section">
       <div className="container">
         <div className="heading-wrap animate fadeUp">
           {data.eyebrow && <h3 className="font-48">{data.eyebrow}</h3>}

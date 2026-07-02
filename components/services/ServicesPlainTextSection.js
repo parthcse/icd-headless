@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+import ServiceCtaButton from "@/components/services/ServiceCtaButton";
 
 function renderParts(parts) {
   return parts.map((part, i) =>
@@ -14,7 +15,7 @@ function renderParts(parts) {
 
 export default function ServicesPlainTextSection({ data }) {
   return (
-    <section className="common-text-box full-section">
+    <section className="services-plain-text full-section">
       <div className="container">
         {(data.eyebrow || data.title) && (
           <div className="heading-wrap pb-2 animate fadeUp">
@@ -23,7 +24,7 @@ export default function ServicesPlainTextSection({ data }) {
           </div>
         )}
         <div
-          className={`space-y-4 animate fadeUp${
+          className={`space-y-4 mt-4 animate fadeUp${
             data.contentAlign === "center"
               ? " text-center max-w-5xl mx-auto"
               : data.contentAlign === "left"
@@ -66,14 +67,7 @@ export default function ServicesPlainTextSection({ data }) {
         </div>
         {data.ctaLabel && (
           <div className="btn-wrap text-center pt-space-small">
-            <a href={data.ctaHref || "#"} className="btn btn-primary">
-              {data.ctaLabel}
-              {data.btnArrow && (
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor">
-                  <path d={data.btnArrow} />
-                </svg>
-              )}
-            </a>
+            <ServiceCtaButton href={data.ctaHref} label={data.ctaLabel} btnArrow={data.btnArrow} />
           </div>
         )}
       </div>
