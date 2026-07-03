@@ -1055,12 +1055,14 @@ h6 {
 }
 
 .contact-form-banner--error {
-  border-color: rgba(249, 115, 22, 0.5);
-  color: #fdba74;
+  border-color: rgba(239, 68, 68, 0.45);
+  background-color: rgba(239, 68, 68, 0.08);
+  color: #fca5a5;
 }
 
 .contact-form-banner--success {
   border-color: rgba(34, 197, 94, 0.4);
+  background-color: rgba(34, 197, 94, 0.08);
   color: #86efac;
 }
 
@@ -1958,6 +1960,10 @@ h6 {
   margin-top: 2.25rem;
 }
 
+.mt-\[0\.55em\] {
+  margin-top: 0.55em;
+}
+
 .mt-auto {
   margin-top: auto;
 }
@@ -2703,6 +2709,11 @@ h6 {
        column-gap: 1.25rem;
 }
 
+.gap-x-8 {
+  -moz-column-gap: 2rem;
+       column-gap: 2rem;
+}
+
 .gap-y-1 {
   row-gap: 0.25rem;
 }
@@ -2721,6 +2732,12 @@ h6 {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
+}
+
+.space-y-12 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(3rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(3rem * var(--tw-space-y-reverse));
 }
 
 .space-y-2 > :not([hidden]) ~ :not([hidden]) {
@@ -3050,8 +3067,8 @@ h6 {
   background-color: rgb(0 0 0 / 0.65);
 }
 
-.bg-black\/80 {
-  background-color: rgb(0 0 0 / 0.8);
+.bg-black\/70 {
+  background-color: rgb(0 0 0 / 0.7);
 }
 
 .bg-green-500 {
@@ -3074,6 +3091,10 @@ h6 {
 
 .bg-primary\/30 {
   background-color: rgb(241 126 63 / 0.3);
+}
+
+.bg-primary\/50 {
+  background-color: rgb(241 126 63 / 0.5);
 }
 
 .bg-primary\/60 {
@@ -3145,12 +3166,6 @@ h6 {
 .from-\[\#181818\] {
   --tw-gradient-from: #181818 var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(24 24 24 / 0) var(--tw-gradient-to-position);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-
-.from-\[\#F9A56A\] {
-  --tw-gradient-from: #F9A56A var(--tw-gradient-from-position);
-  --tw-gradient-to: rgb(249 165 106 / 0) var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
@@ -3271,10 +3286,6 @@ h6 {
 
 .to-black-light {
   --tw-gradient-to: #151515 var(--tw-gradient-to-position);
-}
-
-.to-primary {
-  --tw-gradient-to: #F17E3F var(--tw-gradient-to-position);
 }
 
 .to-primary\/\[0\.04\] {
@@ -4383,6 +4394,11 @@ html.lenis {
   background-color: rgb(0 0 0 / 0.35);
 }
 
+.group:hover .group-hover\:bg-primary {
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 126 63 / var(--tw-bg-opacity, 1));
+}
+
 .group\/card:hover .group-hover\/card\:from-primary\/40 {
   --tw-gradient-from: rgb(241 126 63 / 0.4) var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(241 126 63 / 0) var(--tw-gradient-to-position);
@@ -5059,6 +5075,10 @@ html.lenis {
     table-layout: fixed;
   }
 
+  .xl\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
   .xl\:grid-cols-\[340px_1fr\] {
     grid-template-columns: 340px 1fr;
   }
@@ -5103,6 +5123,12 @@ html.lenis {
 
   .xl\:gap-y-24 {
     row-gap: 6rem;
+  }
+
+  .xl\:space-y-16 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-y-reverse: 0;
+    margin-top: calc(4rem * calc(1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(4rem * var(--tw-space-y-reverse));
   }
 
   .xl\:space-y-6 > :not([hidden]) ~ :not([hidden]) {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import ContactForm from "@/components/common/ContactForm";
 
 // Fire this from anywhere to open the popup manually:
@@ -8,7 +8,25 @@ import ContactForm from "@/components/common/ContactForm";
 export const QUOTE_POPUP_EVENT = "icd:open-quote-popup";
 
 const AUTO_OPEN_DELAY = 15000; // 15s after the visitor lands
-const SESSION_KEY = "icd_quote_popup_seen";
+const CLOSE_MS = 300; // must match the panel/overlay transition duration
+const SNOOZE_KEY = "icd_quote_autoopen_until"; // localStorage timestamp
+const SNOOZE_MS = 24 * 60 * 60 * 1000; // 24h
+
+// The 24h snooze ONLY suppresses the auto-open; manual button opens ignore it.
+function autoOpenSnoozed() {
+  try {
+    return Date.now() < Number(localStorage.getItem(SNOOZE_KEY) || 0);
+  } catch {
+    return false;
+  }
+}
+function snoozeAutoOpen() {
+  try {
+    localStorage.setItem(SNOOZE_KEY, String(Date.now() + SNOOZE_MS));
+  } catch {
+    /* ignore */
+  }
+}
 
 const VISION_CARDS = [
   {
@@ -41,47 +59,50 @@ const CloseIcon = () => (
 
 export default function GetQuotePopup() {
   const [open, setOpen] = useState(false);
-  const [shown, setShown] = useState(false); // drives the enter transition
+  const [shown, setShown] = useState(false); // false = hidden (enter/exit); true = visible
+  const autoRef = useRef(false); // is the current open an auto-open?
+  const autoTimer = useRef(null); // pending 15s auto-open timer
+  const closeTimer = useRef(null); // pending unmount-after-exit timer
 
-  // Auto-open once per session, 15s after load.
-  useEffect(() => {
-    let seen = false;
-    try {
-      seen = sessionStorage.getItem(SESSION_KEY) === "1";
-    } catch {
-      seen = false;
-    }
-    if (seen) return;
-    const t = setTimeout(() => {
-      try {
-        sessionStorage.setItem(SESSION_KEY, "1");
-      } catch {
-        /* ignore */
-      }
-      setOpen(true);
-    }, AUTO_OPEN_DELAY);
-    return () => clearTimeout(t);
+  const openPopup = useCallback((viaAuto) => {
+    clearTimeout(closeTimer.current);
+    autoRef.current = viaAuto;
+    setOpen(true);
   }, []);
 
-  // Manual open from any "Get a Quote" button (always works).
+  // Animate out, then unmount after the transition finishes.
+  const requestClose = useCallback(() => {
+    if (autoRef.current) snoozeAutoOpen(); // dismissing the auto-open → snooze 24h
+    setShown(false);
+    clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setOpen(false), CLOSE_MS);
+  }, []);
+
+  // A submitted lead shouldn't be auto-pestered either.
+  const handleSuccess = useCallback(() => snoozeAutoOpen(), []);
+
+  // Auto-open once, 15s after load — unless snoozed (closed/submitted in last 24h).
+  useEffect(() => {
+    if (autoOpenSnoozed()) return;
+    autoTimer.current = setTimeout(() => openPopup(true), AUTO_OPEN_DELAY);
+    return () => clearTimeout(autoTimer.current);
+  }, [openPopup]);
+
+  // Manual open from any "Get a Quote" button — always works, pre-empts auto-open.
   useEffect(() => {
     const handler = () => {
-      try {
-        sessionStorage.setItem(SESSION_KEY, "1");
-      } catch {
-        /* ignore */
-      }
-      setOpen(true);
+      clearTimeout(autoTimer.current);
+      openPopup(false);
     };
     window.addEventListener(QUOTE_POPUP_EVENT, handler);
     return () => window.removeEventListener(QUOTE_POPUP_EVENT, handler);
-  }, []);
+  }, [openPopup]);
 
   // Lock body scroll + Escape to close + enter transition while open.
   useEffect(() => {
     if (!open) return;
     const onKey = (e) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") requestClose();
     };
     document.addEventListener("keydown", onKey);
     const prevOverflow = document.body.style.overflow;
@@ -94,9 +115,8 @@ export default function GetQuotePopup() {
       document.body.style.overflow = prevOverflow;
       window.lenis?.start();
       cancelAnimationFrame(raf);
-      setShown(false);
     };
-  }, [open]);
+  }, [open, requestClose]);
 
   if (!open) return null;
 
@@ -106,9 +126,13 @@ export default function GetQuotePopup() {
       role="dialog"
       aria-modal="true"
       aria-label="Get a free quote"
-      onClick={() => setOpen(false)}
+      onClick={requestClose}
     >
-      <div className="absolute inset-0 bg-black/80 backdrop-blur-md" />
+      <div
+        className={`absolute inset-0 bg-black/70 backdrop-blur-md transition-opacity duration-300 ease-out ${
+          shown ? "opacity-100" : "opacity-0"
+        }`}
+      />
 
       <div
         data-lenis-prevent
@@ -122,7 +146,7 @@ export default function GetQuotePopup() {
 
         <button
           type="button"
-          onClick={() => setOpen(false)}
+          onClick={requestClose}
           aria-label="Close"
           className="absolute right-4 top-4 z-30 flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-black/50 text-white/80 backdrop-blur transition hover:rotate-90 hover:border-primary hover:bg-primary hover:text-white"
         >
@@ -171,7 +195,7 @@ export default function GetQuotePopup() {
           <div className="relative border-t border-white/10 bg-white/[0.02] p-7 sm:p-8 lg:border-l lg:border-t-0 lg:p-9">
             <h2 className="mb-1 whitespace-nowrap font-24">Get A Free Quote</h2>
             <p className="mb-5 text-sm text-muted">Tell us about your project — we reply within one business day.</p>
-            <ContactForm variant="banner" animate={false} bordered={false} compact />
+            <ContactForm variant="banner" animate={false} bordered={false} compact onSuccess={handleSuccess} />
           </div>
         </div>
       </div>

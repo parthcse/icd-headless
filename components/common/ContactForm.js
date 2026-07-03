@@ -19,6 +19,15 @@ function cf7Endpoint() {
   return `${origin}/wp-json/contact-form-7/v1/contact-forms/${CF7_FORM_ID}/feedback`;
 }
 
+// Accept 3 website formats — "https://x.com", "www.x.com", "x.com" — and hand
+// CF7 a scheme-qualified URL (its [url] validator requires http/https).
+function normalizeWebsite(value) {
+  const s = (value || "").trim();
+  if (!s) return "";
+  if (/^https?:\/\//i.test(s)) return s;
+  return `https://${s}`;
+}
+
 // Map CF7 field names → our logical field keys (for inline error display).
 const CF7_FIELD_TO_KEY = {
   "full-name": "name",
@@ -109,7 +118,7 @@ function detectCountry() {
  * email and the rest of the CF7 pipeline. A Cloudflare Turnstile widget provides
  * the spam token the form requires.
  */
-export default function ContactForm({ variant = "split", title, btnArrow, animate = true, bordered = true, compact = false }) {
+export default function ContactForm({ variant = "split", title, btnArrow, animate = true, bordered = true, compact = false, onSuccess }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -199,7 +208,7 @@ export default function ContactForm({ variant = "split", title, btnArrow, animat
     fd.set("full-name", name);
     fd.set("email-id", email);
     fd.set("phone", phone);
-    fd.set("website-url", website);
+    fd.set("website-url", normalizeWebsite(website));
     fd.set("your-message", message);
     // Headless page context → CF7 hidden fields [page-title] / [page-url], since
     // the server-side [_post_title] / [_url] tags can't see a headless page.
@@ -230,6 +239,7 @@ export default function ContactForm({ variant = "split", title, btnArrow, animat
         setPhone("");
         setWebsite("");
         setMessage("");
+        onSuccess?.();
       } else if (data.status === "validation_failed") {
         const fe = {};
         (data.invalid_fields || []).forEach((f) => {
@@ -318,7 +328,8 @@ export default function ContactForm({ variant = "split", title, btnArrow, animat
         <div>
           <input
             id="contact-agency-url"
-            type="url"
+            type="text"
+            inputMode="url"
             placeholder="Your Website URL"
             className={inputCls}
             aria-invalid={Boolean(fieldErrors.website)}
