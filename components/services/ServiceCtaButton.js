@@ -1,13 +1,17 @@
 "use client";
 
 /**
- * Service CTA. Renders a normal link when `href` is a real URL, or a button
- * that opens the site-wide GetQuotePopup (via the shared custom event) when
- * `href` is empty / "#" / "popup". Keeps the same btn markup + arrow as before.
+ * Service CTA button.
+ *
+ * - href === "popup"  → renders a <button> that opens the site-wide
+ *   GetQuotePopup (via the shared `icd:open-quote-popup` event). This is an
+ *   explicit opt-in: only CTAs whose data href is literally "popup" become
+ *   popup triggers — a bare "#"/empty href is NOT treated as a popup.
+ * - any real URL       → renders a normal <a href>.
+ *
+ * Keeps the same btn markup + optional arrow the sections used before.
  */
 export default function ServiceCtaButton({ href, label, btnArrow, className = "btn btn-primary" }) {
-  const isPopup = !href || href === "#" || href === "popup";
-
   const inner = (
     <>
       {label}
@@ -19,7 +23,7 @@ export default function ServiceCtaButton({ href, label, btnArrow, className = "b
     </>
   );
 
-  if (isPopup) {
+  if (href === "popup") {
     return (
       <button
         type="button"
@@ -32,7 +36,7 @@ export default function ServiceCtaButton({ href, label, btnArrow, className = "b
   }
 
   return (
-    <a href={href} className={className}>
+    <a href={href || "#"} className={className}>
       {inner}
     </a>
   );

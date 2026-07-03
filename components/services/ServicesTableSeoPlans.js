@@ -1,3 +1,5 @@
+import ServiceCtaButton from "@/components/services/ServiceCtaButton";
+
 export default function ServicesTableSeoPlans({ data }) {
   return (
     <section className="services-seo-pricing full-section">
@@ -46,7 +48,7 @@ export default function ServicesTableSeoPlans({ data }) {
                 ))}
               </ul>
               <div className="pt-6">
-                <a href={data.ctaHref || "#"} className="btn btn-primary">{data.ctaLabel}</a>
+                <ServiceCtaButton href={data.ctaHref} label={data.ctaLabel} className="btn btn-primary" />
               </div>
             </div>
           </div>

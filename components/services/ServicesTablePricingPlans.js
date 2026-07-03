@@ -1,3 +1,5 @@
+import ServiceCtaButton from "@/components/services/ServiceCtaButton";
+
 // Feature-comparison pricing built with the same column-card design as
 // ServicesTablePackages: a "Feature" column followed by one card per plan, each
 // with a bg-primary header and a bordered list. Subgrid keeps every column's
@@ -56,14 +58,7 @@ export default function ServicesTablePricingPlans({ data }) {
                 {hasCta && (
                   <div className="flex items-center justify-center text-center px-4 xl:px-6 py-4 xl:py-5">
                     {col.ctaLabel && (
-                      <a href={col.ctaHref || "#"} className="btn btn-primary">
-                        {col.ctaLabel}
-                        {data.btnArrow && (
-                          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor">
-                            <path d={data.btnArrow} />
-                          </svg>
-                        )}
-                      </a>
+                      <ServiceCtaButton href={col.ctaHref} label={col.ctaLabel} btnArrow={data.btnArrow} />
                     )}
                   </div>
                 )}

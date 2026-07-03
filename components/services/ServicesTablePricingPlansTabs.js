@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import ServiceCtaButton from "@/components/services/ServiceCtaButton";
 function Cell({ value }) {
   if (value === true)
     return <img className="w-[1em] min-w-[1em] mx-auto" src="/assets/icons/check-white-icon.svg" alt="Included" />;
@@ -23,7 +24,7 @@ function Price({ price }) {
 }
 
 export default function ServicesTablePricingPlansTabs({ data }) {
-  const { tabs, plans, rows, ctaLabel = "Sign Up Now", ctaHref = "#" } = data;
+  const { tabs, plans, rows, ctaLabel = "Sign Up Now", ctaHref = "popup" } = data;
   const [activeTab, setActiveTab] = useState(tabs[0].id);
   const [activePlan, setActivePlan] = useState(0);
 
@@ -99,9 +100,7 @@ export default function ServicesTablePricingPlansTabs({ data }) {
                   {plans.map((plan, i) => (
                     <td key={i} className="px-1">
                       <div className={`btn-wrap py-6 px-3 border-b ${plan.popular ? "border-x-4 border-b-4" : "border-x"} border-primary`}>
-                        <a href={ctaHref} className="btn btn-primary">
-                          {ctaLabel} ↗
-                        </a>
+                        <ServiceCtaButton href={ctaHref} label={`${ctaLabel} ↗`} />
                       </div>
                     </td>
                   ))}
@@ -153,9 +152,7 @@ export default function ServicesTablePricingPlansTabs({ data }) {
                     ))}
                   </div>
                   <div className="p-5">
-                    <a href={ctaHref} className="btn btn-primary">
-                      {ctaLabel} ↗
-                    </a>
+                    <ServiceCtaButton href={ctaHref} label={`${ctaLabel} ↗`} />
                   </div>
                 </div>
               );

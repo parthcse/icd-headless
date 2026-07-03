@@ -1,3 +1,5 @@
+import ServiceCtaButton from "@/components/services/ServiceCtaButton";
+
 export default function ServicesTableCompareAdvanced({ data }) {
   return (
     <section className="services-pricing full-section">
@@ -20,14 +22,7 @@ export default function ServicesTableCompareAdvanced({ data }) {
                     {plan.buckets.map((bucket, j) => (
                       <div key={j}>
                         <p><strong>{bucket.label}</strong></p>
-                        <a href={bucket.ctaHref} className="btn btn-primary">
-                          {bucket.ctaLabel}
-                          {data.btnArrow && (
-                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor">
-                              <path d={data.btnArrow} />
-                            </svg>
-                          )}
-                        </a>
+                        <ServiceCtaButton href={bucket.ctaHref} label={bucket.ctaLabel} btnArrow={data.btnArrow} />
                       </div>
                     ))}
                   </div>
@@ -37,14 +32,7 @@ export default function ServicesTableCompareAdvanced({ data }) {
                   <div className="heading-box space-y-4">
                     <h3 className="font-36 font-semibold mb-0">{plan.name}</h3>
                     <p>{plan.description}</p>
-                    <a href={plan.ctaHref} className="btn btn-primary">
-                      {plan.ctaLabel}
-                      {data.btnArrow && (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor">
-                          <path d={data.btnArrow} />
-                        </svg>
-                      )}
-                    </a>
+                    <ServiceCtaButton href={plan.ctaHref} label={plan.ctaLabel} btnArrow={data.btnArrow} />
                     {plan.badge && <small className="block">{plan.badge}</small>}
                   </div>
                   <div className="text-box border-t border-white/15 -mx-1 pt-6 mt-6 space-y-3">
@@ -55,14 +43,7 @@ export default function ServicesTableCompareAdvanced({ data }) {
                       </ul>
                     )}
                     {plan.altCtaLabel && (
-                      <a href={plan.altCtaHref || "#"} className="btn btn-primary">
-                        {plan.altCtaLabel}
-                        {data.btnArrow && (
-                          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor">
-                            <path d={data.btnArrow} />
-                          </svg>
-                        )}
-                      </a>
+                      <ServiceCtaButton href={plan.altCtaHref} label={plan.altCtaLabel} btnArrow={data.btnArrow} />
                     )}
                   </div>
                 </>

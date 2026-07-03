@@ -1,3 +1,5 @@
+import ServiceCtaButton from "@/components/services/ServiceCtaButton";
+
 export default function ServicesTablePackages({ data }) {
   // One grid row per feature so every column's cells share the same row height
   // (via subgrid); shorter columns still render bordered filler cells.
@@ -45,14 +47,7 @@ export default function ServicesTablePackages({ data }) {
 
         {data.ctaLabel && (
           <div className="text-center pt-space-small">
-            <a href={data.ctaHref || "#"} className="btn btn-primary">
-              {data.ctaLabel}
-              {data.btnArrow && (
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor">
-                  <path d={data.btnArrow} />
-                </svg>
-              )}
-            </a>
+            <ServiceCtaButton href={data.ctaHref} label={data.ctaLabel} btnArrow={data.btnArrow} className="btn btn-primary" />
           </div>
         )}
       </div>

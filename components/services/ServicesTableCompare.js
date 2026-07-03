@@ -1,3 +1,5 @@
+import ServiceCtaButton from "@/components/services/ServiceCtaButton";
+
 export default function ServicesTableCompare({ data }) {
   const colsClass = data.plans.length >= 3 ? "sm:grid-cols-2 lg:grid-cols-3" : "lg:grid-cols-2";
   return (
@@ -40,16 +42,7 @@ export default function ServicesTableCompare({ data }) {
                 )}
                 {plan.ctaLabel && (
                   <div className="btn-wrap mt-auto pt-2">
-                    <a href={plan.ctaHref || "#"} className="btn btn-primary">
-                      {plan.ctaLabel}
-                      {data.btnArrow ? (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor">
-                          <path d={data.btnArrow} />
-                        </svg>
-                      ) : (
-                        " ↗"
-                      )}
-                    </a>
+                    <ServiceCtaButton href={plan.ctaHref} label={data.btnArrow ? plan.ctaLabel : `${plan.ctaLabel} ↗`} btnArrow={data.btnArrow} />
                   </div>
                 )}
               </div>

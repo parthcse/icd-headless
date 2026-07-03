@@ -1,3 +1,5 @@
+import ServiceCtaButton from "@/components/services/ServiceCtaButton";
+
 export default function ServicesCeoCtaSection({ data }) {
   return (
     <section className="services-ceo-cta full-section text-center md:text-left pb-0 font-30 md:pt-0">
@@ -5,14 +7,7 @@ export default function ServicesCeoCtaSection({ data }) {
         <div className="seo-say grid gap-[0.81em] xl:pt-20">
           <p>{data.text}</p>
           <div className="btn-wrap">
-            <a href={data.ctaHref} className="btn btn-primary whitespace-normal">
-              {data.ctaLabel}
-              {data.btnArrow && (
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 13 13" fill="currentColor">
-                  <path d={data.btnArrow} />
-                </svg>
-              )}
-            </a>
+            <ServiceCtaButton href={data.ctaHref} label={data.ctaLabel} btnArrow={data.btnArrow} className="btn btn-primary whitespace-normal" />
           </div>
         </div>
         <div className="seo-images md:w-[60%] xl:w-[45%]">
