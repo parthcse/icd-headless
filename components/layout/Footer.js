@@ -50,7 +50,7 @@ const BOTTOM_LINKS = [
   { label: "Testimonial", href: "/client-testimonials/" },
   { label: "Our Blog", href: "/blog/" },
   { label: "Sitemap", href: "/sitemap/" },
-  { label: "Scam Alert", href: "#" },
+  { label: "Scam Alert", href: "/important-update-regarding-scammers/" },
   { label: "Privacy", href: "/privacy-policy/" },
 ];
 
