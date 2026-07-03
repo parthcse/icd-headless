@@ -55,6 +55,7 @@ export default function ServicesTableBasic({ data }) {
             </tbody>
           </table>
         </div>
+        {data.note && <p className="mx-auto mt-6 max-w-5xl text-center leading-relaxed text-white/70">{data.note}</p>}
       </div>
     </section>
   );

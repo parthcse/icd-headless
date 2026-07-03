@@ -41,7 +41,7 @@ export default function ServicesCheckListSection({ data }) {
                       <p className="font-normal">{item.body}</p>
                     </div>
                   ) : (
-                    <p className="font-normal">{item}</p>
+                    <p className="font-normal">{Array.isArray(item) ? renderParts(item) : item}</p>
                   )}
                 </li>
               ))}

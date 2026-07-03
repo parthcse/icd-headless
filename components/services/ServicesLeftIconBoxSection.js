@@ -19,11 +19,12 @@ export default function ServicesLeftIconBoxSection({ data }) {
         <div className="heading-wrap animate fadeUp">
           <h3 className="font-48">{data.eyebrow}</h3>
           <h2 className="main-title pb-2">{data.title}</h2>
-          {Array.isArray(data.subtitle)
-            ? data.subtitle.map((p, i) => (
-                <p key={i} className="mx-auto max-w-5xl">{Array.isArray(p) ? renderParts(p) : p}</p>
-              ))
-            : <p className="mx-auto max-w-5xl">{data.subtitle}</p>}
+          {data.subtitle &&
+            (Array.isArray(data.subtitle)
+              ? data.subtitle.map((p, i) => (
+                  <p key={i} className="mx-auto max-w-5xl">{Array.isArray(p) ? renderParts(p) : p}</p>
+                ))
+              : <p className="mx-auto max-w-5xl">{data.subtitle}</p>)}
         </div>
         <div className="flex flex-wrap justify-center gap-6 leading-relaxed">
           {data.items.map((item, i) => (
