@@ -928,6 +928,126 @@ h6 {
   border-radius: 0.5rem;
 }
 
+/* General-purpose prose for hand-authored text pages (privacy, legal, terms…). */
+
+.text-content {
+  line-height: 1.625;
+  color: rgb(255 255 255 / 0.85);
+}
+
+.text-content > * + * {
+  margin-top: 1.25rem;
+}
+
+.text-content h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 0.25rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 600;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.text-content h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.25rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.text-content h4 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.25rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.text-content p {
+  line-height: 1.625;
+}
+
+.text-content a {
+  --tw-text-opacity: 1;
+  color: rgb(241 126 63 / var(--tw-text-opacity, 1));
+  text-decoration-line: underline;
+  text-underline-offset: 2px;
+}
+
+.text-content a:hover {
+  text-decoration-line: none;
+}
+
+.text-content strong, .text-content b {
+  font-weight: 600;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.text-content ul {
+  list-style-type: disc;
+}
+
+.text-content ul > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+}
+
+.text-content ul {
+  padding-left: 1.5rem;
+}
+
+.text-content ol {
+  list-style-type: decimal;
+}
+
+.text-content ol > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+}
+
+.text-content ol {
+  padding-left: 1.5rem;
+}
+
+.text-content li {
+  line-height: 1.625;
+}
+
+.text-content blockquote {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-left-width: 4px;
+  --tw-border-opacity: 1;
+  border-color: rgb(241 126 63 / var(--tw-border-opacity, 1));
+  padding-left: 1rem;
+  font-style: italic;
+  color: rgb(255 255 255 / 0.7);
+}
+
+.text-content hr {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border-color: rgb(255 255 255 / 0.1);
+}
+
+/* One consistent dark overlay for every page's top banner image. */
+
+.common-top-banner-overlay {
+  pointer-events: none;
+  position: absolute;
+  inset: 0px;
+  background-color: rgb(0 0 0 / 30%);
+}
+
 /* "AI summary" box ships a light theme via inline styles — re-skin for dark
        (orange header + white title stay; body bg/border/text fixed). */
 
@@ -2024,6 +2144,10 @@ h6 {
   display: grid;
 }
 
+.contents {
+  display: contents;
+}
+
 .hidden {
   display: none;
 }
@@ -2222,6 +2346,10 @@ h6 {
 
 .max-h-full {
   max-height: 100%;
+}
+
+.min-h-\[70vh\] {
+  min-height: 70vh;
 }
 
 .\!w-\[3\.5em\] {
@@ -3143,14 +3271,6 @@ h6 {
   --tw-bg-opacity: 0.25;
 }
 
-.bg-opacity-40 {
-  --tw-bg-opacity: 0.4;
-}
-
-.bg-opacity-50 {
-  --tw-bg-opacity: 0.5;
-}
-
 .bg-gradient-to-b {
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
 }
@@ -3166,12 +3286,6 @@ h6 {
 .from-\[\#181818\] {
   --tw-gradient-from: #181818 var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(24 24 24 / 0) var(--tw-gradient-to-position);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-
-.from-black\/60 {
-  --tw-gradient-from: rgb(0 0 0 / 0.6) var(--tw-gradient-from-position);
-  --tw-gradient-to: rgb(0 0 0 / 0) var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
@@ -3247,11 +3361,6 @@ h6 {
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
-.via-black\/65 {
-  --tw-gradient-to: rgb(0 0 0 / 0)  var(--tw-gradient-to-position);
-  --tw-gradient-stops: var(--tw-gradient-from), rgb(0 0 0 / 0.65) var(--tw-gradient-via-position), var(--tw-gradient-to);
-}
-
 .via-primary\/70 {
   --tw-gradient-to: rgb(241 126 63 / 0)  var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), rgb(241 126 63 / 0.7) var(--tw-gradient-via-position), var(--tw-gradient-to);
@@ -3282,10 +3391,6 @@ h6 {
 
 .to-\[\#ffb27f\] {
   --tw-gradient-to: #ffb27f var(--tw-gradient-to-position);
-}
-
-.to-black-light {
-  --tw-gradient-to: #151515 var(--tw-gradient-to-position);
 }
 
 .to-primary\/\[0\.04\] {

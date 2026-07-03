@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 // Cloudflare Turnstile site key used by the live Contact Form 7 form (id 4751).
 const TURNSTILE_SITE_KEY =
@@ -128,6 +129,7 @@ export default function ContactForm({ variant = "split", title, btnArrow, animat
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
   const [fieldErrors, setFieldErrors] = useState({});
+  const router = useRouter();
 
   const turnstileRef = useRef(null);
   const widgetIdRef = useRef(null);
@@ -233,13 +235,10 @@ export default function ContactForm({ variant = "split", title, btnArrow, animat
       const data = await res.json().catch(() => ({}));
 
       if (data.status === "mail_sent") {
-        setSuccess(true);
-        setName("");
-        setEmail("");
-        setPhone("");
-        setWebsite("");
-        setMessage("");
         onSuccess?.();
+        // Send the visitor to the thank-you page on success.
+        router.push("/thank-you/");
+        return;
       } else if (data.status === "validation_failed") {
         const fe = {};
         (data.invalid_fields || []).forEach((f) => {

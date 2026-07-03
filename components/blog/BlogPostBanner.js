@@ -54,10 +54,10 @@ export default function BlogPostBanner({ post }) {
   ].filter(Boolean);
 
   return (
-    <section className="services-banner full-section relative border-t-0 pt-28 pb-14 xl:pt-40 xl:pb-20">
+    <section className="common-top-banner full-section relative border-t-0 pt-28 pb-14 xl:pt-40 xl:pb-20">
       <div className="absolute inset-0">
         <img className="h-full w-full object-cover" aria-hidden="true" src="/assets/photos/home-banner-bg.png" alt="" fetchPriority="high" />
-        <span className="absolute inset-0 bg-black/55" />
+        <span className="common-top-banner-overlay" />
       </div>
 
       <div className="container relative z-10 mx-auto max-w-4xl text-center animate fadeUp">

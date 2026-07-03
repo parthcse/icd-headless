@@ -49,10 +49,10 @@ export default function ClientTestimonialsPage() {
       <Header />
       <main>
         {/* Banner + stats */}
-        <section className="services-banner full-section relative border-t-0 pt-32 pb-14 xl:pt-48 xl:pb-20">
+        <section className="common-top-banner full-section relative border-t-0 pt-32 pb-14 xl:pt-48 xl:pb-20">
           <div className="absolute inset-0">
             <img className="h-full w-full object-cover" aria-hidden="true" src="/assets/photos/home-banner-bg.png" alt="" fetchPriority="high" />
-            <span className="absolute inset-0 bg-black/55" />
+            <span className="common-top-banner-overlay" />
           </div>
           <div className="container relative z-10 mx-auto max-w-4xl text-center animate fadeUp">
             <p className="mb-3 font-semibold uppercase tracking-[0.2em] text-primary">Client Testimonials</p>
@@ -76,7 +76,7 @@ export default function ClientTestimonialsPage() {
 
         {/* Video testimonials */}
         {VIDEO_TESTIMONIALS.length > 0 && (
-          <section className="full-section">
+          <section className="video-testimonials-section full-section">
             <div className="container">
               <div className="heading-wrap animate fadeUp">
                 <h3 className="font-48 font-normal">Hear It in Their Words</h3>
@@ -92,7 +92,7 @@ export default function ClientTestimonialsPage() {
         )}
 
         {/* Text testimonials — masonry */}
-        <section className="full-section">
+        <section className="text-testimonials-section full-section">
           <div className="container">
             <div className="heading-wrap animate fadeUp">
               <h3 className="font-48 font-normal">Kind Words From Our</h3>

@@ -45,10 +45,10 @@ export default async function AuthorArchivePage({ params }) {
     <>
       <Header />
       <main>
-        <section className="services-banner full-section relative border-t-0 pt-28 pb-14 xl:pt-40 xl:pb-20">
+        <section className="common-top-banner full-section relative border-t-0 pt-28 pb-14 xl:pt-40 xl:pb-20">
           <div className="absolute inset-0">
             <img className="h-full w-full object-cover" aria-hidden="true" src="/assets/photos/home-banner-bg.png" alt="" fetchPriority="high" />
-            <span className="absolute inset-0 bg-black/55" />
+            <span className="common-top-banner-overlay" />
           </div>
           <div className="container relative z-10 mx-auto max-w-3xl text-center animate fadeUp">
             <p className="mb-3 font-semibold uppercase tracking-[0.2em] text-primary">Author</p>
@@ -56,7 +56,7 @@ export default async function AuthorArchivePage({ params }) {
           </div>
         </section>
 
-        <section className="full-section">
+        <section className="blog-author-section full-section">
           <div className="container">
             <div className="grid gap-8 lg:grid-cols-[320px_1fr] xl:gap-12">
               {/* Left — sticky author profile */}

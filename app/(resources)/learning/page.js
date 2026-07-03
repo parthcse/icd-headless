@@ -35,7 +35,7 @@ export default function LearningPage() {
       <YoastSchema uri="/learning/" />
       <Header />
       <main>
-        <section className="services-banner full-section relative border-t-0 pt-28 pb-16 xl:pt-40 xl:pb-28">
+        <section className="common-top-banner full-section relative border-t-0 pt-28 pb-16 xl:pt-40 xl:pb-28">
           <div className="absolute inset-0">
             <img
               className="h-full w-full object-cover"
@@ -44,7 +44,7 @@ export default function LearningPage() {
               alt=""
               fetchPriority="high"
             />
-            <span className="absolute inset-0 bg-black bg-opacity-40" />
+            <span className="common-top-banner-overlay" />
           </div>
           <div className="container relative z-10 mx-auto max-w-3xl py-8 text-center animate fadeUp">
             <p className="mb-3 font-semibold uppercase tracking-[0.2em] text-primary">Watch &amp; Learn</p>
@@ -55,7 +55,7 @@ export default function LearningPage() {
           </div>
         </section>
 
-        <section className="full-section">
+        <section className="learning-videos-section full-section">
           <div className="container">
             <div className="grid animate fadeUp gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
               {VIDEOS.map((video) => (

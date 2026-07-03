@@ -12,7 +12,7 @@ export default function BlogListing({
 }) {
   return (
     <>
-      <section className="services-banner full-section relative border-t-0 pt-28 pb-16 xl:pt-40 xl:pb-24">
+      <section className="common-top-banner full-section relative border-t-0 pt-28 pb-16 xl:pt-40 xl:pb-24">
         <div className="absolute inset-0">
           <img
             className="h-full w-full object-cover"
@@ -21,7 +21,7 @@ export default function BlogListing({
             alt=""
             fetchPriority="high"
           />
-          <span className="absolute inset-0 bg-black bg-opacity-50" />
+          <span className="common-top-banner-overlay" />
         </div>
         <div className="container relative z-10 mx-auto max-w-3xl py-6 text-center animate fadeUp">
           {eyebrow && <p className="mb-3 font-semibold uppercase tracking-[0.2em] text-primary">{eyebrow}</p>}

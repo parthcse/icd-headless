@@ -179,10 +179,10 @@ export default async function EcommerceFaqsPage() {
       <Header />
       <main>
         {/* Hero */}
-        <section className="services-banner full-section relative border-t-0 pt-32 pb-16 xl:pt-48 xl:pb-24">
+        <section className="common-top-banner full-section relative border-t-0 pt-32 pb-16 xl:pt-48 xl:pb-24">
           <div className="absolute inset-0">
             <img className="h-full w-full object-cover" aria-hidden="true" src="/assets/photos/home-banner-bg.png" alt="" fetchPriority="high" />
-            <span className="absolute inset-0 bg-black bg-opacity-50" />
+            <span className="common-top-banner-overlay" />
           </div>
           <div className="container relative z-10 mx-auto max-w-3xl py-8 text-center animate fadeUp">
             <p className="mb-3 font-semibold uppercase tracking-[0.2em] text-primary">Got Questions?</p>
@@ -197,7 +197,7 @@ export default async function EcommerceFaqsPage() {
         </section>
 
         {/* FAQ accordion + sidebar */}
-        <section className="full-section">
+        <section className="faq-content-section full-section">
           <div className="container">
             <div className="grid items-start gap-8 lg:grid-cols-3 xl:gap-10">
               {/* Left — title + accordion */}

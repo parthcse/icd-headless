@@ -46,12 +46,12 @@ const SERVICE_COLUMNS = [
 
 const BOTTOM_LINKS = [
   { label: "Home", href: "/" },
-  { label: "Our Portfolio", href: "#" },
-  { label: "Testimonial", href: "#" },
-  { label: "Our Blog", href: "#" },
-  { label: "Sitemap", href: "#" },
+  { label: "Our Portfolio", href: "/our-portfolio/" },
+  { label: "Testimonial", href: "/client-testimonials/" },
+  { label: "Our Blog", href: "/blog/" },
+  { label: "Sitemap", href: "/sitemap/" },
   { label: "Scam Alert", href: "#" },
-  { label: "Privacy", href: "#" },
+  { label: "Privacy", href: "/privacy-policy/" },
 ];
 
 export default function Footer() {

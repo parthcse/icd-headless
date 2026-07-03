@@ -88,6 +88,27 @@
     .blog-content hr { @apply my-8 border-white/10; }
     .blog-content iframe { @apply my-6 aspect-video w-full rounded-lg; }
 
+    /* General-purpose prose for hand-authored text pages (privacy, legal, terms…). */
+    .text-content { @apply leading-relaxed text-white/85; }
+    .text-content > * + * { @apply mt-5; }
+    .text-content h2 { @apply text-2xl font-semibold text-white mt-10 mb-1; }
+    .text-content h3 { @apply text-xl font-semibold text-white mt-8 mb-1; }
+    .text-content h4 { @apply text-lg font-semibold text-white mt-6 mb-1; }
+    .text-content p { @apply leading-relaxed; }
+    .text-content a { @apply text-primary underline underline-offset-2 hover:no-underline; }
+    .text-content strong, .text-content b { @apply font-semibold text-white; }
+    .text-content ul { @apply list-disc space-y-2 pl-6; }
+    .text-content ol { @apply list-decimal space-y-2 pl-6; }
+    .text-content li { @apply leading-relaxed; }
+    .text-content blockquote { @apply my-6 border-l-4 border-primary pl-4 italic text-white/70; }
+    .text-content hr { @apply my-8 border-white/10; }
+
+    /* One consistent dark overlay for every page's top banner image. */
+    .common-top-banner-overlay {
+        @apply pointer-events-none absolute inset-0;
+        background-color: rgb(0 0 0 / 30%);
+    }
+
     /* "AI summary" box ships a light theme via inline styles — re-skin for dark
        (orange header + white title stay; body bg/border/text fixed). */
     .blog-content .ai-wordpress-summary {

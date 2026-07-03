@@ -20,7 +20,7 @@ export default function NewsletterPage() {
       <YoastSchema uri="/web-wednesday-newsletter/" />
       <Header />
       <main>
-        <section className="services-banner full-section relative border-t-0 pt-32 pb-16 xl:pt-48 xl:pb-28">
+        <section className="common-top-banner full-section relative border-t-0 pt-32 pb-16 xl:pt-48 xl:pb-28">
           <div className="absolute inset-0">
             <img
               className="h-full w-full object-cover"
@@ -29,7 +29,7 @@ export default function NewsletterPage() {
               alt=""
               fetchPriority="high"
             />
-            <span className="absolute inset-0 bg-black bg-opacity-50" />
+            <span className="common-top-banner-overlay" />
           </div>
 
           <div className="container relative z-10 grid gap-space lg:grid-cols-2">

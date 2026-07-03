@@ -42,10 +42,10 @@ export default function SitemapPage() {
       <Header />
       <main>
         {/* Top section */}
-        <section className="sitemap-banner full-section relative border-t-0 pt-32 pb-16 xl:pt-48 xl:pb-24">
+        <section className="common-top-banner full-section relative border-t-0 pt-32 pb-16 xl:pt-48 xl:pb-24">
           <div className="absolute inset-0">
             <img className="h-full w-full object-cover" aria-hidden="true" src="/assets/photos/home-banner-bg.png" alt="" fetchPriority="high" />
-            <span className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/65 to-black-light" />
+            <span className="common-top-banner-overlay" />
           </div>
           <div className="container relative z-10 mx-auto max-w-3xl py-8 text-center animate fadeUp">
             <p className="mb-3 font-semibold uppercase tracking-[0.2em] text-primary">Sitemap</p>
@@ -57,7 +57,7 @@ export default function SitemapPage() {
         </section>
 
         {/* Sitemap sections */}
-        <section className="full-section">
+        <section className="sitemap-content-section full-section">
           <div className="container space-y-12 xl:space-y-16">
             {SITEMAP_SECTIONS.map((section) => (
               <div key={section.title} className="animate fadeUp">

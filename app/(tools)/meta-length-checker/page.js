@@ -22,7 +22,7 @@ export default function MetaLengthCheckerPage() {
       <YoastSchema uri="/meta-length-checker/" />
       <Header />
       <main>
-        <section className="services-banner full-section relative border-t-0 pt-28 pb-16 xl:pt-40 xl:pb-28">
+        <section className="common-top-banner full-section relative border-t-0 pt-28 pb-16 xl:pt-40 xl:pb-28">
           <div className="absolute inset-0">
             <img
               className="h-full w-full object-cover"
@@ -31,7 +31,7 @@ export default function MetaLengthCheckerPage() {
               alt=""
               fetchPriority="high"
             />
-            <span className="absolute inset-0 bg-black bg-opacity-40" />
+            <span className="common-top-banner-overlay" />
           </div>
           <div className="container relative z-10 mx-auto max-w-3xl py-8 text-center animate fadeUp">
             <p className="mb-3 font-semibold uppercase tracking-[0.2em] text-primary">Free SEO Tool</p>
