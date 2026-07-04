@@ -49,7 +49,7 @@ export default function ServicesTopIconBoxSection({ data }) {
           ))}
         </div>
         {data.footerNote && (
-          <p className="text-center max-w-4xl mx-auto mt-10 leading-relaxed">{data.footerNote}</p>
+          <p className="text-center max-w-4xl mx-auto mt-10 leading-relaxed">{Array.isArray(data.footerNote) ? renderParts(data.footerNote) : data.footerNote}</p>
         )}
       </div>
     </section>

@@ -52,7 +52,7 @@ export default function FaqAccordion({ items, defaultOpen = 0 }) {
                     {faq.answer && <p>{Array.isArray(faq.answer) ? renderParts(faq.answer) : faq.answer}</p>}
                     {faq.answerList && (
                       <ul className="list-disc pl-5 space-y-1">
-                        {faq.answerList.map((item, j) => <li key={j}>{item}</li>)}
+                        {faq.answerList.map((item, j) => <li key={j}>{Array.isArray(item) ? renderParts(item) : item}</li>)}
                       </ul>
                     )}
                   </>
