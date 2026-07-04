@@ -107,6 +107,10 @@ const SECTION_RENDERERS = {
   processStepsSecondary: (data) =>
     data.processStepsSecondary && <ServicesProcessStepSection data={data.processStepsSecondary} />,
   information: (data) => data.information && <ServicesInfoSection data={data.information} />,
+  informationSecondary: (data) =>
+    data.informationSecondary && <ServicesInfoSection data={data.informationSecondary} />,
+  informationTertiary: (data) =>
+    data.informationTertiary && <ServicesInfoSection data={data.informationTertiary} />,
   tableCompare: (data) => data.tableCompare && <ServicesTableCompare data={data.tableCompare} />,
   faq: (data) => data.faq && <ServicesFaqSection data={data.faq} />,
   faqSecondary: (data) => data.faqSecondary && <ServicesFaqSection data={data.faqSecondary} />,

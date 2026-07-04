@@ -25,13 +25,9 @@ export default function ServicesPlainTextSection({ data }) {
         )}
         <div
           className={`space-y-4 mt-4 animate fadeUp${
-            data.contentAlign === "center"
-              ? " text-center max-w-5xl mx-auto"
-              : data.contentAlign === "left"
+            data.contentAlign === "left"
               ? " w-full text-left"
-              : data.contentAlign === "left-4xl"
-              ? " w-full text-left max-w-4xl mx-auto"
-              : ""
+              : " text-center max-w-5xl mx-auto"
           }`}
         >
           {data.blocks
