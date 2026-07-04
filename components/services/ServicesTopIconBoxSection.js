@@ -44,7 +44,7 @@ export default function ServicesTopIconBoxSection({ data }) {
                   {item.bodyList.map((li, j) => <li key={j}>{li}</li>)}
                 </ul>
               )}
-              {item.bodyAfter && <p>{item.bodyAfter}</p>}
+              {item.bodyAfter && <p>{Array.isArray(item.bodyAfter) ? renderParts(item.bodyAfter) : item.bodyAfter}</p>}
             </div>
           ))}
         </div>

@@ -5,6 +5,8 @@ function renderParts(parts) {
   return parts.map((part, i) =>
     typeof part === "string" ? (
       <Fragment key={i}>{part}</Fragment>
+    ) : part.bold ? (
+      <strong key={i} className="font-semibold">{part.bold}</strong>
     ) : (
       <a key={i} href={part.href} className="text-primary font-semibold inline underline">{part.text}</a>
     )
