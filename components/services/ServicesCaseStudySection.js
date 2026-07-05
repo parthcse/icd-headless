@@ -11,6 +11,7 @@ function extractParagraphs(html) {
 function mapNodeToCaseStudyItem(node) {
   const fields = node.caseStudiesFields || {};
   return {
+    href: node.slug ? `/case-studies/${node.slug}/` : "",
     image: node.featuredImage?.node?.sourceUrl || "",
     imageAlt: node.featuredImage?.node?.altText || node.title,
     clientName: node.title,
@@ -49,13 +50,29 @@ export default async function ServicesCaseStudySection({ data }) {
           {caseStudyItems.map((item, i) => (
             <div key={i} className="column group">
               <figure className="overflow-hidden">
-                <img
-                  src={item.image}
-                  alt={item.clientName}
-                  className="w-full aspect-[1.16] object-cover transition-all duration-500 group-hover:scale-105 ease-out"
-                />
+                {item.href ? (
+                  <a href={item.href}>
+                    <img
+                      src={item.image}
+                      alt={item.clientName}
+                      className="w-full aspect-[1.16] object-cover transition-all duration-500 group-hover:scale-105 ease-out"
+                    />
+                  </a>
+                ) : (
+                  <img
+                    src={item.image}
+                    alt={item.clientName}
+                    className="w-full aspect-[1.16] object-cover transition-all duration-500 group-hover:scale-105 ease-out"
+                  />
+                )}
               </figure>
-              <h3 className="font-30 font-bold mb-0 pt-space-small">{item.clientName}</h3>
+              <h3 className="font-30 font-bold mb-0 pt-space-small">
+                {item.href ? (
+                  <a href={item.href} className="transition-colors hover:text-primary">{item.clientName}</a>
+                ) : (
+                  item.clientName
+                )}
+              </h3>
               <div className="grid grid-cols-2 border-y border-white/15 my-[clamp(0.625rem,0.0481rem+1.60255vw,1.25rem)] py-[clamp(0.625rem,0.0481rem+1.60255vw,1.25rem)]">
                 {item.metrics.map((m, j) => (
                   <div key={j} className={`column px-1${j === 0 ? " border-r border-white/15" : ""}`}>

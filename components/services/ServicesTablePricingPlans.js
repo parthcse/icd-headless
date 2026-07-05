@@ -1,7 +1,7 @@
 import ServiceCtaButton from "@/components/services/ServiceCtaButton";
 
 // Feature-comparison pricing built with the same column-card design as
-// ServicesTablePackages: a "Feature" column followed by one card per plan, each
+// ServicesTableInfoCards: a "Feature" column followed by one card per plan, each
 // with a bg-primary header and a bordered list. Subgrid keeps every column's
 // rows (and the header) the same height, and shorter columns still render
 // bordered filler cells. Columns keep equal width with horizontal scroll on

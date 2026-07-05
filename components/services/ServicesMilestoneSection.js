@@ -48,7 +48,7 @@ export default function ServicesMilestoneSection({ data }) {
                 {ICONS[item.icon]}
               </div>
               <h3 className="font-30 font-bold mb-0">{item.value}</h3>
-              <p>
+              <p className="text-[1.15rem] leading-[1.45rem] font-semibold mt-2">
                 {item.lines.map((line, j) => (
                   <span key={j}>
                     {line}

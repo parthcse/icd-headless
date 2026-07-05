@@ -144,6 +144,7 @@ export const CASE_STUDY_BY_IDS_QUERY = gql`
         id
         databaseId
         title
+        slug
         featuredImage {
           node {
             sourceUrl

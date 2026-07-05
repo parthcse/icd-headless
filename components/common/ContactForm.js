@@ -261,7 +261,7 @@ export default function ContactForm({ variant = "split", title, btnArrow, animat
 
   const isBanner = variant === "banner";
   const inputCls = isBanner
-    ? `w-full border-0 bg-[#252525] outline-none px-5 ${compact ? "rounded-lg py-2.5" : "py-3.5"}`
+    ? `w-full border-0 bg-[#252525] outline-none px-5 ${compact ? "rounded-lg py-2.5" : "py-3"}`
     : "w-full border border-[#272727] bg-transparent px-5 py-4 outline-none";
 
   const fields = (

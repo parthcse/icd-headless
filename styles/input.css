@@ -180,6 +180,11 @@
         @apply text-base xl:text-[0.9rem] font-semibold py-[0.653em] px-[1.55em] border-2 border-black transition whitespace-nowrap inline-flex items-center gap-[0.27em] justify-center leading-tight transition-all duration-500 ease-out;
     }
 
+    /* Compact button — used in dense UIs like the SEO package comparison table. */
+    .btn-sm {
+        @apply text-sm xl:text-sm py-[0.4em] px-[1.1em] border;
+    }
+
     /* Dark text on brand orange: white-on-orange failed WCAG contrast (~2.7:1); #151515-on-orange is ~7:1. */
     .btn-primary {
         @apply bg-primary border-primary text-black-light hover:text-primary hover:bg-transparent;

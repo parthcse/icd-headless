@@ -10,6 +10,7 @@ import GetQuoteSection from "@/components/home/GetQuoteSection";
 import WeServeSection from "@/components/home/WeServeSection";
 
 import ServicesBannerSection from "@/components/services/ServicesBannerSection";
+import ServicesSimpleBanner from "@/components/services/ServicesSimpleBanner";
 import ServicesAchievementsSection from "@/components/services/ServicesAchievementsSection";
 import ServicesPortfolioSection from "@/components/services/ServicesPortfolioSection";
 import ServicesCaseStudySection from "@/components/services/ServicesCaseStudySection";
@@ -18,7 +19,9 @@ import ServicesImageTextSection from "@/components/services/ServicesImageTextSec
 import ServicesInfoBoxSection from "@/components/services/ServicesInfoBoxSection";
 import ServicesTableCompareAdvanced from "@/components/services/ServicesTableCompareAdvanced";
 import ServicesTablePricingPlansTabs from "@/components/services/ServicesTablePricingPlansTabs";
+import ServicesTableInfoCards from "@/components/services/ServicesTableInfoCards";
 import ServicesTablePackages from "@/components/services/ServicesTablePackages";
+import ServicesTablePackagesAccordion from "@/components/services/ServicesTablePackagesAccordion";
 import ServicesTablePricingPlans from "@/components/services/ServicesTablePricingPlans";
 import ServicesCtaSection from "@/components/services/ServicesCtaSection";
 import ServicesTopIconBoxSection from "@/components/services/ServicesTopIconBoxSection";
@@ -46,6 +49,7 @@ import ServicesTableCompare from "@/components/services/ServicesTableCompare";
  */
 const SECTION_RENDERERS = {
   banner: (data) => <ServicesBannerSection data={data.banner} />,
+  simpleBanner: (data) => data.simpleBanner && <ServicesSimpleBanner data={data.simpleBanner} />,
   milestone: (data) => data.milestone && <ServicesMilestoneSection data={data.milestone} />,
   achievements: (data) => data.achievements && <ServicesAchievementsSection data={data.achievements} />,
   testimonials: (data) => data.testimonials && <ServicesTestimonialSection data={data.testimonials} />,
@@ -87,7 +91,9 @@ const SECTION_RENDERERS = {
   tableBasicSecondary: (data) => data.tableBasicSecondary && <ServicesTableBasic data={data.tableBasicSecondary} />,
   tableBasicTertiary: (data) => data.tableBasicTertiary && <ServicesTableBasic data={data.tableBasicTertiary} />,
   tableBasicQuaternary: (data) => data.tableBasicQuaternary && <ServicesTableBasic data={data.tableBasicQuaternary} />,
+  tableInfoCards: (data) => data.tableInfoCards && <ServicesTableInfoCards data={data.tableInfoCards} />,
   tablePackages: (data) => data.tablePackages && <ServicesTablePackages data={data.tablePackages} />,
+  tablePackagesAccordion: (data) => data.tablePackagesAccordion && <ServicesTablePackagesAccordion data={data.tablePackagesAccordion} />,
   tablePricingPlans: (data) => data.tablePricingPlans && <ServicesTablePricingPlans data={data.tablePricingPlans} />,
   seoAuditForm: (data) => data.seoAuditForm && <ServicesSeoAuditFormSection data={data.seoAuditForm} />,
   cta: (data) => data.cta && <ServicesCtaSection data={data.cta} />,
