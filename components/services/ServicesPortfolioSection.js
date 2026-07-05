@@ -72,24 +72,28 @@ export default async function ServicesPortfolioSection({ data }) {
                   item.clientName
                 )}
               </h3>
-              <div className="grid grid-cols-2 border-y border-white/15 my-[clamp(0.625rem,0.0481rem+1.60255vw,1.25rem)] py-[clamp(0.625rem,0.0481rem+1.60255vw,1.25rem)]">
-                {item.metrics.map((m, j) => (
-                  <div key={j} className={`column px-1${j === 0 ? " border-r border-white/15" : ""}`}>
-                    <p className="font-48 font-bold text-primary"><small>{m.value}</small></p>
-                    <p className="font-semibold">{m.label}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="text-box space-y-4">
-                {item.testimonialParagraphs.map((p, k, arr) => {
-                  const isFirst = k === 0;
-                  const isLast = k === arr.length - 1;
-                  const html = `${isFirst ? "“" : ""}${p}${isLast ? "”" : ""}`;
-                  return <p key={k} dangerouslySetInnerHTML={{ __html: html }} />;
-                })}
-                <p className="font-22 font-bold">{item.authorName}</p>
-                <p className="!m-0">{item.authorTitle}</p>
-              </div>
+              {item.metrics.length > 0 && (
+                <div className="grid grid-cols-2 border-y border-white/15 my-[clamp(0.625rem,0.0481rem+1.60255vw,1.25rem)] py-[clamp(0.625rem,0.0481rem+1.60255vw,1.25rem)]">
+                  {item.metrics.map((m, j) => (
+                    <div key={j} className={`column px-1${j === 0 ? " border-r border-white/15" : ""}`}>
+                      <p className="font-48 font-bold text-primary"><small>{m.value}</small></p>
+                      <p className="font-semibold">{m.label}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {(item.testimonialParagraphs.length > 0 || item.authorName) && (
+                <div className="text-box space-y-4">
+                  {item.testimonialParagraphs.map((p, k, arr) => {
+                    const isFirst = k === 0;
+                    const isLast = k === arr.length - 1;
+                    const html = `${isFirst ? "“" : ""}${p}${isLast ? "”" : ""}`;
+                    return <p key={k} dangerouslySetInnerHTML={{ __html: html }} />;
+                  })}
+                  {item.authorName && <p className="font-22 font-bold">{item.authorName}</p>}
+                  {item.authorTitle && <p className="!m-0">{item.authorTitle}</p>}
+                </div>
+              )}
             </div>
           ))}
         </div>

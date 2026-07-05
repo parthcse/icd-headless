@@ -16,7 +16,7 @@ export default function NotFound() {
     <>
       <Header />
       <main>
-        <section className="not-found-section common-top-banner full-section relative flex min-h-[70vh] items-center border-t-0 pt-32 pb-16 xl:pt-40 xl:pb-24">
+        <section className="not-found-section common-top-banner full-section relative flex min-h-screen items-center border-t-0 pt-32 pb-16 xl:pt-40 xl:pb-24">
           <div className="absolute inset-0">
             <img className="h-full w-full object-cover" aria-hidden="true" src="/assets/photos/home-banner-bg.png" alt="" fetchPriority="high" />
             <span className="common-top-banner-overlay" />

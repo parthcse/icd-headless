@@ -1857,6 +1857,10 @@ h6 {
   top: 50%;
 }
 
+.top-28 {
+  top: 7rem;
+}
+
 .top-3 {
   top: 0.75rem;
 }
@@ -2375,6 +2379,10 @@ h6 {
   min-height: 70vh;
 }
 
+.min-h-screen {
+  min-height: 100vh;
+}
+
 .\!w-\[3\.5em\] {
   width: 3.5em !important;
 }
@@ -2753,6 +2761,10 @@ h6 {
   resize: none;
 }
 
+.scroll-mt-28 {
+  scroll-margin-top: 7rem;
+}
+
 .list-disc {
   list-style-type: disc;
 }
@@ -3089,6 +3101,10 @@ h6 {
   border-left-width: 1px;
 }
 
+.border-l-2 {
+  border-left-width: 2px;
+}
+
 .border-r {
   border-right-width: 1px;
 }
@@ -3159,6 +3175,10 @@ h6 {
 
 .border-primary\/40 {
   border-color: rgb(241 126 63 / 0.4);
+}
+
+.border-primary\/60 {
+  border-color: rgb(241 126 63 / 0.6);
 }
 
 .border-white\/10 {
@@ -4473,6 +4493,10 @@ html.lenis {
   border-color: rgb(241 126 63 / 0.5);
 }
 
+.hover\:border-white\/40:hover {
+  border-color: rgb(255 255 255 / 0.4);
+}
+
 .hover\:bg-primary:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(241 126 63 / var(--tw-bg-opacity, 1));
@@ -4976,12 +5000,20 @@ html.lenis {
     grid-column: span 3 / span 3;
   }
 
+  .lg\:col-span-4 {
+    grid-column: span 4 / span 4;
+  }
+
   .lg\:col-span-5 {
     grid-column: span 5 / span 5;
   }
 
   .lg\:col-span-7 {
     grid-column: span 7 / span 7;
+  }
+
+  .lg\:col-span-8 {
+    grid-column: span 8 / span 8;
   }
 
   .lg\:mx-0 {
@@ -5257,6 +5289,10 @@ html.lenis {
     top: 0.5em;
   }
 
+  .xl\:col-span-4 {
+    grid-column: span 4 / span 4;
+  }
+
   .xl\:-mx-4 {
     margin-left: -1rem;
     margin-right: -1rem;
@@ -5341,6 +5377,10 @@ html.lenis {
 
   .xl\:gap-12 {
     gap: 3rem;
+  }
+
+  .xl\:gap-14 {
+    gap: 3.5rem;
   }
 
   .xl\:gap-16 {

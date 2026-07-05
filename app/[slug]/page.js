@@ -22,6 +22,7 @@ import ServicesTablePricingPlansTabs from "@/components/services/ServicesTablePr
 import ServicesTableInfoCards from "@/components/services/ServicesTableInfoCards";
 import ServicesTablePackages from "@/components/services/ServicesTablePackages";
 import ServicesTablePackagesAccordion from "@/components/services/ServicesTablePackagesAccordion";
+import ServicesScrollNavigation from "@/components/services/ServicesScrollNavigation";
 import ServicesTablePricingPlans from "@/components/services/ServicesTablePricingPlans";
 import ServicesCtaSection from "@/components/services/ServicesCtaSection";
 import ServicesTopIconBoxSection from "@/components/services/ServicesTopIconBoxSection";
@@ -94,6 +95,7 @@ const SECTION_RENDERERS = {
   tableInfoCards: (data) => data.tableInfoCards && <ServicesTableInfoCards data={data.tableInfoCards} />,
   tablePackages: (data) => data.tablePackages && <ServicesTablePackages data={data.tablePackages} />,
   tablePackagesAccordion: (data) => data.tablePackagesAccordion && <ServicesTablePackagesAccordion data={data.tablePackagesAccordion} />,
+  scrollNavigation: (data) => data.scrollNavigation && <ServicesScrollNavigation data={data.scrollNavigation} />,
   tablePricingPlans: (data) => data.tablePricingPlans && <ServicesTablePricingPlans data={data.tablePricingPlans} />,
   seoAuditForm: (data) => data.seoAuditForm && <ServicesSeoAuditFormSection data={data.seoAuditForm} />,
   cta: (data) => data.cta && <ServicesCtaSection data={data.cta} />,
