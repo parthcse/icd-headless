@@ -111,6 +111,8 @@ const SECTION_RENDERERS = {
     data.leftIconBoxSecondary && <ServicesLeftIconBoxSection data={data.leftIconBoxSecondary} />,
   leftIconBoxTertiary: (data) =>
     data.leftIconBoxTertiary && <ServicesLeftIconBoxSection data={data.leftIconBoxTertiary} />,
+  leftIconBoxQuaternary: (data) =>
+    data.leftIconBoxQuaternary && <ServicesLeftIconBoxSection data={data.leftIconBoxQuaternary} />,
   processSteps: (data) => data.processSteps && <ServicesProcessStepSection data={data.processSteps} />,
   processStepsSecondary: (data) =>
     data.processStepsSecondary && <ServicesProcessStepSection data={data.processStepsSecondary} />,

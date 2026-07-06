@@ -34,11 +34,15 @@ export default function ServicesImageTextSection({ data }) {
   return (
     <section className="services-image-text full-section">
       <div className="container">
-        {(data.eyebrow || data.title || data.subtitle) && (
+        {(data.eyebrow || data.title || data.subtitle || data.subtitles) && (
           <div className="heading-wrap animate fadeUp">
             <h3 className="font-48">{data.eyebrow}</h3>
             <h2 className="main-title pb-2">{data.title}</h2>
-            {data.subtitle && <p className="mx-auto max-w-5xl">{Array.isArray(data.subtitle) ? renderParts(data.subtitle) : data.subtitle}</p>}
+            {data.subtitles
+              ? data.subtitles.map((p, i) => (
+                  <p key={i} className="mx-auto max-w-5xl">{Array.isArray(p) ? renderParts(p) : p}</p>
+                ))
+              : data.subtitle && <p className="mx-auto max-w-5xl">{Array.isArray(data.subtitle) ? renderParts(data.subtitle) : data.subtitle}</p>}
           </div>
         )}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-space-mini xl:gap-space items-center">

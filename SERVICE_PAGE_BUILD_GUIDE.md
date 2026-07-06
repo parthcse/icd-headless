@@ -201,6 +201,31 @@ curl -s -A "$UA" "https://www.icecubedigital.com/<slug>/" -o /tmp/live.html
   - `counter-item` — a milestone/counter stat
 - The banner's left text-box is the first `gdlr-core-text-box-item-content`; its inner contains only `<p>` tags, so it closes at the **first** following `</div>`. Extract **every** `<p>` inside it as a separate banner paragraph. (A regex that waits for a second `</div>` will grab too much or miss trailing paragraphs — match `<p>...</p>` runs instead.)
 
+### Extract every inline link — MANDATORY, do NOT eyeball
+
+Inline links are missed **over and over** when you read the page by eye. Do it mechanically instead. **Before** you author, and **again after**, run this over the downloaded HTML to get the full link inventory, then make sure every content link appears in your data file as a relative `{ text, href }` part:
+
+```bash
+# lists every anchor in the main content (between </header> and <footer>)
+node -e '
+const fs=require("fs");
+let h=fs.readFileSync(process.argv[1],"utf8");
+const s=h.toLowerCase().lastIndexOf("</header>"), e=h.toLowerCase().indexOf("<footer");
+let body=(s>0&&e>0)?h.slice(s,e):h;
+const re=/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi; let m,seen=new Set();
+while((m=re.exec(body))){
+  let t=m[2].replace(/<[^>]+>/g,"").replace(/&amp;/g,"&").replace(/&#8217;/g,"\x27").replace(/&nbsp;/g," ").trim();
+  if(!t||/^(tel:|mailto:|#|javascript)/i.test(m[1]))continue;
+  const k=m[1]+"||"+t; if(seen.has(k))continue; seen.add(k);
+  console.log(t.slice(0,60).padEnd(62)+" -> "+m[1]);
+}' /tmp/live.html
+```
+
+- **Every** result whose text sits **inside a paragraph, subtitle, list item, or icon-box body** is a content link you MUST reproduce (relative path). Real example this caught on `/real-estate-seo-services/`: `local SEO → /local-seo-services/` (inside an `infoBox` item body) and `real estate website design services → /real-estate-website-design-development/` (inside a `topIconBoxSecondary` subtitle) — both were shipped as plain strings and rejected.
+- **Ignore** only: case-study/portfolio **card** links (`/case-studies/…`, `/portfolio/…` — handled by `postIds`), `/case-studies/` "More Case Studies" button, phone/WhatsApp/email, and `/contact-us/` "Book a free meeting" (common). Everything else is a content link.
+- To find WHERE a link lives (which section/paragraph), grep the surrounding text: `grep -o '.\{140\}href="[^"]*<slug-part>[^"]*"[^>]*>.\{80\}' /tmp/live.html` then strip tags.
+- **Subtitles/`subtitles[]` take parts arrays too** — a link in a section's intro line (like the real-estate one) must wrap that one phrase; don't leave the whole subtitle a plain string.
+
 ### Mapping a live section to a section key
 
 | Live visual                                             | Section key                     |
@@ -340,6 +365,7 @@ checkList: {
 ```js
 imageText: {
   eyebrow: "…", title: "…", subtitle: "…",   // ? all optional (omit for a heading-less block)
+  // ? subtitles: ["para 1", "para 2", ["parts ", {bold:"x"}]]  // multi-paragraph intro (each = its own <p>); use INSTEAD of subtitle. A single `subtitle` array is one <p> of inline parts.
   image: "/assets/photos/first-page-google.png",   // download the REAL live image, not a placeholder
   imageAlt: "…",
   imagePosition: "right",              // ? put the image on the right (default left)
@@ -627,7 +653,7 @@ Run this against **every** page before calling it done. This is the audit.
 - [ ] **No section missing** — including untitled ones (`scrollNavigation` "guide" blocks, etc.).
 - [ ] **Banner paragraph count** equals live's `<p>` count (no merge, no drop).
 - [ ] **Every list section's item count** equals live's (topIconBox / leftIconBox / infoBox / checkList / processSteps / information). Diff titles in order.
-- [ ] **Every inline link** live has is reproduced as a relative `{text,href}` part; no links live doesn't have.
+- [ ] **Every inline link** — run the mandatory link-extraction command ([§4](#extract-every-inline-link--mandatory-do-not-eyeball)), then confirm every content link (exclude case-study/portfolio cards + common footer links) is reproduced as a relative `{text,href}` part; and no links live doesn't have. **Do not skip this by reading the page — extract mechanically.**
 - [ ] **Every bold run** reproduced as `{bold}`.
 - [ ] **Button labels** are live-exact (or omitted where live has none). Banner button excluded.
 - [ ] **caseStudy/portfolio postIds** are live's real items (kept even if ACF empty; substitutions flagged).
