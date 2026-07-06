@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1000" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3D888"/><stop offset=".5" stop-color="#DDB04E"/><stop offset="1" stop-color="#B8862E"/></linearGradient>
+    <linearGradient id="dia" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EAF4FF"/><stop offset="1" stop-color="#B9D6F2"/></linearGradient>
+    <filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="14" stdDeviation="20" flood-color="#7C8CA8" flood-opacity=".2"/></filter>
+  </defs>
+
+  <!-- Product card -->
+  <g filter="url(#sh)"><rect x="110" y="200" width="640" height="600" rx="20" fill="#fff"/></g>
+  <rect x="150" y="240" width="270" height="280" rx="14" fill="#F4F6FA"/>
+  <g transform="translate(285,380)"><ellipse cx="0" cy="40" rx="72" ry="80" fill="none" stroke="url(#gold)" stroke-width="22"/><g transform="translate(0,-58)"><polygon points="0,-34 34,-10 0,46 -34,-10" fill="url(#dia)" stroke="#8FB8DE" stroke-width="2.5"/><line x1="0" y1="-34" x2="0" y2="46" stroke="#Bed7ef" stroke-width="1.5"/></g></g>
+  <text x="450" y="278" font-size="27" font-weight="700" fill="#2A3342">14K Gold Diamond</text>
+  <text x="450" y="312" font-size="27" font-weight="700" fill="#2A3342">Engagement Ring</text>
+  <g transform="translate(450,338)" fill="#EBB000"><text font-size="22">★★★★★</text></g>
+  <text x="450" y="404" font-size="30" font-weight="700" fill="#B8862E">$999</text>
+  <text x="450" y="452" font-size="19" fill="#4D5666">Handcrafted brilliance, ethically</text>
+  <text x="450" y="480" font-size="19" fill="#4D5666">sourced, certified conflict-free.</text>
+  <!-- optimized description lines -->
+  <line x1="150" y1="560" x2="710" y2="560" stroke="#EEF1F6" stroke-width="2"/>
+  <text x="150" y="600" font-size="21" font-weight="700" fill="#2A3342">Product Description</text>
+  <rect x="150" y="620" width="560" height="14" rx="7" fill="#E7EBF2"/><rect x="150" y="648" width="530" height="14" rx="7" fill="#E7EBF2"/><rect x="150" y="676" width="560" height="14" rx="7" fill="#EDF0F5"/><rect x="150" y="704" width="420" height="14" rx="7" fill="#EDF0F5"/>
+  <g transform="translate(166,758)"><circle r="15" fill="#5FB56A"/><polyline points="-7,0 -2,6 8,-7" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <text x="194" y="765" font-size="20" fill="#2A3342">Unique, keyword-rich copy</text>
+
+  <!-- Buying guide / blog document -->
+  <g filter="url(#sh)"><rect x="800" y="260" width="590" height="520" rx="20" fill="#fff"/></g>
+  <rect x="800" y="260" width="590" height="120" rx="20" fill="url(#gold)"/><rect x="800" y="320" width="590" height="60" fill="url(#gold)"/>
+  <text x="840" y="322" font-size="30" font-weight="700" fill="#fff">Diamond Buying Guide</text>
+  <text x="840" y="356" font-size="20" fill="#FFF6E4">The 4 C's every jewelry buyer should know</text>
+  <g fill="#2A3342" font-size="22" font-weight="600"><text x="840" y="440">1.  Cut</text><text x="840" y="520">2.  Color</text><text x="840" y="600">3.  Clarity</text><text x="840" y="680">4.  Carat</text></g>
+  <g fill="#E7EBF2"><rect x="960" y="426" width="380" height="12" rx="6"/><rect x="960" y="452" width="330" height="12" rx="6"/><rect x="960" y="506" width="380" height="12" rx="6"/><rect x="960" y="532" width="300" height="12" rx="6"/><rect x="960" y="586" width="380" height="12" rx="6"/><rect x="960" y="612" width="340" height="12" rx="6"/><rect x="960" y="666" width="380" height="12" rx="6"/><rect x="960" y="692" width="290" height="12" rx="6"/></g>
+  <rect x="840" y="726" width="200" height="40" rx="20" fill="#FFF3DA"/><text x="940" y="753" font-size="18" fill="#B8862E" text-anchor="middle">Blog · Buying Guide</text>
+</svg>

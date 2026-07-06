@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1000" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3D888"/><stop offset=".5" stop-color="#DDB04E"/><stop offset="1" stop-color="#B8862E"/></linearGradient>
+    <linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#DDB04E" stop-opacity=".35"/><stop offset="1" stop-color="#DDB04E" stop-opacity="0"/></linearGradient>
+    <filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="14" stdDeviation="20" flood-color="#4a5570" flood-opacity=".25"/></filter>
+  </defs>
+
+  <!-- Dashboard -->
+  <g filter="url(#sh)"><rect x="110" y="170" width="900" height="660" rx="20" fill="#fff"/></g>
+  <text x="150" y="238" font-size="28" font-weight="700" fill="#243A5E">Law Firm SEO Report</text>
+  <rect x="820" y="208" width="150" height="42" rx="21" fill="#FFF3DA"/><text x="895" y="235" font-size="18" fill="#B8862E" text-anchor="middle">Monthly</text>
+
+  <g>
+    <rect x="150" y="280" width="260" height="120" rx="14" fill="#F7F9FC"/>
+    <text x="176" y="322" font-size="19" fill="#8A94A6">Organic Traffic</text><text x="176" y="366" font-size="34" font-weight="700" fill="#243A5E">32.6K</text><text x="330" y="366" font-size="19" fill="#3E9A50">▲ 58%</text>
+    <rect x="430" y="280" width="260" height="120" rx="14" fill="#F7F9FC"/>
+    <text x="456" y="322" font-size="19" fill="#8A94A6">New Case Leads</text><text x="456" y="366" font-size="34" font-weight="700" fill="#243A5E">146</text><text x="610" y="366" font-size="19" fill="#3E9A50">▲ 41</text>
+    <rect x="710" y="280" width="260" height="120" rx="14" fill="#F7F9FC"/>
+    <text x="736" y="322" font-size="19" fill="#8A94A6">Conversion Rate</text><text x="736" y="366" font-size="34" font-weight="700" fill="#243A5E">6.2%</text><text x="890" y="366" font-size="19" fill="#3E9A50">▲ 2.1%</text>
+  </g>
+
+  <rect x="150" y="440" width="820" height="350" rx="14" fill="#F7F9FC"/>
+  <g stroke="#E7EBF2" stroke-width="1.5"><line x1="190" y1="510" x2="930" y2="510"/><line x1="190" y1="590" x2="930" y2="590"/><line x1="190" y1="670" x2="930" y2="670"/><line x1="190" y1="750" x2="930" y2="750"/></g>
+  <path d="M190 725 L310 705 L430 655 L550 660 L670 570 L790 505 L910 468 L910 750 L190 750 Z" fill="url(#area)"/>
+  <polyline points="190,725 310,705 430,655 550,660 670,570 790,505 910,468" fill="none" stroke="url(#gold)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#DDB04E"><circle cx="190" cy="725" r="7"/><circle cx="310" cy="705" r="7"/><circle cx="430" cy="655" r="7"/><circle cx="550" cy="660" r="7"/><circle cx="670" cy="570" r="7"/><circle cx="790" cy="505" r="7"/><circle cx="910" cy="468" r="7" stroke="#fff" stroke-width="3"/></g>
+  <g fill="#8A94A6" font-size="17" text-anchor="middle"><text x="190" y="782">Jan</text><text x="310" y="782">Feb</text><text x="430" y="782">Mar</text><text x="550" y="782">Apr</text><text x="670" y="782">May</text><text x="790" y="782">Jun</text><text x="910" y="782">Jul</text></g>
+
+  <!-- keyword ranking card -->
+  <g filter="url(#sh)"><rect x="1050" y="300" width="350" height="440" rx="20" fill="#fff"/></g>
+  <text x="1082" y="356" font-size="22" font-weight="700" fill="#243A5E">Keyword Rankings</text>
+  <g font-size="18" fill="#243A5E">
+    <text x="1082" y="418">personal injury lawyer</text><text x="1082" y="486">dui attorney</text><text x="1082" y="554">car accident lawyer</text><text x="1082" y="622">criminal defense</text><text x="1082" y="690">family law firm</text>
+  </g>
+  <g text-anchor="end">
+    <text x="1370" y="418" font-size="20" font-weight="700" fill="#243A5E">#2</text><text x="1370" y="442" font-size="15" fill="#3E9A50">▲ 7</text>
+    <text x="1370" y="486" font-size="20" font-weight="700" fill="#243A5E">#1</text><text x="1370" y="510" font-size="15" fill="#3E9A50">▲ 5</text>
+    <text x="1370" y="554" font-size="20" font-weight="700" fill="#243A5E">#3</text><text x="1370" y="578" font-size="15" fill="#3E9A50">▲ 8</text>
+    <text x="1370" y="622" font-size="20" font-weight="700" fill="#243A5E">#4</text><text x="1370" y="646" font-size="15" fill="#3E9A50">▲ 4</text>
+    <text x="1370" y="690" font-size="20" font-weight="700" fill="#243A5E">#5</text><text x="1370" y="714" font-size="15" fill="#3E9A50">▲ 6</text>
+  </g>
+  <g stroke="#F0F2F6" stroke-width="1.5"><line x1="1082" y1="440" x2="1368" y2="440"/><line x1="1082" y1="508" x2="1368" y2="508"/><line x1="1082" y1="576" x2="1368" y2="576"/><line x1="1082" y1="644" x2="1368" y2="644"/></g>
+</svg>

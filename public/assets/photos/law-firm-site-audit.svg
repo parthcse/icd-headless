@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1000" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3D888"/><stop offset=".5" stop-color="#DDB04E"/><stop offset="1" stop-color="#B8862E"/></linearGradient>
+    <linearGradient id="score" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5FB56A"/><stop offset="1" stop-color="#3E9A50"/></linearGradient>
+    <filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="14" stdDeviation="20" flood-color="#4a5570" flood-opacity=".25"/></filter>
+  </defs>
+
+  <!-- Audit report card -->
+  <g filter="url(#sh)"><rect x="130" y="180" width="740" height="640" rx="20" fill="#fff"/></g>
+  <text x="170" y="248" font-size="27" font-weight="700" fill="#243A5E">SEO Site Audit</text>
+  <rect x="680" y="212" width="150" height="42" rx="21" fill="#E7F4E9"/><text x="755" y="239" font-size="18" fill="#3E9A50" text-anchor="middle">Completed</text>
+
+  <!-- score ring -->
+  <g transform="translate(300,420)">
+    <circle r="110" fill="none" stroke="#EEF1F6" stroke-width="20"/>
+    <circle r="110" fill="none" stroke="url(#score)" stroke-width="20" stroke-linecap="round" stroke-dasharray="570 691" transform="rotate(-90)"/>
+    <text x="0" y="8" font-size="52" font-weight="800" fill="#243A5E" text-anchor="middle">82</text>
+    <text x="0" y="44" font-size="19" fill="#8A94A6" text-anchor="middle">Health Score</text>
+  </g>
+  <!-- breakdown -->
+  <g font-size="21" fill="#243A5E">
+    <g transform="translate(470,340)"><circle r="16" fill="#5FB56A"/><polyline points="-7,0 -2,6 8,-7" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g><text x="500" y="347">Passed</text><text x="820" y="347" text-anchor="end" font-weight="700">128</text>
+    <g transform="translate(470,404)"><circle r="16" fill="#EBB84E"/><path d="M0 -8 v8 M0 4 v1" stroke="#fff" stroke-width="4" stroke-linecap="round"/></g><text x="500" y="411">Warnings</text><text x="820" y="411" text-anchor="end" font-weight="700">24</text>
+    <g transform="translate(470,468)"><circle r="16" fill="#E0857E"/><path d="M-6 -6 L6 6 M6 -6 L-6 6" stroke="#fff" stroke-width="4" stroke-linecap="round"/></g><text x="500" y="475">Errors</text><text x="820" y="475" text-anchor="end" font-weight="700">9</text>
+  </g>
+  <line x1="470" y1="512" x2="820" y2="512" stroke="#EEF1F6" stroke-width="2"/>
+  <g font-size="19" fill="#5B6472">
+    <text x="470" y="556">Crawlability</text><rect x="470" y="572" width="350" height="10" rx="5" fill="#EEF1F6"/><rect x="470" y="572" width="300" height="10" rx="5" fill="url(#gold)"/>
+    <text x="470" y="620">Page Speed</text><rect x="470" y="636" width="350" height="10" rx="5" fill="#EEF1F6"/><rect x="470" y="636" width="250" height="10" rx="5" fill="url(#gold)"/>
+    <text x="470" y="684">Meta Tags</text><rect x="470" y="700" width="350" height="10" rx="5" fill="#EEF1F6"/><rect x="470" y="700" width="330" height="10" rx="5" fill="url(#gold)"/>
+    <text x="470" y="748">Backlinks</text><rect x="470" y="764" width="350" height="10" rx="5" fill="#EEF1F6"/><rect x="470" y="764" width="210" height="10" rx="5" fill="url(#gold)"/>
+  </g>
+  <text x="170" y="600" font-size="20" fill="#8A94A6">Issues found across</text>
+  <text x="170" y="628" font-size="20" fill="#8A94A6">the whole website,</text>
+  <text x="170" y="656" font-size="20" fill="#8A94A6">prioritized by impact.</text>
+
+  <!-- Magnifier badge -->
+  <g filter="url(#sh)"><circle cx="1120" cy="360" r="130" fill="#fff"/></g>
+  <circle cx="1105" cy="345" r="66" fill="none" stroke="url(#gold)" stroke-width="14"/>
+  <line x1="1152" y1="392" x2="1200" y2="440" stroke="url(#gold)" stroke-width="20" stroke-linecap="round"/>
+  <g stroke="#B8862E" stroke-width="6" stroke-linecap="round"><line x1="1080" y1="345" x2="1130" y2="345"/><line x1="1080" y1="325" x2="1118" y2="325"/><line x1="1080" y1="365" x2="1112" y2="365"/></g>
+
+  <!-- checklist card -->
+  <g filter="url(#sh)"><rect x="960" y="520" width="420" height="290" rx="20" fill="#fff"/></g>
+  <text x="994" y="576" font-size="22" font-weight="700" fill="#243A5E">Audit Checklist</text>
+  <g font-size="19" fill="#243A5E">
+    <g transform="translate(1010,624)"><circle r="14" fill="#5FB56A"/><polyline points="-6,0 -2,5 7,-6" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g><text x="1036" y="631">Technical structure</text>
+    <g transform="translate(1010,672)"><circle r="14" fill="#5FB56A"/><polyline points="-6,0 -2,5 7,-6" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g><text x="1036" y="679">Keyword positioning</text>
+    <g transform="translate(1010,720)"><circle r="14" fill="#5FB56A"/><polyline points="-6,0 -2,5 7,-6" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g><text x="1036" y="727">Content mapping</text>
+    <g transform="translate(1010,768)"><circle r="14" fill="#5FB56A"/><polyline points="-6,0 -2,5 7,-6" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g><text x="1036" y="775">Strengths &amp; weaknesses</text>
+  </g>
+</svg>

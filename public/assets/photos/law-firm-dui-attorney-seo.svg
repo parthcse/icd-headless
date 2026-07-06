@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1000" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3D888"/><stop offset=".5" stop-color="#DDB04E"/><stop offset="1" stop-color="#B8862E"/></linearGradient>
+    <filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="14" stdDeviation="20" flood-color="#4a5570" flood-opacity=".25"/></filter>
+  </defs>
+
+  <!-- connectors -->
+  <g stroke="#DDB04E" stroke-width="4" stroke-dasharray="2 12" stroke-linecap="round">
+    <line x1="750" y1="500" x2="290" y2="280"/><line x1="750" y1="500" x2="260" y2="560"/><line x1="750" y1="500" x2="320" y2="800"/>
+    <line x1="750" y1="500" x2="1190" y2="260"/><line x1="750" y1="500" x2="1240" y2="540"/><line x1="750" y1="500" x2="1160" y2="800"/>
+  </g>
+  <g>
+    <g transform="translate(505,382)"><circle r="20" fill="#fff" stroke="#DDB04E" stroke-width="2"/><path d="M-8 0 a5 5 0 0 1 5 -5 h4 M8 0 a5 5 0 0 1 -5 5 h-4" fill="none" stroke="#B8862E" stroke-width="3"/><line x1="-4" y1="0" x2="4" y2="0" stroke="#B8862E" stroke-width="3"/></g>
+    <g transform="translate(970,372)"><circle r="20" fill="#fff" stroke="#DDB04E" stroke-width="2"/><path d="M-8 0 a5 5 0 0 1 5 -5 h4 M8 0 a5 5 0 0 1 -5 5 h-4" fill="none" stroke="#B8862E" stroke-width="3"/><line x1="-4" y1="0" x2="4" y2="0" stroke="#B8862E" stroke-width="3"/></g>
+  </g>
+
+  <!-- source nodes -->
+  <g font-size="19" fill="#243A5E" text-anchor="middle">
+    <g filter="url(#sh)"><rect x="140" y="232" width="230" height="92" rx="14" fill="#fff"/></g><text x="255" y="272" font-weight="700">Legal Directory</text><text x="255" y="298" font-size="16" fill="#B8862E">Avvo · Justia</text>
+    <g filter="url(#sh)"><rect x="110" y="514" width="230" height="92" rx="14" fill="#fff"/></g><text x="225" y="554" font-weight="700">Guest Posts</text><text x="225" y="580" font-size="16" fill="#B8862E">DA 78</text>
+    <g filter="url(#sh)"><rect x="180" y="756" width="230" height="92" rx="14" fill="#fff"/></g><text x="295" y="796" font-weight="700">HARO</text><text x="295" y="822" font-size="16" fill="#B8862E">Press mentions</text>
+    <g filter="url(#sh)"><rect x="1150" y="214" width="240" height="92" rx="14" fill="#fff"/></g><text x="1270" y="254" font-weight="700">Bar Association</text><text x="1270" y="280" font-size="16" fill="#B8862E">DA 84</text>
+    <g filter="url(#sh)"><rect x="1200" y="494" width="230" height="92" rx="14" fill="#fff"/></g><text x="1315" y="534" font-weight="700">Reviews</text><text x="1315" y="560" font-size="16" fill="#B8862E">Testimonials</text>
+    <g filter="url(#sh)"><rect x="1120" y="756" width="240" height="92" rx="14" fill="#fff"/></g><text x="1240" y="796" font-weight="700">Infographics</text><text x="1240" y="822" font-size="16" fill="#B8862E">Embedded links</text>
+  </g>
+
+  <!-- central node: gavel -->
+  <g filter="url(#sh)"><circle cx="750" cy="500" r="145" fill="#fff"/></g>
+  <circle cx="750" cy="500" r="145" fill="none" stroke="url(#gold)" stroke-width="5"/>
+  <g transform="translate(750,495) rotate(-38)">
+    <!-- gavel head -->
+    <rect x="-70" y="-26" width="120" height="52" rx="12" fill="url(#gold)"/>
+    <rect x="-58" y="-26" width="10" height="52" fill="#C6902F"/><rect x="38" y="-26" width="10" height="52" fill="#C6902F"/>
+    <!-- handle -->
+    <rect x="46" y="-11" width="96" height="22" rx="11" fill="#DDB04E"/>
+  </g>
+  <!-- sound block -->
+  <rect x="694" y="574" width="112" height="18" rx="9" fill="url(#gold)"/>
+  <text x="750" y="620" font-size="21" font-weight="700" fill="#243A5E" text-anchor="middle">DUI Attorney</text>
+
+  <!-- authority meter -->
+  <g filter="url(#sh)"><rect x="600" y="708" width="300" height="92" rx="18" fill="#243A5E"/></g>
+  <text x="632" y="748" font-size="19" fill="#AEB9CC">Backlink Authority</text>
+  <text x="632" y="784" font-size="32" font-weight="700" fill="#fff">81 <tspan font-size="19" fill="#5FB56A">▲ +23</tspan></text>
+</svg>

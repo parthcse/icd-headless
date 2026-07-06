@@ -161,7 +161,7 @@ The user typically gives you a **live URL** and a **section-by-section structure
 1. **Fetch the live page** with a browser UA (WebFetch is blocked by the WAF — use `curl`). See [§4](#4-the-auditor-workflow).
 2. **Read the full page top to bottom.** List every section in order, mapping each to a section key by its visual type (table in [§5](#5-section-reference)). Note untitled sections.
 3. **Pick the file path & name.** `lib/services/<category>/<slug>.js`. For industry pages the folder is `industry/`. Naming: one page per industry → `industry-<niche>.js`; a second page for the same industry → suffix both: SEO → `industry-<niche>-seo.js`, website-design → `industry-<niche>-web-design.js`.
-4. **Copy a sibling as a template.** [`lib/services/industry/industry-manufacturing.js`](lib/services/industry/industry-manufacturing.js) is an excellent, near-complete reference (banner w/ 3 paragraphs, caseStudy, seoAuditForm, plainText w/ inline link, topIconBox w/ 9 items + inline links, infoBox, processSteps w/ button, leftIconBox, cta, faq, all commons).
+4. **Copy a sibling as a template.** [`lib/services/industry/industry-manufacturing-seo.js`](lib/services/industry/industry-manufacturing-seo.js) is an excellent, near-complete reference (banner w/ 3 paragraphs, caseStudy, seoAuditForm, plainText w/ inline link, topIconBox w/ 9 items + inline links, infoBox, processSteps w/ button, leftIconBox, cta, faq, all commons).
 5. **Author the data object**, section by section, in live's order. For each section:
    - Extract the eyebrow/title (apply the 2-line split rule, [§2.5](#25-title--eyebrow-split-the-2-line-rule)).
    - Extract **every** paragraph as a separate entry. Extract inline links/bold as parts.
@@ -678,7 +678,7 @@ const BTN_ARROW = "M0.703125 12.0312C0.494792 12.0312 0.3125 11.9792 0.15625 11.
 
 **GraphQL endpoint:** `https://www.icecubedigital.com/graphql` (in `.env.local` as `NEXT_PUBLIC_WORDPRESS_GRAPHQL_ENDPOINT`). Read-only SSR via `lib/apollo-client.js`.
 
-**Best template file to copy:** [`lib/services/industry/industry-manufacturing.js`](lib/services/industry/industry-manufacturing.js) — a near-complete real page exercising banner (3 paragraphs), caseStudy, seoAuditForm, plainText (with inline link + exact button), topIconBox (9 items + inline links), infoBox, processSteps (with button), leftIconBox (with inline links), cta, faq, and all four common sections.
+**Best template file to copy:** [`lib/services/industry/industry-manufacturing-seo.js`](lib/services/industry/industry-manufacturing-seo.js) — a near-complete real page exercising banner (3 paragraphs), caseStudy, seoAuditForm, plainText (with inline link + exact button), topIconBox (9 items + inline links), infoBox, processSteps (with button), leftIconBox (with inline links), cta, faq, and all four common sections.
 
 **Category folders** under `lib/services/`: `ecommerce/`, `magento/`, `wordpress/`, `shopify/`, `woocommerce/`, `webflow/`, `white-label/`, `industry/`, `packages/`, `resources/our-approach/`, `resources/pricing-guides/`, plus `common-section/`. The folder is organisational only — the flat `slug` is the URL.
 

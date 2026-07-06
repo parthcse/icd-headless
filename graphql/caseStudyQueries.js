@@ -28,6 +28,9 @@ export const CASE_STUDY_PAGE_QUERY = gql`
         title
         uri
         content
+        caseStudiesFields {
+          caseStudyTitle
+        }
         featuredImage {
           node {
             sourceUrl
@@ -59,6 +62,9 @@ export const CASE_STUDY_CATEGORY_PAGE_QUERY = gql`
           title
           uri
           content
+          caseStudiesFields {
+            caseStudyTitle
+          }
           featuredImage {
             node {
               sourceUrl
@@ -95,6 +101,7 @@ export const CASE_STUDY_SINGLE_QUERY = gql`
     caseStudy(id: $uri, idType: URI) {
       title
       caseStudiesFields {
+        caseStudyTitle
         csliveWebsiteUrl
         caseStudyTopSection {
           topSectionEyebrow
@@ -152,6 +159,7 @@ export const CASE_STUDY_BY_IDS_QUERY = gql`
           }
         }
         caseStudiesFields {
+          caseStudyTitle
           caseStudyMetrics {
             metricsValue
             metricsLabel

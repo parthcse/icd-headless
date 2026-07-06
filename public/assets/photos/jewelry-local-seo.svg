@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1000" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3D888"/><stop offset=".5" stop-color="#DDB04E"/><stop offset="1" stop-color="#B8862E"/></linearGradient>
+    <linearGradient id="dia" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EAF4FF"/><stop offset="1" stop-color="#B9D6F2"/></linearGradient>
+    <filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="14" stdDeviation="20" flood-color="#7C8CA8" flood-opacity=".2"/></filter>
+  </defs>
+
+  <!-- Map panel -->
+  <g filter="url(#sh)"><rect x="720" y="200" width="700" height="600" rx="20" fill="#EAF1EA"/></g>
+  <g stroke="#D4E0D4" stroke-width="14" fill="none" stroke-linecap="round">
+    <path d="M720 340 H1420"/><path d="M720 560 H1420"/><path d="M900 200 V800"/><path d="M1200 200 V800"/>
+  </g>
+  <g stroke="#F5D9A8" stroke-width="20" fill="none" stroke-linecap="round"><path d="M760 420 H1380"/><path d="M1050 220 V780"/></g>
+  <rect x="760" y="600" width="110" height="80" rx="8" fill="#DCE6DC"/><rect x="1250" y="260" width="120" height="90" rx="8" fill="#DCE6DC"/>
+  <!-- pin -->
+  <g transform="translate(1050,430)">
+    <path d="M0 120 C-46 60 -46 12 0 -6 C46 12 46 60 0 120 Z" fill="url(#gold)"/>
+    <path d="M0 -34 C-46 -34 -60 6 -46 40 C-34 70 0 116 0 116 C0 116 34 70 46 40 C60 6 46 -34 0 -34 Z" fill="url(#gold)"/>
+    <circle cy="12" r="26" fill="#fff"/>
+    <ellipse cx="0" cy="16" rx="13" ry="14" fill="none" stroke="url(#gold)" stroke-width="5"/><polygon points="0,-4 6,3 0,12 -6,3" fill="url(#dia)"/>
+  </g>
+
+  <!-- Business profile card -->
+  <g filter="url(#sh)"><rect x="90" y="250" width="580" height="500" rx="20" fill="#fff"/></g>
+  <rect x="90" y="250" width="580" height="150" rx="20" fill="#F4F6FA"/><rect x="90" y="330" width="580" height="70" fill="#F4F6FA"/>
+  <g transform="translate(180,340)"><ellipse cx="0" cy="16" rx="30" ry="34" fill="none" stroke="url(#gold)" stroke-width="10"/><polygon points="0,-26 15,-12 0,10 -15,-12" fill="url(#dia)" stroke="#8FB8DE" stroke-width="1.5"/></g>
+  <text x="240" y="325" font-size="30" font-weight="700" fill="#2A3342">Aurora Fine Jewelry</text>
+  <g transform="translate(240,352)" fill="#EBB000"><text font-size="24">★★★★★</text></g>
+  <text x="372" y="372" font-size="20" fill="#4D5666">4.9  (326 reviews)</text>
+  <text x="130" y="470" font-size="21" fill="#5B6472">📍  128 Diamond Ave, New York</text>
+  <text x="130" y="518" font-size="21" fill="#5B6472">🕑  <tspan fill="#0F9D58" font-weight="600">Open now</tspan>  ·  Closes 8 PM</text>
+  <text x="130" y="566" font-size="21" fill="#5B6472">📞  +1 (212) 555-0148</text>
+  <rect x="130" y="600" width="240" height="60" rx="10" fill="url(#gold)"/><text x="250" y="638" font-size="22" font-weight="700" fill="#fff" text-anchor="middle">Get Directions</text>
+  <rect x="390" y="600" width="200" height="60" rx="10" fill="#fff" stroke="#DDB04E" stroke-width="2"/><text x="490" y="638" font-size="22" font-weight="700" fill="#B8862E" text-anchor="middle">Call</text>
+
+  <!-- Local pack badge -->
+  <g filter="url(#sh)"><rect x="1070" y="690" width="290" height="80" rx="16" fill="#2A3342"/></g>
+  <text x="1215" y="740" font-size="24" font-weight="700" fill="#fff" text-anchor="middle">#1 in Local Pack</text>
+</svg>

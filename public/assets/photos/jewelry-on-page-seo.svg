@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1000" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F3D888"/><stop offset=".5" stop-color="#DDB04E"/><stop offset="1" stop-color="#B8862E"/>
+    </linearGradient>
+    <linearGradient id="goldBtn" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E2B252"/><stop offset="1" stop-color="#C6902F"/>
+    </linearGradient>
+    <linearGradient id="dia" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#EAF4FF"/><stop offset="1" stop-color="#B9D6F2"/>
+    </linearGradient>
+    <filter id="sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="14" stdDeviation="20" flood-color="#7C8CA8" flood-opacity=".2"/>
+    </filter>
+  </defs>
+
+  <!-- Browser: product page -->
+  <g filter="url(#sh)">
+    <rect x="70" y="150" width="800" height="720" rx="22" fill="#fff"/>
+  </g>
+  <rect x="70" y="150" width="800" height="62" rx="22" fill="#F1F4F9"/>
+  <rect x="70" y="190" width="800" height="22" fill="#F1F4F9"/>
+  <circle cx="108" cy="181" r="8" fill="#E0857E"/><circle cx="136" cy="181" r="8" fill="#EBC15C"/><circle cx="164" cy="181" r="8" fill="#7FC08A"/>
+  <!-- breadcrumb -->
+  <text x="110" y="256" font-size="21" fill="#8A94A6">Home  ›  Engagement Rings  ›  Diamond Ring</text>
+  <!-- H1 with title-tag highlight -->
+  <rect x="106" y="278" width="470" height="52" rx="8" fill="#FBF3DF" stroke="#E2B252" stroke-width="2"/>
+  <text x="126" y="314" font-size="30" font-weight="700" fill="#2A3342">Diamond Engagement Ring</text>
+  <!-- product image -->
+  <rect x="110" y="360" width="330" height="330" rx="14" fill="#F4F6FA"/>
+  <g transform="translate(275,540)">
+    <ellipse cx="0" cy="48" rx="86" ry="94" fill="none" stroke="url(#gold)" stroke-width="26"/>
+    <g transform="translate(0,-70)">
+      <polygon points="0,-40 40,-12 0,52 -40,-12" fill="url(#dia)" stroke="#8FB8DE" stroke-width="2.5"/>
+      <polyline points="-40,-12 0,-2 40,-12" fill="none" stroke="#8FB8DE" stroke-width="2"/>
+      <line x1="0" y1="-40" x2="0" y2="52" stroke="#Bed7ef" stroke-width="1.5"/>
+    </g>
+  </g>
+  <!-- right column text lines + meta -->
+  <rect x="470" y="366" width="360" height="16" rx="8" fill="#E7EBF2"/>
+  <rect x="470" y="398" width="330" height="16" rx="8" fill="#E7EBF2"/>
+  <rect x="470" y="430" width="300" height="16" rx="8" fill="#EDF0F5"/>
+  <text x="470" y="500" font-size="19" fill="#8A94A6">URL</text>
+  <rect x="470" y="514" width="360" height="40" rx="8" fill="#F4F6FA" stroke="#E7EBF2"/>
+  <text x="486" y="540" font-size="18" fill="#0F9D58">/engagement/diamond-ring</text>
+  <!-- add to cart -->
+  <rect x="110" y="712" width="330" height="60" rx="10" fill="url(#goldBtn)"/>
+  <text x="275" y="750" font-size="24" font-weight="700" fill="#fff" text-anchor="middle">Add to Cart</text>
+
+  <!-- Google SERP card -->
+  <g filter="url(#sh)">
+    <rect x="800" y="380" width="640" height="360" rx="20" fill="#fff"/>
+  </g>
+  <text x="836" y="452" font-size="30" font-weight="700">
+    <tspan fill="#4285F4">G</tspan><tspan fill="#EA4335">o</tspan><tspan fill="#FBBC05">o</tspan><tspan fill="#4285F4">g</tspan><tspan fill="#34A853">l</tspan><tspan fill="#EA4335">e</tspan>
+  </text>
+  <circle cx="1400" cy="443" r="14" fill="none" stroke="#8A94A6" stroke-width="3"/><line x1="1410" y1="453" x2="1420" y2="463" stroke="#8A94A6" stroke-width="3"/>
+  <text x="836" y="520" font-size="26" font-weight="600" fill="#1A0DAB">Diamond Engagement Ring | Fine Jewelry</text>
+  <text x="836" y="556" font-size="18" fill="#0F9D58">example.com › engagement › diamond-ring</text>
+  <text x="836" y="596" font-size="19" fill="#4D5666">Shop our elegant 14K gold diamond engagement ring,</text>
+  <text x="836" y="622" font-size="19" fill="#4D5666">designed to sparkle. Perfect for your special moment.</text>
+  <rect x="836" y="656" width="180" height="34" rx="17" fill="#F1F4F9"/><text x="926" y="679" font-size="16" fill="#5B6472" text-anchor="middle">Engagement Rings</text>
+
+  <!-- Callouts -->
+  <g>
+    <rect x="612" y="286" width="150" height="46" rx="10" fill="#2A3342"/>
+    <text x="687" y="315" font-size="20" font-weight="600" fill="#fff" text-anchor="middle">Title tag</text>
+    <line x1="576" y1="304" x2="612" y2="309" stroke="#2A3342" stroke-width="2.5"/>
+  </g>
+  <g>
+    <rect x="1120" y="756" width="230" height="46" rx="10" fill="#C6902F"/>
+    <text x="1235" y="785" font-size="20" font-weight="600" fill="#fff" text-anchor="middle">Meta description</text>
+    <line x1="1130" y1="740" x2="1160" y2="756" stroke="#C6902F" stroke-width="2.5"/>
+  </g>
+</svg>

@@ -46,7 +46,7 @@ export default function HappyCustomersSection() {
         <h2 className="main-title mb-0">Happy Customers</h2>
       </div>
       <div className="container-left">
-        <div className="home-our-client-slider owl-carousel">
+        <div className="home-testimonial-slider owl-carousel">
           {items.map((item) => (
             <div
               key={item.slug}

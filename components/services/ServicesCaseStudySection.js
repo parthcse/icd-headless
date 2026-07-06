@@ -13,8 +13,8 @@ function mapNodeToCaseStudyItem(node) {
   return {
     href: node.slug ? `/case-studies/${node.slug}/` : "",
     image: node.featuredImage?.node?.sourceUrl || "",
-    imageAlt: node.featuredImage?.node?.altText || node.title,
-    clientName: node.title,
+    imageAlt: node.featuredImage?.node?.altText || fields.caseStudyTitle || node.title,
+    clientName: fields.caseStudyTitle || node.title,
     metrics: (fields.caseStudyMetrics || []).map((m) => ({
       value: m.metricsValue,
       label: m.metricsLabel,

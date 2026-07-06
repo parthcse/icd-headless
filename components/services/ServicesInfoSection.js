@@ -66,16 +66,17 @@ function InfoTable({ columns, rows }) {
 }
 
 export default function ServicesInfoSection({ data }) {
+  const isCenter = data.textAlign === "center";
   return (
     <section className="services-information full-section">
       <div className="container">
-        <div className="heading-wrap animate fadeUp">
+        <div className={`heading-wrap animate fadeUp${isCenter ? " text-center" : ""}`}>
           <h3 className="font-48">{data.eyebrow}</h3>
-          <h2 className="main-title pb-2">{data.title}</h2>
+          <h2 className="main-title">{data.title}</h2>
         </div>
         <div className="grid gap-4 leading-relaxed">
           {data.cards.map((card, i) => (
-            <div key={i} className="bg-black-light space-y-3 p-6 lg:p-8">
+            <div key={i} className={`bg-black-light space-y-3 p-6 lg:p-8${isCenter ? " text-center" : ""}`}>
               {card.title && <h3 className="font-semibold font-22">{card.title}</h3>}
               {card.blocks
                 ? card.blocks.map((block, j) =>

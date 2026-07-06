@@ -11,6 +11,9 @@ export const CASE_STUDIES_QUERY = gql`
         title
         content
         uri
+        caseStudiesFields {
+          caseStudyTitle
+        }
         featuredImage {
           node {
             sourceUrl

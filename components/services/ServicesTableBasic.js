@@ -1,3 +1,5 @@
+import ServiceCtaButton from "@/components/services/ServiceCtaButton";
+
 export default function ServicesTableBasic({ data }) {
   const boldColumns = data.boldColumns || [0];
   return (
@@ -56,6 +58,11 @@ export default function ServicesTableBasic({ data }) {
           </table>
         </div>
         {data.note && <p className="mx-auto mt-6 max-w-5xl text-center leading-relaxed text-white/70">{data.note}</p>}
+        {data.ctaLabel && (
+          <div className="btn-wrap pt-space-mini text-center animate fadeUp">
+            <ServiceCtaButton href={data.ctaHref} label={data.ctaLabel} btnArrow={data.btnArrow} />
+          </div>
+        )}
       </div>
     </section>
   );

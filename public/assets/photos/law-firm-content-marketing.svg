@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1000" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3D888"/><stop offset=".5" stop-color="#DDB04E"/><stop offset="1" stop-color="#B8862E"/></linearGradient>
+    <filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="14" stdDeviation="20" flood-color="#4a5570" flood-opacity=".25"/></filter>
+  </defs>
+
+  <!-- Article document -->
+  <g filter="url(#sh)"><rect x="110" y="180" width="620" height="640" rx="20" fill="#fff"/></g>
+  <rect x="150" y="220" width="540" height="150" rx="12" fill="#243A5E"/>
+  <text x="180" y="286" font-size="26" font-weight="700" fill="#fff">Legal Insights Blog</text>
+  <text x="180" y="326" font-size="18" fill="#AEB9CC">Long-form guides your future clients search for</text>
+  <rect x="180" y="342" width="150" height="14" rx="7" fill="#4a5f85"/>
+  <text x="150" y="428" font-size="23" font-weight="700" fill="#243A5E">Your Rights After a Car Accident</text>
+  <g fill="#E7EBF2"><rect x="150" y="452" width="540" height="13" rx="6"/><rect x="150" y="480" width="500" height="13" rx="6"/><rect x="150" y="508" width="540" height="13" rx="6"/><rect x="150" y="536" width="460" height="13" rx="6"/></g>
+  <rect x="150" y="576" width="260" height="14" rx="7" fill="#DDB04E"/>
+  <g fill="#EDF0F5"><rect x="150" y="612" width="540" height="12" rx="6"/><rect x="150" y="638" width="510" height="12" rx="6"/><rect x="150" y="664" width="540" height="12" rx="6"/><rect x="150" y="690" width="420" height="12" rx="6"/></g>
+  <rect x="150" y="742" width="230" height="44" rx="22" fill="#FFF3DA"/><text x="265" y="770" font-size="18" fill="#B8862E" text-anchor="middle">8 min read · Guide</text>
+
+  <!-- Topic cluster map -->
+  <g filter="url(#sh)"><rect x="770" y="230" width="620" height="540" rx="20" fill="#fff"/></g>
+  <text x="806" y="290" font-size="23" font-weight="700" fill="#243A5E">Topic Clusters</text>
+  <!-- connectors -->
+  <g stroke="#DDB04E" stroke-width="3" stroke-dasharray="2 9">
+    <line x1="1080" y1="520" x2="900" y2="380"/><line x1="1080" y1="520" x2="1260" y2="380"/><line x1="1080" y1="520" x2="880" y2="650"/><line x1="1080" y1="520" x2="1280" y2="650"/>
+  </g>
+  <!-- pillar -->
+  <circle cx="1080" cy="520" r="66" fill="url(#gold)"/><text x="1080" y="514" font-size="18" font-weight="700" fill="#fff" text-anchor="middle">Personal</text><text x="1080" y="538" font-size="18" font-weight="700" fill="#fff" text-anchor="middle">Injury</text>
+  <!-- cluster nodes -->
+  <g font-size="16" fill="#243A5E" text-anchor="middle">
+    <circle cx="900" cy="368" r="48" fill="#F4F6FA" stroke="#E7EBF2" stroke-width="2"/><text x="900" y="364">Car</text><text x="900" y="384">Accident</text>
+    <circle cx="1262" cy="368" r="48" fill="#F4F6FA" stroke="#E7EBF2" stroke-width="2"/><text x="1262" y="364">Slip &amp;</text><text x="1262" y="384">Fall</text>
+    <circle cx="878" cy="662" r="48" fill="#F4F6FA" stroke="#E7EBF2" stroke-width="2"/><text x="878" y="658">Medical</text><text x="878" y="678">Claims</text>
+    <circle cx="1282" cy="662" r="48" fill="#F4F6FA" stroke="#E7EBF2" stroke-width="2"/><text x="1282" y="658">Work</text><text x="1282" y="678">Injury</text>
+  </g>
+</svg>

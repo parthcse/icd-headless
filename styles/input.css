@@ -287,7 +287,7 @@
         @apply mb-0;
     }
     .heading-wrap .font-48 {
-        @apply mb-0 font-normal;
+        @apply mb-0 font-normal leading-snug;
     }
     .container-left {
         @apply w-full pl-4 sm:pl-[calc((100%-528px)/2)] md:pl-[calc((100%-720px)/2)] lg:pl-[calc((100%-976px)/2)] xl:pl-[calc((100%-1152px)/2)];
@@ -325,7 +325,7 @@
         @apply bg-black-light border-black-light;
     }
     .services-accordion-item.active .services-accordion-content {
-        @apply [grid-template-rows:1fr] opacity-100 mt-1;
+        @apply [grid-template-rows:1fr] opacity-100 mt-3 pr-9;
     }
     .services-accordion-item.active .services-accordion-icon {
         @apply bg-primary rotate-180;

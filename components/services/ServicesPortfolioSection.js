@@ -13,8 +13,8 @@ function mapNodeToPortfolioItem(node) {
   return {
     href: node.slug ? `/portfolio/${node.slug}/` : "",
     image: node.featuredImage?.node?.sourceUrl || "",
-    imageAlt: node.featuredImage?.node?.altText || node.title,
-    clientName: node.title,
+    imageAlt: node.featuredImage?.node?.altText || fields.portfolioTitle || node.title,
+    clientName: fields.portfolioTitle || node.title,
     metrics: (fields.portfolioMetrics || []).map((m) => ({
       value: m.metricsValue,
       label: m.metricsLabel,

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1000" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3D888"/><stop offset=".5" stop-color="#DDB04E"/><stop offset="1" stop-color="#B8862E"/></linearGradient>
+    <linearGradient id="gauge" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E86A5B"/><stop offset=".5" stop-color="#EBC15C"/><stop offset="1" stop-color="#5FB56A"/></linearGradient>
+    <filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="14" stdDeviation="20" flood-color="#4a5570" flood-opacity=".25"/></filter>
+  </defs>
+
+  <!-- Browser: law firm site -->
+  <g filter="url(#sh)"><rect x="300" y="180" width="760" height="640" rx="20" fill="#fff"/></g>
+  <rect x="300" y="180" width="760" height="56" rx="20" fill="#F1F4F9"/><rect x="300" y="216" width="760" height="20" fill="#F1F4F9"/>
+  <circle cx="336" cy="210" r="7" fill="#E0857E"/><circle cx="360" cy="210" r="7" fill="#EBC15C"/><circle cx="384" cy="210" r="7" fill="#7FC08A"/>
+  <rect x="430" y="196" width="590" height="26" rx="13" fill="#fff"/><text x="452" y="216" font-size="16" fill="#0F9D58">https://smithlawfirm.com/practice-areas</text>
+  <!-- H1 title tag -->
+  <rect x="340" y="276" width="500" height="50" rx="8" fill="#FBF3DF" stroke="#E2B252" stroke-width="2"/>
+  <text x="360" y="310" font-size="28" font-weight="700" fill="#243A5E">Experienced Injury Attorneys</text>
+  <!-- meta -->
+  <g fill="#E7EBF2"><rect x="340" y="352" width="680" height="14" rx="7"/><rect x="340" y="380" width="620" height="14" rx="7"/></g>
+  <!-- image with alt + internal links -->
+  <rect x="340" y="426" width="300" height="200" rx="12" fill="#F4F6FA"/>
+  <g transform="translate(490,516) scale(0.8)" fill="url(#gold)">
+    <circle cx="0" cy="-66" r="9"/>
+    <rect x="-4.5" y="-66" width="9" height="120" rx="4.5"/>
+    <rect x="-74" y="-56" width="148" height="9" rx="4.5"/>
+    <path d="M-36 56 H36 L27 74 H-27 Z"/>
+    <ellipse cx="0" cy="56" rx="10" ry="4"/>
+    <g stroke="url(#gold)" stroke-width="4" stroke-linecap="round"><line x1="-68" y1="-52" x2="-68" y2="-28"/><line x1="68" y1="-52" x2="68" y2="-28"/></g>
+    <path d="M-104 -28 A40 28 0 0 0 -32 -28 Z"/><path d="M32 -28 A40 28 0 0 0 104 -28 Z"/>
+  </g>
+  <g fill="#EDF0F5"><rect x="670" y="432" width="350" height="13" rx="6"/><rect x="670" y="460" width="320" height="13" rx="6"/></g>
+  <text x="670" y="516" font-size="17" fill="#B8862E">→ Practice Areas</text>
+  <text x="670" y="548" font-size="17" fill="#B8862E">→ Case Results</text>
+  <text x="670" y="580" font-size="17" fill="#B8862E">→ Free Consultation</text>
+  <line x1="340" y1="666" x2="1020" y2="666" stroke="#EEF1F6" stroke-width="2"/>
+  <g fill="#EDF0F5"><rect x="340" y="690" width="680" height="12" rx="6"/><rect x="340" y="716" width="640" height="12" rx="6"/><rect x="340" y="742" width="680" height="12" rx="6"/><rect x="340" y="768" width="500" height="12" rx="6"/></g>
+
+  <!-- callouts -->
+  <g filter="url(#sh)"><rect x="1080" y="250" width="300" height="150" rx="18" fill="#fff"/></g>
+  <path d="M1130 350 A70 70 0 0 1 1330 350" fill="none" stroke="#EAEEF4" stroke-width="15" stroke-linecap="round"/>
+  <path d="M1130 350 A70 70 0 0 1 1330 350" fill="none" stroke="url(#gauge)" stroke-width="15" stroke-linecap="round" stroke-dasharray="220 400"/>
+  <line x1="1230" y1="350" x2="1280" y2="312" stroke="#243A5E" stroke-width="6" stroke-linecap="round"/><circle cx="1230" cy="350" r="9" fill="#243A5E"/>
+  <text x="1230" y="392" font-size="21" font-weight="700" fill="#243A5E" text-anchor="middle">Fast Load Speed</text>
+
+  <g filter="url(#sh)"><rect x="1080" y="440" width="300" height="340" rx="18" fill="#fff"/></g>
+  <text x="1112" y="496" font-size="21" font-weight="700" fill="#243A5E">On-Page Wins</text>
+  <g font-size="18" fill="#243A5E">
+    <g transform="translate(1126,540)"><circle r="13" fill="#5FB56A"/><polyline points="-6,0 -2,5 7,-6" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g><text x="1150" y="546">Title tags</text>
+    <g transform="translate(1126,584)"><circle r="13" fill="#5FB56A"/><polyline points="-6,0 -2,5 7,-6" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g><text x="1150" y="590">Meta description</text>
+    <g transform="translate(1126,628)"><circle r="13" fill="#5FB56A"/><polyline points="-6,0 -2,5 7,-6" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g><text x="1150" y="634">Internal links</text>
+    <g transform="translate(1126,672)"><circle r="13" fill="#5FB56A"/><polyline points="-6,0 -2,5 7,-6" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g><text x="1150" y="678">Image alt text</text>
+    <g transform="translate(1126,716)"><circle r="13" fill="#5FB56A"/><polyline points="-6,0 -2,5 7,-6" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g><text x="1150" y="722">Clean site structure</text>
+  </g>
+</svg>

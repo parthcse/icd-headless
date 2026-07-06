@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1000" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3D888"/><stop offset=".5" stop-color="#DDB04E"/><stop offset="1" stop-color="#B8862E"/></linearGradient>
+    <linearGradient id="dia" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EAF4FF"/><stop offset="1" stop-color="#B9D6F2"/></linearGradient>
+    <filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="14" stdDeviation="20" flood-color="#7C8CA8" flood-opacity=".2"/></filter>
+  </defs>
+
+  <!-- Funnel card -->
+  <g filter="url(#sh)"><rect x="110" y="200" width="640" height="600" rx="20" fill="#fff"/></g>
+  <text x="150" y="268" font-size="26" font-weight="700" fill="#2A3342">Conversion Funnel</text>
+  <!-- funnel stages -->
+  <g>
+    <path d="M170 310 H690 L620 398 H240 Z" fill="#F6E6C2"/><text x="430" y="362" font-size="24" font-weight="700" fill="#8A6A22" text-anchor="middle">Visitors — 10,000</text>
+    <path d="M248 418 H612 L556 506 H304 Z" fill="#EFD292"/><text x="430" y="470" font-size="24" font-weight="700" fill="#7A5A1A" text-anchor="middle">Add to Cart — 3,200</text>
+    <path d="M310 526 H550 L500 614 H360 Z" fill="url(#gold)"/><text x="430" y="576" font-size="22" font-weight="700" fill="#fff" text-anchor="middle">Buyers 1,180</text>
+  </g>
+  <text x="430" y="700" font-size="22" fill="#4D5666" text-anchor="middle">Optimized layout, navigation &amp; checkout</text>
+  <text x="430" y="736" font-size="22" fill="#4D5666" text-anchor="middle">turn more visitors into customers.</text>
+
+  <!-- Product / CTA card -->
+  <g filter="url(#sh)"><rect x="810" y="240" width="580" height="520" rx="20" fill="#fff"/></g>
+  <rect x="850" y="280" width="240" height="240" rx="14" fill="#F4F6FA"/>
+  <g transform="translate(970,400)"><ellipse cx="0" cy="34" rx="62" ry="70" fill="none" stroke="url(#gold)" stroke-width="20"/><g transform="translate(0,-50)"><polygon points="0,-30 30,-8 0,40 -30,-8" fill="url(#dia)" stroke="#8FB8DE" stroke-width="2"/><line x1="0" y1="-30" x2="0" y2="40" stroke="#Bed7ef" stroke-width="1.5"/></g></g>
+  <text x="1130" y="322" font-size="25" font-weight="700" fill="#2A3342">Diamond Ring</text>
+  <text x="1130" y="378" font-size="32" font-weight="700" fill="#B8862E">$999</text>
+  <g transform="translate(1130,410)" fill="#EBB000"><text font-size="22">★★★★★</text></g>
+  <rect x="1130" y="452" width="220" height="60" rx="10" fill="url(#gold)"/><text x="1240" y="490" font-size="22" font-weight="700" fill="#fff" text-anchor="middle">Buy Now</text>
+  <!-- trust row -->
+  <g transform="translate(866,590)"><circle r="14" fill="#5FB56A"/><polyline points="-6,0 -2,5 7,-6" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g><text x="892" y="597" font-size="19" fill="#4D5666">Secure Checkout</text>
+  <g transform="translate(1120,590)"><circle r="14" fill="#5FB56A"/><polyline points="-6,0 -2,5 7,-6" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g><text x="1146" y="597" font-size="19" fill="#4D5666">Free Returns</text>
+  <line x1="850" y1="640" x2="1350" y2="640" stroke="#EEF1F6" stroke-width="2"/>
+  <text x="850" y="700" font-size="21" fill="#8A94A6">Conversion Rate</text>
+  <text x="850" y="736" font-size="26" font-weight="700" fill="#2A3342">3.8%</text>
+
+  <!-- uplift badge -->
+  <g filter="url(#sh)"><rect x="1120" y="672" width="230" height="84" rx="16" fill="#2A3342"/></g>
+  <polygon points="1160,730 1180,700 1200,714 1230,684" fill="none" stroke="#5FB56A" stroke-width="4" stroke-linejoin="round"/><polyline points="1210,684 1230,684 1230,704" fill="none" stroke="#5FB56A" stroke-width="4"/>
+  <text x="1290" y="726" font-size="30" font-weight="700" fill="#fff" text-anchor="middle">+38%</text>
+</svg>

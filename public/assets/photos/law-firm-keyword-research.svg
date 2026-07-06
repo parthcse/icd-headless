@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1000" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3D888"/><stop offset=".5" stop-color="#DDB04E"/><stop offset="1" stop-color="#B8862E"/></linearGradient>
+    <filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="14" stdDeviation="20" flood-color="#4a5570" flood-opacity=".25"/></filter>
+  </defs>
+
+  <!-- Search + keywords card -->
+  <g filter="url(#sh)"><rect x="110" y="170" width="830" height="660" rx="20" fill="#fff"/></g>
+  <rect x="150" y="212" width="750" height="72" rx="36" fill="#F4F6FA" stroke="#E7EBF2"/>
+  <circle cx="205" cy="248" r="17" fill="none" stroke="#B8862E" stroke-width="4"/><line x1="218" y1="261" x2="232" y2="275" stroke="#B8862E" stroke-width="4"/>
+  <text x="256" y="258" font-size="25" fill="#243A5E">personal injury lawyer</text>
+  <rect x="830" y="228" width="46" height="40" rx="6" fill="url(#gold)"/>
+
+  <text x="170" y="352" font-size="18" font-weight="600" fill="#8A94A6">KEYWORD</text>
+  <text x="650" y="352" font-size="18" font-weight="600" fill="#8A94A6">VOLUME</text>
+  <text x="810" y="352" font-size="18" font-weight="600" fill="#8A94A6">KD</text>
+  <line x1="150" y1="370" x2="900" y2="370" stroke="#EEF1F6" stroke-width="2"/>
+
+  <g font-size="22" fill="#243A5E">
+    <text x="170" y="418">personal injury lawyer</text>
+    <text x="170" y="486">dui attorney near me</text>
+    <text x="170" y="554">criminal defense lawyer</text>
+    <text x="170" y="622">car accident attorney</text>
+    <text x="170" y="690">family law firm</text>
+  </g>
+  <g font-size="21" fill="#4D5666" text-anchor="end">
+    <text x="730" y="418">49,500</text><text x="730" y="486">18,100</text><text x="730" y="554">33,100</text><text x="730" y="622">27,100</text><text x="730" y="690">14,800</text>
+  </g>
+  <g>
+    <rect x="800" y="398" width="70" height="30" rx="15" fill="#FBE9E6"/><text x="835" y="419" font-size="18" fill="#D4574A" text-anchor="middle">71</text>
+    <rect x="800" y="466" width="70" height="30" rx="15" fill="#FFF3DA"/><text x="835" y="487" font-size="18" fill="#B8862E" text-anchor="middle">44</text>
+    <rect x="800" y="534" width="70" height="30" rx="15" fill="#FBE9E6"/><text x="835" y="555" font-size="18" fill="#D4574A" text-anchor="middle">66</text>
+    <rect x="800" y="602" width="70" height="30" rx="15" fill="#FFF3DA"/><text x="835" y="623" font-size="18" fill="#B8862E" text-anchor="middle">38</text>
+    <rect x="800" y="670" width="70" height="30" rx="15" fill="#E7F4E9"/><text x="835" y="691" font-size="18" fill="#3E9A50" text-anchor="middle">24</text>
+  </g>
+
+  <!-- Tools card -->
+  <g filter="url(#sh)"><rect x="980" y="300" width="410" height="400" rx="20" fill="#fff"/></g>
+  <text x="1015" y="358" font-size="23" font-weight="700" fill="#243A5E">Research Tools</text>
+  <g font-size="20" fill="#243A5E">
+    <g transform="translate(1030,404)"><circle r="15" fill="#5FB56A"/><polyline points="-7,0 -2,6 8,-7" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g><text x="1058" y="411">Google Trends</text>
+    <g transform="translate(1030,452)"><circle r="15" fill="#5FB56A"/><polyline points="-7,0 -2,6 8,-7" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g><text x="1058" y="459">Keyword Planner</text>
+    <g transform="translate(1030,500)"><circle r="15" fill="#5FB56A"/><polyline points="-7,0 -2,6 8,-7" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g><text x="1058" y="507">SEMrush</text>
+    <g transform="translate(1030,548)"><circle r="15" fill="#5FB56A"/><polyline points="-7,0 -2,6 8,-7" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g><text x="1058" y="555">Ahrefs</text>
+    <g transform="translate(1030,596)"><circle r="15" fill="#5FB56A"/><polyline points="-7,0 -2,6 8,-7" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g><text x="1058" y="603">SpyFu</text>
+    <g transform="translate(1030,644)"><circle r="15" fill="#5FB56A"/><polyline points="-7,0 -2,6 8,-7" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g><text x="1058" y="651">Search Console</text>
+  </g>
+</svg>

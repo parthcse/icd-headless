@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1000" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F3D888"/><stop offset=".5" stop-color="#DDB04E"/><stop offset="1" stop-color="#B8862E"/>
+    </linearGradient>
+    <linearGradient id="dia" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#EAF4FF"/><stop offset="1" stop-color="#B9D6F2"/>
+    </linearGradient>
+    <linearGradient id="gauge" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#E86A5B"/><stop offset=".5" stop-color="#EBC15C"/><stop offset="1" stop-color="#5FB56A"/>
+    </linearGradient>
+    <filter id="sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="14" stdDeviation="20" flood-color="#7C8CA8" flood-opacity=".2"/>
+    </filter>
+  </defs>
+
+  <!-- Monitor -->
+  <g filter="url(#sh)"><rect x="300" y="200" width="760" height="560" rx="20" fill="#fff"/></g>
+  <rect x="300" y="200" width="760" height="56" rx="20" fill="#F1F4F9"/><rect x="300" y="236" width="760" height="20" fill="#F1F4F9"/>
+  <circle cx="336" cy="230" r="7" fill="#E0857E"/><circle cx="360" cy="230" r="7" fill="#EBC15C"/><circle cx="384" cy="230" r="7" fill="#7FC08A"/>
+  <!-- hero ring -->
+  <rect x="336" y="292" width="300" height="300" rx="14" fill="#F4F6FA"/>
+  <g transform="translate(486,452)">
+    <ellipse cx="0" cy="42" rx="78" ry="86" fill="none" stroke="url(#gold)" stroke-width="24"/>
+    <g transform="translate(0,-64)"><polygon points="0,-36 36,-10 0,48 -36,-10" fill="url(#dia)" stroke="#8FB8DE" stroke-width="2.5"/><line x1="0" y1="-36" x2="0" y2="48" stroke="#Bed7ef" stroke-width="1.5"/></g>
+  </g>
+  <rect x="676" y="300" width="330" height="18" rx="9" fill="#E7EBF2"/>
+  <rect x="676" y="336" width="300" height="18" rx="9" fill="#E7EBF2"/>
+  <rect x="676" y="372" width="330" height="18" rx="9" fill="#EDF0F5"/>
+  <rect x="676" y="408" width="250" height="18" rx="9" fill="#EDF0F5"/>
+  <rect x="676" y="470" width="150" height="46" rx="10" fill="url(#gold)"/>
+  <rect x="676" y="540" width="330" height="14" rx="7" fill="#EEF1F6"/><rect x="676" y="566" width="290" height="14" rx="7" fill="#EEF1F6"/>
+
+  <!-- Phone: responsive -->
+  <g filter="url(#sh)"><rect x="1120" y="300" width="220" height="410" rx="28" fill="#fff"/></g>
+  <rect x="1150" y="340" width="160" height="120" rx="10" fill="#F4F6FA"/>
+  <g transform="translate(1230,398)"><ellipse cx="0" cy="20" rx="34" ry="38" fill="none" stroke="url(#gold)" stroke-width="11"/><polygon points="0,-30 16,-14 0,10 -16,-14" fill="url(#dia)" stroke="#8FB8DE" stroke-width="1.5"/></g>
+  <rect x="1150" y="478" width="160" height="12" rx="6" fill="#E7EBF2"/><rect x="1150" y="500" width="120" height="12" rx="6" fill="#EDF0F5"/>
+  <rect x="1150" y="540" width="160" height="40" rx="9" fill="url(#gold)"/>
+  <rect x="1150" y="600" width="160" height="10" rx="5" fill="#EEF1F6"/><rect x="1150" y="620" width="130" height="10" rx="5" fill="#EEF1F6"/>
+
+  <!-- Speed gauge badge -->
+  <g filter="url(#sh)"><rect x="120" y="230" width="240" height="180" rx="18" fill="#fff"/></g>
+  <path d="M170 350 A70 70 0 0 1 310 350" fill="none" stroke="#EAEEF4" stroke-width="16" stroke-linecap="round"/>
+  <path d="M170 350 A70 70 0 0 1 310 350" fill="none" stroke="url(#gauge)" stroke-width="16" stroke-linecap="round" stroke-dasharray="200 400"/>
+  <line x1="240" y1="350" x2="285" y2="315" stroke="#2A3342" stroke-width="6" stroke-linecap="round"/><circle cx="240" cy="350" r="9" fill="#2A3342"/>
+  <text x="240" y="392" font-size="22" font-weight="700" fill="#2A3342" text-anchor="middle">98  Page Speed</text>
+
+  <!-- Structured data code card -->
+  <g filter="url(#sh)"><rect x="150" y="560" width="430" height="240" rx="18" fill="#fff"/></g>
+  <rect x="150" y="560" width="430" height="46" rx="18" fill="#2A3342"/><rect x="150" y="588" width="430" height="18" fill="#2A3342"/>
+  <text x="176" y="590" font-size="19" font-weight="600" fill="#fff">Product Schema (JSON-LD)</text>
+  <text x="176" y="644" font-size="18" fill="#8A94A6">{ <tspan fill="#B8862E">"@type"</tspan>: <tspan fill="#0F9D58">"Product"</tspan>,</text>
+  <text x="196" y="674" font-size="18" fill="#8A94A6"><tspan fill="#B8862E">"name"</tspan>: <tspan fill="#0F9D58">"Diamond Ring"</tspan>,</text>
+  <text x="196" y="704" font-size="18" fill="#8A94A6"><tspan fill="#B8862E">"price"</tspan>: <tspan fill="#4285F4">999</tspan>,</text>
+  <text x="196" y="734" font-size="18" fill="#8A94A6"><tspan fill="#B8862E">"rating"</tspan>: <tspan fill="#4285F4">4.9</tspan> }</text>
+
+  <!-- Crawled & indexed badge -->
+  <g filter="url(#sh)"><rect x="640" y="640" width="320" height="170" rx="18" fill="#fff"/></g>
+  <g transform="translate(672,690)"><circle r="16" fill="#5FB56A"/><polyline points="-7,0 -2,6 8,-7" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <text x="702" y="697" font-size="20" fill="#2A3342">Crawlable &amp; Indexed</text>
+  <g transform="translate(672,740)"><circle r="16" fill="#5FB56A"/><polyline points="-7,0 -2,6 8,-7" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <text x="702" y="747" font-size="20" fill="#2A3342">No Broken Links</text>
+  <g transform="translate(672,790)"><circle r="16" fill="#5FB56A"/><polyline points="-7,0 -2,6 8,-7" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <text x="702" y="797" font-size="20" fill="#2A3342">Mobile Friendly</text>
+</svg>

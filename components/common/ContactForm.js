@@ -4,9 +4,37 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 // Cloudflare Turnstile site key used by the live Contact Form 7 form (id 4751).
+// This key is allow-listed in Cloudflare for the production host only, so it
+// throws error 110200 ("domain not allowed") on any other hostname.
 const TURNSTILE_SITE_KEY =
   process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "0x4AAAAAABnARYR1_ICkLUDJ";
+// Cloudflare's official "always passes" test key — valid on ANY hostname
+// (including localhost). Used automatically on non-production hosts so local
+// dev doesn't trip error 110200 and flood the console with 400s.
+const TURNSTILE_TEST_SITE_KEY = "1x00000000000000000000AA";
 const CF7_FORM_ID = process.env.NEXT_PUBLIC_CF7_FORM_ID || "4751";
+
+// True on real deploy hosts; false on localhost / LAN / *.local dev hosts.
+function isProductionHost() {
+  if (typeof window === "undefined") return true;
+  const h = window.location.hostname;
+  return !(
+    h === "localhost" ||
+    h === "127.0.0.1" ||
+    h === "0.0.0.0" ||
+    h.endsWith(".local") ||
+    /^192\.168\./.test(h) ||
+    /^10\./.test(h) ||
+    /^172\.(1[6-9]|2\d|3[01])\./.test(h)
+  );
+}
+
+// Pick the real key on production hosts, the always-pass test key elsewhere.
+// The production key still requires the current domain to be added to the
+// Turnstile widget's hostname allow-list in the Cloudflare dashboard.
+function resolveTurnstileSiteKey() {
+  return isProductionHost() ? TURNSTILE_SITE_KEY : TURNSTILE_TEST_SITE_KEY;
+}
 
 // CF7 REST feedback endpoint on the WordPress site. Origin is derived from the
 // existing GraphQL endpoint so there's a single source of truth for the host.
@@ -153,8 +181,27 @@ export default function ContactForm({ variant = "split", title, btnArrow, animat
       .then((ts) => {
         if (cancelled || !ts || !turnstileRef.current || widgetIdRef.current != null) return;
         widgetIdRef.current = ts.render(turnstileRef.current, {
-          sitekey: TURNSTILE_SITE_KEY,
+          sitekey: resolveTurnstileSiteKey(),
           size: "compact",
+          // Keep the widget invisible while the visitor passes silently (the
+          // normal case) so no green "success" box clutters the form. It only
+          // appears if Cloudflare actually needs an interactive challenge. The
+          // spam token is still issued in the background, so submit still works.
+          appearance: "interaction-only",
+          theme: "auto",
+          // Don't let a config/network error trigger endless retries (the source
+          // of the repeated 400s in the console). Handle it once instead.
+          retry: "never",
+          "error-callback": (code) => {
+            if (!cancelled) {
+              setError(
+                `Security check couldn't load (Turnstile ${code || "error"}). Please refresh and try again.`
+              );
+            }
+            // Returning true tells Turnstile we've handled it, suppressing its
+            // own retry/error UI.
+            return true;
+          },
         });
       })
       .catch(() => {

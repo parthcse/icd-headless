@@ -15,6 +15,7 @@ export const PORTFOLIO_BY_IDS_QUERY = gql`
           }
         }
         portfolioFields {
+          portfolioTitle
           portfolioMetrics {
             metricsValue
             metricsLabel
@@ -55,6 +56,9 @@ export const PORTFOLIO_PAGE_QUERY = gql`
         databaseId
         title
         uri
+        portfolioFields {
+          portfolioTitle
+        }
         featuredImage {
           node {
             sourceUrl
@@ -89,6 +93,7 @@ export const PORTFOLIO_BY_SLUG_QUERY = gql`
     portfolio(id: $slug, idType: SLUG) {
       title
       portfolioFields {
+        portfolioTitle
         portfolioLabel
         liveWebsiteUrl
         workPerformedList
@@ -116,6 +121,9 @@ export const PORTFOLIO_CATEGORY_PAGE_QUERY = gql`
           databaseId
           title
           uri
+          portfolioFields {
+            portfolioTitle
+          }
           featuredImage {
             node {
               sourceUrl
