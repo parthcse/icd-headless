@@ -100,7 +100,7 @@ These are hard-won from dozens of correction rounds. **Violating any one of thes
 ### 2.1 Match live's content EXACTLY — no text may be missing
 
 - **Never merge paragraphs.** If the live section shows 2, 3, 4 `<p>` tags, keep them as 2/3/4 **separate** entries in `paragraphs[]` / `blocks[]`. Concatenating live's multiple paragraphs into one is the single most common rejected mistake. This applies to the **banner**, `imageText`, `plainText`, `information`, and any body content.
-- **Never drop an item.** After building any list section (`topIconBox`, `leftIconBox`, `infoBox`, `checkList`, `processSteps`, `information`), **count** your items and confirm the count equals live's item count. Auditors sometimes drop the last item or merge two live items into one (e.g. stuffing item #5's body onto item #4 as a `bodyAfter`). Diff titles in order against live.
+- **Never drop an item.** After building any list section (`topIconBox`, `leftIconBox`, `infoBox`, `checkList`, `processSteps`, `information`), **count** your items and confirm the count equals live's item count. Auditors sometimes drop the last item or merge two live items into one (e.g. stuffing item #5's body onto item #4 as a `bodyAfter`). Diff titles in order against live. **Counting mechanically:** match *content-bearing* title elements — `gdlr-core-column-service-title[^>]*>…</` — because the bare class string appears ~2× per item in the source (counting the class alone doubles the count); on our *rendered* HTML the RSC payload also duplicates, so halve grep counts. Real miss (2026-07): the Seattle location page shipped **6** topIconBox items where live had **9** — "Technical SEO", "Amazon Marketing Services", "E-commerce SEO" were dropped and nobody counted.
 - **Scan the FULL live page top-to-bottom.** Some live sections have **no heading markup** (e.g. a "Guide Highlights" sticky-nav block) and are missed by title-based scans. Read the entire DOM between `</header>` and `<footer`, not just titled sections.
 - After a batch, sanity-scan for strings that end mid-sentence (no terminal punctuation) — a sign of truncated extraction. (Note: `{text,href}` parts-array fragments legitimately end without punctuation — those are false positives.)
 
@@ -122,6 +122,7 @@ These are hard-won from dozens of correction rounds. **Violating any one of thes
 - Do **not** default every button to "Request a free quote." Extract each section's **actual** live button label from its `gdlr-core-button` (it can sit 4000+ characters after the heading in the HTML — scan the whole section wrapper, not a short window). Examples seen: `"Request a Demo!"`, `"Get a free quote now!"`, `"Schedule a Meeting Today!"`, `"Request a free quote now!"`.
 - If a live section has **no** button, **omit** `ctaLabel` — don't invent one.
 - The **banner** button (`"Send me a proposal"`) + phone are common/standard — don't audit those.
+- **Buttons can appear on ANY section type — audit them all, not just `plainText`/`cta`.** `information`, `imageText`, `checkList`, `processSteps`, `leftIconBox`, `topIconBox`, and `scrollNavigation` all accept a `ctaLabel`/`ctaHref`/`btnArrow`. Real miss (2026-07): a Pittsburgh location page had its "Request a free quote" button on an **`information`** section that a plainText-only check skipped. **Mechanically diff** live buttons vs your `ctaLabel`s: list every `gdlr-core-button` label on live, map each to its nearest preceding section title, and confirm the matching data section carries that exact `ctaLabel`. Exclude the banner phone ("Or Call Us …") + "Send me a proposal", the caseStudy/portfolio card CTAs ("More Case Studies"/"More Portfolio"), and the common `ceoCta` button.
 
 ### 2.5 Title / eyebrow split (the 2-line rule)
 
@@ -225,7 +226,8 @@ while((m=re.exec(body))){
 - **Ignore** only: case-study/portfolio **card** links (`/case-studies/…`, `/portfolio/…` — handled by `postIds`), `/case-studies/` "More Case Studies" button, phone/WhatsApp/email, and `/contact-us/` "Book a free meeting" (common). Everything else is a content link.
 - To find WHERE a link lives (which section/paragraph), grep the surrounding text: `grep -o '.\{140\}href="[^"]*<slug-part>[^"]*"[^>]*>.\{80\}' /tmp/live.html` then strip tags.
 - **Subtitles/`subtitles[]` take parts arrays too** — a link in a section's intro line (like the real-estate one) must wrap that one phrase; don't leave the whole subtitle a plain string.
-- **GOTCHA — a `subtitle` given as an ARRAY is an array of *paragraphs*** (each element a string **or** a parts-array). So a *single* paragraph that contains an inline link must be **double-wrapped**: `subtitle: [[ "lead ", {text:"link",href:"/x/"}, " rest" ]]`. Writing `subtitle: ["lead ", {text,href}, " rest"]` (a bare parts-array) makes the renderer treat `{text,href}` as its own paragraph and **crashes the build** ("Objects are not valid as a React child"). Applies to `checkList`/`infoBox`/`topIconBox` subtitles.
+- **GOTCHA — a `subtitle` given as an ARRAY is an array of *paragraphs*** (each element a string **or** a parts-array). So a *single* paragraph that contains an inline link must be **double-wrapped**: `subtitle: [[ "lead ", {text:"link",href:"/x/"}, " rest" ]]`. Writing `subtitle: ["lead ", {text,href}, " rest"]` (a bare parts-array) makes the renderer treat `{text,href}` as its own paragraph and **crashes the build** ("Objects are not valid as a React child"). Applies to `checkList` / `infoBox` / `leftIconBox` / `processSteps` subtitles.
+- **`topIconBox` is the EXCEPTION — its singular `subtitle` is rendered RAW (no `renderParts`), so an array/linked value there crashes even when double-wrapped.** For ANY topIconBox subtitle that has an inline link (or multiple paragraphs), use the PLURAL **`subtitles`**: `subtitles: [[ "lead ", {text,href}, " rest" ]]` (one linked paragraph) or `subtitles: ["p1", ["p2 ", {text,href}]]` (multi). Plain single-string subtitle → `subtitle: "..."` is fine. This exact bug shipped a **HTTP 500** on the Perth location page (topIconBox `subtitle` held a `{text,href}`). `topIconBoxSecondary`/`Tertiary`/… behave the same. (`imageText` also uses `subtitles` plural for multi-paragraph — see §5.)
 
 ### Mapping a live section to a section key
 
@@ -656,7 +658,8 @@ Run this against **every** page before calling it done. This is the audit.
 - [ ] **Every list section's item count** equals live's (topIconBox / leftIconBox / infoBox / checkList / processSteps / information). Diff titles in order.
 - [ ] **Every inline link** — run the mandatory link-extraction command ([§4](#extract-every-inline-link--mandatory-do-not-eyeball)), then confirm every content link (exclude case-study/portfolio cards + common footer links) is reproduced as a relative `{text,href}` part; and no links live doesn't have. **Do not skip this by reading the page — extract mechanically.**
 - [ ] **Every bold run** reproduced as `{bold}`.
-- [ ] **Button labels** are live-exact (or omitted where live has none). Banner button excluded.
+- [ ] **Button labels** are live-exact (or omitted where live has none), across **all** section types (`plainText`/`cta`/`information`/`imageText`/`checkList`/`processSteps`/`leftIconBox`/`topIconBox`/`scrollNavigation`) — mechanically diff every live `gdlr-core-button` against your `ctaLabel`s ([§2.4](#24-button-labels-in-non-common-sections-must-match-live-verbatim)). Banner button/phone + card CTAs + ceoCta excluded.
+- [ ] **List-section item counts** — count every icon-box/list section against live using the content-bearing-title method (not the bare class string, which doubles).
 - [ ] **caseStudy/portfolio postIds** are live's real items (kept even if ACF empty; substitutions flagged).
 - [ ] **testimonialSlug** matches live's quoted person (added to `lib/testimonials.js` if new).
 - [ ] **Title/eyebrow** split follows the 2-line / min-2-word rule.
@@ -686,6 +689,9 @@ Real mistakes made and corrected on this project — each one cost a rejection r
 10. **Left the `wow-clients.jpg` placeholder** for an imageText image. → Download the real live image.
 11. **Made a 1-word main-title** by over-tightening the eyebrow split. → Min 2 words in the title.
 12. **Mirrored a live typo / Cyrillic homoglyph / cloned wrong-city artifact.** → Fix it; output clean English.
+13. **Dropped 3 `topIconBox` items** on the Seattle location page (6 vs live's 9) — the section was spot-checked, not counted. → Count every list section's items against live, using the content-bearing-title method ([§2.1](#21-match-lives-content-exactly--no-text-may-be-missing)).
+14. **Missed a section button** because only `plainText`/`cta` were audited — the button was on an `information` section. → Buttons live on many section types; diff **all** live `gdlr-core-button`s against your `ctaLabel`s ([§2.4](#24-button-labels-in-non-common-sections-must-match-live-verbatim)).
+15. **HTTP 500 "Objects are not valid as a React child"** — a `{text,href}` in a `topIconBox` **`subtitle`** (singular), which renders raw. → Use `subtitles` (plural) for any linked/multi-paragraph topIconBox subtitle; double-wrap single linked paragraphs elsewhere ([§4](#extract-every-inline-link--mandatory-do-not-eyeball)). **Always confirm every new page returns HTTP 200 — a syntax check does NOT catch render crashes.**
 
 ---
 
