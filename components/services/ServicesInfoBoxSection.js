@@ -13,18 +13,13 @@ function renderParts(parts) {
 }
 
 export default function ServicesInfoBoxSection({ data }) {
-  const gc = data.gridClass;
-  const itemW = gc
-    ? gc.includes("lg:grid-cols-4")
+  // Column layout: default 3-up; `columns: 2` = two-up, `columns: 4` = four-up.
+  const itemW =
+    data.columns === 2
+      ? "w-full sm:w-[calc(50%_-_12px)] lg:w-[calc(50%_-_12px)]"
+      : data.columns === 4
       ? "w-full sm:w-[calc(50%_-_12px)] lg:w-[calc(25%_-_18px)]"
-      : gc.includes("lg:grid-cols-3")
-      ? "w-full sm:w-[calc(50%_-_12px)] lg:w-[calc(33.333%_-_16px)]"
-      : "w-full sm:w-[calc(50%_-_12px)]"
-    : data.columns === 2
-    ? "w-full sm:w-[calc(50%_-_12px)] lg:w-[calc(50%_-_12px)]"
-    : data.columns === 4
-    ? "w-full sm:w-[calc(50%_-_12px)] lg:w-[calc(25%_-_18px)]"
-    : "w-full sm:w-[calc(50%_-_12px)] lg:w-[calc(33.333%_-_16px)]";
+      : "w-full sm:w-[calc(50%_-_12px)] lg:w-[calc(33.333%_-_16px)]";
   return (
     <section className="services-infobox full-section">
       <div className="container">

@@ -225,6 +225,7 @@ while((m=re.exec(body))){
 - **Ignore** only: case-study/portfolio **card** links (`/case-studies/…`, `/portfolio/…` — handled by `postIds`), `/case-studies/` "More Case Studies" button, phone/WhatsApp/email, and `/contact-us/` "Book a free meeting" (common). Everything else is a content link.
 - To find WHERE a link lives (which section/paragraph), grep the surrounding text: `grep -o '.\{140\}href="[^"]*<slug-part>[^"]*"[^>]*>.\{80\}' /tmp/live.html` then strip tags.
 - **Subtitles/`subtitles[]` take parts arrays too** — a link in a section's intro line (like the real-estate one) must wrap that one phrase; don't leave the whole subtitle a plain string.
+- **GOTCHA — a `subtitle` given as an ARRAY is an array of *paragraphs*** (each element a string **or** a parts-array). So a *single* paragraph that contains an inline link must be **double-wrapped**: `subtitle: [[ "lead ", {text:"link",href:"/x/"}, " rest" ]]`. Writing `subtitle: ["lead ", {text,href}, " rest"]` (a bare parts-array) makes the renderer treat `{text,href}` as its own paragraph and **crashes the build** ("Objects are not valid as a React child"). Applies to `checkList`/`infoBox`/`topIconBox` subtitles.
 
 ### Mapping a live section to a section key
 
@@ -234,7 +235,7 @@ while((m=re.exec(body))){
 | Centered hero, no form (e.g. pricing/landing)           | `simpleBanner`                  |
 | Grid of boxes, **icon on top**, centered                | `topIconBox` (`columns:2/3/4`)  |
 | Boxes with **icon on the left**, text right             | `leftIconBox` (`columns:1` = full-width rows) |
-| Plain feature boxes, **no icon**, title+text            | `infoBox` (`columns`/`gridClass`) |
+| Plain feature boxes, **no icon**, title+text            | `infoBox` (default 3-up; `columns: 2` for two-up) |
 | Heart/check bullet list (one or two columns)            | `checkList`                     |
 | Numbered steps / process (arrows between)               | `processSteps` (`columns:2`)    |
 | Image on one side, text + bullets on the other          | `imageText` (`imagePosition:"right"` to flip) |
@@ -320,7 +321,7 @@ Same item shape as topIconBox but icon-on-left rows. `columns: 1` = full-width s
 
 ### infoBox
 
-No-icon feature boxes. Width via **either** `columns: 2|3|4` **or** `gridClass: "sm:grid-cols-2"` / `"sm:grid-cols-2 lg:grid-cols-3"`. Items: `{ title, body?: string|Parts, bodyList?, bodyAfter? }`. Optional `subtitle` (string|string[]|Parts), `textAlign`.
+No-icon feature boxes. Column layout via `columns` — **default is 3-up**; set `columns: 2` for two-up or `columns: 4` for four-up (do NOT use `gridClass` — it's removed). Items: `{ title, body?: string|Parts, bodyList?, bodyAfter? }`. Optional `subtitle` (string|string[]|Parts), `textAlign`.
 
 ### processSteps
 
