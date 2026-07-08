@@ -22,17 +22,19 @@ export default function ServicesTopIconBoxSection({ data }) {
   return (
     <section className="services-top-icon-box full-section">
       <div className="container">
-        <div className="heading-wrap animate fadeUp">
-          <h3 className="font-48">{data.eyebrow}</h3>
-          <h2 className="main-title pb-2">{data.title}</h2>
-          {data.subtitles ? (
-            data.subtitles.map((p, i) => (
-              <p key={i} className="mx-auto max-w-5xl">{Array.isArray(p) ? renderParts(p) : p}</p>
-            ))
-          ) : data.subtitle ? (
-            <p className="mx-auto max-w-5xl">{data.subtitle}</p>
-          ) : null}
-        </div>
+        {(data.eyebrow || data.title || data.subtitle || data.subtitles) && (
+          <div className="heading-wrap animate fadeUp">
+            <h3 className="font-48">{data.eyebrow}</h3>
+            <h2 className="main-title pb-2">{data.title}</h2>
+            {data.subtitles ? (
+              data.subtitles.map((p, i) => (
+                <p key={i} className="mx-auto max-w-5xl">{Array.isArray(p) ? renderParts(p) : p}</p>
+              ))
+            ) : data.subtitle ? (
+              <p className="mx-auto max-w-5xl">{data.subtitle}</p>
+            ) : null}
+          </div>
+        )}
         <div className={`flex flex-wrap justify-center ${data.textAlign === "left" ? "text-left" : "text-center"} gap-6 leading-relaxed`}>
           {data.items.map((item, i) => (
             <div key={i} className={`${itemW} bg-black-light py-space-small px-4 md:px-6 xl:px-8`}>

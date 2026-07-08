@@ -2201,12 +2201,12 @@ h6 {
   aspect-ratio: 37/32;
 }
 
-.aspect-\[4\/3\] {
-  aspect-ratio: 4/3;
-}
-
 .aspect-\[433\/250\] {
   aspect-ratio: 433/250;
+}
+
+.aspect-\[5\/3\] {
+  aspect-ratio: 5/3;
 }
 
 .aspect-square {

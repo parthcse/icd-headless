@@ -13,7 +13,7 @@ export default function BlogCard({ post }) {
   return (
     <a
       href={href}
-      className="group relative block aspect-[4/3] overflow-hidden rounded-md border border-white/5 transition-shadow duration-300 hover:shadow-xl hover:shadow-black/60"
+      className="group relative block aspect-[5/3] overflow-hidden rounded-md border border-white/5 transition-shadow duration-300 hover:shadow-xl hover:shadow-black/60"
     >
       <img
         src={image}
