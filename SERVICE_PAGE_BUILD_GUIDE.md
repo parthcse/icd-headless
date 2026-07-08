@@ -109,6 +109,7 @@ These are hard-won from dozens of correction rounds. **Violating any one of thes
 - Live sentences frequently contain **inline `<a>` links** ("our *local SEO services* help…"). Reproduce every one as a `{ text, href }` part inside a parts array. Convert the URL to a **relative path** (`/local-seo-services/`, not the absolute live URL).
 - Reproduce **bold** (`<strong>`) runs as `{ bold: "..." }` parts.
 - These links point to pages we will build in our project soon — always keep live's real internal links.
+- **External (off-site) links stay ABSOLUTE.** If a link genuinely points off-site (e.g. `https://www.goodfirms.co/...`), keep the full `https://` URL in `href` — do NOT relativize it. `renderParts` auto-detects any `http(s)://` href and adds `target="_blank" rel="noopener noreferrer"` (opens in a new tab). Internal links are relative (`/slug/`) and open same-tab. So: relativize icecubedigital.com links, keep third-party links absolute — no per-link flag needed.
 
 ### 2.3 caseStudy / portfolio items — use live's actual CPT items
 
@@ -300,6 +301,7 @@ topIconBox: {
   title: "SEO Services",
   subtitles: ["optional lead-in paragraph(s), string|Parts"],  // ? or `subtitle:` for a single one
   columns: 3,                          // ? 2 | 3 | 4 (default 3)
+  iconClass: "h-40 w-auto max-w-full", // ? overrides the default icon sizing (`max-w-20`) — use for badge/logo rows of mixed aspect ratios so they share a uniform height
   textAlign: "left",                   // ? default centered
   items: [
     {
@@ -370,6 +372,7 @@ imageText: {
   eyebrow: "…", title: "…", subtitle: "…",   // ? all optional (omit for a heading-less block)
   // ? subtitles: ["para 1", "para 2", ["parts ", {bold:"x"}]]  // multi-paragraph intro (each = its own <p>); use INSTEAD of subtitle. A single `subtitle` array is one <p> of inline parts.
   image: "/assets/photos/first-page-google.png",   // download the REAL live image, not a placeholder
+  // ? video: "https://www.youtube.com/embed/<id>"  // renders a 16:9 responsive iframe INSTEAD of the image (video left by default; imagePosition:"right" flips it)
   imageAlt: "…",
   imagePosition: "right",              // ? put the image on the right (default left)
   contentTitle: "optional bold in-column heading",  // ?
@@ -713,7 +716,9 @@ const BTN_ARROW = "M0.703125 12.0312C0.494792 12.0312 0.3125 11.9792 0.15625 11.
 
 **Best template file to copy:** [`lib/services/industry/industry-manufacturing-seo.js`](lib/services/industry/industry-manufacturing-seo.js) — a near-complete real page exercising banner (3 paragraphs), caseStudy, seoAuditForm, plainText (with inline link + exact button), topIconBox (9 items + inline links), infoBox, processSteps (with button), leftIconBox (with inline links), cta, faq, and all four common sections.
 
-**Category folders** under `lib/services/`: `ecommerce/`, `magento/`, `wordpress/`, `shopify/`, `woocommerce/`, `webflow/`, `white-label/`, `industry/`, `packages/`, `resources/our-approach/`, `resources/pricing-guides/`, plus `common-section/`. The folder is organisational only — the flat `slug` is the URL.
+**Category folders** under `lib/services/`: `ecommerce/`, `magento/`, `wordpress/`, `shopify/`, `woocommerce/`, `webflow/`, `white-label/`, `industry/`, `location/`, `packages/`, `resources/our-approach/`, `resources/pricing-guides/`, plus `common-section/`. The folder is organisational only — the flat `slug` is the URL.
+
+**Non-service page types** (about-the-company pages — `why-work-with-us`, `mobile-application`, `development-partnership`) live in a **sibling `lib/company/`** folder, NOT under `lib/services/`. They still register in the same `lib/services/index.js` MAP (imported as `../company/<file>`) and render through the same route/sections. Inside those files, the relative imports point back into services: `import('../services/index')` for the `@type`, and `../services/common-section/...` for common sections. Put future company/staff pages here, not in `lib/services/`.
 
 ---
 

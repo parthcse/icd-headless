@@ -6,7 +6,7 @@ function renderParts(parts) {
     typeof part === "string" ? (
       <Fragment key={i}>{part}</Fragment>
     ) : (
-      <a key={i} href={part.href} className="text-primary font-semibold inline underline">{part.text}</a>
+      <a key={i} href={part.href} {...(/^https?:\/\//.test(part.href) ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="text-primary font-semibold inline underline">{part.text}</a>
     )
   );
 }

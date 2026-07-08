@@ -8,7 +8,7 @@ function renderParts(parts) {
     ) : part.bold ? (
       <strong key={i} className="font-semibold">{part.bold}</strong>
     ) : (
-      <a key={i} href={part.href} className="text-primary font-semibold inline underline">{part.text}</a>
+      <a key={i} href={part.href} {...(/^https?:\/\//.test(part.href) ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="text-primary font-semibold inline underline">{part.text}</a>
     )
   );
 }
@@ -23,7 +23,7 @@ function renderParagraph(content, i, className) {
         ) : part.bold ? (
           <strong key={j} className="font-semibold">{part.bold}</strong>
         ) : (
-          <a key={j} href={part.href} className="text-primary font-semibold inline underline">{part.text}</a>
+          <a key={j} href={part.href} {...(/^https?:\/\//.test(part.href) ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="text-primary font-semibold inline underline">{part.text}</a>
         )
       )}
     </p>
@@ -47,7 +47,20 @@ export default function ServicesImageTextSection({ data }) {
         )}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-space-mini xl:gap-space items-center">
           <figure className={data.imagePosition === "right" ? "lg:order-2" : undefined}>
-            <img src={data.image} alt={data.imageAlt} />
+            {data.video ? (
+              <div className="relative aspect-video w-full overflow-hidden rounded-xl">
+                <iframe
+                  className="absolute inset-0 h-full w-full"
+                  src={data.video}
+                  title={data.imageAlt || data.title || "Video"}
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            ) : (
+              <img src={data.image} alt={data.imageAlt} />
+            )}
           </figure>
           <div className={`text-box space-y-4 xl:space-y-6 leading-relaxed${data.imagePosition === "right" ? " lg:order-1" : ""}`}>
             {data.contentTitle && <h2 className="font-bold text-3xl leading-snug">{data.contentTitle}</h2>}

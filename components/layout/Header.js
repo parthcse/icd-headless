@@ -64,13 +64,13 @@ const CloseIcon = () => (
 
 const SERVICES_CATEGORIES = [
   {
-    label: "eCommerce",
+    label: "AI Services",
     links: [
-      { label: "AI in eCommerce", href: "/ai-in-ecommerce-solutions/" },
-      { label: "eCommerce Web Design", href: "/ecommerce-website-design-services/" },
-      { label: "eCommerce Web Development", href: "/ecommerce-website-development-services/" },
-      { label: "Hire eCommerce Developers", href: "/hire-ecommerce-designers-developers/" },
-      { label: "eCommerce SEO Services", href: "/ecommerce-seo-services/" },
+      { label: "AI Software Development Services", href: "/ai-software-development-services/" },
+      { label: "AI Agent Development Services", href: "/ai-agent-development-services/" },
+      { label: "AI Consulting Services", href: "/ai-consulting-services/" },
+      { label: "AI Integration Services", href: "/ai-integration-services/" },
+      { label: "ChatGPT Ads Agency Services", href: "/chatgpt-advertising-services/" },
     ],
   },
   {
@@ -101,10 +101,11 @@ const SERVICES_CATEGORIES = [
   {
     label: "Digital Marketing",
     links: [
-      { label: "Answer Engine Optimization", href: "/answer-engine-optimization-aeo-services/" },
-      { label: "Marketing Automation", href: "/marketing-automation-services/" },
+      { label: "Answer Engine Optimization Services", href: "/answer-engine-optimization-aeo-services/" },
+      { label: "Marketing Automation Services", href: "/marketing-automation-services/" },
       { label: "Digital Marketing Service", href: "/digital-marketing-service/" },
       { label: "Professional SEO Service", href: "/seo-search-engine-optimization/" },
+      { label: "AI SEO Services", href: "/ai-seo-services/" },
       { label: "PPC Service", href: "/ppc-management-services/" },
       { label: "Conversion Rate Optimization", href: "/conversion-rate-optimization-services/" },
       { label: "Email Marketing Service", href: "/email-marketing-company/" },

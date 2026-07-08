@@ -62,6 +62,7 @@ const SECTION_RENDERERS = {
   plainTextSecondary: (data) => data.plainTextSecondary && <ServicesPlainTextSection data={data.plainTextSecondary} />,
   plainTextTertiary: (data) => data.plainTextTertiary && <ServicesPlainTextSection data={data.plainTextTertiary} />,
   plainTextQuaternary: (data) => data.plainTextQuaternary && <ServicesPlainTextSection data={data.plainTextQuaternary} />,
+  plainTextQuinary: (data) => data.plainTextQuinary && <ServicesPlainTextSection data={data.plainTextQuinary} />,
   checkList: (data) => data.checkList && <ServicesCheckListSection data={data.checkList} />,
   checkListSecondary: (data) => data.checkListSecondary && <ServicesCheckListSection data={data.checkListSecondary} />,
   checkListTertiary: (data) => data.checkListTertiary && <ServicesCheckListSection data={data.checkListTertiary} />,
