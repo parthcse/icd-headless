@@ -30,7 +30,7 @@ export default function ServicesTestimonialSection({ data }) {
             </p>
           ))}
           <div className="flex items-center text-left justify-center gap-4 pt-space-small">
-            <img src={testimonial.avatar} alt={testimonial.avatarAlt} className="!w-[3.5em] aspect-square rounded-full object-cover" />
+            <img src={testimonial.avatar} alt={testimonial.avatarAlt} className="!w-[3em] aspect-square rounded-full object-cover" />
             <div className="small">
               <h3 className="font-semibold text-[1.3em] mb-1 leading-none">{testimonial.name}</h3>
               {testimonial.designation ? <p>{testimonial.designation}</p> : null}

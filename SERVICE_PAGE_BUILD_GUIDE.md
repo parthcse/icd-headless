@@ -154,6 +154,10 @@ Non-common sections have a small **eyebrow** (`font-48`) above a huge **main-tit
 
 Item-order swaps to match live, removing an inline link live doesn't have, delinking, typo/grammar/punctuation fixes — **just do them.** Only pause to ask on genuine judgment calls with real trade-offs.
 
+### 2.10 Icon-box icons MUST be the circular-badge style
+
+Every `topIconBox` / `leftIconBox` (any icon-box grid) uses the **circular white-badge** icon style: a 108×108 SVG whose first shape is `<rect width="108" height="108" rx="54" fill="white"/>` (the white circle) with a black glyph on top. That white circle is the house look on **every** service page — this is a **strict, non-negotiable** rule (a real correction round: the social-media page shipped flat brand logos in a topIconBox and had to be redone). Do **not** put **flat** icons — small brand/platform logos (`facebook.svg`, `twitter.svg`, `instagram.svg`, `inkedin.svg`) or payment/integration marks (`stripe-icon.svg`, `mailchimp-icon.svg`, `elementor-icon.svg`, …) — into an icon-box row; they render as tiny logos with no circle and break the grid. Flat icons are only for the footer/inline strips. If a badge grid genuinely needs a brand mark, create a `-circle` variant (white 108×108 circle + the brand glyph centered in black). Check any icon before using it: `grep -l 'rx="54"' public/assets/icons/<name>.svg` — a match means it's badge-style. See [§12](#12-reference-constants--snippets).
+
 ---
 
 ## 3. Step-by-step: building one new page
@@ -302,7 +306,7 @@ topIconBox: {
   subtitles: ["optional lead-in paragraph(s), string|Parts"],  // ? or `subtitle:` for a single one
   columns: 3,                          // ? 2 | 3 | 4 (default 3)
   iconClass: "h-40 w-auto max-w-full", // ? overrides the default icon sizing (`max-w-20`) — use for badge/logo rows of mixed aspect ratios so they share a uniform height
-  textAlign: "left",                   // ? default centered
+  contentAlign: "left",                   // ? default centered
   items: [
     {
       icon: "/assets/icons/pie-chart.svg",   // ? optional
@@ -325,7 +329,7 @@ Same item shape as topIconBox but icon-on-left rows. `columns: 1` = full-width s
 
 ### infoBox
 
-No-icon feature boxes. Column layout via `columns` — **default is 3-up**; set `columns: 2` for two-up or `columns: 4` for four-up (do NOT use `gridClass` — it's removed). Items: `{ title, body?: string|Parts, bodyList?, bodyAfter? }`. Optional `subtitle` (string|string[]|Parts), `textAlign`.
+No-icon feature boxes. Column layout via `columns` — **default is 3-up**; set `columns: 2` for two-up or `columns: 4` for four-up (do NOT use `gridClass` — it's removed). Items: `{ title, body?: string|Parts, bodyList?, bodyAfter? }`. Optional `subtitle` (string|string[]|Parts), `contentAlign`.
 
 ### processSteps
 
@@ -670,6 +674,7 @@ Run this against **every** page before calling it done. This is the audit.
 - [ ] **Homoglyphs normalised; live typos fixed; our house style kept.**
 - [ ] **Only live's common sections** included; no post-footer popups; industry pages have no stray `milestone`.
 - [ ] **Formatting**: tabs, multi-line objects, only the JSDoc comment, BTN_ARROW present.
+- [ ] **Icon style**: every `topIconBox`/`leftIconBox` icon is circular-badge style — `grep -l 'rx="54"' public/assets/icons/<name>.svg` matches for each; no flat brand/payment logos in icon-box rows ([§2.10](#210-icon-box-icons-must-be-the-circular-badge-style)).
 - [ ] **Registered** in `index.js` (import + MAP).
 - [ ] **Page loads** (HTTP 200) and renders without errors. If you added component classes, `npm run build:css` was run.
 - [ ] **No mid-sentence truncation** anywhere (scan for bodies ending without punctuation; ignore parts-array fragments).
@@ -711,6 +716,8 @@ const BTN_ARROW = "M0.703125 12.0312C0.494792 12.0312 0.3125 11.9792 0.15625 11.
 **`ctaHref: "popup"`** is the standard button target (opens the quote popup) for every section button.
 
 **Icons** live in `public/assets/icons/*.svg` (e.g. `pie-chart.svg`, `smart-search.svg`, `copy.svg`, `note.svg`, `web.svg`, `www.svg`, `speed.svg`, `seo-monitor.svg`, `code-monitor.svg`, `gear.svg`, `search-link.svg`, `note-edit.svg`, `html-code.svg`, `bulb-active.svg`, `sliders.svg`, `result.svg`, `user-time.svg`, `user-team.svg`, …). Pick an icon whose meaning matches the item; reuse existing ones, don't invent filenames.
+
+> **Icon-box icons must be the circular-badge style ([§2.10](#210-icon-box-icons-must-be-the-circular-badge-style)).** A badge icon is a 108×108 SVG whose first shape is `<rect width="108" height="108" rx="54" fill="white"/>` (the white circle) with a black glyph on top — that white circle is the look every service page uses in `topIconBox`/`leftIconBox`. **Most** icons in the folder are badge-style; a minority are **flat** (small, no white circle) and are for the footer/inline strips only — notably the brand logos `facebook.svg` / `twitter.svg` / `instagram.svg` / `inkedin.svg` and payment/integration marks (`stripe-icon.svg`, `paypal-icon.svg`, `mailchimp-icon.svg`, `klaviyo-icon.svg`, `elementor-icon.svg`, …). Verify before using: `grep -l 'rx="54"' public/assets/icons/<name>.svg` (a match = badge-style). If a badge grid needs a brand mark, make a `-circle` variant — a 108×108 white-circle badge with the brand glyph centered (~44px, `transform="translate(32,32) scale(1.7)"`) in black — as done for `facebook-circle.svg`, `twitter-circle.svg`, `instagram-circle.svg`, `linkedin-circle.svg`.
 
 **GraphQL endpoint:** `https://www.icecubedigital.com/graphql` (in `.env.local` as `NEXT_PUBLIC_WORDPRESS_GRAPHQL_ENDPOINT`). Read-only SSR via `lib/apollo-client.js`.
 

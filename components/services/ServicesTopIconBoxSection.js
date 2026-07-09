@@ -35,10 +35,10 @@ export default function ServicesTopIconBoxSection({ data }) {
             ) : null}
           </div>
         )}
-        <div className={`flex flex-wrap justify-center ${data.textAlign === "left" ? "text-left" : "text-center"} gap-6 leading-relaxed`}>
+        <div className={`flex flex-wrap justify-center ${data.contentAlign === "left" ? "text-left" : "text-center"} gap-6 leading-relaxed`}>
           {data.items.map((item, i) => (
             <div key={i} className={`${itemW} bg-black-light py-space-small px-4 md:px-6 xl:px-8`}>
-              {item.icon && <img className={`${data.iconClass || "max-w-20"} mb-6 mx-auto`} src={item.icon} alt="" />}
+              {item.icon && <img className={`${data.iconClass || "max-w-20"} mb-6 ${data.contentAlign === "left" ? "mx-0" : "mx-auto"}`} src={item.icon} alt="" />}
               <h3 className="font-semibold font-22">{item.title}</h3>
               {item.body && <p>{Array.isArray(item.body) ? renderParts(item.body) : item.body}</p>}
               {item.bodyList && (

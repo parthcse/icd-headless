@@ -36,7 +36,7 @@ export default function ServicesBannerSection({ data }) {
             </ul>
           )}
           {data.closingParagraph && <p>{data.closingParagraph}</p>}
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="flex flex-wrap items-center gap-4 pt-2">
             <ServiceCtaButton href={data.ctaHref} label={data.ctaLabel} btnArrow={data.btnArrow} />
             <span className="text-muted font-semibold">OR</span>
             <a href={data.phoneHref} className="btn btn-secondary">

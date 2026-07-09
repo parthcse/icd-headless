@@ -1932,6 +1932,11 @@ h6 {
   margin-right: -0.25rem;
 }
 
+.mx-0 {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
 .mx-1 {
   margin-left: 0.25rem;
   margin-right: 0.25rem;
@@ -2391,6 +2396,10 @@ h6 {
 
 .\!w-\[3\.5em\] {
   width: 3.5em !important;
+}
+
+.\!w-\[3em\] {
+  width: 3em !important;
 }
 
 .w-1 {

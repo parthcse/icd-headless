@@ -66,7 +66,7 @@ function InfoTable({ columns, rows }) {
 }
 
 export default function ServicesInfoSection({ data }) {
-  const isCenter = data.textAlign === "center";
+  const isCenter = data.contentAlign === "center";
   return (
     <section className="services-information full-section">
       <div className="container">

@@ -21,7 +21,7 @@ export default function ServicesTableBasic({ data }) {
               </colgroup>
             )}
             <thead>
-              <tr className="bg-primary font-22 text-nowrap">
+              <tr className={`bg-primary font-22${data.colWidths ? "" : " text-nowrap"}`}>
                 {data.columns.map((col, i) => (
                   <th
                     key={i}

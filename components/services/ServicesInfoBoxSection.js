@@ -30,7 +30,7 @@ export default function ServicesInfoBoxSection({ data }) {
             ? data.subtitle.map((p, i) => <p key={i} className="mx-auto max-w-5xl">{Array.isArray(p) ? renderParts(p) : p}</p>)
             : data.subtitle && <p className="mx-auto max-w-5xl">{data.subtitle}</p>}
         </div>
-        <div className={`flex flex-wrap justify-center ${data.textAlign === "left" ? "text-left" : "text-center"} gap-6 leading-relaxed`}>
+        <div className={`flex flex-wrap justify-center ${data.contentAlign === "left" ? "text-left" : "text-center"} gap-6 leading-relaxed`}>
           {data.items.map((item, i) => (
             <div key={i} className={`${itemW} bg-black-light p-8`}>
               <h3 className="font-semibold font-22">{item.title}</h3>
