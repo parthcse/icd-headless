@@ -111,6 +111,7 @@ export default function ServicesScrollNavigation({ data }) {
                   }`}
                 >
                   <h3 className="font-24 font-semibold mb-4">{it.title}</h3>
+                  {it.image && <img src={it.image} alt="" className="mb-4 w-full rounded-lg border border-white/10" />}
                   {it.blocks ? (
                     <div className="space-y-4 text-muted">
                       {it.blocks.map((block, j) =>

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import ContactForm from "@/components/common/ContactForm";
+import { getPopupVariant, subscribePopupVariant } from "@/components/common/popupVariantStore";
 
 // Fire this from anywhere to open the popup manually:
 //   window.dispatchEvent(new Event(QUOTE_POPUP_EVENT))
@@ -63,6 +64,13 @@ export default function GetQuotePopup() {
   const autoRef = useRef(false); // is the current open an auto-open?
   const autoTimer = useRef(null); // pending 15s auto-open timer
   const closeTimer = useRef(null); // pending unmount-after-exit timer
+  const [variant, setVariant] = useState(null); // page-specific popup variant, or null = default
+
+  // Pick up the current page's popup variant (image + form copy + delay), if any.
+  useEffect(() => {
+    setVariant(getPopupVariant());
+    return subscribePopupVariant(setVariant);
+  }, []);
 
   const openPopup = useCallback((viaAuto) => {
     clearTimeout(closeTimer.current);
@@ -81,12 +89,12 @@ export default function GetQuotePopup() {
   // A submitted lead shouldn't be auto-pestered either.
   const handleSuccess = useCallback(() => snoozeAutoOpen(), []);
 
-  // Auto-open once, 15s after load — unless snoozed (closed/submitted in last 24h).
+  // Auto-open once, N seconds after load — unless snoozed (closed/submitted in last 24h).
   useEffect(() => {
     if (autoOpenSnoozed()) return;
-    autoTimer.current = setTimeout(() => openPopup(true), AUTO_OPEN_DELAY);
+    autoTimer.current = setTimeout(() => openPopup(true), variant?.autoDelay ?? AUTO_OPEN_DELAY);
     return () => clearTimeout(autoTimer.current);
-  }, [openPopup]);
+  }, [openPopup, variant]);
 
   // Manual open from any "Get a Quote" button — always works, pre-empts auto-open.
   useEffect(() => {
@@ -155,6 +163,11 @@ export default function GetQuotePopup() {
 
         <div className="grid lg:grid-cols-[1.05fr_1fr]">
           {/* Left — value proposition + cards */}
+          {variant ? (
+            <div className="relative min-h-[16rem] overflow-hidden bg-black-light lg:min-h-full">
+              <img src={variant.image} alt="" className="h-full w-full object-cover" />
+            </div>
+          ) : (
           <div className="relative overflow-hidden p-7 sm:p-8 lg:p-9">
             {/* layered ambient gradients for depth */}
             <span className="pointer-events-none absolute -left-28 -top-28 h-72 w-72 rounded-full bg-primary/30 blur-[90px]" aria-hidden="true" />
@@ -190,11 +203,12 @@ export default function GetQuotePopup() {
               </div>
             </div>
           </div>
+          )}
 
           {/* Right — contact form */}
           <div className="relative border-t border-white/10 bg-white/[0.02] p-7 sm:p-8 lg:border-l lg:border-t-0 lg:p-9">
-            <h2 className="mb-1 whitespace-nowrap font-24">Get A Free Quote</h2>
-            <p className="mb-5 text-sm text-muted">Tell us about your project — we reply within one business day.</p>
+            <h2 className="mb-1 font-24">{variant?.title || "Get A Free Quote"}</h2>
+            <p className="mb-5 text-sm text-muted">{variant?.subtitle || "Tell us about your project — we reply within one business day."}</p>
             <ContactForm variant="banner" animate={false} bordered={false} compact onSuccess={handleSuccess} />
           </div>
         </div>

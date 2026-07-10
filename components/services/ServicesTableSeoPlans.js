@@ -8,15 +8,23 @@ export default function ServicesTableSeoPlans({ data }) {
         <div className="heading-wrap xl:pb-16 animate fadeUp">
           <h3 className="font-48">{data.eyebrow}</h3>
           <h2 className="main-title mb-0">{data.title}</h2>
-          <p className="max-w-5xl mx-auto">{data.subtitle}</p>
+          {(Array.isArray(data.subtitle) ? data.subtitle : [data.subtitle]).map((p, i) => (
+            <p key={i} className="max-w-5xl mx-auto">{p}</p>
+          ))}
         </div>
         <div className="border border-primary">
           <div className="bg-primary text-center py-space-small px-space-small">
             <h3 className="text-white font-semibold mb-3">{data.planLabel}</h3>
-            <p className="text-white/90 mb-2">Starting at</p>
-            <h2 className="text-white font-bold font-48 mb-0">
-              ${data.price}<span className="font-normal font-30">/{data.period}</span>
-            </h2>
+            {data.price ? (
+              <>
+                <p className="text-white/90 mb-2">Starting at</p>
+                <h2 className="text-white font-bold font-48 mb-0">
+                  ${data.price}<span className="font-normal font-30">/{data.period}</span>
+                </h2>
+              </>
+            ) : data.priceNote ? (
+              <p className="text-white/90 mb-0 font-22">{data.priceNote}</p>
+            ) : null}
           </div>
           <div className="grid lg:grid-cols-2">
             <div className="py-space-small px-space-small border-r border-white/15">

@@ -45,7 +45,24 @@ export default function ServicesBannerSection({ data }) {
             </a>
           </div>
         </div>
-        <ContactForm variant="banner" title={data.formTitle} btnArrow={data.btnArrow} />
+        <div className="relative">
+          {data.guaranteeBadge && (
+            <div className="pointer-events-none absolute top-0 left-0 right-0 z-20 flex -translate-y-1/2 justify-center">
+              <div className="animate fadeUp flex items-center gap-2.5 whitespace-nowrap rounded-full border-2 border-primary bg-black-light px-5 py-2.5 shadow-lg shadow-primary/25">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary text-black sm:h-8 sm:w-8">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" className="h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4" />
+                  </svg>
+                </span>
+                <span className="text-base font-bold leading-none text-white sm:text-lg">
+                  <span className="text-primary">100%</span> Money-Back Guarantee
+                </span>
+              </div>
+            </div>
+          )}
+          <ContactForm variant="banner" title={data.formTitle} subtitle={data.formSubtitle} badge={data.guaranteeBadge} btnArrow={data.btnArrow} />
+        </div>
       </div>
     </section>
   );

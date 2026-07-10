@@ -15,6 +15,18 @@ function renderParts(parts) {
 }
 
 export default function ServicesCheckListSection({ data }) {
+  // Columns: `benefits` (single array) + `columns` (2|3) auto-splits into N even
+  // columns; otherwise the classic benefitsLeft/benefitsRight (1 or 2 columns).
+  const cols = data.columns || (data.benefitsRight ? 2 : 1);
+  const columnLists = data.benefits
+    ? Array.from({ length: cols }, (_, i) => {
+        const per = Math.ceil(data.benefits.length / cols);
+        return data.benefits.slice(i * per, (i + 1) * per);
+      })
+    : data.benefitsRight
+    ? [data.benefitsLeft, data.benefitsRight]
+    : [data.benefitsLeft];
+  const gridCols = cols >= 3 ? "md:grid-cols-3" : cols === 2 ? "md:grid-cols-2" : "";
   return (
     <section className="services-checklist full-section">
       <div className="container">
@@ -27,8 +39,8 @@ export default function ServicesCheckListSection({ data }) {
               ))
             : <p className="mx-auto max-w-5xl">{data.subtitle}</p>}
         </div>
-        <div className={`grid grid-cols-1 ${data.benefitsRight ? "md:grid-cols-2" : ""} gap-space-mini xl:gap-space mx-auto max-w-[1280px] lg:font-22 font-normal`}>
-          {(data.benefitsRight ? [data.benefitsLeft, data.benefitsRight] : [data.benefitsLeft]).map((col, ci) => (
+        <div className={`grid grid-cols-1 ${gridCols} gap-space-mini xl:gap-space mx-auto max-w-[1280px] lg:font-22 font-normal`}>
+          {columnLists.map((col, ci) => (
             <ul
               key={ci}
               className="[&>li]:flex [&>li]:items-start [&>li]:gap-[1.2em] [&>li]:pb-space-small [&>li]:mb-space-small [&>li]:border-b [&>li]:border-white/15 [&>li:last-child]:pb-0 [&>li:last-child]:mb-0 [&>li:last-child]:border-0"

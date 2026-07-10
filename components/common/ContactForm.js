@@ -147,7 +147,7 @@ function detectCountry() {
  * email and the rest of the CF7 pipeline. A Cloudflare Turnstile widget provides
  * the spam token the form requires.
  */
-export default function ContactForm({ variant = "split", title, btnArrow, animate = true, bordered = true, compact = false, onSuccess }) {
+export default function ContactForm({ variant = "split", title, subtitle, badge = false, btnArrow, animate = true, bordered = true, compact = false, onSuccess }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -446,14 +446,15 @@ export default function ContactForm({ variant = "split", title, btnArrow, animat
 
   if (isBanner) {
     const boxCls = [
-      bordered ? "border border-primary px-space-mini pb-space-mini pt-space-small backdrop-blur" : "",
+      bordered ? `border border-primary px-space-mini pb-space-mini backdrop-blur ${badge ? "pt-12" : "pt-space-small"}` : "",
       animate ? "animate fadeUp" : "",
     ]
       .filter(Boolean)
       .join(" ");
     return (
       <div className={boxCls}>
-        {title && <h2 className="font-36 font-semibold text-center mb-4 leading-snug">{title}</h2>}
+        {title && <h2 className={`font-36 font-semibold text-center leading-snug ${subtitle ? "mb-1" : "mb-4"}`}>{title}</h2>}
+        {subtitle && <p className="mb-4 text-center text-muted">{subtitle}</p>}
         <form className={`grid ${compact ? "gap-3" : "gap-4 xl:gap-4.5"}`} onSubmit={handleSubmit} autoComplete="off" noValidate>
           {fields}
         </form>

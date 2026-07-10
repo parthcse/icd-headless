@@ -6,6 +6,7 @@ import { getYoastMetadataByUri } from "@/lib/seo";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import YoastSchema from "@/components/common/YoastSchema";
+import PopupVariantRegistrar from "@/components/common/PopupVariantRegistrar";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
 import WeServeSection from "@/components/home/WeServeSection";
 
@@ -181,6 +182,7 @@ export default async function ServicePage({ params }) {
   return (
     <>
       <YoastSchema uri={`/${slug}/`} />
+      {data.popup && <PopupVariantRegistrar config={data.popup} />}
       <Header />
       <main>
         {order.map((key) => (
