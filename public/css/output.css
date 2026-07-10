@@ -2394,10 +2394,6 @@ h6 {
   min-height: 100vh;
 }
 
-.\!w-\[3\.5em\] {
-  width: 3.5em !important;
-}
-
 .\!w-\[3em\] {
   width: 3em !important;
 }
@@ -2500,6 +2496,10 @@ h6 {
 
 .w-\[0\.9em\] {
   width: 0.9em;
+}
+
+.w-\[1\.2em\] {
+  width: 1.2em;
 }
 
 .w-\[1\.6em\] {
@@ -5618,8 +5618,8 @@ html.lenis {
   display: flex;
 }
 
-.\[\&\>li\]\:items-center>li {
-  align-items: center;
+.\[\&\>li\]\:items-start>li {
+  align-items: flex-start;
 }
 
 .\[\&\>li\]\:gap-\[1\.2em\]>li {

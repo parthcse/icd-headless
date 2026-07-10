@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import CheckPrimaryIcon from "@/components/icons/CheckPrimaryIcon";
 
 import ServiceCtaButton from "@/components/services/ServiceCtaButton";
 function renderParts(parts) {
@@ -73,8 +74,8 @@ export default function ServicesImageTextSection({ data }) {
                   ) : block.type === "checklist" ? (
                     <ul key={i} className="space-y-3 font-semibold">
                       {block.items.map((item, j) => (
-                        <li key={j} className="flex items-center gap-3">
-                          <img src="/assets/icons/check-primary-icon.svg" alt="" />
+                        <li key={j} className="flex items-start gap-3">
+                          <CheckPrimaryIcon className="w-[1.2em] mt-1 shrink-0" />
                           {item}
                         </li>
                       ))}
@@ -89,8 +90,8 @@ export default function ServicesImageTextSection({ data }) {
                   {data.checklistItems?.length > 0 && (
                     <ul className="space-y-3 font-semibold">
                       {data.checklistItems.map((item, i) => (
-                        <li key={i} className="flex items-center gap-3">
-                          <img src="/assets/icons/check-primary-icon.svg" alt="" />
+                        <li key={i} className="flex items-start gap-3">
+                          <CheckPrimaryIcon className="w-[1.2em] mt-1 shrink-0" />
                           {item}
                         </li>
                       ))}

@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import CheckPrimaryIcon from "@/components/icons/CheckPrimaryIcon";
 import ContactForm from "@/components/common/ContactForm";
 import ServiceCtaButton from "@/components/services/ServiceCtaButton";
 
@@ -28,8 +29,8 @@ export default function ServicesBannerSection({ data }) {
           {data.checklistItems?.length > 0 && (
             <ul className="space-y-2 font-semibold">
               {data.checklistItems.map((item, i) => (
-                <li key={i} className="flex items-center gap-2">
-                  <img className="w-[1em]" src="/assets/icons/check-primary-icon.svg" alt="" />
+                <li key={i} className="flex items-start gap-2">
+                  <CheckPrimaryIcon className="w-[1em] mt-1 shrink-0" />
                   {item}
                 </li>
               ))}

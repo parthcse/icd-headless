@@ -58,7 +58,7 @@ export default function HappyCustomersSection() {
                 <img
                   src={item.avatar}
                   alt={item.avatarAlt}
-                  className="!w-[3.5em] aspect-square rounded-full object-cover"
+                  className="!w-[3em] aspect-square rounded-full object-cover"
                 />
                 <div className="small">
                   <h3 className="mb-1 text-[1.3em] font-semibold leading-none">{item.name}</h3>

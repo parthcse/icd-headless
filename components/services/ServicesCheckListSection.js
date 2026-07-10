@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import CheckPrimaryIcon from "@/components/icons/CheckPrimaryIcon";
 
 import ServiceCtaButton from "@/components/services/ServiceCtaButton";
 function renderParts(parts) {
@@ -30,11 +31,11 @@ export default function ServicesCheckListSection({ data }) {
           {(data.benefitsRight ? [data.benefitsLeft, data.benefitsRight] : [data.benefitsLeft]).map((col, ci) => (
             <ul
               key={ci}
-              className="[&>li]:flex [&>li]:items-center [&>li]:gap-[1.2em] [&>li]:pb-space-small [&>li]:mb-space-small [&>li]:border-b [&>li]:border-white/15 [&>li:last-child]:pb-0 [&>li:last-child]:mb-0 [&>li:last-child]:border-0"
+              className="[&>li]:flex [&>li]:items-start [&>li]:gap-[1.2em] [&>li]:pb-space-small [&>li]:mb-space-small [&>li]:border-b [&>li]:border-white/15 [&>li:last-child]:pb-0 [&>li:last-child]:mb-0 [&>li:last-child]:border-0"
             >
               {col.map((item, i) => (
                 <li key={i}>
-                  <img className="w-[2.4em] min-w-[2.4em] my-auto" src="/assets/icons/check-primary-icon.svg" alt="" />
+                  <CheckPrimaryIcon className="w-[2.4em] min-w-[2.4em] shrink-0" />
                   {typeof item === "object" && item.title ? (
                     <div>
                       <p className="font-semibold">{item.title}</p>

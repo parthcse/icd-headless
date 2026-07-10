@@ -1,4 +1,5 @@
 import ServiceCtaButton from "@/components/services/ServiceCtaButton";
+import CheckPrimaryIcon from "@/components/icons/CheckPrimaryIcon";
 
 export default function ServicesTableSeoPlans({ data }) {
   return (
@@ -41,8 +42,8 @@ export default function ServicesTableSeoPlans({ data }) {
               <h3 className="font-22 font-semibold mb-space-small">{data.rightTitle}</h3>
               <ul className="space-y-0">
                 {data.features.map((feature, i) => (
-                  <li key={i} className="flex items-center gap-4 py-3 border-b border-white/15">
-                    <img className="w-[1em] min-w-[1em]" src="/assets/icons/check-primary-icon.svg" alt="" />
+                  <li key={i} className="flex items-start gap-4 py-3 border-b border-white/15">
+                    <CheckPrimaryIcon className="w-[1em] min-w-[1em] mt-1" />
                     <span className="font-semibold">{feature}</span>
                   </li>
                 ))}

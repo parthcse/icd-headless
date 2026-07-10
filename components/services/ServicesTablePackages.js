@@ -1,4 +1,5 @@
 import ServiceCtaButton from "@/components/services/ServiceCtaButton";
+import CheckPrimaryIcon from "@/components/icons/CheckPrimaryIcon";
 
 /**
  * Pricing packages section: one card per plan, each with a price header, a
@@ -82,7 +83,7 @@ export default function ServicesTablePackages({ data }) {
                     </li>
                   ) : (
                     <li key={j} className="flex items-start gap-2.5">
-                      <img className="mt-1 w-[0.9em] shrink-0" src="/assets/icons/check-primary-icon.svg" alt="" />
+                      <CheckPrimaryIcon className="mt-1 w-[0.9em] shrink-0" />
                       <span>{feat}</span>
                     </li>
                   )

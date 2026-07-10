@@ -1,4 +1,5 @@
 import ServiceCtaButton from "@/components/services/ServiceCtaButton";
+import CheckPrimaryIcon from "@/components/icons/CheckPrimaryIcon";
 
 export default function ServicesTableCompare({ data }) {
   const colsClass = data.plans.length >= 3 ? "sm:grid-cols-2 lg:grid-cols-3" : "lg:grid-cols-2";
@@ -33,8 +34,8 @@ export default function ServicesTableCompare({ data }) {
                 {plan.checklistItems && (
                   <ul className="space-y-2 font-semibold">
                     {plan.checklistItems.map((item, j) => (
-                      <li key={j} className="flex items-center gap-2">
-                        <img className="w-[1em]" src="/assets/icons/check-primary-icon.svg" alt="" />
+                      <li key={j} className="flex items-start gap-2">
+                        <CheckPrimaryIcon className="w-[1em] mt-1 shrink-0" />
                         {item}
                       </li>
                     ))}
