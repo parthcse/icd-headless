@@ -10,6 +10,7 @@ import PopupVariantRegistrar from "@/components/common/PopupVariantRegistrar";
 import PageSchema from "@/components/common/PageSchema";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
 import WeServeSection from "@/components/home/WeServeSection";
+import TrustedClientsSection from "@/components/home/TrustedClientsSection";
 
 import ServicesBannerSection from "@/components/services/ServicesBannerSection";
 import ServicesSimpleBanner from "@/components/services/ServicesSimpleBanner";
@@ -128,6 +129,7 @@ const SECTION_RENDERERS = {
   faq: (data) => data.faq && <ServicesFaqSection data={data.faq} />,
   faqSecondary: (data) => data.faqSecondary && <ServicesFaqSection data={data.faqSecondary} />,
   ourClients: (data) => data.ourClients && <ServicesOurClientSection data={data.ourClients} />,
+  trustedClients: (data) => data.trustedClients && <TrustedClientsSection />,
   weServe: () => <WeServeSection />,
   ceoCta: (data) => data.ceoCta && <ServicesCeoCtaSection data={data.ceoCta} />,
 };
