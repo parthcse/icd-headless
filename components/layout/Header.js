@@ -385,7 +385,7 @@ export default function Header() {
       <div id="mob-overlay" className="mobile-ovelay fixed inset-0 bg-black/55 z-[90] opacity-0 pointer-events-none transition-opacity duration-[350ms] ease-in-out" />
 
       {/* Mobile drawer */}
-      <div id="mob-drawer" className="mobile-menu fixed top-0 left-0 bottom-0 w-full max-w-[350px] z-[100] overflow-hidden -translate-x-full transition-transform duration-[350ms] ease-[cubic-bezier(.4,0,.2,1)] bg-black-light">
+      <div id="mob-drawer" className="mobile-menu fixed top-0 left-0 bottom-0 w-full max-w-[350px] z-[100] overflow-hidden -translate-x-full bg-black-light">
 
         {/* PANEL 1: Main menu — same top-level items as desktop */}
         <div id="mob-panel-main" className="mob-panel">

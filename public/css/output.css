@@ -1670,7 +1670,25 @@ h6 {
   opacity: 1;
 }
 
-/* Mobile menu drawer */
+/* Mobile menu drawer — hidden (not just translated off-canvas) when closed,
+       so Safari dropping the transform on scroll-repaint can't reveal the panel.
+       Transition lives here (not inline) so slide-out still animates before the
+       visibility flips to hidden. */
+
+.mobile-menu {
+  visibility: hidden;
+  transition: transform 350ms cubic-bezier(.4, 0, .2, 1), visibility 0s linear 350ms;
+}
+
+.mobile-menu.open {
+  visibility: visible;
+  transition: transform 350ms cubic-bezier(.4, 0, .2, 1), visibility 0s linear 0s;
+}
+
+.mobile-menu.\!open {
+  visibility: visible !important;
+  transition: transform 350ms cubic-bezier(.4, 0, .2, 1), visibility 0s linear 0s !important;
+}
 
 .mobile-menu.open {
   --tw-translate-x: 0px;
@@ -2515,6 +2533,10 @@ h6 {
   width: 0.9em;
 }
 
+.w-\[1\.1em\] {
+  width: 1.1em;
+}
+
 .w-\[1\.2em\] {
   width: 1.2em;
 }
@@ -2587,6 +2609,10 @@ h6 {
 
 .min-w-\[3\.25em\] {
   min-width: 3.25em;
+}
+
+.min-w-\[560px\] {
+  min-width: 560px;
 }
 
 .min-w-\[75px\] {
@@ -2801,6 +2827,10 @@ h6 {
   list-style-type: disc;
 }
 
+.list-none {
+  list-style-type: none;
+}
+
 .break-inside-avoid {
   -moz-column-break-inside: avoid;
        break-inside: avoid;
@@ -2812,6 +2842,10 @@ h6 {
 
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .grid-rows-\[0fr\] {
@@ -2928,6 +2962,11 @@ h6 {
 .gap-x-5 {
   -moz-column-gap: 1.25rem;
        column-gap: 1.25rem;
+}
+
+.gap-x-6 {
+  -moz-column-gap: 1.5rem;
+       column-gap: 1.5rem;
 }
 
 .gap-x-8 {
@@ -3209,6 +3248,10 @@ h6 {
   border-color: rgb(241 126 63 / 0.4);
 }
 
+.border-primary\/50 {
+  border-color: rgb(241 126 63 / 0.5);
+}
+
 .border-primary\/60 {
   border-color: rgb(241 126 63 / 0.6);
 }
@@ -3359,6 +3402,14 @@ h6 {
 
 .bg-primary\/60 {
   background-color: rgb(241 126 63 / 0.6);
+}
+
+.bg-primary\/\[0\.04\] {
+  background-color: rgb(241 126 63 / 0.04);
+}
+
+.bg-primary\/\[0\.05\] {
+  background-color: rgb(241 126 63 / 0.05);
 }
 
 .bg-primary\/\[0\.06\] {
@@ -3772,6 +3823,10 @@ h6 {
   padding-top: 7rem;
 }
 
+.pt-3 {
+  padding-top: 0.75rem;
+}
+
 .pt-32 {
   padding-top: 8rem;
 }
@@ -4044,6 +4099,10 @@ h6 {
   color: rgb(255 255 255 / 0.25);
 }
 
+.text-white\/30 {
+  color: rgb(255 255 255 / 0.3);
+}
+
 .text-white\/5 {
   color: rgb(255 255 255 / 0.05);
 }
@@ -4134,6 +4193,11 @@ h6 {
 
 .shadow-black\/70 {
   --tw-shadow-color: rgb(0 0 0 / 0.7);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.shadow-primary\/10 {
+  --tw-shadow-color: rgb(241 126 63 / 0.1);
   --tw-shadow: var(--tw-shadow-colored);
 }
 
@@ -4303,10 +4367,6 @@ h6 {
 
 .duration-\[600ms\] {
   transition-duration: 600ms;
-}
-
-.ease-\[cubic-bezier\(\.4\2c 0\2c \.2\2c 1\)\] {
-  transition-timing-function: cubic-bezier(.4,0,.2,1);
 }
 
 .ease-in-out {
@@ -4534,6 +4594,10 @@ html.lenis {
   border-color: rgb(241 126 63 / 0.5);
 }
 
+.hover\:border-primary\/60:hover {
+  border-color: rgb(241 126 63 / 0.6);
+}
+
 .hover\:border-white\/40:hover {
   border-color: rgb(255 255 255 / 0.4);
 }
@@ -4618,6 +4682,11 @@ html.lenis {
 
 .disabled\:opacity-60:disabled {
   opacity: 0.6;
+}
+
+.group[open] .group-open\:rotate-45 {
+  --tw-rotate: 45deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .group\/cat:focus-within .group-focus-within\/cat\:visible {
@@ -4796,6 +4865,10 @@ html.lenis {
 
   .sm\:min-w-\[17rem\] {
     min-width: 17rem;
+  }
+
+  .sm\:max-w-20 {
+    max-width: 5rem;
   }
 
   .sm\:columns-2 {
@@ -4981,6 +5054,10 @@ html.lenis {
 
   .md\:justify-between {
     justify-content: space-between;
+  }
+
+  .md\:gap-4 {
+    gap: 1rem;
   }
 
   .md\:gap-5 {
@@ -5389,6 +5466,10 @@ html.lenis {
     margin-bottom: 3rem;
   }
 
+  .xl\:mb-14 {
+    margin-bottom: 3.5rem;
+  }
+
   .xl\:mb-2 {
     margin-bottom: 0.5rem;
   }
@@ -5503,6 +5584,10 @@ html.lenis {
     margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
   }
 
+  .xl\:p-10 {
+    padding: 2.5rem;
+  }
+
   .xl\:p-12 {
     padding: 3rem;
   }
@@ -5520,6 +5605,11 @@ html.lenis {
     padding-right: 0px;
   }
 
+  .xl\:px-16 {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
   .xl\:px-6 {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
@@ -5528,6 +5618,11 @@ html.lenis {
   .xl\:px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
+  }
+
+  .xl\:py-32 {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
   }
 
   .xl\:py-36 {
@@ -5733,4 +5828,8 @@ html.lenis {
 .\[\&_p\]\:text-white p {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.\[\&_summary\:\:-webkit-details-marker\]\:hidden summary::-webkit-details-marker {
+  display: none;
 }

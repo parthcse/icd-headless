@@ -357,8 +357,17 @@
         opacity: 1;
     }
 
-    /* Mobile menu drawer */
+    /* Mobile menu drawer — hidden (not just translated off-canvas) when closed,
+       so Safari dropping the transform on scroll-repaint can't reveal the panel.
+       Transition lives here (not inline) so slide-out still animates before the
+       visibility flips to hidden. */
+    .mobile-menu {
+        visibility: hidden;
+        transition: transform 350ms cubic-bezier(.4, 0, .2, 1), visibility 0s linear 350ms;
+    }
     .mobile-menu.open {
+        visibility: visible;
+        transition: transform 350ms cubic-bezier(.4, 0, .2, 1), visibility 0s linear 0s;
         @apply translate-x-0;
     }
 

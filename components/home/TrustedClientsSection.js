@@ -25,7 +25,7 @@ export default function TrustedClientsSection() {
           <h2 className="main-title">Trusted Clients</h2>
           <p>Clients who have worked with. They trust IceCube Digital for over 10 years.</p>
         </div>
-        <div className="main-title animate fadeUp grid grid-cols-2 gap-4 text-center sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:gap-6">
+        <div className="main-title animate fadeUp grid grid-cols-4 gap-2 text-center md:gap-4 lg:grid-cols-5 lg:gap-6">
           {CLIENT_LOGOS.map((src) => (
             <div
               key={src}
