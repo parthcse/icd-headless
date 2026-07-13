@@ -2,9 +2,6 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import YoastSchema from "@/components/common/YoastSchema";
 import PageSchema from "@/components/common/PageSchema";
-import GetQuoteSection from "@/components/home/GetQuoteSection";
-import ServicesCeoCtaSection from "@/components/services/ServicesCeoCtaSection";
-import ceoCtaSection from "@/lib/services/common-section/ceo-cta-section";
 import { getYoastMetadataByUri } from "@/lib/seo";
 
 import SpecialHero from "@/components/special/SpecialHero";
@@ -176,8 +173,6 @@ export default function EcommerceAiAgentPage() {
           secondary={{ label: "Chat on WhatsApp", href: "https://wa.me/919106060593" }}
         />
 
-        <GetQuoteSection />
-        <ServicesCeoCtaSection data={ceoCtaSection} />
       </main>
       <PageSchema uri={URI} />
       <Footer />
