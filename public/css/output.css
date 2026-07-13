@@ -4777,6 +4777,14 @@ html.lenis {
     width: calc(50% - 12px);
   }
 
+  .sm\:w-auto {
+    width: auto;
+  }
+
+  .sm\:min-w-\[17rem\] {
+    min-width: 17rem;
+  }
+
   .sm\:columns-2 {
     -moz-columns: 2;
          columns: 2;

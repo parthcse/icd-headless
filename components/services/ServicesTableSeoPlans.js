@@ -1,5 +1,18 @@
+import { Fragment } from "react";
 import ServiceCtaButton from "@/components/services/ServiceCtaButton";
 import CheckPrimaryIcon from "@/components/icons/CheckPrimaryIcon";
+
+function renderParts(parts) {
+  return parts.map((part, i) =>
+    typeof part === "string" ? (
+      <Fragment key={i}>{part}</Fragment>
+    ) : part.bold ? (
+      <strong key={i} className="font-semibold">{part.bold}</strong>
+    ) : (
+      <a key={i} href={part.href} {...(/^https?:\/\//.test(part.href) ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="text-primary font-semibold inline underline">{part.text}</a>
+    )
+  );
+}
 
 export default function ServicesTableSeoPlans({ data }) {
   return (
@@ -9,7 +22,7 @@ export default function ServicesTableSeoPlans({ data }) {
           <h3 className="font-48">{data.eyebrow}</h3>
           <h2 className="main-title mb-0">{data.title}</h2>
           {(Array.isArray(data.subtitle) ? data.subtitle : [data.subtitle]).map((p, i) => (
-            <p key={i} className="max-w-5xl mx-auto">{p}</p>
+            <p key={i} className="max-w-5xl mx-auto">{Array.isArray(p) ? renderParts(p) : p}</p>
           ))}
         </div>
         <div className="border border-primary">

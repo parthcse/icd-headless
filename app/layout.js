@@ -5,6 +5,7 @@ import DeferredStyles from "@/components/common/DeferredStyles";
 import GetQuotePopup from "@/components/common/GetQuotePopup";
 import CtaPopupDelegator from "@/components/common/CtaPopupDelegator";
 import WhatsAppButton from "@/components/common/WhatsAppButton";
+import SiteSchema from "@/components/common/SiteSchema";
 
 export const metadata = {
   title: "eCommerce Website Design &amp; Development Company - Icecube Digital",
@@ -45,6 +46,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <noscript>
           <link rel="stylesheet" href="/css/owl.carousel.min.css" />
         </noscript>
+        {/* Site-wide JSON-LD structured data (LocalBusiness, WebSite, Organization). Edit lib/site-schema.js */}
+        <SiteSchema />
       </head>
       <body>
         {/* Google Tag Manager (noscript) */}

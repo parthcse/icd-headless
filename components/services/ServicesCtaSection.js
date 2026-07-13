@@ -8,12 +8,28 @@ export default function ServicesCtaSection({ data }) {
           <p className="leading-snug">{data.text}</p>
           {data.subtitle && <p className="font-16 font-normal mt-2">{data.subtitle}</p>}
         </div>
-        <ServiceCtaButton
-          href={data.ctaHref}
-          label={data.ctaLabel}
-          btnArrow={data.btnArrow}
-          className="btn btn-primary whitespace-normal lg:whitespace-nowrap"
-        />
+        {data.ctaLabelSecondary ? (
+          <div className="flex w-full flex-col gap-3 sm:w-auto sm:min-w-[17rem]">
+            <ServiceCtaButton
+              href={data.ctaHref}
+              label={data.ctaLabel}
+              btnArrow={data.btnArrow}
+              className="btn btn-primary w-full justify-center whitespace-normal lg:whitespace-nowrap"
+            />
+            <ServiceCtaButton
+              href={data.ctaHrefSecondary}
+              label={data.ctaLabelSecondary}
+              className="btn btn-secondary w-full justify-center whitespace-normal lg:whitespace-nowrap"
+            />
+          </div>
+        ) : (
+          <ServiceCtaButton
+            href={data.ctaHref}
+            label={data.ctaLabel}
+            btnArrow={data.btnArrow}
+            className="btn btn-primary whitespace-normal lg:whitespace-nowrap"
+          />
+        )}
       </div>
     </section>
   );
