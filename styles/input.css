@@ -339,6 +339,18 @@
         @apply bg-black-light/75 shadow-lg backdrop-blur-xl backdrop-saturate-150;
     }
 
+    /* Desktop nav dropdowns are hover-intent menus. On touch devices (no hover
+       pointer — e.g. iPhone, incl. Safari "Request Desktop Site"), iOS focus /
+       sticky-hover would otherwise auto-open them on tap or scroll-to-top.
+       Keep them closed there; touch users navigate via the mobile drawer. */
+    @media (hover: none) {
+        .nav-flyout {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
+    }
+
     /* Mobile menu overlay */
     .mobile-ovelay.active {
         pointer-events: auto;

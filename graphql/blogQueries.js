@@ -29,6 +29,7 @@ const POST_CORE = `
     nodes {
       name
       uri
+      slug
       databaseId
     }
   }

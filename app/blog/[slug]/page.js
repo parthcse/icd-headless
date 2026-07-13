@@ -10,7 +10,7 @@ import RelatedPosts from "@/components/blog/RelatedPosts";
 import { getBlogPost, getRelatedPosts } from "@/lib/blog";
 import { getYoastMetadataByUri } from "@/lib/seo";
 import YoastSchema from "@/components/common/YoastSchema";
-import { stripHtml, truncateWords, wpPermalink } from "@/lib/wp-text";
+import { stripHtml, truncateWords, internalPath, siteOrigin } from "@/lib/wp-text";
 
 export const revalidate = 600;
 
@@ -40,7 +40,7 @@ export default async function BlogPostPage({ params }) {
   const sidebar = post.blogLeftSidebarContent?.trim();
   const hasSidebar = Boolean(sidebar);
   const featured = post.featuredImage?.node?.sourceUrl;
-  const shareUrl = wpPermalink(post.uri);
+  const shareUrl = `${siteOrigin()}${internalPath(post.uri)}`;
 
   const article = (
     <article className="order-1 min-w-0 lg:order-2">

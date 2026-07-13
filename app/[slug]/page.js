@@ -13,6 +13,7 @@ import WeServeSection from "@/components/home/WeServeSection";
 import TrustedClientsSection from "@/components/home/TrustedClientsSection";
 
 import ServicesBannerSection from "@/components/services/ServicesBannerSection";
+import ServicesHeroMediaSection from "@/components/services/ServicesHeroMediaSection";
 import ServicesSimpleBanner from "@/components/services/ServicesSimpleBanner";
 import ServicesAchievementsSection from "@/components/services/ServicesAchievementsSection";
 import ServicesPortfolioSection from "@/components/services/ServicesPortfolioSection";
@@ -53,6 +54,7 @@ import ServicesTableCompare from "@/components/services/ServicesTableCompare";
  */
 const SECTION_RENDERERS = {
   banner: (data) => <ServicesBannerSection data={data.banner} />,
+  heroMedia: (data) => data.heroMedia && <ServicesHeroMediaSection data={data.heroMedia} />,
   simpleBanner: (data) => data.simpleBanner && <ServicesSimpleBanner data={data.simpleBanner} />,
   milestone: (data) => data.milestone && <ServicesMilestoneSection data={data.milestone} />,
   achievements: (data) => data.achievements && <ServicesAchievementsSection data={data.achievements} />,

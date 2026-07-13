@@ -1,5 +1,5 @@
 import { getRecentPostNodes } from "../../lib/wp-home-data";
-import { formatPostDate, postsArchiveUrl, stripHtml, wpPermalink } from "../../lib/wp-text";
+import { formatPostDate, postsArchiveUrl, stripHtml, internalPath } from "../../lib/wp-text";
 
 const FALLBACK_IMG = "/assets/photos/home-our-client-slider.png";
 
@@ -14,7 +14,7 @@ export default async function LatestNewsSection() {
     dateLabel: formatPostDate(node.date),
     image: node.featuredImage?.node?.sourceUrl || FALLBACK_IMG,
     imageAlt: node.featuredImage?.node?.altText || "",
-    href: wpPermalink(node.uri),
+    href: internalPath(node.uri),
   }));
 
   return (

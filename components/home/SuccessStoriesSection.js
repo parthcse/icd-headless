@@ -1,5 +1,5 @@
 import { getCaseStudyNodes } from "../../lib/wp-home-data";
-import { stripHtml, wpPermalink } from "../../lib/wp-text";
+import { stripHtml, internalPath } from "../../lib/wp-text";
 
 const FALLBACK_IMG = "/assets/photos/home-our-client-slider.png";
 
@@ -16,7 +16,7 @@ export default async function SuccessStoriesSection() {
     body: stripHtml(node.content) || "",
     image: node.featuredImage?.node?.sourceUrl || FALLBACK_IMG,
     imageAlt: node.featuredImage?.node?.altText || "",
-    href: wpPermalink(node.uri),
+    href: internalPath(node.uri),
   }));
 
   return (
@@ -37,13 +37,17 @@ export default async function SuccessStoriesSection() {
               className="item h-full me-5 md:me-6 lg:me-8 xl:me-10 max-w-80 md:max-w-96 lg:max-w-md xl:max-w-lg group"
             >
               <figure className="mb-5 md:mb-6 lg:mb-8 xl:mb-10 overflow-hidden">
-                <img
-                  className="w-full aspect-[3/1.8] object-cover transition-all duration-500 group-hover:scale-105 ease-out"
-                  src={slide.image}
-                  alt={slide.imageAlt}
-                />
+                <a href={slide.href}>
+                  <img
+                    className="w-full aspect-[3/1.8] object-cover transition-all duration-500 group-hover:scale-105 ease-out"
+                    src={slide.image}
+                    alt={slide.imageAlt}
+                  />
+                </a>
               </figure>
-              <h2 className="font-32 font-bold mb-[0.5em]">{slide.title}</h2>
+              <h2 className="font-32 font-bold mb-[0.5em]">
+                <a href={slide.href} className="transition-colors hover:text-primary">{slide.title}</a>
+              </h2>
               <p>{slide.body}</p>
               <div className="btn-wrap font-24 pt-[1em] mt-auto">
                 <a className="btn btn-primary" href={slide.href}>

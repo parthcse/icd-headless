@@ -4,7 +4,7 @@ import Footer from "@/components/layout/Footer";
 import PageSchema from "@/components/common/PageSchema";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
 import { getRecentPostNodes } from "@/lib/wp-home-data";
-import { stripHtml, wpPermalink } from "@/lib/wp-text";
+import { stripHtml, internalPath } from "@/lib/wp-text";
 import FaqAccordion from "@/components/common/FaqAccordion";
 import { getYoastMetadataByUri } from "@/lib/seo";
 
@@ -234,7 +234,7 @@ export default async function EcommerceFaqsPage() {
                     <ul className="space-y-4">
                       {posts.map((post) => (
                         <li key={post.id}>
-                          <a href={wpPermalink(post.uri)} className="group flex items-start gap-3">
+                          <a href={internalPath(post.uri)} className="group flex items-start gap-3">
                             <img
                               src={post.featuredImage?.node?.sourceUrl || FALLBACK_IMG}
                               alt=""

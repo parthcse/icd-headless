@@ -65,8 +65,8 @@ export default function BlogPostBanner({ post }) {
           <div className="mb-5 flex flex-wrap items-center justify-center gap-2">
             {categories.map((cat) => (
               <a
-                key={cat.uri || cat.name}
-                href={cat.uri || "#"}
+                key={cat.slug || cat.name}
+                href={cat.slug ? `/blog/category/${cat.slug}/` : "#"}
                 className="inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-black-light"
               >
                 <TagIcon /> {cat.name}

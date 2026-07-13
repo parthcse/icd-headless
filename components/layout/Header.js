@@ -234,7 +234,7 @@ function NavDropdown({ label, links, current }) {
       <a href="#" className={`flex cursor-pointer items-center gap-1 transition group-hover:text-primary${active ? " text-primary" : ""}`}>
         {label} <ChevronDown />
       </a>
-      <div className="invisible absolute left-0 top-full z-50 -translate-y-2 pt-4 xl:pt-6 opacity-0 transition duration-200 ease-in-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+      <div className="nav-flyout invisible absolute left-0 top-full z-50 -translate-y-2 pt-4 xl:pt-6 opacity-0 transition duration-200 ease-in-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
         <ul className={`min-w-56 ${PANEL_UL}`}>
           {links.map((link) => (
             <li key={link.label}>
@@ -256,7 +256,7 @@ function NavNestedDropdown({ label, items, flyoutSide = "right", current }) {
       <a href="#" className={`flex cursor-pointer items-center gap-1 transition group-hover:text-primary${active ? " text-primary" : ""}`}>
         {label} <ChevronDown />
       </a>
-      <div className="invisible absolute left-0 top-full z-50 -translate-y-2 pt-4 xl:pt-6 opacity-0 transition duration-200 ease-in-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+      <div className="nav-flyout invisible absolute left-0 top-full z-50 -translate-y-2 pt-4 xl:pt-6 opacity-0 transition duration-200 ease-in-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
         <ul className={`min-w-56 ${PANEL_UL}`}>
           {items.map((item, i) => {
             // The lowest item with a flyout opens upward so a long list stays in-viewport.
@@ -275,7 +275,7 @@ function NavNestedDropdown({ label, items, flyoutSide = "right", current }) {
                 <span className={`mx-1 flex cursor-pointer items-center justify-between gap-3 whitespace-nowrap rounded-md px-4 py-2.5 font-medium transition-colors hover:bg-white/5 hover:text-primary group-hover/cat:bg-white/5 group-hover/cat:text-primary${catActive ? " text-primary" : ""}`}>
                   {item.label} <ChevronRight />
                 </span>
-                <div className={`invisible absolute z-50 opacity-0 transition duration-200 ease-in-out group-hover/cat:visible group-hover/cat:translate-x-0 group-hover/cat:opacity-100 group-focus-within/cat:visible group-focus-within/cat:translate-x-0 group-focus-within/cat:opacity-100 ${flyoutPos} ${openUp ? "bottom-[-9px]" : "top-0"}`}>
+                <div className={`nav-flyout invisible absolute z-50 opacity-0 transition duration-200 ease-in-out group-hover/cat:visible group-hover/cat:translate-x-0 group-hover/cat:opacity-100 group-focus-within/cat:visible group-focus-within/cat:translate-x-0 group-focus-within/cat:opacity-100 ${flyoutPos} ${openUp ? "bottom-[-9px]" : "top-0"}`}>
                   <ul data-lenis-prevent className={`max-h-[80vh] w-max overflow-y-auto overscroll-y-contain ${PANEL_UL}`}>
                     {item.links.map((link) => (
                       <li key={link.label}>
