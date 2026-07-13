@@ -10,6 +10,7 @@ import WhyChooseUsSection from "../components/home/WhyChooseUsSection";
 import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
 import YoastSchema from "../components/common/YoastSchema";
+import PageSchema from "../components/common/PageSchema";
 import { getYoastMetadataByUri } from "../lib/seo";
 
 export async function generateMetadata() {
@@ -32,6 +33,7 @@ export default function Home() {
         <GetQuoteSection />
         <WeServeSection />
       </main>
+      <PageSchema uri="/" />
       <Footer />
     </>
   );

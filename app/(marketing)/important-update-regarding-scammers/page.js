@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import PageSchema from "@/components/common/PageSchema";
 import YoastSchema from "@/components/common/YoastSchema";
 import { getYoastMetadataByUri } from "@/lib/seo";
 
@@ -201,6 +202,7 @@ export default function ScamAlertPage() {
           </div>
         </section>
       </main>
+      <PageSchema uri="/important-update-regarding-scammers/" />
       <Footer />
     </>
   );

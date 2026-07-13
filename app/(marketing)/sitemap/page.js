@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import PageSchema from "@/components/common/PageSchema";
 import YoastSchema from "@/components/common/YoastSchema";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
 import { getYoastMetadataByUri } from "@/lib/seo";
@@ -84,6 +85,7 @@ export default function SitemapPage() {
 
         <GetQuoteSection />
       </main>
+      <PageSchema uri="/sitemap/" />
       <Footer />
     </>
   );

@@ -7,6 +7,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import YoastSchema from "@/components/common/YoastSchema";
 import PopupVariantRegistrar from "@/components/common/PopupVariantRegistrar";
+import PageSchema from "@/components/common/PageSchema";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
 import WeServeSection from "@/components/home/WeServeSection";
 
@@ -189,6 +190,7 @@ export default async function ServicePage({ params }) {
           <Fragment key={key}>{SECTION_RENDERERS[key]?.(data)}</Fragment>
         ))}
       </main>
+      <PageSchema uri={`/${slug}/`} />
       <Footer />
     </>
   );

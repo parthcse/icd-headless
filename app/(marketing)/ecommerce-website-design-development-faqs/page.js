@@ -1,6 +1,7 @@
 import Header from "@/components/layout/Header";
 import YoastSchema from "@/components/common/YoastSchema";
 import Footer from "@/components/layout/Footer";
+import PageSchema from "@/components/common/PageSchema";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
 import { getRecentPostNodes } from "@/lib/wp-home-data";
 import { stripHtml, wpPermalink } from "@/lib/wp-text";
@@ -256,6 +257,7 @@ export default async function EcommerceFaqsPage() {
 
         <GetQuoteSection />
       </main>
+      <PageSchema uri="/ecommerce-website-design-development-faqs/" />
       <Footer />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
     </>

@@ -10,6 +10,7 @@ import HappyCustomersSection from "@/components/home/HappyCustomersSection";
 import WeServeSection from "@/components/home/WeServeSection";
 import WhyChooseUsSection from "@/components/home/WhyChooseUsSection";
 import Footer from "@/components/layout/Footer";
+import PageSchema from "@/components/common/PageSchema";
 import Header from "@/components/layout/Header";
 import YoastSchema from "@/components/common/YoastSchema";
 import { getYoastMetadataByUri } from "@/lib/seo";
@@ -39,6 +40,7 @@ export default function AboutPage() {
         <GetQuoteSection />
         <WeServeSection />
       </main>
+      <PageSchema uri="/about-us/" />
       <Footer />
     </>
   );

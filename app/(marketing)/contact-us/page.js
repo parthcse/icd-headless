@@ -1,6 +1,7 @@
 import Header from "@/components/layout/Header";
 import YoastSchema from "@/components/common/YoastSchema";
 import Footer from "@/components/layout/Footer";
+import PageSchema from "@/components/common/PageSchema";
 import ContactBannerSection from "@/components/contact/ContactBannerSection";
 import ContactOfficesSection from "@/components/contact/ContactOfficesSection";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
@@ -30,6 +31,7 @@ export default function ContactPage() {
         <WeServeSection />
         <ServicesCeoCtaSection data={ceoCtaSection} />
       </main>
+      <PageSchema uri="/contact-us/" />
       <Footer />
     </>
   );

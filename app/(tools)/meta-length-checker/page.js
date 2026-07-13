@@ -1,6 +1,7 @@
 import Header from "@/components/layout/Header";
 import YoastSchema from "@/components/common/YoastSchema";
 import Footer from "@/components/layout/Footer";
+import PageSchema from "@/components/common/PageSchema";
 import MetaLengthChecker from "@/components/tools/MetaLengthChecker";
 import MetaGuideSection from "@/components/tools/MetaGuideSection";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
@@ -50,6 +51,7 @@ export default function MetaLengthCheckerPage() {
         <MetaGuideSection />
         <GetQuoteSection />
       </main>
+      <PageSchema uri="/meta-length-checker/" />
       <Footer />
     </>
   );

@@ -79,7 +79,7 @@ export default function Footer() {
           <div className="footer-trusted bg-[#0f0f0f] text-center p-5 xl:p-6 animate fadeUp" style={{ animationDelay: "0.4s" }}>
             <img
               className="mx-auto mb-3 max-w-28"
-              src="https://www.icecubedigital.com/wp-content/webp-express/webp-images/uploads/2023/08/top-web-development-company.png.webp"
+              src="/assets/photos/top-web-development-company.png"
               alt="Top web development company"
             />
             <h3 className="font-22 mb-2 xl:text-xl leading-tight">Most Trusted Company</h3>

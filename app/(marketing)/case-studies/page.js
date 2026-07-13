@@ -1,6 +1,7 @@
 import Header from "@/components/layout/Header";
 import YoastSchema from "@/components/common/YoastSchema";
 import Footer from "@/components/layout/Footer";
+import PageSchema from "@/components/common/PageSchema";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
 import WeServeSection from "@/components/home/WeServeSection";
 import CaseStudyGallery from "@/components/case-studies/CaseStudyGallery";
@@ -82,6 +83,7 @@ export default async function CaseStudiesPage() {
         {/* Countries We Serve */}
         <WeServeSection />
       </main>
+      <PageSchema uri="/case-studies/" />
       <Footer />
     </>
   );

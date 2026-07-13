@@ -1,6 +1,7 @@
 import Header from "@/components/layout/Header";
 import YoastSchema from "@/components/common/YoastSchema";
 import Footer from "@/components/layout/Footer";
+import PageSchema from "@/components/common/PageSchema";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
 import WeServeSection from "@/components/home/WeServeSection";
 import ServicesOurClientSection from "@/components/services/ServicesOurClientSection";
@@ -93,6 +94,7 @@ export default function CareerPage() {
         {/* Countries We Serve */}
         <WeServeSection />
       </main>
+      <PageSchema uri="/career/" />
       <Footer />
     </>
   );

@@ -1,6 +1,7 @@
 import Header from "@/components/layout/Header";
 import YoastSchema from "@/components/common/YoastSchema";
 import Footer from "@/components/layout/Footer";
+import PageSchema from "@/components/common/PageSchema";
 import LearningVideoCard from "@/components/learning/LearningVideoCard";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
 import { getYoastMetadataByUri } from "@/lib/seo";
@@ -67,6 +68,7 @@ export default function LearningPage() {
 
         <GetQuoteSection />
       </main>
+      <PageSchema uri="/learning/" />
       <Footer />
     </>
   );

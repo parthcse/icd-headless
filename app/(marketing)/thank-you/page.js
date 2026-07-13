@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import PageSchema from "@/components/common/PageSchema";
 import { getYoastMetadataByUri } from "@/lib/seo";
 
 export async function generateMetadata() {
@@ -52,6 +53,7 @@ export default function ThankYouPage() {
           </div>
         </section>
       </main>
+      <PageSchema uri="/thank-you/" />
       <Footer />
     </>
   );

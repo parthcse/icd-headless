@@ -1,6 +1,7 @@
 import Header from "@/components/layout/Header";
 import YoastSchema from "@/components/common/YoastSchema";
 import Footer from "@/components/layout/Footer";
+import PageSchema from "@/components/common/PageSchema";
 import NewsletterSignupForm from "@/components/newsletter/NewsletterSignupForm";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
 import { getYoastMetadataByUri } from "@/lib/seo";
@@ -65,6 +66,7 @@ export default function NewsletterPage() {
 
         <GetQuoteSection />
       </main>
+      <PageSchema uri="/web-wednesday-newsletter/" />
       <Footer />
     </>
   );

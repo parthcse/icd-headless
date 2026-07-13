@@ -1,6 +1,7 @@
 import Header from "@/components/layout/Header";
 import YoastSchema from "@/components/common/YoastSchema";
 import Footer from "@/components/layout/Footer";
+import PageSchema from "@/components/common/PageSchema";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
 import PortfolioGallery from "@/components/portfolio/PortfolioGallery";
 import { getPortfolioCategories, getPortfolioPage } from "@/lib/portfolio";
@@ -58,6 +59,7 @@ export default async function OurPortfolioPage() {
 
         <GetQuoteSection />
       </main>
+      <PageSchema uri="/our-portfolio/" />
       <Footer />
     </>
   );

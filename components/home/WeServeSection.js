@@ -1,3 +1,25 @@
+const COUNTRIES = [
+  { name: "United States", flag: "united-states-flag" },
+  { name: "South America", flag: "south-america-flag" },
+  { name: "United Kingdom", flag: "united-kingdom-flag" },
+  { name: "Canada", flag: "canada-flag" },
+  { name: "Australia", flag: "australia-flag" },
+  { name: "Germany", flag: "germany-flag" },
+  { name: "Dubai", flag: "dubai-flag" },
+  { name: "Singapore", flag: "singapore-flag" },
+  { name: "South Africa", flag: "south-africa-flag" },
+  { name: "Sweden", flag: "sweden-flag" },
+  { name: "Netherlands", flag: "netherlands-flag" },
+  { name: "Japan", flag: "japan-flag" },
+  { name: "Norway", flag: "norway-flag" },
+  { name: "Finland", flag: "finland-flag" },
+  { name: "France", flag: "france-flag" },
+  { name: "Ireland", flag: "ireland-flag" },
+  { name: "Spain", flag: "spain-flag" },
+  { name: "Italy", flag: "italy-flag" },
+  { name: "India", flag: "india-flag" },
+];
+
 export default function WeServeSection() {
   return (
     <section className="countries-we-serve-section full-section xl:pt-28 xl:pb-36">
@@ -7,158 +29,16 @@ export default function WeServeSection() {
           <h2 className="main-title mb-0">We Serve</h2>
         </div>
         <div className="flex flex-wrap justify-center gap-4 animate fadeUp" style={{ animationDelay: "0.3s" }}>
-          <div className="column flex items-center gap-2 bg-black-light px-4 py-2">
-            <img
-              className="aspect-square w-[1em] rounded-full object-cover"
-              src="https://www.icecubedigital.com/wp-content/themes/seocrawler-child/images/us--flag.png.webp"
-              alt="United States"
-            />
-            <span>United States</span>
-          </div>
-          <div className="column flex items-center gap-2 bg-black-light px-4 py-2">
-            <img
-              className="aspect-square w-[1em] rounded-full object-cover"
-              src="https://www.icecubedigital.com/wp-content/themes/seocrawler-child/images/s-america-flag.png.webp"
-              alt="South America"
-            />
-            <span>South America</span>
-          </div>
-          <div className="column flex items-center gap-2 bg-black-light px-4 py-2">
-            <img
-              className="aspect-square w-[1em] rounded-full object-cover"
-              src="https://www.icecubedigital.com/wp-content/themes/seocrawler-child/images/uk-flag.png.webp"
-              alt="United Kingdom"
-            />
-            <span>United Kingdom</span>
-          </div>
-          <div className="column flex items-center gap-2 bg-black-light px-4 py-2">
-            <img
-              className="aspect-square w-[1em] rounded-full object-cover"
-              src="https://www.icecubedigital.com/wp-content/themes/seocrawler-child/images/Canada-flag.png.webp"
-              alt="Canada"
-            />
-            <span>Canada</span>
-          </div>
-          <div className="column flex items-center gap-2 bg-black-light px-4 py-2">
-            <img
-              className="aspect-square w-[1em] rounded-full object-cover"
-              src="https://www.icecubedigital.com/wp-content/themes/seocrawler-child/images/australia-flag.png.webp"
-              alt="Australia"
-            />
-            <span>Australia</span>
-          </div>
-          <div className="column flex items-center gap-2 bg-black-light px-4 py-2">
-            <img
-              className="aspect-square w-[1em] rounded-full object-cover"
-              src="https://www.icecubedigital.com/wp-content/themes/seocrawler-child/images/germany--flag.png.webp"
-              alt="Germany"
-            />
-            <span>Germany</span>
-          </div>
-          <div className="column flex items-center gap-2 bg-black-light px-4 py-2">
-            <img
-              className="aspect-square w-[1em] rounded-full object-cover"
-              src="https://www.icecubedigital.com/wp-content/themes/seocrawler-child/images/Dbai-flag.png.webp"
-              alt="Dubai"
-            />
-            <span>Dubai</span>
-          </div>
-          <div className="column flex items-center gap-2 bg-black-light px-4 py-2">
-            <img
-              className="aspect-square w-[1em] rounded-full object-cover"
-              src="https://www.icecubedigital.com/wp-content/themes/seocrawler-child/images/singapore-flag.png.webp"
-              alt="Singapore"
-            />
-            <span>Singapore</span>
-          </div>
-          <div className="column flex items-center gap-2 bg-black-light px-4 py-2">
-            <img
-              className="aspect-square w-[1em] rounded-full object-cover"
-              src="https://www.icecubedigital.com/wp-content/themes/seocrawler-child/images/sa-flag.png.webp"
-              alt="South Africa"
-            />
-            <span>South Africa</span>
-          </div>
-          <div className="column flex items-center gap-2 bg-black-light px-4 py-2">
-            <img
-              className="aspect-square w-[1em] rounded-full object-cover"
-              src="https://www.icecubedigital.com/wp-content/themes/seocrawler-child/images/sweden-flag.png.webp"
-              alt="Sweden"
-            />
-            <span>Sweden</span>
-          </div>
-          <div className="column flex items-center gap-2 bg-black-light px-4 py-2">
-            <img
-              className="aspect-square w-[1em] rounded-full object-cover"
-              src="https://www.icecubedigital.com/wp-content/themes/seocrawler-child/images/netherlands-flag.png.webp"
-              alt="Netherlands"
-            />
-            <span>Netherlands</span>
-          </div>
-          <div className="column flex items-center gap-2 bg-black-light px-4 py-2">
-            <img
-              className="aspect-square w-[1em] rounded-full object-cover"
-              src="https://www.icecubedigital.com/wp-content/themes/seocrawler-child/images/japan-flag.png.webp"
-              alt="Japan"
-            />
-            <span>Japan</span>
-          </div>
-          <div className="column flex items-center gap-2 bg-black-light px-4 py-2">
-            <img
-              className="aspect-square w-[1em] rounded-full object-cover"
-              src="https://www.icecubedigital.com/wp-content/themes/seocrawler-child/images/norway-flag.png.webp"
-              alt="Norway"
-            />
-            <span>Norway</span>
-          </div>
-          <div className="column flex items-center gap-2 bg-black-light px-4 py-2">
-            <img
-              className="aspect-square w-[1em] rounded-full object-cover"
-              src="https://www.icecubedigital.com/wp-content/themes/seocrawler-child/images/finland-flag.png.webp"
-              alt="Finland"
-            />
-            <span>Finland</span>
-          </div>
-          <div className="column flex items-center gap-2 bg-black-light px-4 py-2">
-            <img
-              className="aspect-square w-[1em] rounded-full object-cover"
-              src="https://www.icecubedigital.com/wp-content/themes/seocrawler-child/images/france-flag.png.webp"
-              alt="France"
-            />
-            <span>France</span>
-          </div>
-          <div className="column flex items-center gap-2 bg-black-light px-4 py-2">
-            <img
-              className="aspect-square w-[1em] rounded-full object-cover"
-              src="https://www.icecubedigital.com/wp-content/themes/seocrawler-child/images/ireland-flag.png.webp"
-              alt="Ireland"
-            />
-            <span>Ireland</span>
-          </div>
-          <div className="column flex items-center gap-2 bg-black-light px-4 py-2">
-            <img
-              className="aspect-square w-[1em] rounded-full object-cover"
-              src="https://www.icecubedigital.com/wp-content/themes/seocrawler-child/images/flag-Spain.png.webp"
-              alt="Spain"
-            />
-            <span>Spain</span>
-          </div>
-          <div className="column flex items-center gap-2 bg-black-light px-4 py-2">
-            <img
-              className="aspect-square w-[1em] rounded-full object-cover"
-              src="https://www.icecubedigital.com/wp-content/themes/seocrawler-child/images/flag-italy.png.webp"
-              alt="Italy"
-            />
-            <span>Italy</span>
-          </div>
-          <div className="column flex items-center gap-2 bg-black-light px-4 py-2">
-            <img
-              className="aspect-square w-[1em] rounded-full object-cover"
-              src="https://www.icecubedigital.com/wp-content/themes/seocrawler-child/images/flag-India.png.webp"
-              alt="India"
-            />
-            <span>India</span>
-          </div>
+          {COUNTRIES.map((country) => (
+            <div key={country.name} className="column flex items-center gap-2 bg-black-light px-4 py-2">
+              <img
+                className="aspect-square w-[1em] rounded-full object-cover"
+                src={`/assets/flags/${country.flag}.png`}
+                alt={country.name}
+              />
+              <span>{country.name}</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>

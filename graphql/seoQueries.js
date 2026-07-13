@@ -48,6 +48,22 @@ export const SEO_META_BY_URI_QUERY = gql`
   }
 `;
 
+// Per-page SEO schema (raw JSON-LD markup) from the ACF "SEO Schema Data" field.
+// The field group's GraphQL type is `pageFields`; the field is `seoSchemaData`.
+// The stored value is normally a full <script type="application/ld+json">…</script>
+// block. Only Pages carry this field; other node types resolve to null.
+export const PAGE_SCHEMA_DATA_BY_URI_QUERY = gql`
+  query PageSchemaByUri($uri: String!) {
+    nodeByUri(uri: $uri) {
+      ... on Page {
+        pageFields {
+          seoSchemaData
+        }
+      }
+    }
+  }
+`;
+
 // Custom post type archive SEO (e.g. /case-studies/). Yoast exposes archive
 // settings only under the root `seo.contentTypes` query, not on the node; the
 // JSON-LD lives inside `archive.fullHead`.

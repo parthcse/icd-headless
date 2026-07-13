@@ -1,6 +1,7 @@
 import Header from "@/components/layout/Header";
 import YoastSchema from "@/components/common/YoastSchema";
 import Footer from "@/components/layout/Footer";
+import PageSchema from "@/components/common/PageSchema";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
 import WeServeSection from "@/components/home/WeServeSection";
 import TestimonialVideoCard from "@/components/testimonials/TestimonialVideoCard";
@@ -131,6 +132,7 @@ export default function ClientTestimonialsPage() {
         <GetQuoteSection />
         <WeServeSection />
       </main>
+      <PageSchema uri="/client-testimonials/" />
       <Footer />
     </>
   );
