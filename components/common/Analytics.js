@@ -1,7 +1,7 @@
 import Script from "next/script";
 
 /**
- * Third-party analytics / tracking: GTM, Lucky Orange, Hotjar, Hello Bar.
+ * Third-party analytics / tracking / chat: GTM, Lucky Orange, Hotjar, Hello Bar, JivoChat.
  */
 export default function Analytics() {
   return (
@@ -40,6 +40,10 @@ a.appendChild(r);
 
       {/* Hello Bar */}
       <Script src="https://my.hellobar.com/8787e096d22589c9fd06777a530cbd8cdcf57e64.js" strategy="afterInteractive" />
+
+      {/* JivoChat live-chat widget (async, loads after hydration — next/script replaces the
+          WordPress loadJivoWidget() DOM-injection helper). */}
+      <Script src="https://code.jivosite.com/widget/cTUFKOfnKl" strategy="afterInteractive" />
     </>
   );
 }
