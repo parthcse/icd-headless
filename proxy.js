@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 
 /**
- * Sitemap proxy for the headless setup.
+ * Sitemap + llms.txt proxy for the headless setup. (Next.js 16 "proxy" file
+ * convention — formerly `middleware`.)
  *
  * The Next app is live at the public domain, but the WordPress/Yoast sitemaps
  * live on the CMS subdomain (cms.icecubedigital.com). Yoast generates a sitemap
@@ -31,7 +32,7 @@ const UPSTREAM_HEADERS = {
   accept: "application/xml,text/xml;q=0.9,*/*;q=0.8",
 };
 
-export async function middleware(request) {
+export async function proxy(request) {
   const { pathname } = request.nextUrl;
 
   // Serve Yoast's sitemap stylesheet from OUR origin so cross-origin XSLT isn't blocked.
@@ -48,6 +49,26 @@ export async function middleware(request) {
       headers: {
         "content-type": "text/xsl; charset=UTF-8",
         "cache-control": "public, max-age=86400, s-maxage=604800",
+      },
+    });
+  }
+
+  // Proxy Yoast's llms.txt (an LLM-facing site overview) from the CMS. Yoast
+  // already emits www URLs inside it, so the rewrite is defensive (no-op today).
+  if (pathname === "/llms.txt") {
+    let res;
+    try {
+      res = await fetch(`${CMS_ORIGIN}/llms.txt`, { headers: UPSTREAM_HEADERS, redirect: "follow" });
+    } catch {
+      return NextResponse.next();
+    }
+    if (!res.ok) return NextResponse.next();
+    const txt = (await res.text()).replace(/https:\/\/cms\.icecubedigital\.com(?!\/wp-content)/g, PUBLIC_ORIGIN);
+    return new NextResponse(txt, {
+      status: 200,
+      headers: {
+        "content-type": "text/plain; charset=UTF-8",
+        "cache-control": "public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800",
       },
     });
   }
@@ -80,6 +101,6 @@ export async function middleware(request) {
 }
 
 export const config = {
-  // Run on *.xml (sitemaps) and the proxied stylesheet; everything else untouched.
-  matcher: ["/((?!_next|api).*\\.xml)", "/sitemap.xsl"],
+  // Run on *.xml (sitemaps), the proxied stylesheet, and llms.txt; else untouched.
+  matcher: ["/((?!_next|api).*\\.xml)", "/sitemap.xsl", "/llms.txt"],
 };

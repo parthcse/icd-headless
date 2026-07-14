@@ -107,7 +107,7 @@ Defined in `.env.local` (not committed). `NEXT_PUBLIC_*` are exposed to the brow
 
 ```
 icd-headless/
-├── middleware.js                # Proxies Yoast sitemaps from the CMS → www (see SEO section)
+├── proxy.js                     # Proxies Yoast sitemaps + llms.txt CMS → www, serves /sitemap.xsl (Next 16 "proxy", was middleware)
 ├── app/                         # Next.js App Router
 │   ├── layout.js                # Root layout: global CSS, fonts, SmoothScroll, SiteSchema, GetQuotePopup, scripts
 │   ├── robots.js                # /robots.txt (points at the sitemap, declares canonical www host)
@@ -168,7 +168,7 @@ icd-headless/
 | `/our-portfolio`, `/portfolio/<slug>` | `app/(marketing)` + `app/portfolio/[slug]` | Portfolio archive + item detail (WP CPT) |
 | `/case-studies`, `/case-studies/<slug>` | `app/(marketing)` + dynamic | Case-study archive + detail (WP CPT) |
 | `/ai-whatsapp-quoting-system`, `/icecube-ecommerce-ai-agent` | `app/(special)/…` | **Fully-custom** landing pages — own route + components, **not** the `[slug]` system |
-| `/sitemap.xml`, `/sitemap*.xml` | `middleware.js` | Yoast sitemaps proxied from the CMS, rewritten to `www` |
+| `/sitemap.xml`, `/sitemap*.xml`, `/sitemap.xsl`, `/llms.txt` | `proxy.js` | Yoast sitemaps + stylesheet + llms.txt proxied from the CMS, rewritten to `www` |
 | `/robots.txt` | `app/robots.js` | robots + `Sitemap:` line |
 | `POST /api/newsletter` | `app/api/newsletter/route.js` | Mailchimp signup |
 
@@ -267,8 +267,9 @@ There are **two** distinct "special" tiers, and they are not the same thing:
 - **Indexability is decoupled from the CMS** *(important — read this):* the frontend is **indexable by DEFAULT** and does **not** inherit Yoast's `noindex`. Only paths listed in **`NOINDEX_PATHS`** (`lib/seo.js`, currently `/thank-you/`) emit `noindex, follow`. This is deliberate: WordPress "Discourage search engines" can stay **ON** to hide the `cms.` backend without ever noindexing the live front-end. Add a path to `NOINDEX_PATHS` to noindex a page.
 - **Site-wide JSON-LD:** `lib/site-schema.js` (LocalBusiness + WebSite + Organization) is rendered on every page by `<SiteSchema/>` in the root layout. **Edit the schema there.**
 - **Per-page JSON-LD:** the WordPress ACF field `seo_schema_data` (GraphQL `pageFields.seoSchemaData`) is fetched by `getPageSchemaByUri` and rendered right before the footer by **`<PageSchema uri/>`** (on `[slug]`, home, and standalone routes). Renders nothing when the field is empty; wraps bare JSON in a `<script type="application/ld+json">` if the editor omitted the tag.
-- **Sitemap:** `middleware.js` proxies Yoast's `/sitemap*.xml` from the CMS and rewrites `cms.` → `www.` (keeping `/wp-content/` media on the CMS). So `https://www.icecubedigital.com/sitemap.xml` serves the full Yoast sitemap. It also proxies Yoast's XSL stylesheet at same-origin **`/sitemap.xsl`** (and repoints the sitemap at it) so the styled sitemap view renders — browsers block cross-origin XSLT, which otherwise blanks/hangs the view.
+- **Sitemap:** `proxy.js` (the Next 16 "proxy" file convention — formerly `middleware.js`) proxies Yoast's `/sitemap*.xml` from the CMS and rewrites `cms.` → `www.` (keeping `/wp-content/` media on the CMS). So `https://www.icecubedigital.com/sitemap.xml` serves the full Yoast sitemap. It also proxies Yoast's XSL stylesheet at same-origin **`/sitemap.xsl`** (and repoints the sitemap at it) so the styled sitemap view renders — browsers block cross-origin XSLT, which otherwise blanks/hangs the view.
 - **robots.txt:** `app/robots.js` (allow all, disallow `/api/`, `Sitemap:` + canonical `Host:` = www).
+- **llms.txt:** `proxy.js` also serves `/llms.txt` — Yoast's LLM-facing site overview — proxied from the CMS (it already emits `www.` URLs). Like the sitemap, it 404s until redeployed.
 - **⚠️ Build-time:** metadata, JSON-LD, and sitemap are generated at **build time** — after any CMS SEO change you must **redeploy**, then request reindexing in Google Search Console.
 
 ---
