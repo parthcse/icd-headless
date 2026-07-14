@@ -35,6 +35,51 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-K9WNLJ5');`}
         </Script>
         {/* End Google Tag Manager */}
+
+        {/* Geo / location meta (multi-location offices: UK, AU, US, IN) */}
+        <meta name="geo.region" content="GB-CHS" />
+        <meta name="geo.placename" content="Cheshire" />
+        <meta name="geo.position" content="53.339488;-2.574432" />
+        <meta name="ICBM" content="53.339488, -2.574432" />
+        <meta name="geo.region" content="AU-SA" />
+        <meta name="geo.placename" content="Northfield" />
+        <meta name="geo.position" content="-34.848383;138.626129" />
+        <meta name="ICBM" content="-34.848383, 138.626129" />
+        <meta name="geo.region" content="US-CA" />
+        <meta name="geo.placename" content="Sunnyvale" />
+        <meta name="geo.position" content="37.36883;-122.036349" />
+        <meta name="ICBM" content="37.36883, -122.036349" />
+        <meta name="geo.region" content="IN-GJ" />
+        <meta name="geo.placename" content="Ahmedabad" />
+        <meta name="geo.position" content="23.043872;72.534361" />
+        <meta name="ICBM" content="23.043872, 72.534361" />
+
+        {/* Lucky Orange */}
+        <Script src="https://tools.luckyorange.com/core/lo.js?site-id=461ec88d" strategy="afterInteractive" />
+        <Script id="lucky-orange-legacy" strategy="afterInteractive">
+          {`window.__lo_site_id = 73641;
+(function() {
+  var wa = document.createElement('script'); wa.type = 'text/javascript'; wa.async = true;
+  wa.src = 'https://d10lpsik1i8c69.cloudfront.net/w.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(wa, s);
+})();`}
+        </Script>
+
+        {/* Hotjar */}
+        <Script id="hotjar" strategy="afterInteractive">
+          {`(function(h,o,t,j,a,r){
+h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+h._hjSettings={hjid:5271059,hjsv:6};
+a=o.getElementsByTagName('head')[0];
+r=o.createElement('script');r.async=1;
+r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`}
+        </Script>
+
+        {/* Hello Bar */}
+        <Script src="https://my.hellobar.com/8787e096d22589c9fd06777a530cbd8cdcf57e64.js" strategy="afterInteractive" />
+
         <link rel="preload" href="/fonts/Gilroy-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/Gilroy-Medium.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/Gilroy-SemiBold.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />

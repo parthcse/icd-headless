@@ -263,7 +263,7 @@ There are **two** distinct "special" tiers, and they are not the same thing:
 
 ## SEO, sitemap & indexing
 
-- **Per-page Yoast SEO:** `generateMetadata` → `getYoastMetadataByUri(uri)` (`lib/seo.js`) pulls title / description / canonical / OG / Twitter from the CMS.
+- **Per-page Yoast SEO:** `generateMetadata` → `getYoastMetadataByUri(uri)` (`lib/seo.js`) pulls title / description / OG / Twitter from the CMS. **Canonical** is always emitted: Yoast's GraphQL canonical comes back empty, so every page falls back to a **self-referencing `www` canonical** (`https://www.icecubedigital.com/<path>/`, via `PUBLIC_ORIGIN`).
 - **Indexability is decoupled from the CMS** *(important — read this):* the frontend is **indexable by DEFAULT** and does **not** inherit Yoast's `noindex`. Only paths listed in **`NOINDEX_PATHS`** (`lib/seo.js`, currently `/thank-you/`) emit `noindex, follow`. This is deliberate: WordPress "Discourage search engines" can stay **ON** to hide the `cms.` backend without ever noindexing the live front-end. Add a path to `NOINDEX_PATHS` to noindex a page.
 - **Site-wide JSON-LD:** `lib/site-schema.js` (LocalBusiness + WebSite + Organization) is rendered on every page by `<SiteSchema/>` in the root layout. **Edit the schema there.**
 - **Per-page JSON-LD:** the WordPress ACF field `seo_schema_data` (GraphQL `pageFields.seoSchemaData`) is fetched by `getPageSchemaByUri` and rendered right before the footer by **`<PageSchema uri/>`** (on `[slug]`, home, and standalone routes). Renders nothing when the field is empty; wraps bare JSON in a `<script type="application/ld+json">` if the editor omitted the tag.
