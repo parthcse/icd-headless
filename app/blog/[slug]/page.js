@@ -11,7 +11,7 @@ import FaqAccordion from "@/components/common/FaqAccordion";
 import { getBlogPost, getRelatedPosts } from "@/lib/blog";
 import { getYoastMetadataByUri } from "@/lib/seo";
 import YoastSchema from "@/components/common/YoastSchema";
-import { stripHtml, truncateWords, internalPath, siteOrigin } from "@/lib/wp-text";
+import { stripHtml, truncateWords, internalPath, siteOrigin, absolutizeWpMedia } from "@/lib/wp-text";
 
 export const revalidate = 600;
 
@@ -44,7 +44,7 @@ export default async function BlogPostPage({ params }) {
   const shareUrl = `${siteOrigin()}${internalPath(post.uri)}`;
   const faqs = (post.postsFields?.postFaqs || [])
     .filter((f) => f?.postFaqQuestion)
-    .map((f) => ({ question: f.postFaqQuestion, answerHtml: f.postFaqAnswer }));
+    .map((f) => ({ question: f.postFaqQuestion, answerHtml: absolutizeWpMedia(f.postFaqAnswer) }));
 
   const article = (
     <article className="order-1 min-w-0 lg:order-2">
@@ -55,7 +55,7 @@ export default async function BlogPostPage({ params }) {
           className="mb-8 w-full rounded-xl object-cover"
         />
       )}
-      <div className="blog-content" dangerouslySetInnerHTML={{ __html: post.content }} />
+      <div className="blog-content" dangerouslySetInnerHTML={{ __html: absolutizeWpMedia(post.content) }} />
 
       {faqs.length > 0 && (
         <section className="blog-faq mt-12">
@@ -90,7 +90,7 @@ export default async function BlogPostPage({ params }) {
                   <div className="rounded-xl border border-[#272727] bg-black-light p-6 lg:sticky lg:top-28 lg:flex lg:max-h-[calc(100vh-9rem)] lg:flex-col">
                     <p className="mb-3 shrink-0 text-sm font-semibold uppercase tracking-wider text-primary">Table of Contents</p>
                     <div data-toc-scroll data-lenis-prevent className="lg:-mr-3 lg:min-h-0 lg:flex-1 lg:overflow-y-auto lg:pr-3">
-                      <BlogTableOfContents html={sidebar} />
+                      <BlogTableOfContents html={absolutizeWpMedia(sidebar)} />
                     </div>
                   </div>
                 </aside>

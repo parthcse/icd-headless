@@ -30,8 +30,8 @@ export default function BlogListing({
         </div>
       </section>
 
-      <section className="full-section">
-        <div className="container">
+      <section className="blog-post-grid full-section">
+        <div className="container max-w-[1920px]">
           {posts.length ? (
             <div className="grid animate fadeUp gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
               {posts.map((post) => (
