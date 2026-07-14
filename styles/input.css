@@ -88,6 +88,30 @@
     .blog-content hr { @apply my-8 border-white/10; }
     .blog-content iframe { @apply my-6 aspect-video w-full rounded-lg; }
 
+    /* Blog CTA box — WordPress [blog-page-cta] shortcode: image left col, copy + button right col. */
+    .blog-content .blog-page-cta {
+        @apply my-10 grid grid-cols-1 items-stretch gap-6 overflow-hidden rounded-2xl border border-primary/30 bg-black-light p-5 sm:grid-cols-[2fr_3fr] sm:gap-8 sm:p-7;
+    }
+    .blog-content .blog-page-cta .col-left img {
+        @apply m-0 h-full min-h-[11rem] w-full rounded-xl object-cover;
+    }
+    .blog-content .blog-page-cta .col-right h4 {
+        @apply mt-0 mb-3 text-xl font-bold leading-snug text-white sm:text-2xl;
+    }
+    .blog-content .blog-page-cta .col-right p {
+        @apply mb-2 text-white/80;
+    }
+    .blog-content .blog-page-cta .col-right p:last-child { @apply mb-0; }
+    /* Match the default .btn/.btn-primary: square corners, orange fill + dark text, inverts on hover. */
+    .blog-content .blog-page-cta .cus-orange-btn {
+        @apply mt-4 inline-flex items-center justify-center gap-[0.27em] whitespace-nowrap border-2 border-primary bg-primary px-[1.55em] py-[0.653em] text-base font-semibold leading-tight text-black-light no-underline transition-all duration-500 ease-out hover:bg-transparent hover:text-primary xl:text-[0.9rem];
+    }
+    .blog-content .blog-page-cta .cus-orange-btn i { @apply hidden; }
+    .blog-content .blog-page-cta .cus-orange-btn::after {
+        content: "\2192";
+        @apply ml-1 text-lg font-normal leading-none;
+    }
+
     /* General-purpose prose for hand-authored text pages (privacy, legal, terms…). */
     .text-content { @apply leading-relaxed text-white/85; }
     .text-content > * + * { @apply mt-5; }

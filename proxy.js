@@ -27,6 +27,9 @@ const XSL_UPSTREAM = "/wp-content/plugins/wordpress-seo/css/main-sitemap.xsl";
 // /sitemap.xml, /sitemap_index.xml, or any <type>-sitemap<N>.xml
 const SITEMAP_RE = /^\/(sitemap(_index)?|[a-z0-9_-]+-sitemap\d*)\.xml$/i;
 
+// Sub-sitemaps to drop from the index (and 404 on a direct hit). Basename only.
+const EXCLUDED_SITEMAPS = ["cs_category-sitemap.xml"];
+
 const UPSTREAM_HEADERS = {
   "user-agent": "Mozilla/5.0 (compatible; IcecubeSitemapProxy/1.0)",
   accept: "application/xml,text/xml;q=0.9,*/*;q=0.8",
@@ -75,6 +78,11 @@ export async function proxy(request) {
 
   if (!SITEMAP_RE.test(pathname)) return NextResponse.next();
 
+  // Excluded sub-sitemaps: 404 on direct access so they're fully removed.
+  if (EXCLUDED_SITEMAPS.includes(pathname.slice(1))) {
+    return new NextResponse("Not Found", { status: 404, headers: { "content-type": "text/plain" } });
+  }
+
   let upstream;
   try {
     upstream = await fetch(`${CMS_ORIGIN}${pathname}`, { headers: UPSTREAM_HEADERS, redirect: "follow" });
@@ -90,6 +98,11 @@ export async function proxy(request) {
   // Rewrite CMS page + sub-sitemap URLs to the canonical www origin, but keep
   // /wp-content/ (media) pointing at the CMS where those assets live.
   xml = xml.replace(/https:\/\/cms\.icecubedigital\.com(?!\/wp-content)/g, PUBLIC_ORIGIN);
+  // Drop excluded sub-sitemaps from the sitemap index.
+  for (const name of EXCLUDED_SITEMAPS) {
+    const esc = name.replace(/[.]/g, "\\.");
+    xml = xml.replace(new RegExp(`\\s*<sitemap>\\s*<loc>[^<]*${esc}</loc>[\\s\\S]*?</sitemap>`, "gi"), "");
+  }
 
   return new NextResponse(xml, {
     status: 200,

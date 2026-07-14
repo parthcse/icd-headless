@@ -928,6 +928,124 @@ h6 {
   border-radius: 0.5rem;
 }
 
+/* Blog CTA box — WordPress [blog-page-cta] shortcode: image left col, copy + button right col. */
+
+.blog-content .blog-page-cta {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 1.5rem;
+  overflow: hidden;
+  border-radius: 1rem;
+  border-width: 1px;
+  border-color: rgb(241 126 63 / 0.3);
+  --tw-bg-opacity: 1;
+  background-color: rgb(21 21 21 / var(--tw-bg-opacity, 1));
+  padding: 1.25rem;
+}
+
+@media (min-width: 576px) {
+  .blog-content .blog-page-cta {
+    grid-template-columns: 2fr 3fr;
+    gap: 2rem;
+    padding: 1.75rem;
+  }
+}
+
+.blog-content .blog-page-cta .col-left img {
+  margin: 0px;
+  height: 100%;
+  min-height: 11rem;
+  width: 100%;
+  border-radius: 0.75rem;
+  object-fit: cover;
+}
+
+.blog-content .blog-page-cta .col-right h4 {
+  margin-top: 0px;
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  line-height: 1.375;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+@media (min-width: 576px) {
+  .blog-content .blog-page-cta .col-right h4 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+.blog-content .blog-page-cta .col-right p {
+  margin-bottom: 0.5rem;
+  color: rgb(255 255 255 / 0.8);
+}
+
+.blog-content .blog-page-cta .col-right p:last-child {
+  margin-bottom: 0px;
+}
+
+/* Match the default .btn/.btn-primary: square corners, orange fill + dark text, inverts on hover. */
+
+.blog-content .blog-page-cta .cus-orange-btn {
+  margin-top: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.27em;
+  white-space: nowrap;
+  border-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgb(241 126 63 / var(--tw-border-opacity, 1));
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 126 63 / var(--tw-bg-opacity, 1));
+  padding-left: 1.55em;
+  padding-right: 1.55em;
+  padding-top: 0.653em;
+  padding-bottom: 0.653em;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 600;
+  line-height: 1.25;
+  --tw-text-opacity: 1;
+  color: rgb(21 21 21 / var(--tw-text-opacity, 1));
+  text-decoration-line: none;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+.blog-content .blog-page-cta .cus-orange-btn:hover {
+  background-color: transparent;
+  --tw-text-opacity: 1;
+  color: rgb(241 126 63 / var(--tw-text-opacity, 1));
+}
+
+@media (min-width: 1200px) {
+  .blog-content .blog-page-cta .cus-orange-btn {
+    font-size: 0.9rem;
+  }
+}
+
+.blog-content .blog-page-cta .cus-orange-btn i {
+  display: none;
+}
+
+.blog-content .blog-page-cta .cus-orange-btn::after {
+  content: "\2192";
+  margin-left: 0.25rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
 /* General-purpose prose for hand-authored text pages (privacy, legal, terms…). */
 
 .text-content {
