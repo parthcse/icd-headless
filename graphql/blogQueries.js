@@ -39,6 +39,12 @@ const POST_CORE = `
       altText
     }
   }
+  postsFields {
+    postFaqs {
+      postFaqQuestion
+      postFaqAnswer
+    }
+  }
 `;
 
 /** Blog listing — offset-paginated, returns the page + exact total. */

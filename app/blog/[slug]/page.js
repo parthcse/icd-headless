@@ -7,6 +7,7 @@ import BlogTableOfContents from "@/components/blog/BlogTableOfContents";
 import BlogShare from "@/components/blog/BlogShare";
 import BlogAuthorBox from "@/components/blog/BlogAuthorBox";
 import RelatedPosts from "@/components/blog/RelatedPosts";
+import FaqAccordion from "@/components/common/FaqAccordion";
 import { getBlogPost, getRelatedPosts } from "@/lib/blog";
 import { getYoastMetadataByUri } from "@/lib/seo";
 import YoastSchema from "@/components/common/YoastSchema";
@@ -41,6 +42,9 @@ export default async function BlogPostPage({ params }) {
   const hasSidebar = Boolean(sidebar);
   const featured = post.featuredImage?.node?.sourceUrl;
   const shareUrl = `${siteOrigin()}${internalPath(post.uri)}`;
+  const faqs = (post.postsFields?.postFaqs || [])
+    .filter((f) => f?.postFaqQuestion)
+    .map((f) => ({ question: f.postFaqQuestion, answerHtml: f.postFaqAnswer }));
 
   const article = (
     <article className="order-1 min-w-0 lg:order-2">
@@ -52,6 +56,13 @@ export default async function BlogPostPage({ params }) {
         />
       )}
       <div className="blog-content" dangerouslySetInnerHTML={{ __html: post.content }} />
+
+      {faqs.length > 0 && (
+        <section className="blog-faq mt-12">
+          <h2 className="font-36 font-semibold mb-6">Frequently Asked Questions</h2>
+          <FaqAccordion items={faqs} />
+        </section>
+      )}
 
       <div className="mt-10">
         <a href="/blog/" className="btn btn-secondary inline-flex">
