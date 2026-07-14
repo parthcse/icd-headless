@@ -22,6 +22,7 @@ This is the authoritative spec. Follow it exactly and any Claude Code instance w
 10. [Post-build verification checklist](#10-post-build-verification-checklist)
 11. [Catalogue of mistakes to avoid](#11-catalogue-of-mistakes-to-avoid)
 12. [Reference constants & snippets](#12-reference-constants--snippets)
+13. [Special & bespoke pages](#13-special--bespoke-pages)
 
 ---
 
@@ -601,12 +602,12 @@ portfolio: {
 # fetch all case studies (or portfolios), then find the databaseId whose slug matches live's card
 curl -s -A "$UA" -H "Accept: application/json" -H "Content-Type: application/json" \
   --data '{"query":"{ caseStudies(first:200){ nodes{ databaseId slug title } } }"}' \
-  "https://www.icecubedigital.com/graphql"
+  "https://cms.icecubedigital.com/graphql"
 ```
 
 Rules (from [§2.3](#23-casestudy--portfolio-items--use-lives-actual-cpt-items)): keep every live slug that resolves in the CPT (even empty ACF); substitute only genuinely-missing ones; flag substitutions. Track empty-ACF IDs in a `MISSING_CMS_REPORT.md` for the client to populate.
 
-> Live databaseIds differ from the old dev IDs. Current default portfolio IDs are `[40941, 40927, 40956]`. The GraphQL endpoint is `https://www.icecubedigital.com/graphql` (set in `.env.local`; needs a browser UA + `Accept: application/json` when tested externally).
+> Live databaseIds differ from the old dev IDs. Current default portfolio IDs are `[40941, 40927, 40956]`. The GraphQL endpoint is `https://cms.icecubedigital.com/graphql` (set in `.env.local`; needs a browser UA + `Accept: application/json` when tested externally). Note the auditor still fetches live **pages** from `https://cms.icecubedigital.com/<slug>/` now (the www front-end is this Next app).
 
 ### testimonials — `testimonialSlug`
 
@@ -719,13 +720,66 @@ const BTN_ARROW = "M0.703125 12.0312C0.494792 12.0312 0.3125 11.9792 0.15625 11.
 
 > **Icon-box icons must be the circular-badge style ([§2.10](#210-icon-box-icons-must-be-the-circular-badge-style)).** A badge icon is a 108×108 SVG whose first shape is `<rect width="108" height="108" rx="54" fill="white"/>` (the white circle) with a black glyph on top — that white circle is the look every service page uses in `topIconBox`/`leftIconBox`. **Most** icons in the folder are badge-style; a minority are **flat** (small, no white circle) and are for the footer/inline strips only — notably the brand logos `facebook.svg` / `twitter.svg` / `instagram.svg` / `inkedin.svg` and payment/integration marks (`stripe-icon.svg`, `paypal-icon.svg`, `mailchimp-icon.svg`, `klaviyo-icon.svg`, `elementor-icon.svg`, …). Verify before using: `grep -l 'rx="54"' public/assets/icons/<name>.svg` (a match = badge-style). If a badge grid needs a brand mark, make a `-circle` variant — a 108×108 white-circle badge with the brand glyph centered (~44px, `transform="translate(32,32) scale(1.7)"`) in black — as done for `facebook-circle.svg`, `twitter-circle.svg`, `instagram-circle.svg`, `linkedin-circle.svg`.
 
-**GraphQL endpoint:** `https://www.icecubedigital.com/graphql` (in `.env.local` as `NEXT_PUBLIC_WORDPRESS_GRAPHQL_ENDPOINT`). Read-only SSR via `lib/apollo-client.js`.
+**GraphQL endpoint:** `https://cms.icecubedigital.com/graphql` (in `.env.local` as `NEXT_PUBLIC_WORDPRESS_GRAPHQL_ENDPOINT`) — the WP backend moved to the `cms.` subdomain when the site went live (`www.` is now this Next front-end). Read-only SSR via `lib/apollo-client.js`.
 
 **Best template file to copy:** [`lib/services/industry/industry-manufacturing-seo.js`](lib/services/industry/industry-manufacturing-seo.js) — a near-complete real page exercising banner (3 paragraphs), caseStudy, seoAuditForm, plainText (with inline link + exact button), topIconBox (9 items + inline links), infoBox, processSteps (with button), leftIconBox (with inline links), cta, faq, and all four common sections.
 
 **Category folders** under `lib/services/`: `ecommerce/`, `magento/`, `wordpress/`, `shopify/`, `woocommerce/`, `webflow/`, `white-label/`, `industry/`, `location/`, `packages/`, `resources/our-approach/`, `resources/pricing-guides/`, plus `common-section/`. The folder is organisational only — the flat `slug` is the URL.
 
 **Non-service page types** (about-the-company pages — `why-work-with-us`, `mobile-application`, `development-partnership`) live in a **sibling `lib/company/`** folder, NOT under `lib/services/`. They still register in the same `lib/services/index.js` MAP (imported as `../company/<file>`) and render through the same route/sections. Inside those files, the relative imports point back into services: `import('../services/index')` for the `@type`, and `../services/common-section/...` for common sections. Put future company/staff pages here, not in `lib/services/`.
+
+---
+
+## 13. Special & bespoke pages
+
+Some pages don't fit the standard mould. There are **two tiers** — always pick the *lowest* one that works.
+
+### Tier 1 — Special *service* page (still the `[slug]` system)
+
+A normal data-driven page that just adds a **per-page popup** and/or a **money-back badge**. Lives in `lib/services/special/` and registers in `index.js` exactly like any other page. Examples: `seo-company-ahmedabad`, `seo-company-gujarat`, `digital-marketing-agency-ahmedabad`.
+
+**Everything in §1–§12 still applies.** The only extra data keys:
+
+```js
+// top-level — a custom popup for THIS page (auto-opens; also opens on every popup button)
+popup: {
+  image: "/assets/photos/<name>.png",   // left-column image (png/jpg, not webp)
+  title: "Book Consultation with SEO Expert",
+  subtitle: "",
+  autoDelay: 10000,                      // ms before it auto-opens
+},
+
+banner: {
+  guaranteeBadge: true,                  // money-back badge straddling the form's top border
+  formTitle: "Schedule Your Free Consultation",
+  formSubtitle: "Just pick a time that works for you.",   // optional line under the form title
+  // …the rest of a normal banner
+},
+```
+
+Checklist:
+
+- [ ] File in `lib/services/special/`, registered in `index.js` (the same 2 edits as any page).
+- [ ] `popup: {…}` only if the page needs the custom popup; `guaranteeBadge: true` only if it needs the badge.
+- [ ] Two-button CTA band: add `ctaLabelSecondary` + `ctaHrefSecondary` to a `cta` section (renders a second outline button).
+- [ ] All Golden Rules (§2) and the verification checklist (§10) apply unchanged.
+
+### Tier 2 — Fully-bespoke page (NOT the `[slug]` system)
+
+Use **only** when the live layout genuinely can't be expressed with the shared service sections (e.g. the Gutenberg-built AI product pages). Built like the about / newsletter pages — its own route + its own components. Examples: `ai-whatsapp-quoting-system`, `icecube-ecommerce-ai-agent`.
+
+- **Route:** `app/(special)/<slug>/page.js` — `generateMetadata` (→ `getYoastMetadataByUri`) + `<YoastSchema uri/>` + `<Header/>` + `<main>…</main>` + `<PageSchema uri/>` + `<Footer/>`. Copy `app/(resources)/web-wednesday-newsletter/page.js` as the template.
+- **Components:** build/reuse dark-theme components in **`components/special/`** (`SpecialHero`, `FeatureCards`, `StepFlow`, `CompareTable`, `SplitCards`, `CostTable`, `FaqAccordion`, `CtaBand`, `SectionHeading`, `renderParts`). Hero right column = a **GIF** in `public/assets/gifs/`.
+- Match the live **layout** faithfully, but style it in **our dark theme** with our fade-up animations (`animate fadeUp`).
+
+Checklist:
+
+- [ ] **Do NOT touch** `app/[slug]/page.js` (`SECTION_RENDERERS`), `components/services/`, or `lib/services/index.js`.
+- [ ] Route under `app/(special)/`; components under `components/special/`; hero GIF in `public/assets/gifs/`.
+- [ ] `generateMetadata` + `<YoastSchema>` + `<PageSchema>` wired, so SEO/schema parity matches every other page.
+- [ ] CTAs use `ctaHref: "popup"` (or a real link); run `npm run build:css` after any new component class, then `npm run build` to confirm HTTP 200.
+
+> Deeper detail — the popup variant store, badge, and SEO/indexing internals — is in the project **README** (*Special & bespoke pages*, *Popup & CTA system*, *SEO, sitemap & indexing*).
 
 ---
 

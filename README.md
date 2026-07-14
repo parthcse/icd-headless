@@ -1,8 +1,10 @@
 # icd-headless
 
-A headless **Next.js 16** front-end for **icecubedigital.com** (Icecube Digital, an eCommerce-focused web agency). Marketing/service pages are rendered from local, data-driven configuration; dynamic content (blog posts, portfolio items, case studies, testimonials) is pulled from a **headless WordPress** backend over **WPGraphQL**.
+A headless **Next.js 16** front-end for **icecubedigital.com** (Icecube Digital, an eCommerce-focused web agency). Marketing/service pages are rendered from local, data-driven configuration; dynamic content (blog posts, portfolio items, case studies, testimonials) and per-page SEO are pulled from a **headless WordPress** backend over **WPGraphQL**.
 
-The site is content-heavy — **~178 data-driven service/industry/location pages** plus blog and portfolio/case-study archives — so the architecture is built around a small set of reusable "section" components driven by plain data objects. **You add pages by writing data, not JSX.**
+**Live domain split** (the site is live): the public front-end is **`www.icecubedigital.com`** — this Next.js app on Vercel. The WordPress backend, media, and Yoast SEO now live on the **`cms.icecubedigital.com`** subdomain (GraphQL at `cms.icecubedigital.com/graphql`, uploads served from `cms…/wp-content/`).
+
+The site is content-heavy — **~181 data-driven service/industry/location pages** plus a handful of bespoke landing pages, blog, and portfolio/case-study archives — so the architecture is built around a small set of reusable "section" components driven by plain data objects. **You add most pages by writing data, not JSX** (the exception is the fully-custom pages under `app/(special)/` — see [Special & bespoke pages](#special--bespoke-pages)).
 
 ---
 
@@ -16,13 +18,16 @@ The site is content-heavy — **~178 data-driven service/industry/location pages
 6. [Routing](#routing)
 7. [The page/section system](#the-pagesection-system) ← read this before building pages
 8. [Adding a new service/industry page](#adding-a-new-serviceindustry-page)
-9. [Styling (Tailwind, theme, icons)](#styling)
-10. [Data layer (WPGraphQL, CPTs, testimonials)](#data-layer)
-11. [Forms (contact + newsletter)](#forms)
-12. [Fonts](#fonts)
-13. [Deployment & operational notes](#deployment--operational-notes)
-14. [Conventions & gotchas cheat-sheet](#conventions--gotchas-cheat-sheet)
-15. [Reference docs](#reference-docs)
+9. [Special & bespoke pages](#special--bespoke-pages)
+10. [Popup & CTA system](#popup--cta-system)
+11. [SEO, sitemap & indexing](#seo-sitemap--indexing)
+12. [Styling (Tailwind, theme, icons)](#styling)
+13. [Data layer (WPGraphQL, CPTs, testimonials)](#data-layer)
+14. [Forms (contact + newsletter)](#forms)
+15. [Fonts](#fonts)
+16. [Deployment & operational notes](#deployment--operational-notes)
+17. [Conventions & gotchas cheat-sheet](#conventions--gotchas-cheat-sheet)
+18. [Reference docs](#reference-docs)
 
 ---
 
@@ -69,7 +74,7 @@ Defined in `.env.local` (not committed). `NEXT_PUBLIC_*` are exposed to the brow
 
 | Variable | Scope | Purpose |
 |---|---|---|
-| `NEXT_PUBLIC_WORDPRESS_GRAPHQL_ENDPOINT` | public | WPGraphQL endpoint, e.g. `https://www.icecubedigital.com/graphql`. Source of blog posts, portfolio, case studies, and other CMS data. If unset, the Apollo client falls back to an invalid URI and CMS-backed sections degrade gracefully to empty. |
+| `NEXT_PUBLIC_WORDPRESS_GRAPHQL_ENDPOINT` | public | WPGraphQL endpoint — now `https://cms.icecubedigital.com/graphql` (the WP backend moved to the `cms.` subdomain when the site went live). Source of blog posts, portfolio, case studies, Yoast SEO/schema, per-page ACF schema, and other CMS data. If unset, the Apollo client falls back to an invalid URI and CMS-backed sections degrade gracefully to empty. |
 | `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | public | Cloudflare Turnstile site key for the contact form. Has a hard-coded production fallback; a test key is used automatically on non-production hosts. |
 | `NEXT_PUBLIC_CF7_FORM_ID` | public | WordPress Contact Form 7 form id the contact form submits to (default `4751`). |
 | `MAILCHIMP_API_KEY` | server | Mailchimp API key for the newsletter API route. |
@@ -102,12 +107,16 @@ Defined in `.env.local` (not committed). `NEXT_PUBLIC_*` are exposed to the brow
 
 ```
 icd-headless/
+├── middleware.js                # Proxies Yoast sitemaps from the CMS → www (see SEO section)
 ├── app/                         # Next.js App Router
-│   ├── layout.js                # Root layout: global CSS, fonts, SmoothScroll, third-party scripts
+│   ├── layout.js                # Root layout: global CSS, fonts, SmoothScroll, SiteSchema, GetQuotePopup, scripts
+│   ├── robots.js                # /robots.txt (points at the sitemap, declares canonical www host)
 │   ├── page.js                  # Home page  /
 │   ├── [slug]/page.js           # ★ Dynamic route for ALL data-driven service/industry/etc. pages
 │   ├── (marketing)/             # Route group: about-us, contact-us, career, case-studies (index),
-│   │                            #   our-portfolio (index), client-testimonials, privacy-policy, sitemap, …
+│   │                            #   our-portfolio (index), client-testimonials, privacy-policy, sitemap, thank-you, …
+│   ├── (special)/               # ★ Fully-custom standalone landing pages (NOT the [slug] system):
+│   │                            #   ai-whatsapp-quoting-system, icecube-ecommerce-ai-agent
 │   ├── (resources)/             # learning, web-wednesday-newsletter
 │   ├── (tools)/                 # meta-length-checker
 │   ├── blog/                    # /blog + /blog/[slug] + /blog/category|author|page/…  (WP posts)
@@ -115,26 +124,31 @@ icd-headless/
 │   └── api/                     # route handlers: newsletter (Mailchimp), case-studies, portfolios
 ├── components/
 │   ├── layout/                  # Header, Footer
-│   ├── common/                  # ContactForm, SmoothScroll, RouteHandler, …
-│   ├── services/                # ★ 31 reusable "section" components consumed by the data files
+│   ├── common/                  # ContactForm, SmoothScroll, RouteHandler, SiteSchema, PageSchema,
+│   │                            #   GetQuotePopup + popupVariantStore + PopupVariantRegistrar, …
+│   ├── services/                # ★ 31 reusable "section" components consumed by the [slug] data files
+│   ├── special/                 # ★ 15 bespoke dark-theme components for the app/(special)/ pages
 │   ├── home/ about/ blog/ portfolio/ case-studies/ testimonials/ contact/ career/ …
 │   └── icons/
 ├── lib/
-│   ├── services/                # ★ 178 page data files, grouped by category folder
+│   ├── site-schema.js           # ★ Site-wide JSON-LD (LocalBusiness + WebSite + Organization) — edit here
+│   ├── services/                # ★ 181 page data files, grouped by category folder
 │   │   ├── index.js             #   the registry: imports + MAP (slug → data) + getServiceData()
 │   │   ├── common-section/      #   shared section presets (milestone, achievements, ourClients, ceoCta)
+│   │   ├── special/             #   landing pages that USE the [slug] system but have a per-page popup + badge
 │   │   ├── ecommerce/ magento/ wordpress/ shopify/ woocommerce/ webflow/ white-label/
 │   │   ├── digital-marketing/ ai/ development/ industry/ location/ packages/ resources/
 │   ├── company/                 # "about the company" pages (why-work-with-us, mobile-application, …)
 │   ├── testimonials.js          # static, slug-keyed testimonial store
 │   ├── apollo-client.js         # Apollo/WPGraphQL client
+│   ├── seo.js                   # Yoast metadata/schema by URI + per-page ACF schema + NOINDEX_PATHS
 │   ├── wp-home-data.js          # CMS fetch helpers (case studies, portfolio, posts) with fallbacks
-│   ├── blog.js portfolio.js case-studies.js seo.js wp-text.js
-├── graphql/                     # GraphQL query documents
+│   ├── blog.js portfolio.js case-studies.js wp-text.js
+├── graphql/                     # GraphQL query documents (incl. seoQueries.js: Yoast meta/schema + ACF)
 ├── public/
 │   ├── css/output.css           # ★ PREBUILT Tailwind output (committed)
 │   ├── fonts/                   # Gilroy family
-│   ├── assets/{icons,photos,testimonial}/  # SVG icons, downloaded images, avatars
+│   ├── assets/{icons,photos,flags,gifs,testimonial}/  # icons, images, country flags, hero GIFs, avatars
 │   └── js/                      # legacy jQuery/owl-carousel design scripts
 ├── styles/input.css             # Tailwind source → compiles to public/css/output.css
 ├── scripts/                     # one-off migration/extraction scripts (*.mjs)
@@ -153,9 +167,12 @@ icd-headless/
 | `/blog`, `/blog/<slug>`, `/blog/category/…` | `app/blog/…` | WordPress posts + archives |
 | `/our-portfolio`, `/portfolio/<slug>` | `app/(marketing)` + `app/portfolio/[slug]` | Portfolio archive + item detail (WP CPT) |
 | `/case-studies`, `/case-studies/<slug>` | `app/(marketing)` + dynamic | Case-study archive + detail (WP CPT) |
+| `/ai-whatsapp-quoting-system`, `/icecube-ecommerce-ai-agent` | `app/(special)/…` | **Fully-custom** landing pages — own route + components, **not** the `[slug]` system |
+| `/sitemap.xml`, `/sitemap*.xml` | `middleware.js` | Yoast sitemaps proxied from the CMS, rewritten to `www` |
+| `/robots.txt` | `app/robots.js` | robots + `Sitemap:` line |
 | `POST /api/newsletter` | `app/api/newsletter/route.js` | Mailchimp signup |
 
-> Route groups `(marketing)`, `(resources)`, `(tools)` organize files **without** adding a URL segment.
+> Route groups `(marketing)`, `(special)`, `(resources)`, `(tools)` organize files **without** adding a URL segment.
 
 ---
 
@@ -218,6 +235,44 @@ That's the whole wiring — the route, metadata, and sections are automatic. For
 
 ---
 
+## Special & bespoke pages
+
+There are **two** distinct "special" tiers, and they are not the same thing:
+
+**1. Special *service* pages — still the `[slug]` system** (`lib/services/special/`).
+`seo-company-ahmedabad`, `seo-company-gujarat`, `digital-marketing-agency-ahmedabad`. These are ordinary data files registered in `lib/services/index.js` and rendered by `app/[slug]/page.js` — but they add two things:
+- a **per-page popup** (`popup: {…}` — see [Popup & CTA system](#popup--cta-system)), and
+- a **money-back guarantee badge** on the banner (`guaranteeBadge: true`).
+
+**2. Fully-bespoke landing pages — NOT the `[slug]` system** (`app/(special)/` + `components/special/`).
+`ai-whatsapp-quoting-system`, `icecube-ecommerce-ai-agent`. These have a layout that doesn't fit the shared service sections, so they're built like the about / newsletter pages: **their own route file** (`app/(special)/<slug>/page.js` with `generateMetadata` + `YoastSchema` + `Header`/`main`/`Footer` + `PageSchema`) composing **dedicated dark-theme components** from `components/special/` (`SpecialHero`, `FeatureCards`, `CompareTable`, `StepFlow`, `SplitCards`, `CostTable`, `FaqAccordion`, `CtaBand`, …). The hero's right column is a **GIF** (`public/assets/gifs/`).
+
+> **Rule:** bespoke pages must **not** modify the service renderer (`app/[slug]/page.js`), `components/services/`, or `lib/services/index.js`. Add a new `app/(special)/<slug>/` route with components in `components/special/`.
+
+---
+
+## Popup & CTA system
+
+- A single **`<GetQuotePopup/>`** lives in the root layout and **auto-opens** after a delay.
+- Any CTA with **`ctaHref: "popup"`** (via `ServiceCtaButton`) dispatches the `icd:open-quote-popup` event to open it — no per-button wiring.
+- **Per-page popup variant:** a page can set a top-level `popup: { image, title, subtitle, autoDelay }`. `PopupVariantRegistrar` publishes it to `popupVariantStore`, and `GetQuotePopup` renders that variant (custom left-column image/title + your own auto-open delay) instead of the default. Used by the special service pages.
+- **Guarantee badge:** `guaranteeBadge: true` on a `banner` renders the money-back badge straddling the form's top border (the form gets matching top padding).
+- **Two-button CTA band:** add `ctaLabelSecondary` + `ctaHrefSecondary` to a `cta` section to render a second (outline) button stacked under the primary.
+
+---
+
+## SEO, sitemap & indexing
+
+- **Per-page Yoast SEO:** `generateMetadata` → `getYoastMetadataByUri(uri)` (`lib/seo.js`) pulls title / description / canonical / OG / Twitter from the CMS.
+- **Indexability is decoupled from the CMS** *(important — read this):* the frontend is **indexable by DEFAULT** and does **not** inherit Yoast's `noindex`. Only paths listed in **`NOINDEX_PATHS`** (`lib/seo.js`, currently `/thank-you/`) emit `noindex, follow`. This is deliberate: WordPress "Discourage search engines" can stay **ON** to hide the `cms.` backend without ever noindexing the live front-end. Add a path to `NOINDEX_PATHS` to noindex a page.
+- **Site-wide JSON-LD:** `lib/site-schema.js` (LocalBusiness + WebSite + Organization) is rendered on every page by `<SiteSchema/>` in the root layout. **Edit the schema there.**
+- **Per-page JSON-LD:** the WordPress ACF field `seo_schema_data` (GraphQL `pageFields.seoSchemaData`) is fetched by `getPageSchemaByUri` and rendered right before the footer by **`<PageSchema uri/>`** (on `[slug]`, home, and standalone routes). Renders nothing when the field is empty; wraps bare JSON in a `<script type="application/ld+json">` if the editor omitted the tag.
+- **Sitemap:** `middleware.js` proxies Yoast's `/sitemap*.xml` from the CMS and rewrites `cms.` → `www.` (keeping `/wp-content/` media on the CMS). So `https://www.icecubedigital.com/sitemap.xml` serves the full Yoast sitemap. It also proxies Yoast's XSL stylesheet at same-origin **`/sitemap.xsl`** (and repoints the sitemap at it) so the styled sitemap view renders — browsers block cross-origin XSLT, which otherwise blanks/hangs the view.
+- **robots.txt:** `app/robots.js` (allow all, disallow `/api/`, `Sitemap:` + canonical `Host:` = www).
+- **⚠️ Build-time:** metadata, JSON-LD, and sitemap are generated at **build time** — after any CMS SEO change you must **redeploy**, then request reindexing in Google Search Console.
+
+---
+
 ## Styling
 
 - **Tailwind is prebuilt** into `public/css/output.css` (see the [CSS gotcha](#️-the-css-build-gotcha-important)). Source: `styles/input.css`.
@@ -251,8 +306,9 @@ That's the whole wiring — the route, metadata, and sections are automatic. For
 
 ## Deployment & operational notes
 
-Deploys to **Vercel**. The WordPress backend sits behind **Cloudflare**, which introduces a few real gotchas:
+Deploys to **Vercel**. The front-end is **`www.icecubedigital.com`**; the WordPress backend + media + Yoast SEO live on **`cms.icecubedigital.com`** (behind Cloudflare). Real gotchas:
 
+- **Build-time SEO & content:** metadata, JSON-LD, and the sitemap are generated at **build time** — after any CMS content or SEO change, **redeploy**, or the live site won't reflect it. (This is why the whole live site once showed `noindex`; see [SEO, sitemap & indexing](#seo-sitemap--indexing).)
 - **Empty CMS data on Vercel (403):** Cloudflare **Bot Fight Mode** can challenge the Vercel build/SSR IP, so WPGraphQL returns 403 and CMS-backed sections render empty. **Fix:** disable Bot Fight Mode for the GraphQL path, then redeploy.
 - **Contact-form "spam" rejections on a new domain:** add the new host to the **Turnstile allowlist** in Cloudflare, or CF7 rejects submissions as spam.
 - **Stale/cross-page clones from Cloudflare cache:** when scraping/verifying live pages you may receive a *different page's* cached body. Re-fetch (cache-bust) until the body matches the expected topic, and **purge the Cloudflare cache** for a URL before treating live as source-of-truth.
