@@ -11,7 +11,9 @@ export default function ServicesCeoCtaSection({ data }) {
           </div>
         </div>
         <div className="seo-images md:w-[60%] xl:w-[45%]">
-          <img src={data.image} alt={data.imageAlt} />
+          {/* loading=lazy + fetchPriority=low so React 19 doesn't emit a <link rel=preload>
+              for this below-the-fold image (avoids the "preloaded but not used" console warning). */}
+          <img src={data.image} alt={data.imageAlt} loading="lazy" fetchPriority="low" decoding="async" />
         </div>
       </div>
     </section>

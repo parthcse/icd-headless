@@ -63,18 +63,16 @@ export default function RootLayout({ children }) {
         <SiteSchema />
       </head>
       <body>
-        {/* Google Tag Manager (noscript) — production only */}
-        {process.env.VERCEL_ENV === "production" && (
-          <noscript>
-            <iframe
-              src="https://www.googletagmanager.com/ns.html?id=GTM-K9WNLJ5"
-              height="0"
-              width="0"
-              style={{ display: "none", visibility: "hidden" }}
-              title="Google Tag Manager"
-            />
-          </noscript>
-        )}
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-K9WNLJ5"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+            title="Google Tag Manager"
+          />
+        </noscript>
         <SmoothScroll />
         <RouteHandler />
         <DeferredStyles />

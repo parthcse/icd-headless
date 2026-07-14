@@ -2,16 +2,8 @@ import Script from "next/script";
 
 /**
  * Third-party analytics / tracking: GTM, Lucky Orange, Hotjar, Hello Bar.
- *
- * Rendered ONLY on the production deployment (icecubedigital.com) — never on
- * localhost (`next dev`) or Vercel preview URLs. Loading these off-production
- * pollutes analytics data, and Lucky Orange in particular auto-registers the
- * loading origin (e.g. "localhost:3000") as the site's domain, which then blocks
- * the real domain via CORS. Gate on VERCEL_ENV so only the live site loads them.
  */
 export default function Analytics() {
-  if (process.env.VERCEL_ENV !== "production") return null;
-
   return (
     <>
       {/* Google Tag Manager */}
