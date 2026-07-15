@@ -15,6 +15,11 @@ import Header from "@/components/layout/Header";
 import YoastSchema from "@/components/common/YoastSchema";
 import { getYoastMetadataByUri } from "@/lib/seo";
 
+// AboutTeamSection pulls the roster from the CMS, so this page can't be fully
+// static — without ISR the team would be frozen at build time and CMS edits
+// (new member, reordering by date, name/photo changes) would need a redeploy.
+export const revalidate = 600;
+
 export async function generateMetadata() {
   const yoast = await getYoastMetadataByUri("/about-us/");
   return yoast || {

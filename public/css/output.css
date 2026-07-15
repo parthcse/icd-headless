@@ -2343,6 +2343,10 @@ h6 {
   aspect-ratio: 16/9;
 }
 
+.aspect-\[214\/300\] {
+  aspect-ratio: 214/300;
+}
+
 .aspect-\[260\/170\] {
   aspect-ratio: 260/170;
 }
@@ -2513,10 +2517,6 @@ h6 {
 
 .max-h-\[1\.2em\] {
   max-height: 1.2em;
-}
-
-.max-h-\[1\.48em\] {
-  max-height: 1.48em;
 }
 
 .max-h-\[1em\] {
@@ -2787,10 +2787,6 @@ h6 {
 
 .max-w-\[1em\] {
   max-width: 1em;
-}
-
-.max-w-\[2\.85em\] {
-  max-width: 2.85em;
 }
 
 .max-w-\[30\%\] {
@@ -3166,6 +3162,10 @@ h6 {
 
 .divide-white\/10 > :not([hidden]) ~ :not([hidden]) {
   border-color: rgb(255 255 255 / 0.1);
+}
+
+.self-start {
+  align-self: flex-start;
 }
 
 .self-stretch {
@@ -3923,6 +3923,10 @@ h6 {
 
 .pr-2 {
   padding-right: 0.5rem;
+}
+
+.pt-0 {
+  padding-top: 0px;
 }
 
 .pt-1 {
@@ -4903,6 +4907,10 @@ html.lenis {
   background-color: rgb(241 126 63 / var(--tw-bg-opacity, 1));
 }
 
+.group:hover .group-hover\:bg-transparent {
+  background-color: transparent;
+}
+
 .group\/card:hover .group-hover\/card\:from-primary\/40 {
   --tw-gradient-from: rgb(241 126 63 / 0.4) var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(241 126 63 / 0) var(--tw-gradient-to-position);
@@ -5092,11 +5100,6 @@ html.lenis {
     top: 10rem;
   }
 
-  .md\:my-auto {
-    margin-top: auto;
-    margin-bottom: auto;
-  }
-
   .md\:-mt-12 {
     margin-top: -3rem;
   }
@@ -5170,12 +5173,24 @@ html.lenis {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
+  .md\:grid-cols-\[minmax\(0\2c 2fr\)_minmax\(0\2c 3fr\)\] {
+    grid-template-columns: minmax(0,2fr) minmax(0,3fr);
+  }
+
+  .md\:grid-cols-\[minmax\(0\2c 3fr\)_minmax\(0\2c 2fr\)\] {
+    grid-template-columns: minmax(0,3fr) minmax(0,2fr);
+  }
+
   .md\:flex-row {
     flex-direction: row;
   }
 
   .md\:flex-row-reverse {
     flex-direction: row-reverse;
+  }
+
+  .md\:items-start {
+    align-items: flex-start;
   }
 
   .md\:justify-between {
@@ -5196,6 +5211,10 @@ html.lenis {
 
   .md\:gap-8 {
     gap: 2rem;
+  }
+
+  .md\:self-start {
+    align-self: flex-start;
   }
 
   .md\:p-8 {
@@ -5337,6 +5356,10 @@ html.lenis {
     margin-left: auto;
   }
 
+  .lg\:mt-6 {
+    margin-top: 1.5rem;
+  }
+
   .lg\:mt-8 {
     margin-top: 2rem;
   }
@@ -5452,6 +5475,10 @@ html.lenis {
 
   .lg\:gap-11 {
     gap: 2.75rem;
+  }
+
+  .lg\:gap-12 {
+    gap: 3rem;
   }
 
   .lg\:gap-3 {
@@ -5873,11 +5900,7 @@ html.lenis {
 }
 
 @media (min-width: 768px) {
-  .md\:\[\&\>\*\:nth-child\(2\)\]\:top-\[20\%\]>*:nth-child(2) {
-    top: 20%;
-  }
-
-  .md\:\[\&\>\*\:nth-child\(4\)\]\:top-\[20\%\]>*:nth-child(4) {
+  .md\:\[\&\>\*\:nth-child\(even\)\]\:top-\[20\%\]>*:nth-child(even) {
     top: 20%;
   }
 }
@@ -5942,6 +5965,10 @@ html.lenis {
   transition-duration: 150ms;
 }
 
+.\[\&_li\]\:mb-2 li {
+  margin-bottom: 0.5rem;
+}
+
 .\[\&_p\]\:text-center p {
   text-align: center;
 }
@@ -5958,4 +5985,8 @@ html.lenis {
 
 .\[\&_summary\:\:-webkit-details-marker\]\:hidden summary::-webkit-details-marker {
   display: none;
+}
+
+.\[\&_ul\]\:pl-5 ul {
+  padding-left: 1.25rem;
 }

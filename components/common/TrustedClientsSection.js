@@ -1,3 +1,11 @@
+/**
+ * Site-wide "Our Trusted Clients" logo grid.
+ *
+ * Global section — rendered on the home page and on every service/company page
+ * (via the `ourClients` / `trustedClients` keys in SECTION_RENDERERS). It replaced
+ * the old 5-logo `ServicesOurClientSection` strip. Edit CLIENT_LOGOS here to
+ * change the logos everywhere.
+ */
 const CLIENT_LOGOS = [
   "/assets/photos/out-client-1.png",
   "/assets/photos/out-client-2.png",
@@ -31,7 +39,7 @@ export default function TrustedClientsSection() {
               key={src}
               className="column aspect-[260/170] bg-black-light hover:bg-transparent flex items-center justify-center border border-black-light hover:border-primary transition py-[0.3em] px-[0.2em]"
             >
-              <img className="mx-auto h-full w-full object-contain" src={src} alt="" />
+              <img className="mx-auto h-full w-full object-contain" src={src} alt="" loading="lazy" decoding="async" />
             </div>
           ))}
         </div>

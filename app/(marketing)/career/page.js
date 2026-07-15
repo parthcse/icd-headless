@@ -4,8 +4,7 @@ import Footer from "@/components/layout/Footer";
 import PageSchema from "@/components/common/PageSchema";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
 import WeServeSection from "@/components/home/WeServeSection";
-import ServicesOurClientSection from "@/components/services/ServicesOurClientSection";
-import ourClientsSection from "@/lib/services/common-section/our-clients-section";
+import TrustedClientsSection from "@/components/common/TrustedClientsSection";
 import CareerOpenings from "@/components/career/CareerOpenings";
 import { WHY_WORK, JOB_OPENINGS, CAREERS_APPLY_URL } from "@/lib/careers";
 import { getYoastMetadataByUri } from "@/lib/seo";
@@ -86,7 +85,7 @@ export default function CareerPage() {
         </section>
 
         {/* Our Clients */}
-        <ServicesOurClientSection data={ourClientsSection} />
+        <TrustedClientsSection />
 
         {/* Get a Quote */}
         <GetQuoteSection />

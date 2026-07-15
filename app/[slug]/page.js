@@ -10,7 +10,7 @@ import PopupVariantRegistrar from "@/components/common/PopupVariantRegistrar";
 import PageSchema from "@/components/common/PageSchema";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
 import WeServeSection from "@/components/home/WeServeSection";
-import TrustedClientsSection from "@/components/home/TrustedClientsSection";
+import TrustedClientsSection from "@/components/common/TrustedClientsSection";
 
 import ServicesBannerSection from "@/components/services/ServicesBannerSection";
 import ServicesSimpleBanner from "@/components/services/ServicesSimpleBanner";
@@ -32,7 +32,6 @@ import ServicesTopIconBoxSection from "@/components/services/ServicesTopIconBoxS
 import ServicesLeftIconBoxSection from "@/components/services/ServicesLeftIconBoxSection";
 import ServicesProcessStepSection from "@/components/services/ServicesProcessStepSection";
 import ServicesFaqSection from "@/components/services/ServicesFaqSection";
-import ServicesOurClientSection from "@/components/services/ServicesOurClientSection";
 import ServicesCeoCtaSection from "@/components/services/ServicesCeoCtaSection";
 import ServicesMilestoneSection from "@/components/services/ServicesMilestoneSection";
 import ServicesPlainTextSection from "@/components/services/ServicesPlainTextSection";
@@ -128,7 +127,10 @@ const SECTION_RENDERERS = {
   tableCompare: (data) => data.tableCompare && <ServicesTableCompare data={data.tableCompare} />,
   faq: (data) => data.faq && <ServicesFaqSection data={data.faq} />,
   faqSecondary: (data) => data.faqSecondary && <ServicesFaqSection data={data.faqSecondary} />,
-  ourClients: (data) => data.ourClients && <ServicesOurClientSection data={data.ourClients} />,
+  // Both keys render the same site-wide "Our Trusted Clients" grid. `ourClients` is
+  // kept as a position marker so the existing service data files keep placing the
+  // section where they always did (it replaced the old 5-logo strip).
+  ourClients: (data) => data.ourClients && <TrustedClientsSection />,
   trustedClients: (data) => data.trustedClients && <TrustedClientsSection />,
   weServe: () => <WeServeSection />,
   ceoCta: (data) => data.ceoCta && <ServicesCeoCtaSection data={data.ceoCta} />,

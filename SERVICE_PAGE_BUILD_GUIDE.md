@@ -560,7 +560,8 @@ import ceoCtaSection from "../common-section/ceo-cta-section";
 // …then in the data object, place them where live shows them:
 milestone: milestoneSection,       // counter stats — NOTE: most INDUSTRY pages have none
 achievements: achievementsSection, // review badges
-ourClients: ourClientsSection,     // client logo strip
+ourClients: ourClientsSection,     // site-wide "Our Trusted Clients" grid — position marker only;
+                                   // logos live in components/common/TrustedClientsSection.js
 getQuote: true,                    // global home CTA form (no data) — pin position, or omit to auto-place
 weServe: true,                     // global "industries we serve" (no data)
 ceoCta: ceoCtaSection,             // closing CEO CTA

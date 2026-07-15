@@ -4,7 +4,7 @@ import HeroSection from "../components/home/HeroSection";
 import LatestNewsSection from "../components/home/LatestNewsSection";
 import ServicesSection from "../components/home/ServicesSection";
 import SuccessStoriesSection from "../components/home/SuccessStoriesSection";
-import TrustedClientsSection from "../components/home/TrustedClientsSection";
+import TrustedClientsSection from "../components/common/TrustedClientsSection";
 import WeServeSection from "../components/home/WeServeSection";
 import WhyChooseUsSection from "../components/home/WhyChooseUsSection";
 import Footer from "../components/layout/Footer";

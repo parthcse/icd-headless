@@ -36,7 +36,9 @@ const sections = [
   ["SuccessStoriesSection", "<!--Start home our client-->", "<!--End home our client-->"],
   ["WhyChooseUsSection", "<!--Start home why choose -->", "<!--End home why choose -->"],
   ["HappyCustomersSection", "<!--Start home customer -->", "<!--end home customer -->"],
-  ["TrustedClientsSection", "<!--Start home out client -->", "<!--End home out client -->"],
+  // TrustedClientsSection is intentionally NOT regenerated here: it was promoted to a
+  // hand-maintained global section at components/common/TrustedClientsSection.js (used
+  // site-wide, not just on home). Re-adding it would clobber that file / create an orphan.
   ["LatestNewsSection", "<!--Start home blog -->", "<!--End home blog -->"],
   ["GetQuoteSection", "<!--Start home contant -->", "<!--End home contant -->"],
   ["WeServeSection", "<!--Start home countries serve -->", "<!--End home countries serve -->"],
