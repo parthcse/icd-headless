@@ -1,4 +1,5 @@
-// Sticky bottom-right WhatsApp call-to-action with an attention-grabbing pulse.
+// Sticky bottom-LEFT WhatsApp call-to-action with an attention-grabbing pulse.
+// Kept on the left because the JivoChat widget docks itself bottom-right.
 // Static markup (no hooks) → server component. Styles are self-contained so the
 // widget works without rebuilding Tailwind's output.css.
 const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=919106060593";
@@ -9,7 +10,7 @@ export default function WhatsAppButton() {
       <style>{`
         .icd-wa-fab {
           position: fixed;
-          right: 28px;
+          left: 28px;
           bottom: 28px;
           z-index: 110;
           display: flex;
