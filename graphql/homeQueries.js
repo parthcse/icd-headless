@@ -18,6 +18,10 @@ export const CASE_STUDIES_QUERY = gql`
           node {
             sourceUrl
             altText
+            mediaDetails {
+              width
+              height
+            }
           }
         }
       }
@@ -37,6 +41,10 @@ export const RECENT_POSTS_QUERY = gql`
           node {
             sourceUrl
             altText
+            mediaDetails {
+              width
+              height
+            }
           }
         }
       }

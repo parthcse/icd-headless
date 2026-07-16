@@ -37,7 +37,9 @@ export default async function SuccessStoriesSection() {
               className="item h-full me-5 md:me-6 lg:me-8 xl:me-10 max-w-80 md:max-w-96 lg:max-w-md xl:max-w-lg group"
             >
               <figure className="mb-5 md:mb-6 lg:mb-8 xl:mb-10 overflow-hidden">
-                <a href={slide.href}>
+                {/* aria-label: this link wraps only an image, and the CMS altText is
+                    often empty — the case-study title gives it a discernible name. */}
+                <a href={slide.href} aria-label={slide.title}>
                   <img
                     className="w-full aspect-[3/1.8] object-cover transition-all duration-500 group-hover:scale-105 ease-out"
                     src={slide.image}

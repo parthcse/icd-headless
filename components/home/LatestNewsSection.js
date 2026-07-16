@@ -14,6 +14,8 @@ export default async function LatestNewsSection() {
     dateLabel: formatPostDate(node.date),
     image: node.featuredImage?.node?.sourceUrl || FALLBACK_IMG,
     imageAlt: node.featuredImage?.node?.altText || "",
+    imageW: node.featuredImage?.node?.mediaDetails?.width || 851,
+    imageH: node.featuredImage?.node?.mediaDetails?.height || 509,
     href: internalPath(node.uri),
   }));
 
@@ -32,11 +34,16 @@ export default async function LatestNewsSection() {
             <div key={post.id} className="column bg-black-light animate fadeUp" style={{ animationDelay: `${(index) * 0.1}s` }}>
               <a href={post.href} className="group block text-inherit no-underline">
                 <figure className="overflow-hidden">
+                  {/* Real intrinsic width/height → the browser reserves the correct
+                      space before load (fixes CLS) while keeping the exact ratio, so
+                      nothing crops. w-full + auto height still scale it responsively. */}
                   <img
                     src={post.image}
                     alt={post.imageAlt}
+                    width={post.imageW}
+                    height={post.imageH}
                     style={{ opacity: 1 }}
-                    className="w-full transition-all duration-500 group-hover:scale-105 ease-out"
+                    className="h-auto w-full transition-all duration-500 group-hover:scale-105 ease-out"
                   />
                 </figure>
                 <div className="px-space-small py-space-small">

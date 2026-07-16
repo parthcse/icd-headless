@@ -339,7 +339,7 @@ export default function Header() {
             {/* Logo */}
             <div className="header-logo max-w-28 md:max-w-32 xl:max-w-36">
               <Link href="/">
-                <img src="/assets/icons/header-logo.svg" alt="Icecube Digital" />
+                <img src="/assets/icons/header-logo.svg" alt="Icecube Digital" width={170} height={63} />
               </Link>
             </div>
 
@@ -391,7 +391,7 @@ export default function Header() {
         <div id="mob-panel-main" className="mob-panel">
           <div className="mob-panel-head justify-between">
             <Link href="/" className="block w-24">
-              <img src="/assets/icons/header-logo.svg" alt="Icecube Digital" />
+              <img src="/assets/icons/header-logo.svg" alt="Icecube Digital" width={170} height={63} />
             </Link>
             <button id="drawerClose" aria-label="Close menu" className="bg-primary p-1">
               <CloseIcon />

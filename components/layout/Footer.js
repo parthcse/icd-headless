@@ -81,6 +81,8 @@ export default function Footer() {
               className="mx-auto mb-3 max-w-28"
               src="/assets/photos/top-web-development-company.png"
               alt="Top web development company"
+              width={156}
+              height={121}
             />
             <h3 className="font-22 mb-2 xl:text-xl leading-tight">Most Trusted Company</h3>
             <p>Icecube Digital Is Rated As The Top Web Development Company By Good Firms</p>
