@@ -30,7 +30,7 @@ export default function CompareTable({ eyebrow, title, columns = [], rows = [] }
       c
     );
   return (
-    <section className="full-section">
+    <section className="special-compare-table full-section">
       <div className="container">
         <SectionHeading eyebrow={eyebrow} title={title} />
         <div className="mx-auto max-w-4xl overflow-hidden rounded-xl border border-white/10 animate fadeUp">

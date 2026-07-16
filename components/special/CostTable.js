@@ -11,7 +11,7 @@ import SectionHeading from "./SectionHeading";
 export default function CostTable({ eyebrow, title, intro, callout, columns = [], rows = [], footnote }) {
   const lastRow = rows.length - 1;
   return (
-    <section className="full-section">
+    <section className="special-cost-table full-section">
       <div className="container">
         <SectionHeading eyebrow={eyebrow} title={title} />
         <div className="mx-auto max-w-4xl animate fadeUp">
@@ -32,15 +32,40 @@ export default function CostTable({ eyebrow, title, intro, callout, columns = []
                   </tr>
                 </thead>
                 <tbody>
-                  {rows.map((row, r) => (
-                    <tr key={r} className={`border-t border-white/10 ${r === lastRow ? "bg-black-light font-semibold" : ""}`}>
-                      {row.map((c, i) => (
-                        <td key={i} className={`px-5 py-4 align-top ${i === 0 ? "font-semibold" : ""} ${i === 1 ? "whitespace-nowrap text-center text-primary" : ""} ${i === 2 ? "text-muted" : ""}`}>
-                          {c}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
+                  {rows.map((row, r) => {
+                    // The final row is the "Estimated total" — lift it out of the body
+                    // with a tinted band, an orange top rule and a bigger price so it
+                    // reads as the summary rather than just another line item.
+                    const isTotal = r === lastRow;
+                    return (
+                      <tr
+                        key={r}
+                        className={
+                          isTotal
+                            ? "border-t-2 border-primary/50 bg-primary/[0.07] text-white"
+                            : "border-t border-white/10"
+                        }
+                      >
+                        {row.map((c, i) => (
+                          <td
+                            key={i}
+                            className={[
+                              "px-5 align-top",
+                              isTotal ? "py-5" : "py-4",
+                              i === 0 ? "font-semibold" : "",
+                              i === 0 && isTotal ? "font-22 whitespace-nowrap" : "",
+                              i === 1 ? "whitespace-nowrap text-center text-primary" : "",
+                              i === 1 && isTotal ? "font-24" : "",
+                              i === 2 && !isTotal ? "text-muted" : "",
+                              i === 2 && isTotal ? "text-white/80" : "",
+                            ].join(" ")}
+                          >
+                            {c}
+                          </td>
+                        ))}
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>

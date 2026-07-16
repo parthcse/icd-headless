@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import YoastSchema from "@/components/common/YoastSchema";
 import PageSchema from "@/components/common/PageSchema";
 import { getYoastMetadataByUri } from "@/lib/seo";
+import milestoneSection from "@/lib/services/common-section/milestone-section";
 
 import SpecialHero from "@/components/special/SpecialHero";
 import TrustStrip from "@/components/special/TrustStrip";
@@ -67,12 +68,12 @@ const STEPS = [
   { title: "Improve", body: "Analytics and approval-gated learning make it more accurate every week." },
 ];
 
-const COUNTERS = [
-  { value: "250+", label: "Happy Clients" },
-  { value: "500+", label: "Successfully optimised websites" },
-  { value: "100%", label: "Customer satisfaction" },
-  { value: "14y", label: "Years of unparalleled service" },
-];
+// Mapped from the shared milestone data so these numbers stay identical to every
+// service page — update lib/services/common-section/milestone-section.js, not here.
+const COUNTERS = milestoneSection.items.map((m) => ({
+  value: m.value,
+  label: m.lines.join(" "),
+}));
 
 const FAQS = [
   { question: "Which platforms do you support?", answer: "Magento, Shopify and WooCommerce out of the box, plus custom and headless stores — anything with an API we can read your catalog and orders from. Helpdesks like Zendesk connect for tickets and handoff." },
@@ -98,9 +99,14 @@ export default function EcommerceAiAgentPage() {
           primary={{ label: "Book a demo", href: "popup" }}
           phone={{ label: "Call +91 91060 60593", href: "tel:+919106060593" }}
           rating={[
-            { value: "5.0", label: "Clutch" },
-            { value: "4.9", label: "GoodFirms" },
+            { value: "5.0", label: "on Clutch" },
+            { value: "4.9", label: "on GoodFirms" },
             { value: "14 yrs", label: "in ecommerce" },
+          ]}
+          stats={[
+            { value: "24/7", label: "Always answering shoppers" },
+            { value: "70%", label: "Of routine questions handled" },
+            { value: "10+", label: "Languages, out of the box" },
           ]}
           media="/assets/gifs/ecommerce-ai-agent-hero.gif"
           mediaAlt="Animated demo of the Icecube AI store assistant answering a shopper's product and order questions in a chat window."
@@ -155,7 +161,7 @@ export default function EcommerceAiAgentPage() {
           body="On Visor's Magento store the add-on handles product discovery (down to a specific Cordlock SKU), live order status and install-guide lookups — grounded in the store's own catalog and policies, with a human handoff whenever it isn't certain."
         />
 
-        <section className="full-section">
+        <section className="special-packages full-section">
           <div className="container mx-auto max-w-3xl text-center animate fadeUp">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.15em] text-primary">Packages</p>
             <h2 className="mb-4 font-36 font-bold leading-tight">Pick the scope. We handle the build and the running.</h2>
@@ -167,10 +173,12 @@ export default function EcommerceAiAgentPage() {
         <FaqAccordion eyebrow="Questions" title="The things buyers ask us first." items={FAQS} />
 
         <CtaBand
+          eyebrow="Get Started"
           text="See it answer your customers' questions."
           subtitle="Book a 30-minute demo and we'll show the add-on working on a store like yours — then map what it would take for yours."
           primary={{ label: "Book a demo", href: "popup" }}
           secondary={{ label: "Chat on WhatsApp", href: "https://wa.me/919106060593" }}
+          phone={{ label: "Call +91 91060 60593", href: "tel:+919106060593" }}
         />
 
       </main>

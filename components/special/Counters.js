@@ -1,7 +1,7 @@
 /** Dark stats strip: big orange numbers + labels (the milestone counter band). */
 export default function Counters({ items = [] }) {
   return (
-    <section className="full-section bg-black-light">
+    <section className="special-counters full-section bg-black-light">
       <div className="container">
         <div className="grid grid-cols-2 gap-6 text-center md:grid-cols-4 animate fadeUp">
           {items.map((c, i) => (

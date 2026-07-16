@@ -6,7 +6,7 @@ import SectionHeading from "./SectionHeading";
  */
 export default function FaqAccordion({ eyebrow, title, items = [] }) {
   return (
-    <section className="full-section">
+    <section className="special-faq full-section">
       <div className="container">
         <SectionHeading eyebrow={eyebrow} title={title} />
         <div className="mx-auto max-w-3xl space-y-3 animate fadeUp">

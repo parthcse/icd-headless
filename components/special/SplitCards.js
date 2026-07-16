@@ -10,7 +10,7 @@ import CheckPrimaryIcon from "@/components/icons/CheckPrimaryIcon";
  */
 export default function SplitCards({ eyebrow, title, subtitle, footnote, cards = [] }) {
   return (
-    <section className="full-section bg-black-light">
+    <section className="special-split-cards full-section bg-black-light">
       <div className="container">
         <SectionHeading eyebrow={eyebrow} title={title} subtitle={subtitle} />
         <div className="grid gap-6 lg:grid-cols-2 animate fadeUp">

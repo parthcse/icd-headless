@@ -10,9 +10,9 @@ import CtaButton from "./CtaButton";
  *   primary?: {label, href}, secondary?: {label, href}, phone?: {label, href},
  *   rating?: [{value,label}], stats?: [{value,label}], media, mediaAlt? }
  */
-export default function SpecialHero({ eyebrow, heading, paragraphs, primary, secondary, phone, rating, stats, media, mediaAlt }) {
+export default function SpecialHero({ eyebrow, heading, paragraphs, primary, secondary, phone, rating, chips, stats, media, mediaAlt }) {
   return (
-    <section className="services-banner full-section relative border-t-0 xl:py-32">
+    <section className="special-hero services-banner full-section relative border-t-0 xl:py-32">
       <div className="absolute inset-0">
         <img className="h-full w-full object-cover" aria-hidden="true" src="/assets/photos/home-banner-bg.png" alt="" fetchPriority="high" />
         <span className="absolute inset-0 bg-black bg-opacity-25" />
@@ -32,18 +32,30 @@ export default function SpecialHero({ eyebrow, heading, paragraphs, primary, sec
             )}
           </div>
           {rating?.length > 0 && (
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-1 text-sm text-muted">
+            /* Stars render ONCE for the whole row — they used to sit inside the map,
+               repeating ★★★★★ before every rating. */
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-1 text-sm text-muted">
+              <span className="text-primary" aria-hidden="true">★★★★★</span>
               {rating.map((r, i) => (
-                <span key={i} className="inline-flex items-center gap-1.5">
-                  <span className="text-primary">★★★★★</span>
+                <span key={i} className="inline-flex items-center gap-1.5 whitespace-nowrap">
                   <strong className="font-semibold text-white">{r.value}</strong>
                   <span>{r.label}</span>
                 </span>
               ))}
             </div>
           )}
+          {chips?.length > 0 && (
+            /* Tech-cred pills under the CTAs (e.g. "Meta WhatsApp Business API"). */
+            <ul className="flex flex-wrap items-center gap-2 pt-1">
+              {chips.map((c, i) => (
+                <li key={i} className="rounded-full border border-primary/30 bg-primary/[0.07] px-3 py-1.5 text-xs font-semibold text-white/90">
+                  {c}
+                </li>
+              ))}
+            </ul>
+          )}
           {stats?.length > 0 && (
-            <div className="grid grid-cols-2 gap-3 pt-3 sm:grid-cols-4">
+            <div className={`grid grid-cols-2 gap-3 pt-3 ${stats.length === 3 ? "sm:grid-cols-3" : "sm:grid-cols-4"}`}>
               {stats.map((s, i) => (
                 <div key={i} className="rounded-lg border border-white/10 bg-black-light px-4 py-3">
                   <p className="mb-0 font-24 font-bold leading-none text-primary">{s.value}</p>

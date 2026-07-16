@@ -5,6 +5,8 @@ import PageSchema from "@/components/common/PageSchema";
 import { getYoastMetadataByUri } from "@/lib/seo";
 
 import SpecialHero from "@/components/special/SpecialHero";
+import TrustStrip from "@/components/special/TrustStrip";
+import StatTiles from "@/components/special/StatTiles";
 import StackCard from "@/components/special/StackCard";
 import StepFlow from "@/components/special/StepFlow";
 import FeatureCards from "@/components/special/FeatureCards";
@@ -15,6 +17,15 @@ import CtaBand from "@/components/special/CtaBand";
 
 const URI = "/ai-whatsapp-quoting-system/";
 const WA = "https://api.whatsapp.com/send?phone=919106060593";
+const PHONE = { label: "Call +91 91060 60593", href: "tel:+919106060593" };
+
+// Rendered as their own band below the TrustStrip (not inside the hero).
+const STATS = [
+  { value: "Seconds", label: "From a customer's message to a ready-to-send quote" },
+  { value: "24/7", label: "Quotes drafted instantly, even after hours" },
+  { value: "1 chat", label: "No app, no forms — it all happens in WhatsApp" },
+  { value: "Auto", label: "Quotes, amendments and reminders — handled for you" },
+];
 
 export async function generateMetadata() {
   const yoast = await getYoastMetadataByUri(URI);
@@ -117,15 +128,17 @@ export default function AiWhatsappQuotingSystemPage() {
           ]}
           primary={{ label: "Get a proposal", href: "popup" }}
           secondary={{ label: "Chat with us", href: WA }}
-          stats={[
-            { value: "Seconds", label: "from a message to a ready-to-send quote" },
-            { value: "24/7", label: "quotes drafted instantly, even after hours" },
-            { value: "1 chat", label: "no app, no forms — it's all in WhatsApp" },
-            { value: "Auto", label: "quotes, amendments & reminders, handled" },
-          ]}
+          chips={["Meta WhatsApp Business API", "Draft orders & checkout", "n8n orchestration"]}
           media="/assets/gifs/ai-whatsapp-hero.gif"
           mediaAlt="Animated WhatsApp chat: a customer asks for a quote on 50 bottles, the AI agent confirms the product and delivery date, and a ready-to-send draft order with the customer's own price appears in the same thread."
         />
+
+        <TrustStrip
+          label="Trusted commerce engineering since 2009"
+          items={["15+ yrs experience", "300+ projects shipped", "★ 5.0 Clutch · 4.9 GoodFirms"]}
+        />
+
+        <StatTiles items={STATS} />
 
         <StackCard
           eyebrow="What It Is"
@@ -157,6 +170,8 @@ export default function AiWhatsappQuotingSystemPage() {
           subtitle="Every build begins with the core quoting system — the part that turns a WhatsApp message into a ready quote. From there, pick the add-ons that fit how you sell."
           coreLabel="Core — in every build"
           coreItems={CORE}
+          itemsLabel="Add-ons"
+          itemsSubtitle="Pick what fits how you sell — choose any, in any order"
           items={ADDONS}
         />
 
@@ -165,8 +180,8 @@ export default function AiWhatsappQuotingSystemPage() {
           title="What's mandatory, and what's an add-on."
           footnote="Every build includes the mandatory foundation. Add-ons can ship in the same project or come later — we scope it around your priorities."
           cards={[
-            { label: "Mandatory", title: "The foundation, in every build", intro: "The mandatory items are the foundation every build needs to go live with quoting on WhatsApp.", items: MANDATORY },
-            { label: "Add-ons", title: "Optional — choose what you need", highlight: true, intro: "Add-ons are optional — pick the ones that fit how you sell, in the same project or layered in later.", items: ADDON_LIST },
+            { label: "Mandatory", title: "The foundation, in every build", highlight: true, intro: "The mandatory items are the foundation every build needs to go live with quoting on WhatsApp.", items: MANDATORY },
+            { label: "Add-ons", title: "Optional — choose what you need", intro: "Add-ons are optional — pick the ones that fit how you sell, in the same project or layered in later.", items: ADDON_LIST },
           ]}
         />
 
@@ -189,10 +204,12 @@ export default function AiWhatsappQuotingSystemPage() {
         <FaqAccordion eyebrow="Good to Know" title="Frequently Asked Questions" items={FAQS} />
 
         <CtaBand
+          eyebrow="Get Started"
           text="Let's turn your WhatsApp into a quoting machine."
           subtitle="Tell us about your products, your store and how your team quotes today. We'll come back with a phased plan and a fixed proposal."
           primary={{ label: "Request a proposal", href: "popup" }}
           secondary={{ label: "Message us on WhatsApp", href: WA }}
+          phone={PHONE}
         />
 
       </main>

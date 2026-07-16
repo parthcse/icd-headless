@@ -1956,6 +1956,14 @@ h6 {
   left: -7rem;
 }
 
+.-right-16 {
+  right: -4rem;
+}
+
+.-top-16 {
+  top: -4rem;
+}
+
 .-top-28 {
   top: -7rem;
 }
@@ -2094,6 +2102,11 @@ h6 {
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
+}
+
+.my-1 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
 }
 
 .my-4 {
@@ -3082,11 +3095,6 @@ h6 {
        column-gap: 1.25rem;
 }
 
-.gap-x-6 {
-  -moz-column-gap: 1.5rem;
-       column-gap: 1.5rem;
-}
-
 .gap-x-8 {
   -moz-column-gap: 2rem;
        column-gap: 2rem;
@@ -3514,6 +3522,10 @@ h6 {
   background-color: rgb(241 126 63 / 0.15);
 }
 
+.bg-primary\/20 {
+  background-color: rgb(241 126 63 / 0.2);
+}
+
 .bg-primary\/30 {
   background-color: rgb(241 126 63 / 0.3);
 }
@@ -3536,6 +3548,10 @@ h6 {
 
 .bg-primary\/\[0\.06\] {
   background-color: rgb(241 126 63 / 0.06);
+}
+
+.bg-primary\/\[0\.07\] {
+  background-color: rgb(241 126 63 / 0.07);
 }
 
 .bg-primary\/\[0\.08\] {
@@ -3603,6 +3619,12 @@ h6 {
 .from-\[\#181818\] {
   --tw-gradient-from: #181818 var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(24 24 24 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.from-black-light {
+  --tw-gradient-from: #151515 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(21 21 21 / 0) var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
@@ -3678,6 +3700,11 @@ h6 {
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
+.via-black-light {
+  --tw-gradient-to: rgb(21 21 21 / 0)  var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), #151515 var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
 .via-primary\/70 {
   --tw-gradient-to: rgb(241 126 63 / 0)  var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), rgb(241 126 63 / 0.7) var(--tw-gradient-via-position), var(--tw-gradient-to);
@@ -3708,6 +3735,10 @@ h6 {
 
 .to-\[\#ffb27f\] {
   --tw-gradient-to: #ffb27f var(--tw-gradient-to-position);
+}
+
+.to-black {
+  --tw-gradient-to: #000000 var(--tw-gradient-to-position);
 }
 
 .to-primary\/\[0\.04\] {
@@ -4211,6 +4242,10 @@ h6 {
   color: rgb(241 126 63 / 0.3);
 }
 
+.text-primary\/70 {
+  color: rgb(241 126 63 / 0.7);
+}
+
 .text-red-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity, 1));
@@ -4385,6 +4420,11 @@ h6 {
 
 .blur {
   --tw-blur: blur(8px);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.blur-3xl {
+  --tw-blur: blur(64px);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
@@ -5469,6 +5509,14 @@ html.lenis {
     flex-direction: column;
   }
 
+  .lg\:flex-nowrap {
+    flex-wrap: nowrap;
+  }
+
+  .lg\:justify-end {
+    justify-content: flex-end;
+  }
+
   .lg\:gap-0 {
     gap: 0px;
   }
@@ -5577,6 +5625,10 @@ html.lenis {
 
   .lg\:text-left {
     text-align: left;
+  }
+
+  .lg\:text-\[0\.95rem\] {
+    font-size: 0.95rem;
   }
 }
 
@@ -5719,6 +5771,11 @@ html.lenis {
   .xl\:gap-x-40 {
     -moz-column-gap: 10rem;
          column-gap: 10rem;
+  }
+
+  .xl\:gap-x-6 {
+    -moz-column-gap: 1.5rem;
+         column-gap: 1.5rem;
   }
 
   .xl\:gap-y-24 {
@@ -5891,6 +5948,11 @@ html.lenis {
 
   .xl\:text-\[1em\] {
     font-size: 1em;
+  }
+
+  .xl\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 
   .xl\:text-xl {

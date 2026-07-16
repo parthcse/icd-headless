@@ -8,7 +8,7 @@ import SectionHeading from "./SectionHeading";
  */
 export default function ProofCard({ eyebrow, title, brand, context, metrics, quote, body }) {
   return (
-    <section className="full-section">
+    <section className="special-proof-card full-section">
       <div className="container">
         <SectionHeading eyebrow={eyebrow} title={title} />
         <div className="mx-auto max-w-3xl rounded-2xl border border-white/10 bg-black-light p-8 animate fadeUp xl:p-10">
