@@ -7,6 +7,7 @@ import { getYoastMetadataByUri } from "@/lib/seo";
 import SpecialHero from "@/components/special/SpecialHero";
 import TrustStrip from "@/components/special/TrustStrip";
 import StatTiles from "@/components/special/StatTiles";
+import WhatsappChatDemo from "@/components/special/WhatsappChatDemo";
 import StackCard from "@/components/special/StackCard";
 import StepFlow from "@/components/special/StepFlow";
 import FeatureCards from "@/components/special/FeatureCards";
@@ -129,8 +130,7 @@ export default function AiWhatsappQuotingSystemPage() {
           primary={{ label: "Get a proposal", href: "popup" }}
           secondary={{ label: "Chat with us", href: WA }}
           chips={["Meta WhatsApp Business API", "Draft orders & checkout", "n8n orchestration"]}
-          media="/assets/gifs/ai-whatsapp-hero.gif"
-          mediaAlt="Animated WhatsApp chat: a customer asks for a quote on 50 bottles, the AI agent confirms the product and delivery date, and a ready-to-send draft order with the customer's own price appears in the same thread."
+          media={<WhatsappChatDemo />}
         />
 
         <TrustStrip

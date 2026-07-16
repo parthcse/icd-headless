@@ -7,6 +7,7 @@ import milestoneSection from "@/lib/services/common-section/milestone-section";
 
 import SpecialHero from "@/components/special/SpecialHero";
 import TrustStrip from "@/components/special/TrustStrip";
+import StoreAssistantDemo from "@/components/special/StoreAssistantDemo";
 import FeatureCards from "@/components/special/FeatureCards";
 import CompareTable from "@/components/special/CompareTable";
 import Counters from "@/components/special/Counters";
@@ -108,8 +109,7 @@ export default function EcommerceAiAgentPage() {
             { value: "70%", label: "Of routine questions handled" },
             { value: "10+", label: "Languages, out of the box" },
           ]}
-          media="/assets/gifs/ecommerce-ai-agent-hero.gif"
-          mediaAlt="Animated demo of the Icecube AI store assistant answering a shopper's product and order questions in a chat window."
+          media={<StoreAssistantDemo />}
         />
 
         <TrustStrip

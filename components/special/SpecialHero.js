@@ -65,10 +65,18 @@ export default function SpecialHero({ eyebrow, heading, paragraphs, primary, sec
             </div>
           )}
         </div>
+        {/* `media` takes a URL (rendered in a framed box) OR a React node — the AI
+            pages pass a live HTML/CSS chat animation instead of a GIF, which keeps
+            the small chat text crisp, costs a few KB rather than megabytes above
+            the fold, and reflows on mobile. Nodes render unframed; they bring their own. */}
         <div className="relative animate fadeUp">
-          <div className="overflow-hidden rounded-2xl border border-primary/50 bg-black-light shadow-2xl shadow-primary/10">
-            <img src={media} alt={mediaAlt || ""} className="h-full w-full object-cover" />
-          </div>
+          {typeof media === "string" ? (
+            <div className="overflow-hidden rounded-2xl border border-primary/50 bg-black-light shadow-2xl shadow-primary/10">
+              <img src={media} alt={mediaAlt || ""} className="h-full w-full object-cover" />
+            </div>
+          ) : (
+            media
+          )}
         </div>
       </div>
     </section>
