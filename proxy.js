@@ -78,6 +78,14 @@ export async function proxy(request) {
 
   if (!SITEMAP_RE.test(pathname)) return NextResponse.next();
 
+  // Match Yoast's default: /sitemap.xml is a 301 redirect to the real index at
+  // /sitemap_index.xml — NOT a second copy of it. Serving the index content at
+  // both URLs (what redirect:"follow" did) looks like duplicate sitemaps; a 301
+  // makes /sitemap_index.xml the single canonical sitemap.
+  if (pathname === "/sitemap.xml") {
+    return NextResponse.redirect(new URL("/sitemap_index.xml", request.url), 301);
+  }
+
   // Excluded sub-sitemaps: 404 on direct access so they're fully removed.
   if (EXCLUDED_SITEMAPS.includes(pathname.slice(1))) {
     return new NextResponse("Not Found", { status: 404, headers: { "content-type": "text/plain" } });
