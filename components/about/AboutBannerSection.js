@@ -10,7 +10,7 @@ export default function AboutBannerSection() {
       <div className="container max-w-4xl relative z-10 pt-space-mini mt-8 xl:mt-0">
         <AboutCharHeading />
         <h2
-          className="font-30 animate fadeUp pb-1 font-light md:pb-2 xl:pb-3"
+          className="font-30 animate fadeUp pb-1 font-semibold md:pb-2 xl:pb-3"
           style={{ animationDelay: "0.6s" }}
         >
           Because you come before us! making it all about your experience client-centric at the core!

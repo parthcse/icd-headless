@@ -14,6 +14,22 @@ import { getPageSchemaByUri } from "@/lib/seo";
  *
  * @param {{ uri: string }} props - WP path with trailing slash, e.g. "/ai-in-ecommerce-solutions/".
  */
+/**
+ * Recursively delete every `aggregateRating` from a parsed JSON-LD node. The
+ * per-page CMS schema (e.g. a Product) often carries its OWN aggregateRating,
+ * which duplicates the site-wide LocalBusiness rating (lib/site-schema.js) and
+ * makes Google report two ratings per page. The site-wide rating is kept as the
+ * single source, so we strip it out of the per-page schema here.
+ */
+function stripAggregateRating(node) {
+  if (Array.isArray(node)) {
+    node.forEach(stripAggregateRating);
+  } else if (node && typeof node === "object") {
+    delete node.aggregateRating;
+    Object.values(node).forEach(stripAggregateRating);
+  }
+}
+
 export default async function PageSchema({ uri }) {
   const raw = await getPageSchemaByUri(uri);
   if (!raw) return null;
@@ -28,9 +44,21 @@ export default async function PageSchema({ uri }) {
   // No <script> wrapper found → the raw value is the JSON body itself.
   if (bodies.length === 0) bodies.push(raw);
 
+  // Remove any per-page aggregateRating so it doesn't duplicate the site-wide one.
+  // Parse-and-strip when the body is valid JSON; leave unparseable bodies as-is.
+  const cleaned = bodies.map((body) => {
+    try {
+      const parsed = JSON.parse(body);
+      stripAggregateRating(parsed);
+      return JSON.stringify(parsed);
+    } catch {
+      return body;
+    }
+  });
+
   return (
     <>
-      {bodies.map((body, i) => (
+      {cleaned.map((body, i) => (
         <script
           key={i}
           type="application/ld+json"
