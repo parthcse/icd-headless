@@ -12,24 +12,16 @@ const SERVICE_COLUMNS = [
   [
     { label: "ECommerce Website Design", href: "/ecommerce-website-design-services/" },
     { label: "ECommerce Web Development", href: "/ecommerce-website-development-services/" },
-    { label: "Hire eCommerce Developers", href: "/hire-ecommerce-designers-developers/" },
     { label: "Magento 2 Upgrade", href: "/magento-2-upgrade-and-migration-services/" },
-    { label: "Magento Development", href: "/magento-development-services/" },
     { label: "Hire Magento Developers", href: "/hire-magento-2-developers-programmers/" },
     { label: "Magento 2 Development", href: "/magento-2-development-services/" },
-    { label: "Technical SEO Services", href: "#" },
-    { label: "Hire ReactJS Developers", href: "#" },
   ],
   [
     { label: "Shopify Development", href: "/shopify-development-services/" },
     { label: "Hire Shopify Developers", href: "/hire-shopify-developers-experts/" },
     { label: "Woocommerce Development", href: "/woocommerce-development-services/" },
-    { label: "Hire Woocommerce Developers", href: "/hire-woocommerce-developers-experts/" },
     { label: "WordPress Development", href: "/wordpress-development-services/" },
     { label: "Hire WordPress Developers", href: "/hire-wordpress-developers-designers/" },
-    { label: "Custom PHP Development", href: "#" },
-    { label: "Local SEO Services", href: "#" },
-    { label: "Hire Next.js Developers", href: "#" },
   ],
   [
     { label: "PPC Management", href: "/ppc-management-services/" },
@@ -37,10 +29,6 @@ const SERVICE_COLUMNS = [
     { label: "Shopify SEO Service", href: "/shopify-seo-service/" },
     { label: "WordPress SEO Service", href: "/wordpress-seo-service/" },
     { label: "Professional SEO Service", href: "/seo-search-engine-optimization/" },
-    { label: "Digital Marketing Service", href: "/digital-marketing-service/" },
-    { label: "Email Marketing Service", href: "/email-marketing-company/" },
-    { label: "On Page SEO Services", href: "#" },
-    { label: "Hire NodeJS Developers", href: "#" },
   ],
 ];
 
