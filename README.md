@@ -21,13 +21,15 @@ The site is content-heavy — **~181 data-driven service/industry/location pages
 9. [Special & bespoke pages](#special--bespoke-pages)
 10. [Popup & CTA system](#popup--cta-system)
 11. [SEO, sitemap & indexing](#seo-sitemap--indexing)
-12. [Styling (Tailwind, theme, icons)](#styling)
-13. [Data layer (WPGraphQL, CPTs, testimonials)](#data-layer)
-14. [Forms (contact + newsletter)](#forms)
-15. [Fonts](#fonts)
-16. [Deployment & operational notes](#deployment--operational-notes)
-17. [Conventions & gotchas cheat-sheet](#conventions--gotchas-cheat-sheet)
-18. [Reference docs](#reference-docs)
+12. [Redirects (legacy URLs)](#redirects-legacy-urls)
+13. [Dynamic year token](#dynamic-year-token)
+14. [Styling (Tailwind, theme, icons)](#styling)
+15. [Data layer (WPGraphQL, CPTs, testimonials)](#data-layer)
+16. [Forms (contact + newsletter)](#forms)
+17. [Fonts](#fonts)
+18. [Deployment & operational notes](#deployment--operational-notes)
+19. [Conventions & gotchas cheat-sheet](#conventions--gotchas-cheat-sheet)
+20. [Reference docs](#reference-docs)
 
 ---
 
@@ -89,7 +91,7 @@ Defined in `.env.local` (not committed). `NEXT_PUBLIC_*` are exposed to the brow
 | `npm run dev` | Next dev server with Turbopack. |
 | `npm run dev:webpack` | Dev server with Webpack (fallback if a Turbopack issue appears). |
 | `npm run build` | Production build. **Statically renders every page**, so it's the definitive check that all ~380 routes compile and render. |
-| `npm run build:css` | **Recompiles Tailwind** from `styles/input.css` → `public/css/output.css`. Run this whenever you add/change a utility class **in a component**. |
+| `npm run build:css` | **Recompiles Tailwind** from `styles/input.css` → `public/css/output.css`, **minified** (`--minify`). Run this whenever you add/change a utility class **in a component**. Output is one line — that's expected; never hand-edit it. |
 | `npm run start` | Serve the production build. |
 | `npm run lint` | ESLint. |
 
@@ -168,6 +170,7 @@ icd-headless/
 | `/our-portfolio`, `/portfolio/<slug>` | `app/(marketing)` + `app/portfolio/[slug]` | Portfolio archive + item detail (WP CPT) |
 | `/case-studies`, `/case-studies/<slug>` | `app/(marketing)` + dynamic | Case-study archive + detail (WP CPT) |
 | `/ai-whatsapp-quoting-system`, `/icecube-ecommerce-ai-agent` | `app/(special)/…` | **Fully-custom** landing pages — own route + components, **not** the `[slug]` system |
+| `/team/<slug>/` | `app/team/[slug]/page.js` | Team member profiles from the WP **`personnel`** CPT (ISR 10 min). Roster + content are 100 % CMS-driven. |
 | `/sitemap.xml`, `/sitemap*.xml`, `/sitemap.xsl`, `/llms.txt` | `proxy.js` | Yoast sitemaps + stylesheet + llms.txt proxied from the CMS, rewritten to `www` |
 | `/robots.txt` | `app/robots.js` | robots + `Sitemap:` line |
 | `POST /api/newsletter` | `app/api/newsletter/route.js` | Mailchimp signup |
@@ -267,10 +270,79 @@ There are **two** distinct "special" tiers, and they are not the same thing:
 - **Indexability is decoupled from the CMS** *(important — read this):* the frontend is **indexable by DEFAULT** and does **not** inherit Yoast's `noindex`. Only paths listed in **`NOINDEX_PATHS`** (`lib/seo.js`, currently `/thank-you/`) emit `noindex, follow`. This is deliberate: WordPress "Discourage search engines" can stay **ON** to hide the `cms.` backend without ever noindexing the live front-end. Add a path to `NOINDEX_PATHS` to noindex a page.
 - **Site-wide JSON-LD:** `lib/site-schema.js` (LocalBusiness + WebSite + Organization) is rendered on every page by `<SiteSchema/>` in the root layout. **Edit the schema there.**
 - **Per-page JSON-LD:** the WordPress ACF field `seo_schema_data` (GraphQL `pageFields.seoSchemaData`) is fetched by `getPageSchemaByUri` and rendered right before the footer by **`<PageSchema uri/>`** (on `[slug]`, home, and standalone routes). Renders nothing when the field is empty; wraps bare JSON in a `<script type="application/ld+json">` if the editor omitted the tag.
-- **Sitemap:** `proxy.js` (the Next 16 "proxy" file convention — formerly `middleware.js`) proxies Yoast's `/sitemap*.xml` from the CMS and rewrites `cms.` → `www.` (keeping `/wp-content/` media on the CMS). So `https://www.icecubedigital.com/sitemap.xml` serves the full Yoast sitemap. It also proxies Yoast's XSL stylesheet at same-origin **`/sitemap.xsl`** (and repoints the sitemap at it) so the styled sitemap view renders — browsers block cross-origin XSLT, which otherwise blanks/hangs the view.
+- **Sitemap:** `proxy.js` (the Next 16 "proxy" file convention — formerly `middleware.js`) proxies Yoast's `/sitemap*.xml` from the CMS and rewrites `cms.` → `www.` (keeping `/wp-content/` media on the CMS). It also proxies Yoast's XSL stylesheet at same-origin **`/sitemap.xsl`** (and repoints the sitemap at it) so the styled sitemap view renders — browsers block cross-origin XSLT, which otherwise blanks/hangs the view. Two behaviours to know:
+  - **`/sitemap.xml` 301-redirects to `/sitemap_index.xml`** (matching Yoast's default) so there's a single canonical sitemap URL instead of the same index served at two URLs. Submit `/sitemap_index.xml` to Search Console.
+  - **`EXCLUDED_SITEMAPS`** (top of `proxy.js`) drops sub-sitemaps from the index *and* 404s them directly — currently `cs_category-sitemap.xml`. Add a basename to that array to hide another.
 - **robots.txt:** `app/robots.js` (allow all, disallow `/api/`, `Sitemap:` + canonical `Host:` = www).
 - **llms.txt:** `proxy.js` also serves `/llms.txt` — Yoast's LLM-facing site overview — proxied from the CMS (it already emits `www.` URLs). Like the sitemap, it 404s until redeployed.
 - **⚠️ Build-time:** metadata, JSON-LD, and sitemap are generated at **build time** — after any CMS SEO change you must **redeploy**, then request reindexing in Google Search Console.
+
+### JSON-LD structure — don't "tidy" this (it's deliberate)
+
+`lib/site-schema.js` emits **two separate `<script>` tags**, and that separation is load-bearing:
+
+1. **`@graph`** → `LocalBusiness` (carries the `aggregateRating`) + `WebSite`
+2. **standalone `Organization`** (no rating)
+
+**Do not merge the Organization into the `@graph`.** When both "Icecube Digital" entities sit in one graph and cross-link by `@id`, Google attributes the single rating to *both* and the Rich Results Test reports **"Review has multiple aggregate ratings" / 2 invalid items**. Keeping them in separate scripts is what makes it validate — this mirrors the WordPress/Yoast layout that Google already accepts.
+
+Related rules enforced in code:
+
+- **`cleanYoastSchema()`** (`lib/seo.js`) repairs Yoast's breadcrumbs: Yoast omits `item` from the last crumb, which is invalid on the home page (a single crumb) and flagged elsewhere. We fill `item` on **every** crumb with the page's own URL. It also drops Yoast's duplicate `WebSite` node and strips `SearchAction` (the site has no search).
+- **`PageSchema`** strips any `aggregateRating` out of the per-page CMS schema (`seoSchemaData`). Service pages ship a `Product` schema with its own rating, which would be a **second** rating on the page — exactly the conflict above. The site-wide LocalBusiness rating is the single source.
+- A self-asserted company rating **won't render stars** in Google regardless (self-serving reviews are ignored for `Organization`/`LocalBusiness`) — it's kept because it validates, not because it will show.
+
+---
+
+## Redirects (legacy URLs)
+
+**Edit one file: [`lib/redirects.js`](./lib/redirects.js).** `next.config.mjs` reads it automatically — nothing else to touch.
+
+```js
+export const REDIRECTS = [
+  ["/old/path/", "/new/path/"],
+];
+```
+
+- All entries are served as **301 Moved Permanently** (explicit `statusCode: 301`, *not* Next's default `permanent: true` which emits 308 — 301 is what SEO tooling expects).
+- **Destinations are stored as paths.** A full `https://www.icecubedigital.com/...` URL also works — `next.config.mjs` converts it at build time. Paths matter because a hardcoded `www` destination would bounce **preview** traffic to production.
+- **Order matters** — Next matches top-down. Exact paths are listed first, the handful of wildcard rules last, so a specific match always wins.
+- **Wildcards use Next syntax**, not the `*` from an Apache/WordPress export:
+
+  | Sheet / Apache | Next.js |
+  |---|---|
+  | `/in/*` | `/in/:path*` |
+  | `/tag/*` | `/tag/:path*` |
+  | `/blog/author/x/page/*/` | `/blog/author/x/page/:page*` |
+
+  A bare `*` is rejected at boot with `invalid-route-source` — **check the dev-server log after a bulk import.**
+
+**When importing a batch (the list came from a Google Sheet), validate first:**
+
+1. **Sources must start with `/`** and keep the trailing slash (`trailingSlash: true`).
+2. **No self-redirects** (`source === destination`) — infinite loop.
+3. **Flatten chains.** If `A→B` and `B→C`, rewrite as `A→C`; two hops wastes link equity and slows the visitor.
+4. **No collision with a live route.** A redirect source that matches a real page **shadows** it (redirects run before routing). Cross-check against the `MAP` keys in `lib/services/index.js` and the `app/` routes.
+
+> ~900 entries compile fine in `next.config.mjs`. If the list ever grows well past ~1,000 and build/route-matching slows, move it to a `Map` lookup in `proxy.js` (O(1)); the data file can stay as-is.
+
+---
+
+## Dynamic year token
+
+Marketing copy that should always read "the current year" uses a **`{{year}}` token** instead of a hardcoded year:
+
+```js
+pageTitle: "How Much Does SEO Cost in {{year}}?",
+```
+
+- Resolved centrally in **`getServiceData()`** via `resolveYearTokens()` (`lib/current-year.js`), so it works in **any** service-data string — title, heading, body, FAQ, CTA. Both `{{year}}` and `{{ year }}` are accepted.
+- Evaluated at build/render time, so it refreshes on every deploy.
+- Use `currentYear()` directly in a component (`{currentYear()}`) — the token is for *data*, not JSX.
+
+**⚠️ Never token-ise a statistic, a historical fact, or a dated projection.** `"5.24 billion users as of January 2025"` must stay 2025 — swapping it to the current year misattributes the source. Only replace a year that plainly means *now*.
+
+> **The page `<title>`/meta is NOT covered by this.** Titles come from **Yoast** (the CMS), which overrides the data file's `pageTitle`. To make a title's year dynamic you must put `{{year}}` in the Yoast SEO title in WordPress.
 
 ---
 
@@ -288,6 +360,7 @@ There are **two** distinct "special" tiers, and they are not the same thing:
 
 - **`lib/apollo-client.js`** creates the Apollo client from `NEXT_PUBLIC_WORDPRESS_GRAPHQL_ENDPOINT` (read-only, server-side SSR).
 - **`lib/wp-home-data.js`** + **`graphql/`** hold the fetch helpers and query documents for the WordPress CPTs: `posts`, `allPortfolio`/`portfolios`, and `caseStudies` (with their ACF fields). **All fetches fail gracefully** — an empty/failed response degrades a section to a clean fallback rather than crashing the page.
+- **Team members** (`lib/team.js` + `graphql/teamQueries.js`): the WordPress **`personnel`** CPT (GraphQL `personnel` / `allPersonnel`, ACF group `teamFields`). Everything — name, designation, photo, quote, skills, bio — comes from the CMS; there are **no local fallbacks or images**. Roster order is **publish-date DESC**, so reordering the team is a CMS date edit, not a code change. `memberShortName` (optional) gives the about-page cards a compact label and falls back to `memberName`. Powers both the about-page grid and `/team/<slug>/`.
 - **Testimonials are static**, not fetched: `lib/testimonials.js` exports a slug-keyed array (`{ slug, name, designation, quote, avatar, avatarAlt }`). `quote` may be a string or an array of paragraphs (each a string or a parts array for inline links). Add a new entry here and point a page's `testimonialSlug` at it. Avatars live in `public/assets/testimonial/`.
 
 ---
@@ -295,6 +368,8 @@ There are **two** distinct "special" tiers, and they are not the same thing:
 ## Forms
 
 - **Contact form** (`components/common/ContactForm.js`): submits **directly to the live WordPress Contact Form 7** form (id from `NEXT_PUBLIC_CF7_FORM_ID`, default `4751`) at `/wp-json/contact-form-7/v1/contact-forms/<id>/feedback`. Bot protection is **Cloudflare Turnstile** (`NEXT_PUBLIC_TURNSTILE_SITE_KEY`, with a test key on non-production hosts). It also does light geo-IP country prefill.
+  - **CF7 rejects a submission without a valid Turnstile token**, so if the widget fails the visitor is blocked. The widget therefore runs `retry: "auto"` and only surfaces the "Security check couldn't load (Turnstile …)" message after **3 consecutive failures** — a transient blip self-heals silently. A success callback clears the stale message and resets the counter.
+  - **Turnstile `600010`** = the challenge couldn't execute client-side. Usually transient (network, device clock skew, privacy extensions). If it's *consistent*, check the widget's **hostname allow-list** in the Cloudflare dashboard — every host the site serves on (`www.`, apex, `*.vercel.app`) must be listed.
 - **Newsletter** (`app/api/newsletter/route.js`): server-side Mailchimp signup using `MAILCHIMP_API_KEY` + `MAILCHIMP_AUDIENCE_ID`.
 
 ---
@@ -324,6 +399,13 @@ Deploys to **Vercel**. The front-end is **`www.icecubedigital.com`**; the WordPr
 - **`topIconBox` singular `subtitle` renders raw** — if it contains an inline link or multiple paragraphs, use the plural **`subtitles`** instead (a `{text,href}` in a raw field crashes the build).
 - **Always run `npm run build`** after adding/editing pages — a syntax check does not catch render crashes; the full static render does.
 - **New component class → `npm run build:css`.**
+- **Titles come from Yoast, not the data file.** `generateMetadata` spreads the Yoast result *over* `data.pageTitle`/`metaDescription`, so those are only fallbacks. Editing `pageTitle` won't change the live `<title>` — change it in WordPress.
+- **`{{year}}` for "current year" copy** — never hardcode it, and never token-ise a statistic or dated fact. See [Dynamic year token](#dynamic-year-token).
+- **Redirects live in `lib/redirects.js`** (301s). A bare `*` in a source is invalid — use `:path*`. See [Redirects](#redirects-legacy-urls).
+- **Don't merge the standalone `Organization` into the site-schema `@graph`** — it re-breaks Rich Results with duplicate aggregate ratings. See [JSON-LD structure](#json-ld-structure--dont-tidy-this-its-deliberate).
+- **Editing `next.config.mjs` (or `lib/redirects.js`) requires a dev-server restart** — config is read once at boot, so changes are invisible until you restart.
+- **Turbopack sometimes misses `sed -i` edits.** If a data-file change doesn't show up, it's a stale dev cache, not your code — restart the dev server. Watch for `Port 3000 is in use … using 3001` / `Unable to acquire lock`: a zombie `next dev` is still holding the port and you'll be testing the *old* build. Kill it by PID.
+- **Below-the-fold `<img>` needs `loading="lazy"`** — React 19 auto-emits a `<link rel="preload">` for every server-rendered image, which triggers Chrome's "preloaded but not used" warning and wastes bandwidth. (Exception: images inside an Owl carousel, which measures dimensions on init.)
 
 ---
 
