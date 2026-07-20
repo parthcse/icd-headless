@@ -162,6 +162,9 @@ export default function ContactForm({ variant = "split", title, subtitle, badge 
   const turnstileRef = useRef(null);
   const widgetIdRef = useRef(null);
   const countryRef = useRef("");
+  // Counts consecutive Turnstile errors so a transient blip (which auto-retry
+  // recovers from) doesn't immediately show the visitor a "refresh" message.
+  const turnstileErrorsRef = useRef(0);
 
   // Detect the visitor's country early so it's ready by submit time.
   useEffect(() => {
@@ -189,17 +192,29 @@ export default function ContactForm({ variant = "split", title, subtitle, badge 
           // spam token is still issued in the background, so submit still works.
           appearance: "interaction-only",
           theme: "auto",
-          // Don't let a config/network error trigger endless retries (the source
-          // of the repeated 400s in the console). Handle it once instead.
-          retry: "never",
+          // Auto-retry transient failures (network blip, brief challenge outage)
+          // instead of blocking the visitor — most 600010s self-heal here without
+          // the visitor ever seeing an error. Cloudflare's recommended default.
+          retry: "auto",
+          "retry-interval": 4000,
+          // Token issued (silently or after a retry) → clear any stale Turnstile
+          // error and reset the failure count. Leave non-Turnstile errors intact.
+          callback: () => {
+            turnstileErrorsRef.current = 0;
+            if (!cancelled) setError((prev) => (prev.startsWith("Security check") ? "" : prev));
+          },
           "error-callback": (code) => {
-            if (!cancelled) {
+            // With retry:auto, each failed attempt fires this. Stay quiet through
+            // the first few so auto-retry can recover silently; only surface the
+            // "refresh" message if it keeps failing.
+            turnstileErrorsRef.current += 1;
+            if (turnstileErrorsRef.current >= 3 && !cancelled) {
               setError(
                 `Security check couldn't load (Turnstile ${code || "error"}). Please refresh and try again.`
               );
             }
             // Returning true tells Turnstile we've handled it, suppressing its
-            // own retry/error UI.
+            // own error UI (auto-retry still proceeds).
             return true;
           },
         });
