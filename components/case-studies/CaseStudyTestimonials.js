@@ -6,7 +6,8 @@ const BTN_ARROW =
 
 // Shared "What Our Clients Say" section — used by both the case studies listing
 // page and each single case study page (one source of truth).
-export default function CaseStudyTestimonials() {
+// `limit` is forwarded to the slider — how many testimonials to show (default 6).
+export default function CaseStudyTestimonials({ limit }) {
   return (
     <section className="full-section">
       <div className="container">
@@ -14,7 +15,7 @@ export default function CaseStudyTestimonials() {
           <h3 className="mb-0 font-48 font-normal">What Our</h3>
           <h2 className="main-title mb-0">Clients Say</h2>
         </div>
-        <TestimonialSlider />
+        <TestimonialSlider limit={limit} />
         <div className="btn-wrap mt-10 text-center animate fadeUp">
           <Link href="/client-testimonials/" className="btn btn-primary">
             View More Reviews

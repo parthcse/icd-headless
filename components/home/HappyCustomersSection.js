@@ -34,8 +34,15 @@ function quoteText(quote) {
     .join(" ");
 }
 
-export default function HappyCustomersSection() {
-  const items = TESTIMONIALS;
+/**
+ * `limit` caps how many testimonials the carousel shows (default 6). Kept in
+ * sync with the case-study slider (components/case-studies/TestimonialSlider.js)
+ * so both surfaces feature the same clients — the shared list in
+ * lib/testimonials.js has 29, which is far more than either needs.
+ * Pass limit={0} to show the full list.
+ */
+export default function HappyCustomersSection({ limit = 6 }) {
+  const items = limit > 0 ? TESTIMONIALS.slice(0, limit) : TESTIMONIALS;
 
   if (items.length === 0) return null;
 

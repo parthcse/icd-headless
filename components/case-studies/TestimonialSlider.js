@@ -28,8 +28,16 @@ const ChevronIcon = ({ dir = "left" }) => (
   </svg>
 );
 
-export default function TestimonialSlider() {
-  const slides = TESTIMONIALS;
+/**
+ * One-at-a-time testimonial slider.
+ *
+ * `limit` caps how many of the shared TESTIMONIALS list is shown. The full list
+ * is 29 — rendering all of them here produced 29 dots and an endless slider, so
+ * we show the first few (the same ones the home carousel leads with). Change the
+ * default below, or pass `limit` per page; `limit={0}` shows every testimonial.
+ */
+export default function TestimonialSlider({ limit = 6 }) {
+  const slides = limit > 0 ? TESTIMONIALS.slice(0, limit) : TESTIMONIALS;
   const count = slides.length;
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
