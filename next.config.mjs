@@ -1,4 +1,4 @@
-import { REDIRECTS } from "./lib/redirects.js";
+import { REDIRECTS } from "./lib/redirects.mjs";
 
 const SITE = "https://www.icecubedigital.com";
 

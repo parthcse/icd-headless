@@ -296,7 +296,7 @@ Related rules enforced in code:
 
 ## Redirects (legacy URLs)
 
-**Edit one file: [`lib/redirects.js`](./lib/redirects.js).** `next.config.mjs` reads it automatically — nothing else to touch.
+**Edit one file: [`lib/redirects.mjs`](./lib/redirects.mjs).** `next.config.mjs` reads it automatically — nothing else to touch.
 
 ```js
 export const REDIRECTS = [
@@ -401,9 +401,9 @@ Deploys to **Vercel**. The front-end is **`www.icecubedigital.com`**; the WordPr
 - **New component class → `npm run build:css`.**
 - **Titles come from Yoast, not the data file.** `generateMetadata` spreads the Yoast result *over* `data.pageTitle`/`metaDescription`, so those are only fallbacks. Editing `pageTitle` won't change the live `<title>` — change it in WordPress.
 - **`{{year}}` for "current year" copy** — never hardcode it, and never token-ise a statistic or dated fact. See [Dynamic year token](#dynamic-year-token).
-- **Redirects live in `lib/redirects.js`** (301s). A bare `*` in a source is invalid — use `:path*`. See [Redirects](#redirects-legacy-urls).
+- **Redirects live in `lib/redirects.mjs`** (301s). A bare `*` in a source is invalid — use `:path*`. See [Redirects](#redirects-legacy-urls).
 - **Don't merge the standalone `Organization` into the site-schema `@graph`** — it re-breaks Rich Results with duplicate aggregate ratings. See [JSON-LD structure](#json-ld-structure--dont-tidy-this-its-deliberate).
-- **Editing `next.config.mjs` (or `lib/redirects.js`) requires a dev-server restart** — config is read once at boot, so changes are invisible until you restart.
+- **Editing `next.config.mjs` (or `lib/redirects.mjs`) requires a dev-server restart** — config is read once at boot, so changes are invisible until you restart.
 - **Turbopack sometimes misses `sed -i` edits.** If a data-file change doesn't show up, it's a stale dev cache, not your code — restart the dev server. Watch for `Port 3000 is in use … using 3001` / `Unable to acquire lock`: a zombie `next dev` is still holding the port and you'll be testing the *old* build. Kill it by PID.
 - **Below-the-fold `<img>` needs `loading="lazy"`** — React 19 auto-emits a `<link rel="preload">` for every server-rendered image, which triggers Chrome's "preloaded but not used" warning and wastes bandwidth. (Exception: images inside an Owl carousel, which measures dimensions on init.)
 
