@@ -3,6 +3,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
 import WeServeSection from "@/components/home/WeServeSection";
+import CaseStudyBanner from "@/components/case-studies/CaseStudyBanner";
 import CaseStudyTestimonials from "@/components/case-studies/CaseStudyTestimonials";
 import CountUp from "@/components/case-studies/CountUp";
 import YoastSchema from "@/components/common/YoastSchema";
@@ -66,17 +67,8 @@ export default async function CaseStudySinglePage({ params }) {
       <YoastSchema uri={`/case-studies/${slug}/`} />
       <Header />
       <main>
-        {/* Top section — simple page-title banner */}
-        <section className="common-top-banner full-section relative border-t-0 pt-32 pb-16 xl:pt-44 xl:pb-20">
-          <div className="absolute inset-0">
-            <img className="h-full w-full object-cover" aria-hidden="true" src="/assets/photos/home-banner-bg.png" alt="" fetchPriority="high" />
-            <span className="common-top-banner-overlay" />
-          </div>
-          <div className="container relative z-10 mx-auto max-w-3xl py-6 text-center animate fadeUp">
-            <p className="mb-3 font-semibold uppercase tracking-[0.2em] text-primary">Case Study</p>
-            <h1 className="font-48 font-semibold leading-tight">{cs.title}</h1>
-          </div>
-        </section>
+        {/* Top section — shared case study banner */}
+        <CaseStudyBanner title={cs.title} />
 
         {/* Case study info — eyebrow + title + content (caseStudyTopSection) */}
         {(top.title || top.contentHtml) && (

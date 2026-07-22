@@ -254,6 +254,13 @@ There are **two** distinct "special" tiers, and they are not the same thing:
 
 > **Rule:** bespoke pages must **not** modify the service renderer (`app/[slug]/page.js`), `components/services/`, or `lib/services/index.js`. Add a new `app/(special)/<slug>/` route with components in `components/special/`.
 
+**3. Bespoke *case studies* — a local route that overrides the `[slug]` template.**
+Most case studies come from the CMS via the ACF template (`app/(marketing)/case-studies/[slug]/page.js`). But some are long-form, table-heavy layouts whose content does **not** fit the `caseStudiesFields` ACF groups (challenge matrix, numbered solution blocks, before/after comparison, analytics screenshots). For those, add a **literal route segment** — `app/(marketing)/case-studies/<slug>/page.js` — which wins over the sibling `[slug]` segment automatically. First (and so far only) example: **`mahesh-eng-works`**. The recipe:
+- Content is ported into the page file itself as plain data consts (verbatim from the CMS page), rendered with local table/section helpers. No CMS fetch for the body.
+- Screenshots are downloaded into `public/assets/case-studies/<slug>/` (self-contained, covered by the `/assets` 30-day cache header).
+- Add the slug to **`BESPOKE_CASE_STUDY_SLUGS`** in `lib/case-studies.js` so `getAllCaseStudySlugs()` excludes it — otherwise the dynamic `[slug]` route also prerenders a broken, ACF-empty copy.
+- **Hybrid CMS:** keep the WP case-study post published. The `/case-studies` **listing card** and the page's **Yoast metadata** (`getYoastMetadataByUri`) still come from it; only the detail body is local. Unpublish the WP post and the card + metadata disappear.
+
 ---
 
 ## Popup & CTA system
