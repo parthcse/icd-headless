@@ -148,8 +148,22 @@ export default function EcommerceAiAgentPage() {
           items={WHAT_IT_DOES}
         />
 
+        <ImpactCards
+          eyebrow="Business Impact"
+          title="What it changes on your P&L, not just your site."
+          subtitle="The widget is the visible part. The value lands in four places: revenue you were quietly leaking, support cost that no longer grows with orders, risk you don't have to clean up, and insight into what shoppers actually want."
+          items={IMPACT}
+          roiLabel="Where the Return Comes From"
+          roiItems={ROI}
+          roiFootnote="For most mid-size stores, line one alone covers the monthly fee — which makes lines two and three the actual return."
+          bottomLineLabel="The Bottom Line"
+          bottomLine="You're not buying a chatbot. You're buying more revenue per visitor, a support cost that stops growing with order volume, and 24/7 coverage in every market you sell to — without adding headcount."
+        />
+
+        {/* `tinted` intentionally dropped: ImpactCards above is already a
+            bg-black-light band, so tinting this one too would merge the two into
+            a single dark block. Restore `tinted` here if Business Impact moves. */}
         <FeatureCards
-          tinted
           eyebrow="Why It's Different"
           title="Most “AI chatbots” guess. This one is built to be trusted."
           subtitle="Anyone can bolt a generic chatbot onto a store. The hard part — where we've spent the engineering — is making it accurate, grounded and improvable on real ecommerce data."
@@ -183,18 +197,6 @@ export default function EcommerceAiAgentPage() {
           ]}
           quote="“It answers product, order and install questions the moment customers ask — day or night, in Norwegian or English.”"
           body="On Visor's Magento store the add-on handles product discovery (down to a specific Cordlock SKU), live order status and install-guide lookups — grounded in the store's own catalog and policies, with a human handoff whenever it isn't certain."
-        />
-
-        <ImpactCards
-          eyebrow="Business Impact"
-          title="What it changes on your P&L, not just your site."
-          subtitle="The widget is the visible part. The value lands in four places: revenue you were quietly leaking, support cost that no longer grows with orders, risk you don't have to clean up, and insight into what shoppers actually want."
-          items={IMPACT}
-          roiLabel="Where the Return Comes From"
-          roiItems={ROI}
-          roiFootnote="For most mid-size stores, line one alone covers the monthly fee — which makes lines two and three the actual return."
-          bottomLineLabel="The Bottom Line"
-          bottomLine="You're not buying a chatbot. You're buying more revenue per visitor, a support cost that stops growing with order volume, and 24/7 coverage in every market you sell to — without adding headcount."
         />
 
         <section className="special-packages full-section">
