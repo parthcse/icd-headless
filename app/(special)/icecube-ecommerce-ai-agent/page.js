@@ -13,6 +13,7 @@ import CompareTable from "@/components/special/CompareTable";
 import Counters from "@/components/special/Counters";
 import StepFlow from "@/components/special/StepFlow";
 import ProofCard from "@/components/special/ProofCard";
+import ImpactCards from "@/components/special/ImpactCards";
 import FaqAccordion from "@/components/special/FaqAccordion";
 import CtaBand from "@/components/special/CtaBand";
 import CtaButton from "@/components/special/CtaButton";
@@ -75,6 +76,29 @@ const COUNTERS = milestoneSection.items.map((m) => ({
   value: m.value,
   label: m.lines.join(" "),
 }));
+
+// Business impact — sits between the Visor proof and Packages so the page runs
+// proof → impact → pricing. Tagged by value type (Revenue / Cost / Risk /
+// Insight) so buyers can scan by the kind of return rather than read all nine.
+const IMPACT = [
+  { icon: "/assets/icons/ai-search.svg", tag: "Revenue", title: "More visitors actually convert", body: "Shoppers who get an instant answer on fit, stock or delivery don't drift off to compare elsewhere. The doubts that quietly kill carts get resolved in the moment, not in a queue the next morning." },
+  { icon: "/assets/icons/ai-cart.svg", tag: "Revenue", title: "Bigger average order value", body: "Accessories and bundles get suggested to someone already in buying mode — extra revenue with no additional ad spend behind it." },
+  { icon: "/assets/icons/ai-support.svg", tag: "Revenue", title: "Every after-hours enquiry is captured", body: "Evenings, weekends and holidays currently leak buyers to whoever answers first. That leak closes without hiring a night shift." },
+  { icon: "/assets/icons/ai-nlp.svg", tag: "Revenue", title: "New markets without new hires", body: "Replying in the shopper's own language means selling across borders without a support desk per country — the way Visor covers Norwegian and English from one team." },
+  { icon: "/assets/icons/user-team.svg", tag: "Cost", title: "Support stops scaling with orders", body: "Order status, returns and shipping questions resolve themselves, so volume can double without the support headcount doubling. Your team's day shifts to the cases that need a human." },
+  { icon: "/assets/icons/ai-gear.svg", tag: "Cost", title: "No internal AI overhead", body: "Fully managed means no new tooling to run, no prompt-engineering role to hire and no replatforming project competing for your roadmap." },
+  { icon: "/assets/icons/ai-shield.svg", tag: "Risk", title: "Wrong answers don't become refunds", body: "Refusing to invent a price, stock level or policy isn't a technical nicety — it's what stops a dispute, a chargeback or a bad review that costs a week to undo. Uncertain questions escalate instead." },
+  { icon: "/assets/icons/lock.svg", tag: "Risk", title: "A clean answer for legal and procurement", body: "A private knowledge base and least-privilege access settles the data question that stalls most AI purchases — before it becomes a three-month review." },
+  { icon: "/assets/icons/ai-analytics.svg", tag: "Insight", title: "You learn what customers really want", body: "Every question is logged, exposing gaps in your product pages, policies and catalog data — insight that improves the whole store, not just the chat widget." },
+];
+
+// Optional "do the math yourself" framing under the impact grid. Delete this
+// array and the roi* props on <ImpactCards> to drop it.
+const ROI = [
+  { title: "Deflected tickets", body: "Monthly tickets × minutes each × your loaded hourly cost — the share the assistant handles comes straight off that line." },
+  { title: "Recovered after-hours sales", body: "Out-of-hours sessions × your conversion rate × average order value — revenue a silent store hands to someone else." },
+  { title: "Basket uplift", body: "Assisted sessions × the lift in average order value from in-conversation recommendations." },
+];
 
 const FAQS = [
   { question: "Which platforms do you support?", answer: "Magento, Shopify and WooCommerce out of the box, plus custom and headless stores — anything with an API we can read your catalog and orders from. Helpdesks like Zendesk connect for tickets and handoff." },
@@ -159,6 +183,18 @@ export default function EcommerceAiAgentPage() {
           ]}
           quote="“It answers product, order and install questions the moment customers ask — day or night, in Norwegian or English.”"
           body="On Visor's Magento store the add-on handles product discovery (down to a specific Cordlock SKU), live order status and install-guide lookups — grounded in the store's own catalog and policies, with a human handoff whenever it isn't certain."
+        />
+
+        <ImpactCards
+          eyebrow="Business Impact"
+          title="What it changes on your P&L, not just your site."
+          subtitle="The widget is the visible part. The value lands in four places: revenue you were quietly leaking, support cost that no longer grows with orders, risk you don't have to clean up, and insight into what shoppers actually want."
+          items={IMPACT}
+          roiLabel="Where the Return Comes From"
+          roiItems={ROI}
+          roiFootnote="For most mid-size stores, line one alone covers the monthly fee — which makes lines two and three the actual return."
+          bottomLineLabel="The Bottom Line"
+          bottomLine="You're not buying a chatbot. You're buying more revenue per visitor, a support cost that stops growing with order volume, and 24/7 coverage in every market you sell to — without adding headcount."
         />
 
         <section className="special-packages full-section">

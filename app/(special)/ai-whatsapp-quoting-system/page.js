@@ -96,6 +96,18 @@ const COST_ROWS = [
   ["Estimated total", "$75–900", "Low volume (~500 quotes/mo) up to high volume (~10,000 quotes/mo)."],
 ];
 
+// Business-impact benefits — sits between "How It Works" and "What's Included"
+// so the reader gets mechanism → why it matters → scope. Icons are reused from
+// elsewhere on this page, so the section adds no new asset requests.
+const IMPACT = [
+  { icon: "/assets/icons/timer.svg", title: "Speed wins the order", body: "When a buyer asks three suppliers, the first quote back usually wins. Replying in seconds instead of hours puts you first far more often — on the same enquiries you already get." },
+  { icon: "/assets/icons/ai-team.svg", title: "Your team sells instead of typing", body: "Reps stop stopping mid-task to look up stock, pricing and line items. The same headcount handles far more enquiries — capacity grows without hiring." },
+  { icon: "/assets/icons/comment.svg", title: "After-hours enquiries stop leaking", body: "A message at 9pm or on a Sunday gets a quote immediately instead of going cold overnight — or getting answered by a competitor first." },
+  { icon: "/assets/icons/wallet.svg", title: "Margin protected on every quote", body: "Every price is pulled from your store's own price lists, so nobody under-quotes from memory or applies the wrong customer's rate. Fewer pricing errors, less margin quietly lost." },
+  { icon: "/assets/icons/hand-support.svg", title: "Fewer deals slip through the cracks", body: "Delivery-date reminders and unconverted-quote alerts mean follow-up doesn't depend on someone remembering. Quotes that would have gone quiet get chased automatically." },
+  { icon: "/assets/icons/shield-check.svg", title: "More throughput, no added risk", body: "Orders stay drafts until a human confirms, and running costs scale with volume rather than a fixed licence — so you grow quoting capacity without new fixed cost or a bad live order." },
+];
+
 const WHY_US = [
   { icon: "/assets/icons/award-badge.svg", title: "15+ years in eCommerce", body: "Deep, hands-on experience building commerce and automation across hundreds of ecommerce stores and custom builds." },
   { icon: "/assets/icons/workflow.svg", title: "Built for your workflow", body: "We design around how your sales team and your customers already work — not a rigid off-the-shelf bot." },
@@ -161,6 +173,13 @@ export default function AiWhatsappQuotingSystemPage() {
           title="Message in, quote out — in five steps."
           subtitle="Every quote follows the same path, whether it's the first message of the day or the hundredth."
           steps={STEPS}
+        />
+
+        <FeatureCards
+          eyebrow="Business Impact"
+          title="What faster quoting actually does to your numbers."
+          subtitle="Quoting isn't admin — it's the moment a sale is won or lost. Here's what changes when that moment takes seconds instead of hours."
+          items={IMPACT}
         />
 
         <FeatureCards
