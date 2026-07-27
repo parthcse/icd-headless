@@ -238,7 +238,7 @@ function NavDropdown({ label, links, current }) {
         <ul className={`min-w-56 ${PANEL_UL}`}>
           {links.map((link) => (
             <li key={link.label}>
-              <Link href={link.href} className={panelLink(isLinkActive(link.href, current))}>{link.label}</Link>
+              <Link href={link.href} prefetch={false} className={panelLink(isLinkActive(link.href, current))}>{link.label}</Link>
             </li>
           ))}
         </ul>
@@ -265,7 +265,7 @@ function NavNestedDropdown({ label, items, flyoutSide = "right", current }) {
               const itemActive = isLinkActive(item.href, current);
               return (
                 <li key={item.label}>
-                  <Link href={item.href} className={`mx-1 block whitespace-nowrap rounded-md px-4 py-2.5 font-medium leading-snug transition-colors hover:bg-white/5 ${itemActive ? "text-primary" : "hover:text-primary"}`}>{item.label}</Link>
+                  <Link href={item.href} prefetch={false} className={`mx-1 block whitespace-nowrap rounded-md px-4 py-2.5 font-medium leading-snug transition-colors hover:bg-white/5 ${itemActive ? "text-primary" : "hover:text-primary"}`}>{item.label}</Link>
                 </li>
               );
             }
@@ -279,7 +279,7 @@ function NavNestedDropdown({ label, items, flyoutSide = "right", current }) {
                   <ul data-lenis-prevent className={`max-h-[80vh] w-max overflow-y-auto overscroll-y-contain ${PANEL_UL}`}>
                     {item.links.map((link) => (
                       <li key={link.label}>
-                        <Link href={link.href} className={panelLink(isLinkActive(link.href, current))}>{link.label}</Link>
+                        <Link href={link.href} prefetch={false} className={panelLink(isLinkActive(link.href, current))}>{link.label}</Link>
                       </li>
                     ))}
                   </ul>
@@ -312,7 +312,7 @@ function MobLinkPanel({ id, label, links, current }) {
       <ul>
         {links.map((link) => (
           <li key={link.label} className="border-b border-white/10">
-            <Link href={link.href} className={`${MOB_LINK}${isLinkActive(link.href, current) ? " text-primary" : ""}`}>{link.label}</Link>
+            <Link href={link.href} prefetch={false} className={`${MOB_LINK}${isLinkActive(link.href, current) ? " text-primary" : ""}`}>{link.label}</Link>
           </li>
         ))}
       </ul>
@@ -469,7 +469,7 @@ export default function Header() {
                     {item.label} <ChevronRight />
                   </button>
                 ) : (
-                  <Link href={item.href} className={`${MOB_LINK}${isLinkActive(item.href, current) ? " text-primary" : ""}`}>{item.label}</Link>
+                  <Link href={item.href} prefetch={false} className={`${MOB_LINK}${isLinkActive(item.href, current) ? " text-primary" : ""}`}>{item.label}</Link>
                 )}
               </li>
             ))}

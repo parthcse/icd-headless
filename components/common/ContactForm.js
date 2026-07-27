@@ -165,6 +165,12 @@ export default function ContactForm({ variant = "split", title, subtitle, btnArr
   // Counts consecutive Turnstile errors so a transient blip (which auto-retry
   // recovers from) doesn't immediately show the visitor a "refresh" message.
   const turnstileErrorsRef = useRef(0);
+  // Turnstile renders LAZILY (armed on scroll-near / first field focus — see the
+  // effect below), not on mount, so pages the visitor only browses never load it
+  // or fire its WebGL fingerprint probing (~1k harmless console warnings).
+  const formRef = useRef(null);
+  const unmountedRef = useRef(false);
+  const renderStartedRef = useRef(false);
 
   // Detect the visitor's country early so it's ready by submit time.
   useEffect(() => {
@@ -177,12 +183,16 @@ export default function ContactForm({ variant = "split", title, subtitle, btnArr
     };
   }, []);
 
-  // Render the Turnstile widget for this form instance.
-  useEffect(() => {
-    let cancelled = false;
+  // Render the Turnstile widget for this form instance. Idempotent — armed by
+  // the effect below, so it renders at most once and never on page load for a
+  // form the visitor never reaches. widgetIdRef stays null until the real widget
+  // id exists, so handleSubmit's `!= null` token check remains correct.
+  const renderTurnstile = useCallback(() => {
+    if (renderStartedRef.current) return;
+    renderStartedRef.current = true;
     loadTurnstile()
       .then((ts) => {
-        if (cancelled || !ts || !turnstileRef.current || widgetIdRef.current != null) return;
+        if (unmountedRef.current || !ts || !turnstileRef.current || widgetIdRef.current != null) return;
         widgetIdRef.current = ts.render(turnstileRef.current, {
           sitekey: resolveTurnstileSiteKey(),
           size: "compact",
@@ -201,14 +211,14 @@ export default function ContactForm({ variant = "split", title, subtitle, btnArr
           // error and reset the failure count. Leave non-Turnstile errors intact.
           callback: () => {
             turnstileErrorsRef.current = 0;
-            if (!cancelled) setError((prev) => (prev.startsWith("Security check") ? "" : prev));
+            if (!unmountedRef.current) setError((prev) => (prev.startsWith("Security check") ? "" : prev));
           },
           "error-callback": (code) => {
             // With retry:auto, each failed attempt fires this. Stay quiet through
             // the first few so auto-retry can recover silently; only surface the
             // "refresh" message if it keeps failing.
             turnstileErrorsRef.current += 1;
-            if (turnstileErrorsRef.current >= 3 && !cancelled) {
+            if (turnstileErrorsRef.current >= 3 && !unmountedRef.current) {
               setError(
                 `Security check couldn't load (Turnstile ${code || "error"}). Please refresh and try again.`
               );
@@ -220,18 +230,44 @@ export default function ContactForm({ variant = "split", title, subtitle, btnArr
         });
       })
       .catch(() => {
-        /* widget won't render — submit will prompt the user */
+        // Load failed — let a later trigger (focus/submit) retry.
+        renderStartedRef.current = false;
       });
+  }, []);
+
+  // Arm the lazy render: whichever fires first — the form nearing the viewport
+  // (300px pre-warm, so the token is ready before the visitor submits) or a
+  // field getting focus (onFocusCapture on the <form>). A form already on-screen
+  // at load (e.g. the contact page) arms immediately, matching old behaviour.
+  useEffect(() => {
+    unmountedRef.current = false;
+    const el = formRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      renderTurnstile(); // no ref / no IO support → keep eager behaviour
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          renderTurnstile();
+          io.disconnect();
+        }
+      },
+      { rootMargin: "300px 0px" }
+    );
+    io.observe(el);
     return () => {
-      cancelled = true;
+      unmountedRef.current = true;
+      io.disconnect();
       try {
         if (widgetIdRef.current != null && window.turnstile) window.turnstile.remove(widgetIdRef.current);
       } catch {
         /* noop */
       }
       widgetIdRef.current = null;
+      renderStartedRef.current = false;
     };
-  }, []);
+  }, [renderTurnstile]);
 
   const resetFeedback = useCallback(() => {
     setError("");
@@ -470,7 +506,7 @@ export default function ContactForm({ variant = "split", title, subtitle, btnArr
       <div className={boxCls}>
         {title && <h2 className={`font-36 font-semibold text-center leading-snug ${subtitle ? "mb-1" : "mb-4"}`}>{title}</h2>}
         {subtitle && <p className="mb-4 text-center text-muted">{subtitle}</p>}
-        <form className={`grid ${compact ? "gap-3" : "gap-4 xl:gap-4.5"}`} onSubmit={handleSubmit} autoComplete="off" noValidate>
+        <form ref={formRef} onFocusCapture={renderTurnstile} className={`grid ${compact ? "gap-3" : "gap-4 xl:gap-4.5"}`} onSubmit={handleSubmit} autoComplete="off" noValidate>
           {fields}
         </form>
       </div>
@@ -479,7 +515,7 @@ export default function ContactForm({ variant = "split", title, subtitle, btnArr
 
   return (
     <div className="contact-quote-form min-w-0 flex-1">
-      <form className="grid gap-4 xl:gap-4.5" onSubmit={handleSubmit} autoComplete="off" noValidate>
+      <form ref={formRef} onFocusCapture={renderTurnstile} className="grid gap-4 xl:gap-4.5" onSubmit={handleSubmit} autoComplete="off" noValidate>
         {fields}
       </form>
     </div>

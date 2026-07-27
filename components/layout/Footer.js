@@ -60,7 +60,7 @@ export default function Footer() {
             >
               {column.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className={isActive(link.href) ? "text-primary underline" : undefined}>{link.label}</Link>
+                  <Link href={link.href} prefetch={false} className={isActive(link.href) ? "text-primary underline" : undefined}>{link.label}</Link>
                 </li>
               ))}
             </ul>
@@ -83,7 +83,7 @@ export default function Footer() {
               {BOTTOM_LINKS.map((link, i) => (
                 <li key={link.label} className="flex items-center gap-2">
                   {i > 0 && <span aria-hidden="true">|</span>}
-                  <Link href={link.href} className={isActive(link.href) ? "!text-primary" : undefined}>{link.label}</Link>
+                  <Link href={link.href} prefetch={false} className={isActive(link.href) ? "!text-primary" : undefined}>{link.label}</Link>
                 </li>
               ))}
             </ul>
