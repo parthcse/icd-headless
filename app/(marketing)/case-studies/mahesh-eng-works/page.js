@@ -21,6 +21,7 @@
  * page is self-contained and covered by the 30-day /assets cache header. To
  * refresh a screenshot, replace the file and purge Cloudflare for that path.
  */
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -328,10 +329,10 @@ export default async function MaheshEngWorksCaseStudy() {
                     View Live Website
                     <ArrowIcon />
                   </a>
-                  <a href="/contact-us/" className="btn btn-secondary">
+                  <Link href="/contact-us/" className="btn btn-secondary">
                     Start Your Project Today
                     <ArrowIcon />
-                  </a>
+                  </Link>
                 </div>
               </div>
               <figure className="animate fadeUp" style={{ animationDelay: "0.1s" }}>

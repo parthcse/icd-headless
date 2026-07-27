@@ -15,7 +15,7 @@ function renderParts(parts) {
 
 /**
  * Simple centered top banner (no contact form) — the same lightweight hero used
- * on the career / newsletter / thank-you pages, exposed as a service-page
+ * on the newsletter / thank-you pages, exposed as a service-page
  * section. Good for pages that lead with a section below (e.g. pricing
  * packages) rather than a banner-embedded quote form.
  *

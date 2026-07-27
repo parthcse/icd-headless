@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 // Page 1 lives at the base path (canonical); page N at <base>page/N/.
 function pageHref(n, basePath) {
   return n <= 1 ? basePath : `${basePath}page/${n}/`;
@@ -40,9 +42,9 @@ export default function BlogPagination({ page, totalPages, basePath = "/blog/" }
   return (
     <nav className="mt-12 flex flex-wrap items-center justify-center gap-2" aria-label="Blog pagination">
       {hasPrev ? (
-        <a href={pageHref(page - 1, basePath)} className={`${baseCls} border-[#2d2d2d] text-white hover:border-primary hover:text-primary`} aria-label="Previous page">
+        <Link href={pageHref(page - 1, basePath)} className={`${baseCls} border-[#2d2d2d] text-white hover:border-primary hover:text-primary`} aria-label="Previous page">
           <Arrow dir="prev" />
-        </a>
+        </Link>
       ) : (
         <span className={`${baseCls} border-[#1f1f1f] text-white/25`} aria-disabled="true">
           <Arrow dir="prev" />
@@ -59,16 +61,16 @@ export default function BlogPagination({ page, totalPages, basePath = "/blog/" }
             {p}
           </span>
         ) : (
-          <a key={p} href={pageHref(p, basePath)} className={`${baseCls} border-[#2d2d2d] text-white hover:border-primary hover:text-primary`}>
+          <Link key={p} href={pageHref(p, basePath)} className={`${baseCls} border-[#2d2d2d] text-white hover:border-primary hover:text-primary`}>
             {p}
-          </a>
+          </Link>
         )
       )}
 
       {hasNext ? (
-        <a href={pageHref(page + 1, basePath)} className={`${baseCls} border-[#2d2d2d] text-white hover:border-primary hover:text-primary`} aria-label="Next page">
+        <Link href={pageHref(page + 1, basePath)} className={`${baseCls} border-[#2d2d2d] text-white hover:border-primary hover:text-primary`} aria-label="Next page">
           <Arrow dir="next" />
-        </a>
+        </Link>
       ) : (
         <span className={`${baseCls} border-[#1f1f1f] text-white/25`} aria-disabled="true">
           <Arrow dir="next" />

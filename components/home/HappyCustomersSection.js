@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { testimonialsArchiveUrl, truncateWords } from "../../lib/wp-text";
 import { TESTIMONIALS } from "../../lib/testimonials";
 
@@ -76,7 +77,7 @@ export default function HappyCustomersSection({ limit = 6 }) {
           ))}
         </div>
         <div className="btn-wrap relative z-10 mt-5 inline-block md:mt-6 lg:mt-9">
-          <a className="btn btn-primary" href={testimonialsArchiveUrl()}>
+          <Link className="btn btn-primary" href={testimonialsArchiveUrl()}>
             View More Reviews
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -88,7 +89,7 @@ export default function HappyCustomersSection({ limit = 6 }) {
             >
               <path d={REVIEW_ARROW_PATH} />
             </svg>
-          </a>
+          </Link>
         </div>
       </div>
     </section>

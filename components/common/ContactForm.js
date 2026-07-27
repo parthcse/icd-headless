@@ -147,7 +147,7 @@ function detectCountry() {
  * email and the rest of the CF7 pipeline. A Cloudflare Turnstile widget provides
  * the spam token the form requires.
  */
-export default function ContactForm({ variant = "split", title, subtitle, badge = false, btnArrow, animate = true, bordered = true, compact = false, onSuccess }) {
+export default function ContactForm({ variant = "split", title, subtitle, btnArrow, animate = true, bordered = true, compact = false, onSuccess }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -461,7 +461,7 @@ export default function ContactForm({ variant = "split", title, subtitle, badge 
 
   if (isBanner) {
     const boxCls = [
-      bordered ? `border border-primary px-space-mini pb-space-mini backdrop-blur ${badge ? "pt-12" : "pt-space-small"}` : "",
+      bordered ? "border border-primary px-space-mini pb-space-mini backdrop-blur pt-space-small" : "",
       animate ? "animate fadeUp" : "",
     ]
       .filter(Boolean)

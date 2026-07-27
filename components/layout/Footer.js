@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const normPath = (p) => {
@@ -59,7 +60,7 @@ export default function Footer() {
             >
               {column.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className={isActive(link.href) ? "text-primary underline" : undefined}>{link.label}</a>
+                  <Link href={link.href} className={isActive(link.href) ? "text-primary underline" : undefined}>{link.label}</Link>
                 </li>
               ))}
             </ul>
@@ -82,7 +83,7 @@ export default function Footer() {
               {BOTTOM_LINKS.map((link, i) => (
                 <li key={link.label} className="flex items-center gap-2">
                   {i > 0 && <span aria-hidden="true">|</span>}
-                  <a href={link.href} className={isActive(link.href) ? "!text-primary" : undefined}>{link.label}</a>
+                  <Link href={link.href} className={isActive(link.href) ? "!text-primary" : undefined}>{link.label}</Link>
                 </li>
               ))}
             </ul>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -43,7 +44,7 @@ export default async function TeamMemberPage({ params }) {
     <>
       <Header />
       <main>
-        {/* Standard site banner — same markup as /meta-length-checker/, /career/, etc. */}
+        {/* Standard site banner — same markup as /meta-length-checker/, /web-wednesday-newsletter/, etc. */}
         <section className="common-top-banner full-section relative border-t-0 pt-28 pb-16 xl:pt-40 xl:pb-28">
           <div className="absolute inset-0">
             <img
@@ -87,9 +88,9 @@ export default async function TeamMemberPage({ params }) {
               )}
 
               <div className="mt-8">
-                <a href="/about-us/" className="btn btn-secondary inline-flex">
+                <Link href="/about-us/" className="btn btn-secondary inline-flex">
                   <BackArrow /> Back to Team
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -129,7 +130,7 @@ export default async function TeamMemberPage({ params }) {
               </div>
               <div className="grid grid-cols-2 gap-4 text-center md:grid-cols-4 lg:gap-6">
                 {others.map((m) => (
-                  <a
+                  <Link
                     key={m.slug}
                     href={m.href}
                     aria-label={`Read more about ${m.name}`}
@@ -149,7 +150,7 @@ export default async function TeamMemberPage({ params }) {
                         />
                       </figure>
                     )}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>

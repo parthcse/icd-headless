@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { formatPostDate, stripHtml } from "@/lib/wp-text";
 
 const FALLBACK_IMG = "/assets/photos/home-our-client-slider.png";
@@ -11,7 +12,7 @@ export default function BlogCard({ post }) {
   const href = post.uri || "#"; // relative → opens the in-app blog post page
 
   return (
-    <a
+    <Link
       href={href}
       className="group relative block aspect-[5/3] overflow-hidden rounded-md border border-white/5 transition-shadow duration-300 hover:shadow-xl hover:shadow-black/60"
     >
@@ -36,6 +37,6 @@ export default function BlogCard({ post }) {
           {date ? <span>{date}</span> : null}
         </div>
       </div>
-    </a>
+    </Link>
   );
 }

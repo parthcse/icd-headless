@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getCaseStudyNodes } from "../../lib/wp-home-data";
 import { stripHtml, internalPath } from "../../lib/wp-text";
 
@@ -39,20 +40,20 @@ export default async function SuccessStoriesSection() {
               <figure className="mb-5 md:mb-6 lg:mb-8 xl:mb-10 overflow-hidden">
                 {/* aria-label: this link wraps only an image, and the CMS altText is
                     often empty — the case-study title gives it a discernible name. */}
-                <a href={slide.href} aria-label={slide.title}>
+                <Link href={slide.href} aria-label={slide.title}>
                   <img
                     className="w-full aspect-[3/1.8] object-cover transition-all duration-500 group-hover:scale-105 ease-out"
                     src={slide.image}
                     alt={slide.imageAlt}
                   />
-                </a>
+                </Link>
               </figure>
               <h2 className="font-32 font-bold mb-[0.5em]">
-                <a href={slide.href} className="transition-colors hover:text-primary">{slide.title}</a>
+                <Link href={slide.href} className="transition-colors hover:text-primary">{slide.title}</Link>
               </h2>
               <p>{slide.body}</p>
               <div className="btn-wrap font-24 pt-[1em] mt-auto">
-                <a className="btn btn-primary" href={slide.href}>
+                <Link className="btn btn-primary" href={slide.href}>
                   Read Case Study
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -64,7 +65,7 @@ export default async function SuccessStoriesSection() {
                   >
                     <path d={ARROW_PATH} />
                   </svg>
-                </a>
+                </Link>
               </div>
             </div>
           ))}

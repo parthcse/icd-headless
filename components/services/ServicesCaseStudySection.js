@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import Link from "next/link";
 import { getCaseStudyNodesByIds } from "@/lib/wp-home-data";
 
 function renderParts(parts) {
@@ -64,13 +65,13 @@ export default async function ServicesCaseStudySection({ data }) {
             <div key={i} className="column group">
               <figure className="overflow-hidden">
                 {item.href ? (
-                  <a href={item.href}>
+                  <Link href={item.href}>
                     <img
                       src={item.image}
                       alt={item.clientName}
                       className="w-full aspect-[1.16] object-cover transition-all duration-500 group-hover:scale-105 ease-out"
                     />
-                  </a>
+                  </Link>
                 ) : (
                   <img
                     src={item.image}
@@ -81,7 +82,7 @@ export default async function ServicesCaseStudySection({ data }) {
               </figure>
               <h3 className="font-30 font-bold mb-0 pt-space-small">
                 {item.href ? (
-                  <a href={item.href} className="transition-colors hover:text-primary">{item.clientName}</a>
+                  <Link href={item.href} className="transition-colors hover:text-primary">{item.clientName}</Link>
                 ) : (
                   item.clientName
                 )}

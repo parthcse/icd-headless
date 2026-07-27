@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import Link from "next/link";
 import { formatPostDate, readingTime, stripHtml } from "@/lib/wp-text";
 
 const UserIcon = () => (
@@ -33,13 +34,13 @@ export default function BlogPostBanner({ post }) {
 
   const meta = [
     author?.name && (
-      <a
+      <Link
         key="author"
         href={author.uri ? `/blog/author/${author.slug}/` : "#"}
         className="inline-flex items-center gap-2 font-medium transition-colors hover:text-primary"
       >
         <UserIcon /> {stripHtml(author.name)}
-      </a>
+      </Link>
     ),
     post.date && (
       <span key="date" className="inline-flex items-center gap-2 font-medium">
@@ -64,13 +65,13 @@ export default function BlogPostBanner({ post }) {
         {categories.length > 0 && (
           <div className="mb-5 flex flex-wrap items-center justify-center gap-2">
             {categories.map((cat) => (
-              <a
+              <Link
                 key={cat.slug || cat.name}
                 href={cat.slug ? `/blog/category/${cat.slug}/` : "#"}
                 className="inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-black-light"
               >
                 <TagIcon /> {cat.name}
-              </a>
+              </Link>
             ))}
           </div>
         )}

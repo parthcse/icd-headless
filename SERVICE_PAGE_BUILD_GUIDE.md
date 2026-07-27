@@ -733,39 +733,11 @@ const BTN_ARROW = "M0.703125 12.0312C0.494792 12.0312 0.3125 11.9792 0.15625 11.
 
 ## 13. Special & bespoke pages
 
-Some pages don't fit the standard mould. There are **two tiers** — always pick the *lowest* one that works.
+Some pages don't fit the standard mould — when the live layout genuinely can't be expressed with the shared service sections, build a **fully-bespoke route** instead of forcing it into `[slug]`.
 
-### Tier 1 — Special *service* page (still the `[slug]` system)
+> **Removed 2026-07-20:** the former "Tier 1 — special *service* page" (a normal `[slug]` page that added a per-page `popup: {…}` and/or `guaranteeBadge: true`) is gone, along with its only pages (`seo-company-ahmedabad`, `seo-company-gujarat`, `digital-marketing-agency-ahmedabad`), the `lib/services/special/` folder, and the popup-variant system (`PopupVariantRegistrar` + `popupVariantStore`). Those data keys no longer do anything. If a page needs a custom popup again, restore that system from git history. The two-button CTA band (`ctaLabelSecondary` + `ctaHrefSecondary` on a `cta` section) still exists and works on any page.
 
-A normal data-driven page that just adds a **per-page popup** and/or a **money-back badge**. Lives in `lib/services/special/` and registers in `index.js` exactly like any other page. Examples: `seo-company-ahmedabad`, `seo-company-gujarat`, `digital-marketing-agency-ahmedabad`.
-
-**Everything in §1–§12 still applies.** The only extra data keys:
-
-```js
-// top-level — a custom popup for THIS page (auto-opens; also opens on every popup button)
-popup: {
-  image: "/assets/photos/<name>.png",   // left-column image (png/jpg, not webp)
-  title: "Book Consultation with SEO Expert",
-  subtitle: "",
-  autoDelay: 10000,                      // ms before it auto-opens
-},
-
-banner: {
-  guaranteeBadge: true,                  // money-back badge straddling the form's top border
-  formTitle: "Schedule Your Free Consultation",
-  formSubtitle: "Just pick a time that works for you.",   // optional line under the form title
-  // …the rest of a normal banner
-},
-```
-
-Checklist:
-
-- [ ] File in `lib/services/special/`, registered in `index.js` (the same 2 edits as any page).
-- [ ] `popup: {…}` only if the page needs the custom popup; `guaranteeBadge: true` only if it needs the badge.
-- [ ] Two-button CTA band: add `ctaLabelSecondary` + `ctaHrefSecondary` to a `cta` section (renders a second outline button).
-- [ ] All Golden Rules (§2) and the verification checklist (§10) apply unchanged.
-
-### Tier 2 — Fully-bespoke page (NOT the `[slug]` system)
+### Fully-bespoke page (NOT the `[slug]` system)
 
 Use **only** when the live layout genuinely can't be expressed with the shared service sections (e.g. the Gutenberg-built AI product pages). Built like the about / newsletter pages — its own route + its own components. Examples: `ai-whatsapp-quoting-system`, `icecube-ecommerce-ai-agent`.
 

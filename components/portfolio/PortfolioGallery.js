@@ -1,12 +1,13 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import Link from "next/link";
 
 // Square card in the blog-card style: image zooms, dark blur overlay fades in
 // with the title + category on hover.
 function PortfolioCard({ item }) {
   return (
-    <a
+    <Link
       href={item.href || "#"}
       className="group relative block aspect-[37/32] overflow-hidden rounded-md border border-white/5 transition-shadow duration-300 hover:shadow-xl hover:shadow-black/60"
     >
@@ -21,7 +22,7 @@ function PortfolioCard({ item }) {
         <span className="h-0.5 w-9 rounded-full bg-primary" />
         {item.categories[0] && <span className="text-base font-medium text-primary">{item.categories[0].name}</span>}
       </div>
-    </a>
+    </Link>
   );
 }
 

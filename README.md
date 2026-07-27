@@ -129,17 +129,16 @@ icd-headless/
 ├── components/
 │   ├── layout/                  # Header, Footer
 │   ├── common/                  # ContactForm, SmoothScroll, RouteHandler, SiteSchema, PageSchema,
-│   │                            #   GetQuotePopup + popupVariantStore + PopupVariantRegistrar, …
-│   ├── services/                # ★ 31 reusable "section" components consumed by the [slug] data files
-│   ├── special/                 # ★ 15 bespoke dark-theme components for the app/(special)/ pages
-│   ├── home/ about/ blog/ portfolio/ case-studies/ testimonials/ contact/ career/ …
+│   │                            #   GetQuotePopup, WhatsAppButton, TrustedClientsSection, …
+│   ├── services/                # ★ reusable "section" components consumed by the [slug] data files
+│   ├── special/                 # ★ bespoke dark-theme components for the app/(special)/ pages
+│   ├── home/ about/ blog/ portfolio/ case-studies/ testimonials/ contact/ …
 │   └── icons/
 ├── lib/
 │   ├── site-schema.js           # ★ Site-wide JSON-LD (LocalBusiness + WebSite + Organization) — edit here
-│   ├── services/                # ★ 181 page data files, grouped by category folder
+│   ├── services/                # ★ 175 page data files, grouped by category folder
 │   │   ├── index.js             #   the registry: imports + MAP (slug → data) + getServiceData()
 │   │   ├── common-section/      #   shared section presets (milestone, achievements, ourClients, ceoCta)
-│   │   ├── special/             #   landing pages that USE the [slug] system but have a per-page popup + badge
 │   │   ├── ecommerce/ magento/ wordpress/ shopify/ woocommerce/ webflow/ white-label/
 │   │   ├── digital-marketing/ ai/ development/ industry/ location/ packages/ resources/
 │   ├── company/                 # "about the company" pages (why-work-with-us, mobile-application, …)
@@ -244,17 +243,12 @@ That's the whole wiring — the route, metadata, and sections are automatic. For
 
 There are **two** distinct "special" tiers, and they are not the same thing:
 
-**1. Special *service* pages — still the `[slug]` system** (`lib/services/special/`).
-`seo-company-ahmedabad`, `seo-company-gujarat`, `digital-marketing-agency-ahmedabad`. These are ordinary data files registered in `lib/services/index.js` and rendered by `app/[slug]/page.js` — but they add two things:
-- a **per-page popup** (`popup: {…}` — see [Popup & CTA system](#popup--cta-system)), and
-- a **money-back guarantee badge** on the banner (`guaranteeBadge: true`).
-
-**2. Fully-bespoke landing pages — NOT the `[slug]` system** (`app/(special)/` + `components/special/`).
+**1. Fully-bespoke landing pages — NOT the `[slug]` system** (`app/(special)/` + `components/special/`).
 `ai-whatsapp-quoting-system`, `icecube-ecommerce-ai-agent`. These have a layout that doesn't fit the shared service sections, so they're built like the about / newsletter pages: **their own route file** (`app/(special)/<slug>/page.js` with `generateMetadata` + `YoastSchema` + `Header`/`main`/`Footer` + `PageSchema`) composing **dedicated dark-theme components** from `components/special/` (`SpecialHero`, `FeatureCards`, `CompareTable`, `StepFlow`, `SplitCards`, `CostTable`, `FaqAccordion`, `CtaBand`, …). The hero's right column is a **GIF** (`public/assets/gifs/`).
 
 > **Rule:** bespoke pages must **not** modify the service renderer (`app/[slug]/page.js`), `components/services/`, or `lib/services/index.js`. Add a new `app/(special)/<slug>/` route with components in `components/special/`.
 
-**3. Bespoke *case studies* — a local route that overrides the `[slug]` template.**
+**2. Bespoke *case studies* — a local route that overrides the `[slug]` template.**
 Most case studies come from the CMS via the ACF template (`app/(marketing)/case-studies/[slug]/page.js`). But some are long-form, table-heavy layouts whose content does **not** fit the `caseStudiesFields` ACF groups (challenge matrix, numbered solution blocks, before/after comparison, analytics screenshots). For those, add a **literal route segment** — `app/(marketing)/case-studies/<slug>/page.js` — which wins over the sibling `[slug]` segment automatically. First (and so far only) example: **`mahesh-eng-works`**. The recipe:
 - Content is ported into the page file itself as plain data consts (verbatim from the CMS page), rendered with local table/section helpers. No CMS fetch for the body.
 - Screenshots are downloaded into `public/assets/case-studies/<slug>/` (self-contained, covered by the `/assets` 30-day cache header).
@@ -266,10 +260,10 @@ Most case studies come from the CMS via the ACF template (`app/(marketing)/case-
 ## Popup & CTA system
 
 - A single **`<GetQuotePopup/>`** lives in the root layout and **auto-opens** after a delay.
-- Any CTA with **`ctaHref: "popup"`** (via `ServiceCtaButton`) dispatches the `icd:open-quote-popup` event to open it — no per-button wiring.
-- **Per-page popup variant:** a page can set a top-level `popup: { image, title, subtitle, autoDelay }`. `PopupVariantRegistrar` publishes it to `popupVariantStore`, and `GetQuotePopup` renders that variant (custom left-column image/title + your own auto-open delay) instead of the default. Used by the special service pages.
-- **Guarantee badge:** `guaranteeBadge: true` on a `banner` renders the money-back badge straddling the form's top border (the form gets matching top padding).
+- Any CTA with **`ctaHref: "popup"`** (via `ServiceCtaButton`) dispatches the `icd:open-quote-popup` event to open it — no per-button wiring. `QuotePopupButton` (used e.g. on `/meta-length-checker/`) fires the same event.
 - **Two-button CTA band:** add `ctaLabelSecondary` + `ctaHrefSecondary` to a `cta` section to render a second (outline) button stacked under the primary.
+
+> **Removed 2026-07-20:** the per-page **popup variant** (`popup: {…}` + `PopupVariantRegistrar` + `popupVariantStore`) and the **`guaranteeBadge`** banner flag. They existed only for the retired `seo-company-*` / `digital-marketing-agency-ahmedabad` pages; `GetQuotePopup` now always shows the single default. Re-add from git history if a page needs a custom popup again.
 
 ---
 

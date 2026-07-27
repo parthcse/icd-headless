@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getAuthorInfo } from "@/lib/authors";
 import { stripHtml } from "@/lib/wp-text";
 
@@ -28,12 +29,12 @@ export default function BlogAuthorBox({ authorNode }) {
         <p className="mt-3 leading-relaxed text-white/80">{info.bio}</p>
         <div className="mt-5 flex flex-wrap items-center justify-center gap-3 sm:justify-start">
           {info.slug && (
-            <a
+            <Link
               href={`/blog/author/${info.slug}/`}
               className="inline-flex h-9 items-center gap-1.5 rounded-full border border-primary/20 bg-gradient-to-br from-primary/15 to-primary/[0.04] px-4 text-sm font-semibold text-white/85 transition-colors hover:border-primary/40 hover:text-white"
             >
               View all posts by {info.name} →
-            </a>
+            </Link>
           )}
           {info.linkedin && (
             <a

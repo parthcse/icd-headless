@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -65,9 +66,9 @@ export default async function BlogPostPage({ params }) {
       )}
 
       <div className="mt-10">
-        <a href="/blog/" className="btn btn-secondary inline-flex">
+        <Link href="/blog/" className="btn btn-secondary inline-flex">
           <BackArrow /> Back to Blog
-        </a>
+        </Link>
       </div>
 
       <BlogShare url={shareUrl} title={stripHtml(post.title)} />

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getRecentPostNodes } from "../../lib/wp-home-data";
 import { formatPostDate, postsArchiveUrl, stripHtml, internalPath } from "../../lib/wp-text";
 
@@ -32,7 +33,7 @@ export default async function LatestNewsSection() {
         >
           {posts.map((post, index) => (
             <div key={post.id} className="column bg-black-light animate fadeUp" style={{ animationDelay: `${(index) * 0.1}s` }}>
-              <a href={post.href} className="group block text-inherit no-underline">
+              <Link href={post.href} className="group block text-inherit no-underline">
                 <figure className="overflow-hidden">
                   {/* Real intrinsic width/height → the browser reserves the correct
                       space before load (fixes CLS) while keeping the exact ratio, so
@@ -50,12 +51,12 @@ export default async function LatestNewsSection() {
                   <h2 className="font-22 pb-2 font-bold">{post.title}</h2>
                   <p>{post.dateLabel}</p>
                 </div>
-              </a>
+              </Link>
             </div>
           ))}
         </div>
         <div className="btn-wrap pt-space-small text-center xl:pt-14">
-          <a className="btn btn-primary" href={postsArchiveUrl()}>
+          <Link className="btn btn-primary" href={postsArchiveUrl()}>
             View More Blogs
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +68,7 @@ export default async function LatestNewsSection() {
             >
               <path d={ARROW_PATH} />
             </svg>
-          </a>
+          </Link>
         </div>
       </div>
     </section>
