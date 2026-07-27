@@ -71,6 +71,7 @@ const SERVICES_CATEGORIES = [
       { label: "AI Consulting Services", href: "/ai-consulting-services/" },
       { label: "AI Integration Services", href: "/ai-integration-services/" },
       { label: "ChatGPT Ads Agency Services", href: "/chatgpt-advertising-services/" },
+      { label: "AI WhatsApp Quoting System", href: "/ai-whatsapp-quoting-system/" },
     ],
   },
   {
