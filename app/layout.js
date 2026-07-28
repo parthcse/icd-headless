@@ -52,8 +52,9 @@ export default function RootLayout({ children }) {
         <link rel="preload" href="/fonts/Gilroy-Medium.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/Gilroy-SemiBold.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/Gilroy-Bold.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="stylesheet" href="/css/fonts.css" />
-        <link rel="stylesheet" href="/css/animated.css" />
+        {/* ONE render-blocking stylesheet. fonts.css + animated.css are @imported
+            into styles/input.css and inlined into output.css at build time — three
+            separate <link>s meant three blocking round trips on every page. */}
         <link rel="stylesheet" href="/css/output.css" />
         {/* owl.carousel CSS is deferred (loaded after hydration by <DeferredStyles/>) to avoid render-blocking; noscript fallback for no-JS users. */}
         <noscript>

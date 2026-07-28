@@ -1,4 +1,12 @@
 /* Source: Design/tailwind/input.css — plus Next-only: .font-32, .header-main.header-scrolled, .char-animate (Framer hero; .char-animate span keyframes omitted — conflicts with motion spans). */
+
+/* Gilroy @font-face + scroll-animation classes are inlined here (postcss-import
+   resolves these at build time) so the browser fetches ONE render-blocking
+   stylesheet instead of three. Order is load-bearing and matches the old
+   <link> order: fonts → animated → Tailwind. Edit the sources, not the output. */
+@import "./fonts.css";
+@import "./animated.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

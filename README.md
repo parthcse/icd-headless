@@ -93,17 +93,31 @@ Defined in `.env.local` (not committed). `NEXT_PUBLIC_*` are exposed to the brow
 | `npm run dev` | Next dev server with Turbopack. |
 | `npm run dev:webpack` | Dev server with Webpack (fallback if a Turbopack issue appears). |
 | `npm run build` | Production build. **Statically renders every page**, so it's the definitive check that all ~380 routes compile and render. |
-| `npm run build:css` | **Recompiles Tailwind** from `styles/input.css` → `public/css/output.css`, **minified** (`--minify`). Run this whenever you add/change a utility class **in a component**. Output is one line — that's expected; never hand-edit it. |
+| `npm run build:css` | Builds the **single** site stylesheet: `styles/input.css` (which `@import`s `fonts.css` + `animated.css`) → `public/css/output.css`, minified. Run whenever you add/change a utility class **in a component**, or edit anything in `styles/`. |
+| `npm run build:js` | Minifies (terser) `src/js/*.js` → `public/js/*.js`. |
+| `npm run build:assets` | `build:css` + `build:js` — everything generated into `public/`. |
 | `npm run start` | Serve the production build. |
 | `npm run lint` | ESLint. |
 
-### ⚠️ The CSS build gotcha (important)
+### ⚠️ The asset build gotcha (important)
 
-`public/css/output.css` is **prebuilt** and linked directly in the root layout. **Next does NOT run Tailwind JIT at request time.** So:
+**Everything in `public/css/` and `public/js/` is GENERATED and minified — never hand-edit it.** Those files are linked directly by the root layout; **Next does NOT process them at request time** (no Tailwind JIT, no bundling).
+
+| Edit this source | Then run | Generates |
+|---|---|---|
+| `styles/input.css` *(or any component class)* | `npm run build:css` | `public/css/output.css` |
+| `styles/fonts.css` *(`@import`ed into input.css)* | `npm run build:css` | ⤷ inlined into `output.css` |
+| `styles/animated.css` *(`@import`ed into input.css)* | `npm run build:css` | ⤷ inlined into `output.css` |
+| `src/js/common-next.js` | `npm run build:js` | `public/js/common-next.js` |
+| `src/js/load-design.js` | `npm run build:js` | `public/js/load-design.js` |
+
+> **One stylesheet, on purpose.** `fonts.css` and `animated.css` used to be two extra `<link>`s in the root layout — three render-blocking round trips on every page. They're now `@import`ed at the top of `styles/input.css` and inlined by postcss-import at build time, so the browser fetches **one** blocking stylesheet. **Don't re-add them as `<link>` tags**, and keep the import order (fonts → animated → `@tailwind`) — it's the cascade order the old links had.
 
 - **New utility class in a component** (`components/**`) → you MUST run `npm run build:css`, or the class won't be styled.
 - **Data files never contain classes** — they're pure data, so editing `lib/services/**` needs no CSS rebuild.
 - Content globs cover `app/`, `components/`, `lib/`.
+- **Generated output is committed to git** — deploy is `git pull` + `npm run build`, which does *not* regenerate these. Rebuild locally and commit, or the live site serves the old asset.
+- `jquery.min.js` / `owl.carousel.min.js` are vendor files, already minified — they have no source and are left untouched.
 
 ---
 
@@ -148,12 +162,13 @@ icd-headless/
 │   ├── wp-home-data.js          # CMS fetch helpers (case studies, portfolio, posts) with fallbacks
 │   ├── blog.js portfolio.js case-studies.js wp-text.js
 ├── graphql/                     # GraphQL query documents (incl. seoQueries.js: Yoast meta/schema + ACF)
-├── public/
-│   ├── css/output.css           # ★ PREBUILT Tailwind output (committed)
+├── public/                      # ★ ALL css/ + js/ here is GENERATED & minified — never hand-edit
+│   ├── css/                     #   output.css — the ONE site stylesheet (Tailwind+fonts+animations)
 │   ├── fonts/                   # Gilroy family
-│   ├── assets/{icons,photos,flags,gifs,testimonial}/  # icons, images, country flags, hero GIFs, avatars
-│   └── js/                      # legacy jQuery/owl-carousel design scripts
-├── styles/input.css             # Tailwind source → compiles to public/css/output.css
+│   ├── assets/{icons,photos,flags,gifs,testimonial,case-studies}/  # images, flags, GIFs, avatars
+│   └── js/                      #   common-next.js + load-design.js (minified) · jquery/owl (vendor)
+├── styles/                      # CSS SOURCES → public/css/ (input.css, fonts.css, animated.css)
+├── src/js/                      # JS SOURCES → public/js/ (common-next.js, load-design.js)
 ├── scripts/                     # one-off migration/extraction scripts (*.mjs)
 └── SERVICE_PAGE_BUILD_GUIDE.md  # the page-building playbook (see Reference docs)
 ```
@@ -309,6 +324,7 @@ export const REDIRECTS = [
 
 - All entries are served as **301 Moved Permanently** (explicit `statusCode: 301`, *not* Next's default `permanent: true` which emits 308 — 301 is what SEO tooling expects).
 - **Destinations are stored as paths.** A full `https://www.icecubedigital.com/...` URL also works — `next.config.mjs` converts it at build time. Paths matter because a hardcoded `www` destination would bounce **preview** traffic to production.
+- **Cross-domain destinations are absolute URLs and pass through untouched.** `toDestination()` only shortens same-domain `www.icecubedigital.com` URLs to paths; anything else (e.g. `https://www.icecubedigital.in/...`) is emitted as-is. The block at the top of `redirects.mjs` sends the pages retired from this project (`smm-packages-india`, `ppc-packages-in-india`, `seo-packages-in-india`, `seo-company-ahmedabad`, `seo-company-gujarat`, `digital-marketing-agency-ahmedabad`, `career`) to the **.in** site.
 - **Order matters** — Next matches top-down. Exact paths are listed first, the handful of wildcard rules last, so a specific match always wins.
 - **Wildcards use Next syntax**, not the `*` from an Apache/WordPress export:
 
@@ -412,6 +428,12 @@ curl -sSI https://www.icecubedigital.com/css/output.css | grep -i 'cache-control
 `cf-cache-status: DYNAMIC` on HTML is expected — **Cloudflare never caches HTML without an explicit Cache Rule.** Measured TTFB is ~1.27 s and it is the single largest component of LCP (field LCP 2.9 s; INP and CLS both pass comfortably).
 
 > ⚠️ If you add that Cache Rule, **set an Edge Cache TTL override of ~5–15 min.** Next sends `cache-control: s-maxage=31536000` for fully-static pages. If Cloudflare honours it, your pages freeze for a **year** and ISR (`x-nextjs-stale-time: 300`) stops meaning anything.
+
+### Render-blocking CSS + fonts (done 2026-07-20)
+
+- **Three blocking stylesheets → one.** `fonts.css` + `animated.css` are `@import`ed into `styles/input.css` and inlined into `output.css` at build time. Only `output.css` is `<link>`ed; owl-carousel CSS stays in `<noscript>` (loaded post-hydration by `DeferredStyles`). Verify: the `<head>` should contain exactly **one** non-noscript `rel="stylesheet"`.
+- **Legacy font formats dropped.** `@font-face` now serves **woff2 + woff only** (~99.9% browser coverage, and `"not dead"` in browserslist already excludes IE11). The `.eot`/`.ttf` references *and* their 40 files (**5.9 MB**) were removed. Note: this shrinks the render-blocking CSS and the repo — it does **not** change download size for real users, who only ever fetched woff2.
+- **Assets are minified** — see [The asset build gotcha](#-the-asset-build-gotcha-important). Savings are modest over gzip; the parse-time and request-count reductions are the real wins.
 
 ### Known non-issues (don't burn time here)
 
