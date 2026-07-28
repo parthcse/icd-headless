@@ -51,7 +51,7 @@ export default function ServicesProcessStepSection({ data }) {
                 </div>
                 {showStepIcon && (
                   <div className="step-icon hidden sm:block absolute -left-10 xl:-left-14 -bottom-14 w-6 h-[5.5rem]">
-                    <img src="/assets/icons/step-icon.svg" alt="" />
+                    <img loading="lazy" src="/assets/icons/step-icon.svg" alt="" />
                   </div>
                 )}
               </div>

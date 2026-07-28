@@ -13,7 +13,7 @@ export default function WhyChooseUsSection() {
           <div className="column">
             <div className="top-bar main-title pb-space-small font-medium xl:pb-8">
               <figure className="mb-[0.25em]">
-                <img
+                <img loading="lazy"
                   className="w-full max-h-[0.46em] max-w-[0.46em]"
                   src="/assets/icons/home-why-choose-1.svg"
                   width="67"
@@ -36,7 +36,7 @@ export default function WhyChooseUsSection() {
           <div className="column">
             <div className="top-bar main-title pb-space-small font-medium xl:pb-8">
               <figure className="mb-[0.15em]">
-                <img
+                <img loading="lazy"
                   className="w-full max-h-[0.43em] max-w-[0.46em]"
                   src="/assets/icons/home-why-choose-2.svg"
                   width="70"
@@ -59,7 +59,7 @@ export default function WhyChooseUsSection() {
           <div className="column">
             <div className="top-bar main-title pb-space-small font-medium xl:pb-8">
               <figure className="mb-[0.2em]">
-                <img
+                <img loading="lazy"
                   className="w-full max-h-[0.46em] max-w-[0.46em]"
                   src="/assets/icons/home-why-choose-3.svg"
                   width="70"
@@ -82,7 +82,7 @@ export default function WhyChooseUsSection() {
           <div className="column">
             <div className="top-bar main-title pb-space-small font-medium xl:pb-8">
               <figure className="mb-[0.2em]">
-                <img
+                <img loading="lazy"
                   className="w-full max-h-[0.46em] max-w-[0.46em]"
                   src="/assets/icons/home-why-choose-4.svg"
                   width="70"

@@ -66,7 +66,7 @@ export default function Footer() {
             </ul>
           ))}
           <div className="footer-trusted bg-[#0f0f0f] text-center p-5 xl:p-6 animate fadeUp" style={{ animationDelay: "0.4s" }}>
-            <img
+            <img loading="lazy"
               className="mx-auto mb-3 max-w-28"
               src="/assets/photos/top-web-development-company.png"
               alt="Top web development company"
@@ -93,26 +93,26 @@ export default function Footer() {
             <ul className="flex gap-3">
               <li>
                 <a href="https://www.linkedin.com/company/ice-cube-digital/" target="_blank" rel="noopener noreferrer">
-                  <img src="/assets/icons/inkedin.svg" alt="LinkedIn" />
+                  <img loading="lazy" src="/assets/icons/inkedin.svg" alt="LinkedIn" />
                 </a>
               </li>
               <li>
                 <a href="https://www.instagram.com/icecubedigital/" target="_blank" rel="noopener noreferrer">
-                  <img src="/assets/icons/instagram.svg" alt="Instagram" />
+                  <img loading="lazy" src="/assets/icons/instagram.svg" alt="Instagram" />
                 </a>
               </li>
               <li>
                 <a href="https://www.facebook.com/IcecubeDigital" target="_blank" rel="noopener noreferrer">
-                  <img src="/assets/icons/facebook.svg" alt="Facebook" />
+                  <img loading="lazy" src="/assets/icons/facebook.svg" alt="Facebook" />
                 </a>
               </li>
               <li>
                 <a href="https://x.com/IcecubeDigital" target="_blank" rel="noopener noreferrer">
-                  <img src="/assets/icons/twitter.svg" alt="X (Twitter)" />
+                  <img loading="lazy" src="/assets/icons/twitter.svg" alt="X (Twitter)" />
                 </a>
               </li>
             </ul>
-            <img src="/assets/photos/dmca.png" alt="" />
+            <img loading="lazy" src="/assets/photos/dmca.png" alt="" />
           </div>
         </div>
       </div>

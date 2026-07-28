@@ -38,7 +38,7 @@ export default async function LatestNewsSection() {
                   {/* Real intrinsic width/height → the browser reserves the correct
                       space before load (fixes CLS) while keeping the exact ratio, so
                       nothing crops. w-full + auto height still scale it responsively. */}
-                  <img
+                  <img loading="lazy"
                     src={post.image}
                     alt={post.imageAlt}
                     width={post.imageW}

@@ -52,14 +52,14 @@ export default async function ServicesPortfolioSection({ data }) {
               <figure className="overflow-hidden">
                 {item.href ? (
                   <Link href={item.href}>
-                    <img
+                    <img loading="lazy"
                       src={item.image}
                       alt={item.clientName}
                       className="w-full aspect-[1.16] object-cover transition-all duration-500 group-hover:scale-105 ease-out"
                     />
                   </Link>
                 ) : (
-                  <img
+                  <img loading="lazy"
                     src={item.image}
                     alt={item.clientName}
                     className="w-full aspect-[1.16] object-cover transition-all duration-500 group-hover:scale-105 ease-out"

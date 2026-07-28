@@ -63,7 +63,7 @@ export default function HappyCustomersSection({ limit = 6 }) {
               <QuoteDecoration />
               <p>{truncateWords(quoteText(item.quote), 26)}</p>
               <div className="mt-auto flex items-center gap-4 pt-4 md:pt-5 lg:pt-6">
-                <img
+                <img loading="lazy"
                   src={item.avatar}
                   alt={item.avatarAlt}
                   className="!w-[3em] aspect-square rounded-full object-cover"

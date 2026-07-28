@@ -41,7 +41,7 @@ export default async function SuccessStoriesSection() {
                 {/* aria-label: this link wraps only an image, and the CMS altText is
                     often empty — the case-study title gives it a discernible name. */}
                 <Link href={slide.href} aria-label={slide.title}>
-                  <img
+                  <img loading="lazy"
                     className="w-full aspect-[3/1.8] object-cover transition-all duration-500 group-hover:scale-105 ease-out"
                     src={slide.image}
                     alt={slide.imageAlt}

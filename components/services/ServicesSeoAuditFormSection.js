@@ -11,7 +11,7 @@ export default function ServicesSeoAuditFormSection({ data }) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-space-mini xl:gap-space items-center">
           <ContactForm variant="split" />
           <figure>
-            <img src={data.image} alt={data.imageAlt || ""} />
+            <img loading="lazy" src={data.image} alt={data.imageAlt || ""} />
           </figure>
         </div>
       </div>

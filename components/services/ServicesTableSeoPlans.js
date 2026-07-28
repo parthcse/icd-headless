@@ -49,7 +49,7 @@ export default function ServicesTableSeoPlans({ data }) {
                 >
                   <div className="flex gap-6">
                     <div className="shrink-0">
-                      <img className="min-w-[3.25em] w-[3.25em]" src={item.icon} alt="" />
+                      <img loading="lazy" className="min-w-[3.25em] w-[3.25em]" src={item.icon} alt="" />
                     </div>
                     <div>
                       <h4 className="font-22 font-semibold mb-2">{item.title}</h4>

@@ -35,7 +35,7 @@ export default function AboutOurValueSection() {
                 className="img-box bg-black-light rounded-tl-[12%] rounded-br-[12%] aspect-[433/250] flex items-center p-4"
                 style={{ cornerShape: "bevel" }}
               >
-                <img className="mx-auto max-w-[30%]" src={item.icon} alt="" />
+                <img loading="lazy" className="mx-auto max-w-[30%]" src={item.icon} alt="" />
               </div>
               <h2 className="font-30 pt-space-small leading-none lg:pb-1 xl:pb-2">{item.title}</h2>
               <p>{item.text}</p>

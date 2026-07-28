@@ -17,7 +17,7 @@ export default function GetQuoteSection() {
         <div className="grid grid-cols-1 gap-4 md:gap-space-small lg:grid-cols-12 xl:gap-x-20 animate fadeUp" style={{ animationDelay: "0.3s" }}>
           <div className="grid gap-2 text-lg lg:col-span-5">
             <div className="flex items-center gap-space-small border border-[#272727] px-space-small py-space-small lg:gap-6 lg:px-8 lg:py-6">
-              <img
+              <img loading="lazy"
                 className="max-h-[1em] max-w-[1em] shrink-0 pt-[0.15em] font-48"
                 src="/assets/icons/email-icon-orange.svg"
                 alt=""
@@ -30,7 +30,7 @@ export default function GetQuoteSection() {
               </div>
             </div>
             <div className="flex items-center gap-space-small border border-[#272727] px-space-small py-space-small lg:gap-6 lg:px-8 lg:py-6">
-              <img
+              <img loading="lazy"
                 className="max-h-[1em] max-w-[1em] shrink-0 pt-[0.15em] font-48"
                 src="/assets/icons/support-icon-orange.svg"
                 alt=""
@@ -43,7 +43,7 @@ export default function GetQuoteSection() {
               </div>
             </div>
             <div className="flex items-center gap-space-small border border-[#272727] px-space-small py-space-small lg:gap-6 lg:px-8 lg:py-6">
-              <img
+              <img loading="lazy"
                 className="max-h-[1em] max-w-[1em] shrink-0 pt-[0.15em] font-48"
                 src="/assets/icons/user-icon-orange.svg"
                 alt=""

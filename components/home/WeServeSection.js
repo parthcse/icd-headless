@@ -31,7 +31,7 @@ export default function WeServeSection() {
         <div className="flex flex-wrap justify-center gap-4 animate fadeUp" style={{ animationDelay: "0.3s" }}>
           {COUNTRIES.map((country) => (
             <div key={country.name} className="column flex items-center gap-2 bg-black-light px-4 py-2">
-              <img
+              <img loading="lazy"
                 className="aspect-square w-[1em] rounded-full object-cover"
                 src={`/assets/flags/${country.flag}.png`}
                 alt={country.name}

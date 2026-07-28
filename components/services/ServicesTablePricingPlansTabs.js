@@ -5,9 +5,9 @@ import { useState } from "react";
 import ServiceCtaButton from "@/components/services/ServiceCtaButton";
 function Cell({ value }) {
   if (value === true)
-    return <img className="w-[1em] min-w-[1em] mx-auto" src="/assets/icons/check-white-icon.svg" alt="Included" />;
+    return <img loading="lazy" className="w-[1em] min-w-[1em] mx-auto" src="/assets/icons/check-white-icon.svg" alt="Included" />;
   if (value === false)
-    return <img className="w-[1em] min-w-[1em] mx-auto" src="/assets/icons/close-primary-icon.svg" alt="Not included" />;
+    return <img loading="lazy" className="w-[1em] min-w-[1em] mx-auto" src="/assets/icons/close-primary-icon.svg" alt="Not included" />;
   return value;
 }
 
