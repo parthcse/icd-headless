@@ -1,7 +1,6 @@
 import Script from "next/script";
 import RouteHandler from "@/components/common/RouteHandler";
 import SmoothScroll from "@/components/common/SmoothScroll";
-import DeferredStyles from "@/components/common/DeferredStyles";
 import GetQuotePopup from "@/components/common/GetQuotePopup";
 import CtaPopupDelegator from "@/components/common/CtaPopupDelegator";
 import WhatsAppButton from "@/components/common/WhatsAppButton";
@@ -56,10 +55,6 @@ export default function RootLayout({ children }) {
             into styles/input.css and inlined into output.css at build time — three
             separate <link>s meant three blocking round trips on every page. */}
         <link rel="stylesheet" href="/css/output.css" />
-        {/* owl.carousel CSS is deferred (loaded after hydration by <DeferredStyles/>) to avoid render-blocking; noscript fallback for no-JS users. */}
-        <noscript>
-          <link rel="stylesheet" href="/css/owl.carousel.min.css" />
-        </noscript>
         {/* Site-wide JSON-LD structured data (LocalBusiness, WebSite, Organization). Edit lib/site-schema.js */}
         <SiteSchema />
       </head>
@@ -76,7 +71,6 @@ export default function RootLayout({ children }) {
         </noscript>
         <SmoothScroll />
         <RouteHandler />
-        <DeferredStyles />
         {children}
         <GetQuotePopup />
         <CtaPopupDelegator />

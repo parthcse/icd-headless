@@ -466,9 +466,26 @@
             transform: translateY(0);
         }
     }
+    /* Carousel core layout. Replaces owl.carousel.min.css — the sliders are now
+       components/common/Carousel.js (no jQuery), which emits the same class
+       names so the per-section .owl-nav rules above still apply. nowrap (not
+       wrap) because the React track is a single horizontal strip. */
+    .owl-carousel {
+        position: relative;
+        width: 100%;
+    }
+    .owl-stage-outer {
+        position: relative;
+        overflow: hidden;
+    }
     .owl-carousel .owl-stage {
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        will-change: transform;
+    }
+    .owl-carousel .owl-item {
+        min-height: 1px;
+        position: relative;
     }
     /* Design static HTML uses JS-injected per-char spans here; Next hero uses Framer (HeroMainTitle) — do not use .char-animate span { … } or it breaks motion children. */
     .char-animate {

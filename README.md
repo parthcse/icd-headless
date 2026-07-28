@@ -27,11 +27,12 @@ The site is content-heavy — **~181 data-driven service/industry/location pages
 15. [Data layer (WPGraphQL, CPTs, testimonials)](#data-layer)
 16. [Forms (contact + newsletter)](#forms)
 17. [Fonts](#fonts)
-18. [Caching & performance](#caching--performance)
-19. [Third-party scripts](#third-party-scripts)
-20. [Deployment & operational notes](#deployment--operational-notes)
-21. [Conventions & gotchas cheat-sheet](#conventions--gotchas-cheat-sheet)
-22. [Reference docs](#reference-docs)
+18. [Carousels (no jQuery)](#carousels-no-jquery)
+19. [Caching & performance](#caching--performance)
+20. [Third-party scripts](#third-party-scripts)
+21. [Deployment & operational notes](#deployment--operational-notes)
+22. [Conventions & gotchas cheat-sheet](#conventions--gotchas-cheat-sheet)
+23. [Reference docs](#reference-docs)
 
 ---
 
@@ -117,7 +118,7 @@ Defined in `.env.local` (not committed). `NEXT_PUBLIC_*` are exposed to the brow
 - **Data files never contain classes** — they're pure data, so editing `lib/services/**` needs no CSS rebuild.
 - Content globs cover `app/`, `components/`, `lib/`.
 - **Generated output is committed to git** — deploy is `git pull` + `npm run build`, which does *not* regenerate these. Rebuild locally and commit, or the live site serves the old asset.
-- `jquery.min.js` / `owl.carousel.min.js` are vendor files, already minified — they have no source and are left untouched.
+- **There are no vendor JS files any more.** jQuery + Owl Carousel were removed 2026-07-20 — see [Carousels](#carousels-no-jquery).
 
 ---
 
@@ -166,7 +167,7 @@ icd-headless/
 │   ├── css/                     #   output.css — the ONE site stylesheet (Tailwind+fonts+animations)
 │   ├── fonts/                   # Gilroy family
 │   ├── assets/{icons,photos,flags,gifs,testimonial,case-studies}/  # images, flags, GIFs, avatars
-│   └── js/                      #   common-next.js + load-design.js (minified) · jquery/owl (vendor)
+│   └── js/                      #   common-next.js + load-design.js (minified) — no vendor JS
 ├── styles/                      # CSS SOURCES → public/css/ (input.css, fonts.css, animated.css)
 ├── src/js/                      # JS SOURCES → public/js/ (common-next.js, load-design.js)
 ├── scripts/                     # one-off migration/extraction scripts (*.mjs)
@@ -395,7 +396,29 @@ pageTitle: "How Much Does SEO Cost in {{year}}?",
 
 ## Fonts
 
-**Gilroy** is self-hosted from `public/fonts/` and wired via CSS (not `next/font`). Preloaded in the root layout to avoid layout shift (CLS).
+**Gilroy** is self-hosted from `public/fonts/` and wired via CSS (not `next/font`). Preloaded in the root layout to avoid layout shift (CLS). Only **woff2 + woff** are shipped — see [Caching & performance](#caching--performance).
+
+---
+
+## Carousels (no jQuery)
+
+All sliders use **[`components/common/Carousel.js`](./components/common/Carousel.js)** — a small dependency-free React component. **There is no jQuery and no Owl Carousel in this project** (removed 2026-07-20): Owl is a jQuery plugin, so between them they forced ~42 KiB of vendor JS onto all ~386 pages when only **2** pages actually contain a carousel. `common-next.js` never used jQuery for anything else.
+
+It deliberately renders the **same DOM and class names Owl did** — `.owl-carousel` / `.owl-stage-outer` / `.owl-stage` / `.owl-item` / `.owl-nav` / `.owl-prev` / `.owl-next` — so the existing per-section nav styling in `styles/input.css` (`.home-customer .owl-nav`, `.about-our-culture-slider .owl-nav`, `.owl-carousel .owl-nav button`, …) keeps applying untouched. **Keep those class names** if you refactor it. The core layout rules that `owl.carousel.min.css` used to provide now live in `styles/input.css`.
+
+| Prop | Purpose |
+|---|---|
+| `autoWidth` | Slides keep their natural width (used by the testimonial + success-story sliders, whose cards size themselves via `max-w-*` / `me-*`). |
+| `responsive` | `{minWidth: itemsVisible}` for fixed N-up — e.g. `{0:2, 768:3, 1024:5}` on the culture slider. |
+| `gap` | Pixel gap between slides (N-up mode). |
+| `autoplay` | Milliseconds between slides; `0`/omitted = off. Pauses on hover. |
+| `nav` | Show prev/next arrows (default `true`). |
+
+**Looping is seamless:** the track renders the slides twice and snaps back with the transition disabled once it crosses into the clone set, so autoplay never visibly rewinds. That's why the built HTML shows 2× the slide count in `.owl-item` — expected, not a bug.
+
+The three usages: `HappyCustomersSection` and `SuccessStoriesSection` (both `autoWidth`), and `AboutOurCultureSection` (`responsive` + `gap={20}` + `autoplay={3000}`).
+
+> Unrelated: `components/case-studies/TestimonialSlider.js` is a separate, older one-at-a-time React slider with its own dots UI. It was already jQuery-free and is left as-is.
 
 ---
 
@@ -431,7 +454,7 @@ curl -sSI https://www.icecubedigital.com/css/output.css | grep -i 'cache-control
 
 ### Render-blocking CSS + fonts (done 2026-07-20)
 
-- **Three blocking stylesheets → one.** `fonts.css` + `animated.css` are `@import`ed into `styles/input.css` and inlined into `output.css` at build time. Only `output.css` is `<link>`ed; owl-carousel CSS stays in `<noscript>` (loaded post-hydration by `DeferredStyles`). Verify: the `<head>` should contain exactly **one** non-noscript `rel="stylesheet"`.
+- **Three blocking stylesheets → one.** `fonts.css` + `animated.css` are `@import`ed into `styles/input.css` and inlined into `output.css` at build time. Only `output.css` is `<link>`ed. Verify: the `<head>` should contain exactly **one** `rel="stylesheet"`.
 - **Legacy font formats dropped.** `@font-face` now serves **woff2 + woff only** (~99.9% browser coverage, and `"not dead"` in browserslist already excludes IE11). The `.eot`/`.ttf` references *and* their 40 files (**5.9 MB**) were removed. Note: this shrinks the render-blocking CSS and the repo — it does **not** change download size for real users, who only ever fetched woff2.
 - **Assets are minified** — see [The asset build gotcha](#-the-asset-build-gotcha-important). Savings are modest over gzip; the parse-time and request-count reductions are the real wins.
 

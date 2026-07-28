@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Carousel from "@/components/common/Carousel";
 import { testimonialsArchiveUrl, truncateWords } from "../../lib/wp-text";
 import { TESTIMONIALS } from "../../lib/testimonials";
 
@@ -54,7 +55,8 @@ export default function HappyCustomersSection({ limit = 6 }) {
         <h2 className="main-title mb-0">Happy Customers</h2>
       </div>
       <div className="container-left">
-        <div className="home-testimonial-slider owl-carousel">
+        {/* Was Owl (jQuery): autoWidth, loop, nav arrows, no dots. */}
+        <Carousel className="home-testimonial-slider" autoWidth>
           {items.map((item) => (
             <div
               key={item.slug}
@@ -75,7 +77,7 @@ export default function HappyCustomersSection({ limit = 6 }) {
               </div>
             </div>
           ))}
-        </div>
+        </Carousel>
         <div className="btn-wrap relative z-10 mt-5 inline-block md:mt-6 lg:mt-9">
           <Link className="btn btn-primary" href={testimonialsArchiveUrl()}>
             View More Reviews

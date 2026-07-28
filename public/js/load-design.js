@@ -1,1 +1,1 @@
-!function(){function n(n,o){var c=document.createElement("script");c.src=n,c.async=!1,o&&(c.onload=o),document.body.appendChild(c)}void 0===window.jQuery?n("/js/jquery.min.js",function(){n("/js/owl.carousel.min.js",function(){n("/js/common-next.js")})}):n("/js/owl.carousel.min.js",function(){n("/js/common-next.js")})}();
+!function(){var n=document.createElement("script");n.src="/js/common-next.js",n.async=!1,document.body.appendChild(n)}();

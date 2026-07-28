@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Carousel from "@/components/common/Carousel";
 import { getCaseStudyNodes } from "../../lib/wp-home-data";
 import { stripHtml, internalPath } from "../../lib/wp-text";
 
@@ -31,7 +32,8 @@ export default async function SuccessStoriesSection() {
         </p>
       </div>
       <div className="container-left">
-        <div className="home-our-client-slider owl-carousel">
+        {/* Was Owl (jQuery): autoWidth, loop, nav arrows, no dots. */}
+        <Carousel className="home-our-client-slider" autoWidth>
           {slides.map((slide) => (
             <div
               key={slide.id}
@@ -69,7 +71,7 @@ export default async function SuccessStoriesSection() {
               </div>
             </div>
           ))}
-        </div>
+        </Carousel>
       </div>
     </section>
   );

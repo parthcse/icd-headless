@@ -121,9 +121,6 @@ window.icdInitPage = function () {
     });
   });
 
-  // Owl carousels (jQuery)
-  icdInitOwl();
-
   // Counters
   var counterSection = document.querySelector(".common-counter");
   var counters = document.querySelectorAll(".counter");
@@ -214,52 +211,6 @@ window.icdInitPage = function () {
     });
   }
 };
-
-function icdInitOwl() {
-  if (typeof window.jQuery === "undefined") return;
-  var $ = window.jQuery;
-  var navSvg = [
-    '<svg xmlns="http://www.w3.org/2000/svg" width="10" height="18" viewBox="0 0 10 18" fill="currentColor"><path d="M9.27999 16.3199C9.62666 16.6666 9.62666 16.9866 9.27999 17.2799C8.93332 17.6266 8.61332 17.6266 8.31999 17.2799L0.47999 9.39992C0.15999 9.07992 0.15999 8.74659 0.47999 8.39992L8.31999 0.519921C8.61332 0.173254 8.93332 0.173254 9.27999 0.519921C9.62666 0.813255 9.62666 1.13325 9.27999 1.47992L2.11999 8.91992L9.27999 16.3199Z"/></svg>',
-    '<svg xmlns="http://www.w3.org/2000/svg" width="10" height="18" viewBox="0 0 10 18" fill="currentColor"><path d="M0.52001 16.3199L7.68001 8.91992L0.52001 1.47992C0.173343 1.13325 0.173343 0.813255 0.52001 0.519921C0.866676 0.173254 1.18668 0.173254 1.48001 0.519921L9.32001 8.39992C9.64001 8.74659 9.64001 9.07992 9.32001 9.39992L1.48001 17.2799C1.18668 17.6266 0.866676 17.6266 0.52001 17.2799C0.173343 16.9866 0.173343 16.6666 0.52001 16.3199Z"/></svg>',
-  ];
-  // Success-stories (.home-our-client-slider) + testimonial (.home-testimonial-slider)
-  // sliders share the same owl config.
-  $(".home-our-client-slider, .home-testimonial-slider").each(function () {
-    var $el = $(this);
-    if ($el.data("owl.carousel")) $el.trigger("destroy.owl.carousel");
-  });
-  $(".home-our-client-slider, .home-testimonial-slider").owlCarousel({
-    loop: true,
-    margin: 0,
-    nav: true,
-    dots: false,
-    autoWidth: true,
-    navText: navSvg,
-  });
-  $(".about-our-culture-slider").each(function () {
-    var $el = $(this);
-    if ($el.data("owl.carousel")) $el.trigger("destroy.owl.carousel");
-  });
-  $(".about-our-culture-slider").owlCarousel({
-    loop: true,
-    margin: 20,
-    nav: true,
-    dots: false,
-    autoplay: true,
-    autoplayTimeout: 3000,
-    autoplayHoverPause: true,
-    navText: navSvg,
-    responsive: {
-      0: { items: 2 },
-      768: { items: 3 },
-      1024: { items: 5 },
-    },
-  });
-
-  // a11y: owl renders nav as <button role="presentation"> — make them proper labeled buttons
-  $(".owl-nav button.owl-prev").removeAttr("role").attr("aria-label", "Previous");
-  $(".owl-nav button.owl-next").removeAttr("role").attr("aria-label", "Next");
-}
 
 icdDomReady(function () {
   window.icdInitPage();
