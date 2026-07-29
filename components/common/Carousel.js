@@ -158,7 +158,13 @@ export default function Carousel({
               ref={(el) => {
                 itemRefs.current[i] = el;
               }}
-              aria-hidden={i >= count ? "true" : undefined}
+              // `inert` (NOT aria-hidden) on the loop clones. aria-hidden alone
+              // hides them from screen readers while leaving their links
+              // keyboard-focusable — an axe/Lighthouse failure ("[aria-hidden]
+              // elements contain focusable descendants") and a real keyboard
+              // trap. inert removes the subtree from the a11y tree *and* from
+              // the tab order, so the duplicated slides can't be reached twice.
+              {...(i >= count ? { inert: true } : {})}
             >
               {child}
             </div>
