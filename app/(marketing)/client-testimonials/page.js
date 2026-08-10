@@ -81,7 +81,6 @@ export default function ClientTestimonialsPage() {
             <div className="container">
               <div className="heading-wrap animate fadeUp">
                 <h3 className="font-48 font-normal">Hear It in Their Words</h3>
-                <h2 className="main-title">Video Testimonials</h2>
               </div>
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
                 {VIDEO_TESTIMONIALS.map((video) => (

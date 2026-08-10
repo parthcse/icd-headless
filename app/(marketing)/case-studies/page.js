@@ -36,33 +36,23 @@ export default async function CaseStudiesPage() {
             <img className="h-full w-full object-cover" aria-hidden="true" src="/assets/photos/home-banner-bg.png" alt="" fetchPriority="high" />
             <span className="common-top-banner-overlay" />
           </div>
-          <div className="container relative z-10 mx-auto max-w-3xl py-8 text-center animate fadeUp">
-            <p className="mb-3 font-semibold uppercase tracking-[0.2em] text-primary">Project Case Studies</p>
-            <h1 className="font-48 font-semibold leading-tight">
-              Real Results for Real Businesses
-            </h1>
-            <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-muted">
-              Take a journey through real-world examples of how we transformed challenges into wins — across
-              eCommerce, healthcare, HVAC, automotive, food, furniture and more.
+          <div className="container relative z-10 mx-auto max-w-5xl py-8 text-center animate fadeUp">
+            <p className="mb-3 font-semibold uppercase tracking-[0.2em] text-primary">A Selection Of</p>
+            <h1 className="font-48 font-semibold leading-tight">Our Best Work</h1>
+            <p className="mx-auto mt-4 max-w-5xl leading-relaxed text-muted">
+              We offer custom design and development services tailored to contribute in the growth of your
+              online business. Our experienced team of designers and developers build websites that engage
+              your customers and make more sales. Our focus is always to make sure that we don&rsquo;t just
+              deliver but over deliver for the trust and money our valued customers put on us. Review our
+              project case studies to know how we can partner together to grow your business through our
+              ground breaking solutions.
             </p>
           </div>
         </section>
 
-        {/* A Selection of Our Best Work — heading, then filter + cards */}
+        {/* Filter tabs + case-study cards (heading now lives in the banner above) */}
         <section className="case-study-gallery full-section">
           <div className="container">
-            <div className="heading-wrap animate fadeUp xl:pb-12">
-              <h3 className="mb-0 font-48 font-normal">A Selection of</h3>
-              <h2 className="main-title mb-0">Our Best Work</h2>
-              <p className="mx-auto max-w-5xl">
-                We offer custom design and development services tailored to contribute in the growth of your
-                online business. Our experienced team of designers and developers build websites that engage
-                your customers and make more sales. Our focus is always to make sure that we don&rsquo;t just
-                deliver but over deliver for the trust and money our valued customers put on us. Review our
-                project case studies to know how we can partner together to grow your business through our
-                ground breaking solutions.
-              </p>
-            </div>
             <CaseStudyGallery
               categories={categories}
               initialItems={firstPage.items}
