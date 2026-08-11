@@ -30,6 +30,46 @@ function stripAggregateRating(node) {
   }
 }
 
+/**
+ * Escape raw control characters that sit INSIDE a JSON string literal.
+ *
+ * WordPress editors paste schema with real newlines/tabs inside string values,
+ * which is invalid JSON — `JSON.parse` throws "Bad control character in string
+ * literal". That used to make us give up and emit the block untouched, so its
+ * aggregateRating survived and duplicated the site-wide one (and Google got
+ * malformed JSON-LD). Escaping them first makes the block parseable so it can be
+ * cleaned and re-emitted as valid JSON.
+ */
+function escapeControlChars(text) {
+  let out = "";
+  let inString = false;
+  let escaped = false;
+  for (const ch of text) {
+    if (escaped) {
+      out += ch;
+      escaped = false;
+      continue;
+    }
+    if (ch === "\\") {
+      out += ch;
+      escaped = true;
+      continue;
+    }
+    if (ch === '"') {
+      inString = !inString;
+      out += ch;
+      continue;
+    }
+    const code = ch.charCodeAt(0);
+    if (inString && code < 0x20) {
+      out += ch === "\n" ? "\\n" : ch === "\r" ? "\\r" : ch === "\t" ? "\\t" : `\\u${code.toString(16).padStart(4, "0")}`;
+      continue;
+    }
+    out += ch;
+  }
+  return out;
+}
+
 export default async function PageSchema({ uri }) {
   const raw = await getPageSchemaByUri(uri);
   if (!raw) return null;
@@ -45,16 +85,25 @@ export default async function PageSchema({ uri }) {
   if (bodies.length === 0) bodies.push(raw);
 
   // Remove any per-page aggregateRating so it doesn't duplicate the site-wide one.
-  // Parse-and-strip when the body is valid JSON; leave unparseable bodies as-is.
-  const cleaned = bodies.map((body) => {
-    try {
-      const parsed = JSON.parse(body);
-      stripAggregateRating(parsed);
-      return JSON.stringify(parsed);
-    } catch {
-      return body;
-    }
-  });
+  // Two passes: parse as-is, then retry after escaping raw control characters
+  // (CMS-pasted schema is frequently invalid JSON for exactly that reason).
+  // A block that still won't parse is DROPPED rather than emitted: it is broken
+  // JSON-LD that Google can't use anyway, and emitting it re-introduces the
+  // duplicate rating. Fix the source field in WordPress and it returns.
+  const cleaned = bodies
+    .map((body) => {
+      for (const candidate of [body, escapeControlChars(body)]) {
+        try {
+          const parsed = JSON.parse(candidate);
+          stripAggregateRating(parsed);
+          return JSON.stringify(parsed);
+        } catch {
+          /* try the next candidate */
+        }
+      }
+      return null;
+    })
+    .filter(Boolean);
 
   return (
     <>
