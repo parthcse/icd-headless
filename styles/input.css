@@ -477,6 +477,21 @@
     .owl-stage-outer {
         position: relative;
         overflow: hidden;
+        /* Drag-to-swipe (components/common/useDragSwipe.js): pan-y keeps vertical
+           page scrolling with the browser while horizontal gestures drive the
+           slider. Text/images must not be selectable or natively draggable, or
+           the browser's own drag takes over mid-swipe. */
+        touch-action: pan-y;
+        cursor: grab;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+    .owl-stage-outer:active {
+        cursor: grabbing;
+    }
+    .owl-item img {
+        -webkit-user-drag: none;
+        user-select: none;
     }
     .owl-carousel .owl-stage {
         display: flex;

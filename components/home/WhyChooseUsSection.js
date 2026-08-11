@@ -14,7 +14,7 @@ export default function WhyChooseUsSection() {
             <div className="top-bar main-title pb-space-small font-medium xl:pb-8">
               <figure className="mb-[0.25em]">
                 <img loading="lazy"
-                  className="w-full max-h-[0.46em] max-w-[0.46em]"
+                  className="w-full max-h-[0.9em] max-w-[0.9em] md:max-h-[0.7em] md:max-w-[0.7em] xl:max-h-[0.46em] xl:max-w-[0.46em]"
                   src="/assets/icons/home-why-choose-1.svg"
                   width="67"
                   height="44"
@@ -37,7 +37,7 @@ export default function WhyChooseUsSection() {
             <div className="top-bar main-title pb-space-small font-medium xl:pb-8">
               <figure className="mb-[0.15em]">
                 <img loading="lazy"
-                  className="w-full max-h-[0.43em] max-w-[0.46em]"
+                  className="w-full max-h-[0.84em] max-w-[0.9em] md:max-h-[0.65em] md:max-w-[0.7em] xl:max-h-[0.43em] xl:max-w-[0.46em]"
                   src="/assets/icons/home-why-choose-2.svg"
                   width="70"
                   height="70"
@@ -60,7 +60,7 @@ export default function WhyChooseUsSection() {
             <div className="top-bar main-title pb-space-small font-medium xl:pb-8">
               <figure className="mb-[0.2em]">
                 <img loading="lazy"
-                  className="w-full max-h-[0.46em] max-w-[0.46em]"
+                  className="w-full max-h-[0.9em] max-w-[0.9em] md:max-h-[0.7em] md:max-w-[0.7em] xl:max-h-[0.46em] xl:max-w-[0.46em]"
                   src="/assets/icons/home-why-choose-3.svg"
                   width="70"
                   height="70"
@@ -83,7 +83,7 @@ export default function WhyChooseUsSection() {
             <div className="top-bar main-title pb-space-small font-medium xl:pb-8">
               <figure className="mb-[0.2em]">
                 <img loading="lazy"
-                  className="w-full max-h-[0.46em] max-w-[0.46em]"
+                  className="w-full max-h-[0.9em] max-w-[0.9em] md:max-h-[0.7em] md:max-w-[0.7em] xl:max-h-[0.46em] xl:max-w-[0.46em]"
                   src="/assets/icons/home-why-choose-4.svg"
                   width="70"
                   height="70"

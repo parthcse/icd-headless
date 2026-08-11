@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import useDragSwipe from "@/components/common/useDragSwipe";
 
 /**
  * Dependency-free replacement for the jQuery Owl Carousel.
@@ -127,14 +128,24 @@ export default function Carousel({
     return () => clearInterval(timerRef.current);
   }, [autoplay, paused, count, next]);
 
+  // Drag / swipe. Pausing autoplay while a finger is down stops the track
+  // advancing out from under the gesture.
+  const { dragX, handlers: dragHandlers } = useDragSwipe({
+    onNext: next,
+    onPrev: prev,
+    onDragChange: setPaused,
+  });
+
   if (!count) return null;
 
   // Render the slides twice so the loop never runs out of track.
   const rendered = [...slides, ...slides];
 
-  const itemStyle = responsive
-    ? { flex: `0 0 calc((100% - ${gap * (perView - 1)}px) / ${perView})`, marginRight: `${gap}px` }
-    : { flex: "0 0 auto" };
+  // autoWidth wins when both are given: slides keep their intrinsic width.
+  const itemStyle =
+    responsive && !autoWidth
+      ? { flex: `0 0 calc((100% - ${gap * (perView - 1)}px) / ${perView})`, marginRight: `${gap}px` }
+      : { flex: "0 0 auto" };
 
   return (
     <div
@@ -142,12 +153,16 @@ export default function Carousel({
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="owl-stage-outer">
+      {/* touch-action: pan-y lets the browser keep vertical page scrolling while
+          useDragSwipe claims horizontal gestures for the slider. */}
+      <div className="owl-stage-outer" style={{ touchAction: "pan-y" }} {...dragHandlers}>
         <div
           className="owl-stage"
           style={{
-            transform: `translate3d(-${offset}px, 0, 0)`,
-            transition: animate ? "transform 0.5s ease" : "none",
+            // dragX follows the finger 1:1; the transition is off mid-drag so it
+            // tracks exactly, then back on for the settle/snap animation.
+            transform: `translate3d(${-offset + dragX}px, 0, 0)`,
+            transition: animate && dragX === 0 ? "transform 0.5s ease" : "none",
           }}
         >
           {rendered.map((child, i) => (

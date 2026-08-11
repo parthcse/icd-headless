@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { TESTIMONIALS } from "@/lib/testimonials";
+import useDragSwipe from "@/components/common/useDragSwipe";
 
 // Flatten a testimonial `quote` (string | array of paragraphs, each a string or
 // an array of {text}/string parts) down to a single display string.
@@ -47,6 +48,13 @@ export default function TestimonialSlider({ limit = 6 }) {
   const next = useCallback(() => go(index + 1), [go, index]);
   const prev = useCallback(() => go(index - 1), [go, index]);
 
+  // Touch / mouse drag-to-swipe (shared with the home carousels).
+  const { dragX, handlers: dragHandlers } = useDragSwipe({
+    onNext: next,
+    onPrev: prev,
+    onDragChange: setPaused,
+  });
+
   // Autoplay — pauses on hover/focus within the slider.
   useEffect(() => {
     if (paused || count <= 1) return;
@@ -64,11 +72,18 @@ export default function TestimonialSlider({ limit = 6 }) {
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
-      {/* Viewport */}
-      <div className="overflow-hidden">
+      {/* Viewport — drag/swipe enabled; pan-y leaves vertical scrolling to the browser */}
+      <div
+        className="overflow-hidden cursor-grab active:cursor-grabbing select-none"
+        style={{ touchAction: "pan-y" }}
+        {...dragHandlers}
+      >
         <div
-          className="flex transition-transform duration-500 ease-out"
-          style={{ transform: `translateX(-${index * 100}%)` }}
+          className="flex"
+          style={{
+            transform: `translateX(calc(-${index * 100}% + ${dragX}px))`,
+            transition: dragX === 0 ? "transform 0.5s ease-out" : "none",
+          }}
         >
           {slides.map((t) => (
             <figure
