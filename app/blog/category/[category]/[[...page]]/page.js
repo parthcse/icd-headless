@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { canonicalUrl } from "@/lib/seo";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import BlogListing from "@/components/blog/BlogListing";
@@ -18,8 +19,14 @@ function parsePage(seg) {
 }
 
 export async function generateMetadata({ params }) {
-  const { category } = await params;
-  return { title: `${category} Articles | Icecube Digital Blog` };
+  const { category, page } = await params;
+  const pageNo = Array.isArray(page) && page[1] ? page[1] : null;
+  return {
+    title: `${category} Articles | Icecube Digital Blog`,
+    alternates: {
+      canonical: canonicalUrl(pageNo ? `/blog/category/${category}/page/${pageNo}/` : `/blog/category/${category}/`),
+    },
+  };
 }
 
 export default async function CategoryArchivePage({ params }) {

@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { canonicalUrl } from "@/lib/seo";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import BlogListing from "@/components/blog/BlogListing";
@@ -13,6 +14,7 @@ export async function generateMetadata({ params }) {
     title: `Blog — Page ${page} | Icecube Digital`,
     description:
       "Practical guides, industry trends and expert tips on eCommerce, design, development and digital marketing from the Icecube Digital team.",
+    alternates: { canonical: canonicalUrl(`/blog/page/${page}/`) },
   };
 }
 

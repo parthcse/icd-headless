@@ -4,6 +4,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
 import { getTeamMember, getTeamMembers } from "@/lib/team";
+import { canonicalUrl } from "@/lib/seo";
 import { stripHtml, truncateWords } from "@/lib/wp-text";
 
 export const revalidate = 600;
@@ -23,6 +24,7 @@ export async function generateMetadata({ params }) {
     description:
       truncateWords(stripHtml(m.bioHtml), 30) ||
       `Meet ${m.name}${m.role ? `, ${m.role}` : ""} at Icecube Digital.`,
+    alternates: { canonical: canonicalUrl(`/team/${slug}/`) },
   };
 }
 

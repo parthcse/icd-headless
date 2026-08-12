@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { canonicalUrl } from "@/lib/seo";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import GetQuoteSection from "@/components/home/GetQuoteSection";
@@ -24,9 +25,15 @@ function parsePage(seg) {
 }
 
 export async function generateMetadata({ params }) {
-  const { author } = await params;
+  const { author, page } = await params;
   const info = getAuthorInfo(author);
-  return { title: `Posts by ${info.name} | Icecube Digital Blog` };
+  const pageNo = Array.isArray(page) && page[1] ? page[1] : null;
+  return {
+    title: `Posts by ${info.name} | Icecube Digital Blog`,
+    alternates: {
+      canonical: canonicalUrl(pageNo ? `/blog/author/${author}/page/${pageNo}/` : `/blog/author/${author}/`),
+    },
+  };
 }
 
 export default async function AuthorArchivePage({ params }) {
