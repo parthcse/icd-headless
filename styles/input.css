@@ -148,7 +148,7 @@
         box-shadow: none !important;
         max-width: 100% !important;
     }
-    .blog-content .ai-wordpress-summary p { @apply text-white/80; }
+    .blog-content .ai-wordpress-summary p { @apply !text-white/80; }
 
     /* Author-typed inline post meta is redundant — we render it dynamically in
        the banner, so hide the in-content copy. */
