@@ -107,19 +107,7 @@ window.icdInitPage = function () {
   mobMq.addEventListener("change", onMobBreakpoint);
   window._icdCleanup.push(function () { mobMq.removeEventListener("change", onMobBreakpoint); });
 
-  // Home services tabs
-  var tabButtons = document.querySelectorAll(".home-services .tab-btn");
-  var tabContents = document.querySelectorAll(".home-services .tab-content");
-  tabButtons.forEach(function (tabBtn) {
-    tabBtn.addEventListener("click", function () {
-      tabButtons.forEach(function (b) { b.classList.remove("active"); });
-      tabContents.forEach(function (c) { c.classList.remove("active"); });
-      tabBtn.classList.add("active");
-      var id = tabBtn.getAttribute("data-tab");
-      var tabPanel = id ? document.getElementById(id) : null;
-      if (tabPanel) tabPanel.classList.add("active");
-    });
-  });
+  // Home services tabs: now React state in components/home/ServicesTabs.js.
 
   // Counters
   var counterSection = document.querySelector(".common-counter");

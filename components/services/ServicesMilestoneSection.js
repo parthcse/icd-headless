@@ -41,14 +41,14 @@ export default function ServicesMilestoneSection({ data }) {
   return (
     <section className="services-milestone full-section">
       <div className="container">
-        <div className="gap-4 xl:gap-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 text-center leading-relaxed small">
+        <div className="gap-3 sm:gap-4 xl:gap-6 grid grid-cols-2 lg:grid-cols-4 text-center leading-relaxed small">
           {data.items.map((item, i) => (
-            <div key={i} className="group p-8 transition-all duration-500 bg-black-light animate zoomIn">
+            <div key={i} className="group px-4 py-5 sm:p-8 transition-all duration-500 bg-black-light animate zoomIn">
               <div className="font-48 flex items-center justify-center mb-[0.2em] transition-all duration-500 group-hover:-translate-y-2">
                 {ICONS[item.icon]}
               </div>
               <h3 className="font-30 font-bold mb-0">{item.value}</h3>
-              <p className="text-[1.15rem] leading-[1.45rem] font-semibold mt-2">
+              <p className="text-base leading-snug sm:text-[1.15rem] sm:leading-[1.45rem] font-semibold mt-2">
                 {item.lines.map((line, j) => (
                   <span key={j}>
                     {line}

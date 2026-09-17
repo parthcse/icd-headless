@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import Link from "next/link";
+import Carousel from "@/components/common/Carousel";
 import { getCaseStudyNodesByIds } from "@/lib/wp-home-data";
 
 function renderParts(parts) {
@@ -60,7 +61,15 @@ export default async function ServicesCaseStudySection({ data }) {
             ? data.subtitle.map((p, i) => <p key={i} className="mx-auto max-w-5xl">{Array.isArray(p) ? renderParts(p) : p}</p>)
             : <p className="mx-auto max-w-5xl">{data.subtitle}</p>}
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-small leading-normal">
+        {/* Swipeable slider below md (one card + a peek of the next); the usual
+            2/3-column grid from md up. See Carousel.js → mobileOnly. */}
+        <Carousel
+          mobileOnly
+          responsive={{ 0: 1.12 }}
+          gap={16}
+          className="leading-normal"
+          stageClassName="md:grid-cols-2 lg:grid-cols-3 md:gap-space-small"
+        >
           {caseStudyItems.map((item, i) => (
             <div key={i} className="column group">
               <figure className="overflow-hidden">
@@ -111,7 +120,7 @@ export default async function ServicesCaseStudySection({ data }) {
               )}
             </div>
           ))}
-        </div>
+        </Carousel>
         {data.caseStudyCtaLabel && (
           <div className="btn-wrap text-center pt-space-mini">
             <a href={data.caseStudyCtaHref || "#"} className="btn btn-primary">

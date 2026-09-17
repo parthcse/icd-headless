@@ -413,6 +413,11 @@ It deliberately renders the **same DOM and class names Owl did** — `.owl-carou
 | `gap` | Pixel gap between slides (N-up mode). |
 | `autoplay` | Milliseconds between slides; `0`/omitted = off. Pauses on hover. |
 | `nav` | Show prev/next arrows (default `true`). |
+| `loop` | Seamless loop (default `true`). Set `false` when every item must stay tappable — loop clones are `inert` (e.g. the home Creative Services tab strip). The track then stops at either end. |
+| `mobileOnly` | Slider **below 768px only**; from `md` up the stage becomes a CSS grid laid out by `stageClassName` (e.g. `"md:grid-cols-2 lg:grid-cols-3 md:gap-space-small"`), with swipe/autoplay/nav/clones off. Done in CSS (`.carousel-mobile-only` in `styles/input.css`), so there is no layout jump on hydration. Used by the home Creative Services tabs and the service-page Portfolio + Case Study sections. |
+| `stageClassName` | Extra classes on `.owl-stage` — the desktop grid for `mobileOnly`. |
+
+**Home Creative Services tabs** are React state in [`components/home/ServicesTabs.js`](./components/home/ServicesTabs.js) (content stays in `ServicesSection.js`), not the old vanilla script. The `animate` reveal classes sit on wrappers React never re-renders — `common-next.js` adds `start` straight to the DOM, and React rewriting that element's `className` on a tab change would drop it and hide the tab.
 
 **Looping is seamless:** the track renders the slides twice and snaps back with the transition disabled once it crosses into the clone set, so autoplay never visibly rewinds. That's why the built HTML shows 2× the slide count in `.owl-item` — expected, not a bug.
 

@@ -502,6 +502,34 @@
         min-height: 1px;
         position: relative;
     }
+    /* Mobile-only sliders (<Carousel mobileOnly>): a swipeable slider below md,
+       the caller's grid (stageClassName, e.g. md:grid-cols-3) from md up. Pure
+       CSS so the server HTML is already right at every width — no jump when
+       React hydrates. Keep 768px in sync with MOBILE_ONLY_MIN_WIDTH in Carousel.js. */
+    .carousel-mobile-only .owl-nav {
+        @apply leading-none flex items-center justify-center gap-2 pt-6;
+    }
+    @media (min-width: 768px) {
+        .carousel-mobile-only .owl-stage-outer {
+            overflow: visible;
+            touch-action: auto !important;
+            cursor: auto;
+            -webkit-user-select: auto;
+            user-select: auto;
+        }
+        .carousel-mobile-only .owl-stage {
+            display: grid;
+            transform: none !important;
+            transition: none !important;
+        }
+        .carousel-mobile-only .owl-item {
+            margin-right: 0 !important;
+        }
+        .carousel-mobile-only .owl-item[inert],
+        .carousel-mobile-only .owl-nav {
+            display: none;
+        }
+    }
     /* Design static HTML uses JS-injected per-char spans here; Next hero uses Framer (HeroMainTitle) — do not use .char-animate span { … } or it breaks motion children. */
     .char-animate {
         overflow: hidden;
