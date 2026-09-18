@@ -530,6 +530,41 @@
             display: none;
         }
     }
+    /* Portfolio / case-study mobile sliders: prev/next pinned just inside the
+       left/right edges of the card image, vertically centred on it. Carousel
+       (navAnchor="figure") measures the image and sets --nav-y / --nav-start /
+       --nav-end on .owl-nav; the calc() fallbacks only cover the moment before
+       hydration. Styling follows the site's other slider arrows (square, thin
+       outline, white chevron) on dark glass so they read over any photo. */
+    .slider-nav-on-image {
+        container-type: inline-size;
+    }
+    .slider-nav-on-image .owl-nav {
+        padding-top: 0;
+    }
+    .slider-nav-on-image .owl-nav button {
+        @apply absolute z-10 w-10 !border-white/30 bg-black/55 text-white backdrop-blur-sm transition-all duration-300 hover:!border-primary hover:bg-black/75 hover:text-primary;
+        top: var(--nav-y, calc(100cqw / 2.32));
+        transform: translateY(-50%);
+    }
+    .slider-nav-on-image .owl-nav button:active {
+        transform: translateY(-50%) scale(0.95);
+    }
+    .slider-nav-on-image .owl-prev {
+        left: calc(var(--nav-start, 0px));
+    }
+    .slider-nav-on-image .owl-next {
+        right: calc(var(--nav-end, 0px));
+    }
+
+    /* Scrollable, but with the scrollbar hidden (home Creative Services tab strip). */
+    .no-scrollbar {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
     /* Design static HTML uses JS-injected per-char spans here; Next hero uses Framer (HeroMainTitle) — do not use .char-animate span { … } or it breaks motion children. */
     .char-animate {
         overflow: hidden;

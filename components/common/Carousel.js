@@ -33,6 +33,12 @@ import useDragSwipe from "@/components/common/useDragSwipe";
  *                   (styles/input.css → .carousel-mobile-only), not by swapping
  *                   components in JS, so the server HTML is already correct at
  *                   every width and nothing jumps when the page hydrates.
+ *  - navAnchor      CSS selector for an element inside each slide (e.g. "figure")
+ *                   to pin the prev/next arrows to: its vertical centre and its
+ *                   left/right edges are exposed to CSS as --nav-y / --nav-start /
+ *                   --nav-end on .owl-nav (see .slider-nav-on-image in
+ *                   styles/input.css). Measured, so it stays right whatever size
+ *                   the image actually renders at.
  */
 
 const PREV_PATH =
@@ -70,6 +76,7 @@ export default function Carousel({
   nav = true,
   loop = true,
   mobileOnly = false,
+  navAnchor = null,
 }) {
   const slides = Array.isArray(children) ? children.filter(Boolean) : [children].filter(Boolean);
   const count = slides.length;
@@ -81,13 +88,24 @@ export default function Carousel({
   // the smallest breakpoint; everything else keeps the desktop-first default.
   const [perView, setPerView] = useState(() => itemsForWidth(responsive, mobileOnly ? 0 : 1280));
   const [paused, setPaused] = useState(false);
+  // A finger/mouse is down on the track (the loop snap-back must wait for it).
+  const [dragging, setDragging] = useState(false);
   // True once we know a mobileOnly carousel is on a wide screen (i.e. it's a grid).
   const [isGrid, setIsGrid] = useState(false);
 
+  const [navPos, setNavPos] = useState(null);
+
   const itemRefs = useRef([]);
+  const rootRef = useRef(null);
   const outerRef = useRef(null);
+  const stageRef = useRef(null);
   const timerRef = useRef(null);
   const atEndRef = useRef(false);
+  // Current index for event handlers (they must not read it inside a state updater).
+  const indexRef = useRef(0);
+  indexRef.current = index;
+  // Set when "previous" is pressed on the first slide — see prev() below.
+  const stepBackRef = useRef(false);
 
   // Track how many items fit, for the responsive (fixed N-up) mode.
   useEffect(() => {
@@ -135,6 +153,36 @@ export default function Carousel({
     measure();
   }, [measure, perView, count]);
 
+  // Pin the arrows to navAnchor inside the current slide. Uses the slide's own
+  // box for the horizontal edges, so the track's translateX doesn't matter, and
+  // the carousel root for the vertical centre.
+  const placeNav = useCallback(() => {
+    if (!navAnchor || !count) return;
+    const root = rootRef.current;
+    const slide = itemRefs.current[index % count];
+    const anchor = slide?.querySelector(navAnchor);
+    if (!root || !anchor) return;
+    const r = root.getBoundingClientRect();
+    const sl = slide.getBoundingClientRect();
+    const a = anchor.getBoundingClientRect();
+    if (!a.height) return;
+    const start = Math.round(a.left - sl.left);
+    const next = { y: Math.round(a.top - r.top + a.height / 2), start, end: Math.round(r.width - start - a.width) };
+    setNavPos((p) => (p && p.y === next.y && p.start === next.start && p.end === next.end ? p : next));
+  }, [navAnchor, index, count]);
+
+  useLayoutEffect(() => {
+    placeNav();
+  }, [placeNav, perView]);
+
+  // Re-pin when the carousel resizes (rotation, fonts loading, images settling).
+  useEffect(() => {
+    if (!navAnchor || !rootRef.current || typeof ResizeObserver === "undefined") return;
+    const ro = new ResizeObserver(() => placeNav());
+    ro.observe(rootRef.current);
+    return () => ro.disconnect();
+  }, [navAnchor, placeNav]);
+
   useEffect(() => {
     const onResize = () => measure();
     window.addEventListener("resize", onResize);
@@ -144,20 +192,34 @@ export default function Carousel({
   // Crossing into the cloned set means we've completed a full cycle — snap back
   // to the equivalent real slide with the transition off so it's invisible.
   useEffect(() => {
-    if (!loop || index < count) return;
+    // Never snap mid-drag: the track would jump out from under the finger. Once
+    // the finger lifts, this re-runs and the snap happens as usual.
+    if (!loop || index < count || dragging) return;
     const t = setTimeout(() => {
       setAnimate(false);
       setIndex(index - count);
     }, 500); // must match the CSS transition duration below
     return () => clearTimeout(t);
-  }, [loop, index, count]);
+  }, [loop, index, count, dragging]);
 
   // Re-enable the transition on the frame after a silent snap.
   useEffect(() => {
     if (animate) return;
-    const raf = requestAnimationFrame(() => setAnimate(true));
+    const raf = requestAnimationFrame(() => {
+      if (stepBackRef.current) {
+        stepBackRef.current = false;
+        // Make the browser apply the silent jump BEFORE the transition comes back
+        // on; otherwise both changes land in one style update and the track
+        // animates from its old position instead of from the clone.
+        stageRef.current?.getBoundingClientRect();
+        setAnimate(true);
+        setIndex(count - 1);
+        return;
+      }
+      setAnimate(true);
+    });
     return () => cancelAnimationFrame(raf);
-  }, [animate]);
+  }, [animate, count]);
 
   const next = useCallback(() => {
     if (!loop) {
@@ -173,13 +235,18 @@ export default function Carousel({
       setIndex((i) => Math.max(i - 1, 0));
       return;
     }
-    setIndex((i) => {
-      if (i > 0) return i - 1;
-      // Stepping back from the first slide: jump silently to the clone set so
-      // the move to the previous slide animates in the natural direction.
-      setAnimate(false);
-      return count;
-    });
+    if (indexRef.current > 0) {
+      setIndex((i) => i - 1);
+      return;
+    }
+    // On the first slide there is nothing to its left, so step back in two
+    // moves: (1) jump silently to its identical copy at the start of the clone
+    // set, then (2) next frame, animate one slide back from there (the effect
+    // above). The old code only did (1) — the track looked stuck, and the
+    // loop's snap-back returned it to slide 1 before a second press landed.
+    stepBackRef.current = true;
+    setAnimate(false);
+    setIndex(count);
   }, [loop, count]);
 
   const sliderActive = !(mobileOnly && isGrid);
@@ -192,10 +259,27 @@ export default function Carousel({
 
   // Drag / swipe. Pausing autoplay while a finger is down stops the track
   // advancing out from under the gesture.
+  const onDragChange = useCallback(
+    (down) => {
+      setPaused(down);
+      setDragging(down);
+      // Touching down on the FIRST slide: silently swap to its identical copy at
+      // the start of the clone set. Nothing sits left of the real first slide, so
+      // a left-to-right drag would pull empty space into view and then have to
+      // jump on release (the "jerk"). From the copy, the real last slide is
+      // already there to the left and the drag + release is one smooth motion.
+      if (down && loop && count > 1 && indexRef.current === 0) {
+        setAnimate(false);
+        setIndex(count);
+      }
+    },
+    [loop, count]
+  );
+
   const { dragX, handlers: dragHandlers } = useDragSwipe({
     onNext: next,
     onPrev: prev,
-    onDragChange: setPaused,
+    onDragChange,
   });
 
   if (!count) return null;
@@ -214,6 +298,7 @@ export default function Carousel({
 
   return (
     <div
+      ref={rootRef}
       className={`${className} owl-carousel owl-loaded${mobileOnly ? " carousel-mobile-only" : ""}`.trim()}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
@@ -228,6 +313,7 @@ export default function Carousel({
         {...(sliderActive ? dragHandlers : {})}
       >
         <div
+          ref={stageRef}
           className={`owl-stage ${stageClassName}`.trim()}
           style={{
             // dragX follows the finger 1:1; the transition is off mid-drag so it
@@ -259,7 +345,10 @@ export default function Carousel({
       </div>
 
       {nav && count > 1 && (
-        <div className="owl-nav">
+        <div
+          className="owl-nav"
+          style={navPos ? { "--nav-y": `${navPos.y}px`, "--nav-start": `${navPos.start}px`, "--nav-end": `${navPos.end}px` } : undefined}
+        >
           <button type="button" className="owl-prev" aria-label="Previous" onClick={prev}>
             <NavIcon d={PREV_PATH} />
           </button>

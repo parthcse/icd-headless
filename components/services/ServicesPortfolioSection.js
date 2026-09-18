@@ -47,13 +47,15 @@ export default async function ServicesPortfolioSection({ data }) {
             ? data.subtitle.map((p, i) => <p key={i} className="mx-auto max-w-5xl">{p}</p>)
             : <p className="mx-auto max-w-5xl">{data.subtitle}</p>}
         </div>
-        {/* Swipeable slider below md (one card + a peek of the next); the usual
-            2/3-column grid from md up. See Carousel.js → mobileOnly. */}
+        {/* Swipeable slider below md (one card at a time, arrows on the image —
+            .slider-nav-on-image); the usual 2/3-column grid from md up. See
+            Carousel.js → mobileOnly. */}
         <Carousel
           mobileOnly
-          responsive={{ 0: 1.12 }}
+          responsive={{ 0: 1 }}
           gap={16}
-          className="leading-normal"
+          className="leading-normal slider-nav-on-image"
+          navAnchor="figure"
           stageClassName="md:grid-cols-2 lg:grid-cols-3 md:gap-space-small"
         >
           {portfolioItems.map((item, i) => (
