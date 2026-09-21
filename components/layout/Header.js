@@ -92,12 +92,17 @@ const SERVICES_CATEGORIES = [
     links: [
       { label: "WordPress Development", href: "/wordpress-development-services/" },
       { label: "WordPress Website Design", href: "/wordpress-website-design-company/" },
-      { label: "WordPress VIP Services", href: "/wordpress-vip/" },
       { label: "Hire WordPress Developers", href: "/hire-wordpress-developers-designers/" },
-      { label: "Hire WordPress VIP Developers", href: "/hire-wordpress-vip-developers/" },
       { label: "WordPress SEO Service", href: "/wordpress-seo-service/" },
       { label: "WordPress Maintenance", href: "/wordpress-maintenance-service/" },
-      { label: "WordPress VIP Maintenance", href: "/wordpress-vip-support-and-maintenance/" },
+    ],
+  },
+  {
+    label: "WordPress VIP",
+    links: [
+      { label: "WordPress VIP Agency", href: "/wordpress-vip/" },
+      { label: "Hire WordPress VIP Developers", href: "/hire-wordpress-vip-developers/" },
+      { label: "WordPress VIP Support & Maintenance", href: "/wordpress-vip-support-and-maintenance/" },
     ],
   },
   {
@@ -119,14 +124,19 @@ const SERVICES_CATEGORIES = [
     links: [
       { label: "Shopify Development", href: "/shopify-development-services/" },
       { label: "Shopify Website Design", href: "/shopify-website-design/" },
-      { label: "Shopify Plus Development", href: "/shopify-plus-development-agency/" },
-      { label: "Hire Shopify Plus Developers", href: "/hire-shopify-plus-developers/" },
-      { label: "Shopify Plus SEO Services", href: "/shopify-plus-seo-services/" },
-      { label: "Shopify Plus Support", href: "/shopify-plus-support-and-maintenance-services/" },
       { label: "Hire Shopify Developers", href: "/hire-shopify-developers-experts/" },
       { label: "Hire Shopify Designers", href: "/hire-shopify-website-designers/" },
       { label: "Shopify SEO Service", href: "/shopify-seo-service/" },
       { label: "Shopify Maintenance", href: "/shopify-maintenance-services/" },
+    ],
+  },
+  {
+    label: "Shopify Plus",
+    links: [
+      { label: "Shopify Plus Development", href: "/shopify-plus-development-agency/" },
+      { label: "Hire Shopify Plus Developers", href: "/hire-shopify-plus-developers/" },
+      { label: "Shopify Plus SEO Services", href: "/shopify-plus-seo-services/" },
+      { label: "Shopify Plus Support & Maintenance", href: "/shopify-plus-support-and-maintenance-services/" },
     ],
   },
   {
