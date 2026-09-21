@@ -44,6 +44,10 @@ function mapNodeToCaseStudyItem(node) {
  * Case Study section. `data.postIds` is an array of WordPress `caseStudy`
  * post IDs fetched live via WPGraphQL (same by-IDs logic as the portfolio
  * section, against the `caseStudiesFields` ACF group).
+ *
+ * Heading: service pages pass `eyebrow` + `title` (big "Our / Case Studies"
+ * style). Pass `label` instead for a small orange uppercase label + a font-48
+ * H2 — the single case-study page's style, which suits long CMS titles.
  */
 export default async function ServicesCaseStudySection({ data }) {
   const nodes = await getCaseStudyNodesByIds(data.postIds);
@@ -55,11 +59,20 @@ export default async function ServicesCaseStudySection({ data }) {
     <section className="services-case-studies text-center full-section">
       <div className="container">
         <div className="heading-wrap animate fadeUp">
-          {data.eyebrow && <h3 className="font-48">{data.eyebrow}</h3>}
-          <h2 className="main-title pb-2">{data.title}</h2>
+          {data.label ? (
+            <>
+              <p className="mb-3 font-semibold uppercase tracking-[0.2em] text-primary">{data.label}</p>
+              <h2 className="mx-auto mb-0 max-w-5xl font-48 font-semibold leading-tight">{data.title}</h2>
+            </>
+          ) : (
+            <>
+              {data.eyebrow && <h3 className="font-48">{data.eyebrow}</h3>}
+              <h2 className="main-title pb-2">{data.title}</h2>
+            </>
+          )}
           {Array.isArray(data.subtitle)
             ? data.subtitle.map((p, i) => <p key={i} className="mx-auto max-w-5xl">{Array.isArray(p) ? renderParts(p) : p}</p>)
-            : <p className="mx-auto max-w-5xl">{data.subtitle}</p>}
+            : data.subtitle && <p className="mx-auto max-w-5xl">{data.subtitle}</p>}
         </div>
         {/* Swipeable slider below md (one card at a time, arrows on the image —
             .slider-nav-on-image); the usual 2/3-column grid from md up. See

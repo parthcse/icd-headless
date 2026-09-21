@@ -5,6 +5,8 @@ import GetQuoteSection from "@/components/home/GetQuoteSection";
 import WeServeSection from "@/components/home/WeServeSection";
 import CaseStudyBanner from "@/components/case-studies/CaseStudyBanner";
 import CaseStudyTestimonials from "@/components/case-studies/CaseStudyTestimonials";
+import ServicesCaseStudySection from "@/components/services/ServicesCaseStudySection";
+import ServicesFaqSection from "@/components/services/ServicesFaqSection";
 import CountUp from "@/components/case-studies/CountUp";
 import YoastSchema from "@/components/common/YoastSchema";
 import { getAllCaseStudySlugs, getCaseStudyBySlug } from "@/lib/case-studies";
@@ -60,7 +62,7 @@ export default async function CaseStudySinglePage({ params }) {
   const cs = await getCaseStudyBySlug(slug);
   if (!cs) notFound();
 
-  const { top, results, challenges, solutions, liveUrl } = cs;
+  const { top, results, challenges, solutions, liveUrl, related, faqs } = cs;
 
   return (
     <>
@@ -207,6 +209,33 @@ export default async function CaseStudySinglePage({ params }) {
               )}
             </div>
           </section>
+        )}
+
+        {/* FAQs — only when the ACF case_study_faqs repeater has rows.
+            Same accordion as the service pages. */}
+        {faqs.items.length > 0 && (
+          <ServicesFaqSection
+            data={{
+              label: "FAQs",
+              title: faqs.title || "Frequently Asked Questions",
+              items: faqs.items,
+            }}
+          />
+        )}
+
+        {/* More case studies — only when the ACF relationship has posts picked.
+            Same cards as the service pages' case-study section. */}
+        {related.ids.length > 0 && (
+          <ServicesCaseStudySection
+            data={{
+              label: "More Case Studies",
+              title: related.title || "Related Case Studies",
+              postIds: related.ids,
+              // Same button as the service pages' case-study section.
+              caseStudyCtaLabel: "More Case Studies",
+              caseStudyCtaHref: "/case-studies/",
+            }}
+          />
         )}
 
         {/* Testimonials — slider + View more reviews (shared) */}

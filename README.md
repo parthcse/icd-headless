@@ -265,6 +265,13 @@ There are **two** distinct "special" tiers, and they are not the same thing:
 > **Rule:** bespoke pages must **not** modify the service renderer (`app/[slug]/page.js`), `components/services/`, or `lib/services/index.js`. Add a new `app/(special)/<slug>/` route with components in `components/special/`.
 
 **2. Bespoke *case studies* — a local route that overrides the `[slug]` template.**
+**Optional sections on the ACF template.** Each renders only when its fields have data, in this order, just above "What Our Clients Say":
+
+| Section | ACF fields (in `caseStudiesFields`) | Notes |
+|---|---|---|
+| **FAQs** | `cs_faqs_title` (text) + `case_study_faqs` repeater: `csf_question` (textarea), `csf_answer` (WYSIWYG) | Fixed label "FAQs"; H2 = the title field. Reuses `ServicesFaqSection` (the service-page accordion) in its `label` heading mode. Rows with no question are skipped. |
+| **More Case Studies** | `related_case_studies_title` (text) + `related_case_studies` (relationship) | Fixed label; H2 = the title field. Reuses the `ServicesCaseStudySection` cards and its "More Case Studies" → `/case-studies/` button. ACF's return format for the relationship doesn't matter: WPGraphQL always returns a connection, and we read `databaseId`s. |
+
 Most case studies come from the CMS via the ACF template (`app/(marketing)/case-studies/[slug]/page.js`). But some are long-form, table-heavy layouts whose content does **not** fit the `caseStudiesFields` ACF groups (challenge matrix, numbered solution blocks, before/after comparison, analytics screenshots). For those, add a **literal route segment** — `app/(marketing)/case-studies/<slug>/page.js` — which wins over the sibling `[slug]` segment automatically. First (and so far only) example: **`mahesh-eng-works`**. The recipe:
 - Content is ported into the page file itself as plain data consts (verbatim from the CMS page), rendered with local table/section helpers. No CMS fetch for the body.
 - Screenshots are downloaded into `public/assets/case-studies/<slug>/` (self-contained, covered by the `/assets` 30-day cache header).

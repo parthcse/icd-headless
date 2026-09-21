@@ -319,7 +319,7 @@
         @apply mb-0;
     }
     .heading-wrap .font-48 {
-        @apply mb-0 font-normal leading-snug;
+        @apply mb-0 font-semibold leading-snug;
     }
     .container-left {
         @apply w-full pl-4 sm:pl-[calc((100%-528px)/2)] md:pl-[calc((100%-720px)/2)] lg:pl-[calc((100%-976px)/2)] xl:pl-[calc((100%-1152px)/2)];

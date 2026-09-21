@@ -103,6 +103,17 @@ export const CASE_STUDY_SINGLE_QUERY = gql`
       caseStudiesFields {
         caseStudyTitle
         csliveWebsiteUrl
+        relatedCaseStudiesTitle
+        relatedCaseStudies {
+          nodes {
+            databaseId
+          }
+        }
+        csFaqsTitle
+        caseStudyFaqs {
+          csfQuestion
+          csfAnswer
+        }
         caseStudyTopSection {
           topSectionEyebrow
           csTopSectionTitle
@@ -145,8 +156,8 @@ export const CASE_STUDY_SINGLE_QUERY = gql`
 `;
 
 export const CASE_STUDY_BY_IDS_QUERY = gql`
-  query CaseStudiesByIds($in: [ID!]) {
-    caseStudies(first: 3, where: { in: $in }) {
+  query CaseStudiesByIds($in: [ID!], $first: Int) {
+    caseStudies(first: $first, where: { in: $in }) {
       nodes {
         id
         databaseId
