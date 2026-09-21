@@ -26,15 +26,27 @@ export default function ServicesTabs({ tabs }) {
   const select = (e, id) => {
     setActiveId(id);
     // A half-visible tab at the strip's edge slides fully into view when tapped.
-    e.currentTarget.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+    // Scrolls the STRIP sideways only (never scrollIntoView, which can also move
+    // the page vertically behind Lenis's back), and only when it overflows — i.e.
+    // on mobile; on desktop it's a grid and this is a no-op.
+    const btn = e.currentTarget;
+    const strip = btn.closest(".tabs");
+    if (!strip || strip.scrollWidth <= strip.clientWidth) return;
+    const sr = strip.getBoundingClientRect();
+    const br = btn.getBoundingClientRect();
+    const pad = 24; // matches the strip's px-6
+    if (br.left < sr.left + pad) strip.scrollBy({ left: br.left - sr.left - pad, behavior: "smooth" });
+    else if (br.right > sr.right - pad) strip.scrollBy({ left: br.right - sr.right + pad, behavior: "smooth" });
   };
 
   return (
     <>
-      {/* data-lenis-prevent: let the browser, not Lenis, own scrolling inside the strip. */}
+      {/* No data-lenis-prevent here: it makes Lenis hand the mouse wheel to the
+          browser whenever the cursor is over this strip, so desktop page scrolling
+          jerked/stuck as the section passed under the cursor. Not needed anyway —
+          Lenis ignores touch and horizontal wheel, so the strip scrolls natively. */}
       <div
         className="tabs no-scrollbar -mx-6 flex gap-4 overflow-x-auto overscroll-x-contain px-6 md:mx-0 md:grid md:grid-cols-3 md:gap-2 md:overflow-visible md:px-0 lg:grid-cols-6 text-center font-22 leading-tight pb-space-mini xl:pb-14"
-        data-lenis-prevent
       >
         {tabs.map((tab) => {
           const active = tab.id === activeId;
