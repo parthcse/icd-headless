@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { notFound } from "next/navigation";
 import { SERVICES_SLUGS, getServiceData } from "@/lib/services/index";
-import { getYoastMetadataByUri } from "@/lib/seo";
+import { getYoastMetadataByUri, canonicalUrl } from "@/lib/seo";
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -172,6 +172,9 @@ export async function generateMetadata({ params }) {
   return {
     title: data.pageTitle,
     description: data.metaDescription,
+    // Self-referencing canonical for pages the CMS does not know (Yoast supplies
+    // its own below when it does) — without this they would ship none at all.
+    alternates: { canonical: canonicalUrl(`/${slug}/`) },
     ...(yoast || {}),
   };
 }

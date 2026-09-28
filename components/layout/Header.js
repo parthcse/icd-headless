@@ -205,6 +205,7 @@ const RESOURCES_ITEMS = [
       { label: "How Much Does a Website Cost?", href: "/how-much-does-a-website-cost/" },
       { label: "How Much Does SEO Cost?", href: "/how-much-does-seo-cost/" },
       { label: "How Much Does PPC Cost?", href: "/how-much-does-ppc-cost/" },
+      { label: "How Much Does a Blinds Website Cost?", href: "/how-much-does-a-blinds-website-cost/" },
       { label: "How Much Does Email Marketing Cost?", href: "/how-much-does-email-marketing-cost/" },
       { label: "How Much Does Social Media Management Cost?", href: "/how-much-does-social-media-management-cost/" },
       { label: "How Much Does WordPress SEO Cost?", href: "/how-much-does-wordpress-seo-cost/" },
