@@ -1,4 +1,19 @@
+import { Fragment } from "react";
 import ServiceCtaButton from "@/components/services/ServiceCtaButton";
+
+// Same inline link/bold parts the other sections support, so a table section can
+// carry its own intro paragraph instead of needing a separate text section above it.
+function renderParts(parts) {
+  return parts.map((part, i) =>
+    typeof part === "string" ? (
+      <Fragment key={i}>{part}</Fragment>
+    ) : part.bold ? (
+      <strong key={i} className="font-semibold">{part.bold}</strong>
+    ) : (
+      <a key={i} href={part.href} {...(/^https?:\/\//.test(part.href) ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="text-primary font-semibold inline underline">{part.text}</a>
+    )
+  );
+}
 
 export default function ServicesTableBasic({ data }) {
   const boldColumns = data.boldColumns || [0];
@@ -9,7 +24,9 @@ export default function ServicesTableBasic({ data }) {
           {data.eyebrow && <h3 className="font-48">{data.eyebrow}</h3>}
           {data.title && <h2 className="main-title pb-2">{data.title}</h2>}
           {Array.isArray(data.subtitle)
-            ? data.subtitle.map((p, i) => <p key={i} className="mx-auto max-w-5xl">{p}</p>)
+            ? data.subtitle.map((p, i) => (
+                <p key={i} className="mx-auto max-w-5xl">{Array.isArray(p) ? renderParts(p) : p}</p>
+              ))
             : data.subtitle && <p className="mx-auto max-w-5xl">{data.subtitle}</p>}
         </div>
 

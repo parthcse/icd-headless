@@ -60,12 +60,14 @@ export default function SitemapPage() {
         {/* Sitemap sections */}
         <section className="sitemap-content-section full-section">
           <div className="container space-y-12 xl:space-y-16">
-            {SITEMAP_SECTIONS.map((section) => (
-              <div key={section.title} className="animate fadeUp">
+            {/* Keyed by position, not title: two sections may share a title
+                (e.g. "Resources"), and duplicate keys break React's reconciliation. */}
+            {SITEMAP_SECTIONS.map((section, i) => (
+              <div key={`${i}-${section.title}`} className="animate fadeUp">
                 <h2 className="mb-6 font-36 font-semibold leading-tight">{section.title}</h2>
 
                 {section.groups ? (
-                  <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                  <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                     {section.groups.map((group) => (
                       <div key={group.subtitle} className="rounded-xl border border-white/10 bg-black-light p-6">
                         <h3 className="mb-4 font-22 font-semibold text-primary">{group.subtitle}</h3>
