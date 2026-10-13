@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { REDIRECTS } from "@/lib/redirects.mjs";
 
 /**
  * Sitemap + llms.txt proxy for the headless setup. (Next.js 16 "proxy" file
@@ -17,6 +18,28 @@ import { NextResponse } from "next/server";
  * self-contained (inline CSS, no sub-resources), so proxying the one file is
  * enough to restore the pretty Yoast table view.
  */
+/**
+ * Lowercase-URL redirect (see the start of proxy() below).
+ *
+ * Every route on this site is lowercase, so /BLOG/page/15/ used to 404 while
+ * /blog/page/15/ worked, and Google had crawled a number of those mixed-case
+ * URLs. Paths are 308-redirected to their lowercase form, EXCEPT:
+ *  - anything with a file extension — media filenames are case-sensitive, and
+ *    some legacy image redirects depend on their exact casing,
+ *  - paths that are an exact source in lib/redirects.mjs ("/Blog/eCommerce",
+ *    "/Other", "/Monthly/", …), which must still match their own rule.
+ * Only the pathname is touched; the query string is left alone.
+ */
+const REDIRECT_SOURCES = new Set(REDIRECTS.map(([from]) => from.split("?")[0]));
+
+function hasExactRedirectRule(pathname) {
+  if (REDIRECT_SOURCES.has(pathname)) return true;
+  // trailingSlash: true — check the other spelling too.
+  return pathname.endsWith("/")
+    ? REDIRECT_SOURCES.has(pathname.slice(0, -1))
+    : REDIRECT_SOURCES.has(`${pathname}/`);
+}
+
 const CMS_ORIGIN = "https://cms.icecubedigital.com";
 // Always emit the canonical www origin in the sitemap (matches the site canonical).
 const PUBLIC_ORIGIN = "https://www.icecubedigital.com";
@@ -37,6 +60,17 @@ const UPSTREAM_HEADERS = {
 
 export async function proxy(request) {
   const { pathname } = request.nextUrl;
+
+  // Mixed-case URL → its lowercase equivalent.
+  if (
+    /[A-Z]/.test(pathname) &&
+    !/\.[a-zA-Z0-9]{2,5}$/.test(pathname) &&
+    !hasExactRedirectRule(pathname)
+  ) {
+    const lower = request.nextUrl.clone();
+    lower.pathname = pathname.toLowerCase();
+    return NextResponse.redirect(lower, 308);
+  }
 
   // Serve Yoast's sitemap stylesheet from OUR origin so cross-origin XSLT isn't blocked.
   if (pathname === XSL_PATH) {
@@ -122,6 +156,12 @@ export async function proxy(request) {
 }
 
 export const config = {
-  // Run on *.xml (sitemaps), the proxied stylesheet, and llms.txt; else untouched.
-  matcher: ["/((?!_next|api).*\\.xml)", "/sitemap.xsl", "/llms.txt"],
+  // Sitemaps (*.xml), the proxied stylesheet and llms.txt — plus every page URL,
+  // so the lowercase redirect above can run. Static assets are excluded.
+  matcher: [
+    "/((?!_next|api).*\\.xml)",
+    "/sitemap.xsl",
+    "/llms.txt",
+    "/((?!_next/|api/|assets/|fonts/|css/|js/|favicon.ico|robots.txt).*)",
+  ],
 };
