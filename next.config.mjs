@@ -77,6 +77,14 @@ const nextConfig = {
         source: "/css/:path*",
         headers: [{ key: "Cache-Control", value: "public, max-age=3600, stale-while-revalidate=86400" }],
       },
+      {
+        // Stylesheet for the XML sitemaps. Root-level files in /public are not
+        // covered by the directory rules above, so this one shipped with
+        // `max-age=0` — the same "Cloudflare caches nothing" problem those rules
+        // were added to fix. It changes about never.
+        source: "/sitemap.xsl",
+        headers: [{ key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" }],
+      },
     ];
   },
 };

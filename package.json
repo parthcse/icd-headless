@@ -3,14 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node scripts/build-sitemap-manifest.mjs",
     "dev": "next dev",
+    "predev:webpack": "node scripts/build-sitemap-manifest.mjs",
     "dev:webpack": "next dev --webpack",
+    "prebuild": "node scripts/build-sitemap-manifest.mjs",
     "build": "next build",
     "build:css": "tailwindcss -i ./styles/input.css -o ./public/css/output.css --minify",
     "build:js": "terser src/js/common-next.js -c -m --comments false -o public/js/common-next.js && terser src/js/load-design.js -c -m --comments false -o public/js/load-design.js",
     "build:assets": "npm run build:css && npm run build:js",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sitemap:manifest": "node scripts/build-sitemap-manifest.mjs"
   },
   "dependencies": {
     "@apollo/client": "^4.1.6",

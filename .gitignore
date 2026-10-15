@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# generated sitemap route manifest (rebuilt by the prebuild/predev script —
+# see scripts/build-sitemap-manifest.mjs). Left untracked on purpose: it is
+# regenerated on every build, and a tracked file that every build rewrites
+# would block the "git pull" deploy on cPanel with local changes.
+lib/sitemap-manifest.json
