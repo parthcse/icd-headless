@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+import { linkAttrs } from "@/lib/link-attrs";
 
 function renderParts(parts) {
   return parts.map((part, i) =>
@@ -7,7 +8,7 @@ function renderParts(parts) {
     ) : part.bold ? (
       <strong key={i} className="font-semibold">{part.bold}</strong>
     ) : (
-      <a key={i} href={part.href} {...(/^https?:\/\//.test(part.href) ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="text-primary font-semibold inline underline">{part.text}</a>
+      <a key={i} href={part.href} {...linkAttrs(part.href)} className="text-primary font-semibold inline underline">{part.text}</a>
     )
   );
 }

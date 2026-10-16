@@ -1,12 +1,13 @@
 import { Fragment } from "react";
 import { getTestimonial } from "@/lib/testimonials";
+import { linkAttrs } from "@/lib/link-attrs";
 
 function renderParts(parts) {
   return parts.map((part, i) =>
     typeof part === "string" ? (
       <Fragment key={i}>{part}</Fragment>
     ) : (
-      <a key={i} href={part.href} {...(/^https?:\/\//.test(part.href) ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="text-primary font-semibold inline underline">{part.text}</a>
+      <a key={i} href={part.href} {...linkAttrs(part.href)} className="text-primary font-semibold inline underline">{part.text}</a>
     )
   );
 }

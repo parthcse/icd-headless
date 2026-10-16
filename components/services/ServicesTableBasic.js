@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import ServiceCtaButton from "@/components/services/ServiceCtaButton";
+import { linkAttrs } from "@/lib/link-attrs";
 
 // Same inline link/bold parts the other sections support, so a table section can
 // carry its own intro paragraph instead of needing a separate text section above it.
@@ -10,7 +11,7 @@ function renderParts(parts) {
     ) : part.bold ? (
       <strong key={i} className="font-semibold">{part.bold}</strong>
     ) : (
-      <a key={i} href={part.href} {...(/^https?:\/\//.test(part.href) ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="text-primary font-semibold inline underline">{part.text}</a>
+      <a key={i} href={part.href} {...linkAttrs(part.href)} className="text-primary font-semibold inline underline">{part.text}</a>
     )
   );
 }

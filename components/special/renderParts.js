@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { linkAttrs } from "@/lib/link-attrs";
 
 /**
  * Rich-text renderer for the special AI landing pages. A field can be a plain
@@ -15,7 +16,7 @@ export default function renderParts(parts) {
     ) : part.accent ? (
       <span key={i} className="text-primary">{part.accent}</span>
     ) : (
-      <a key={i} href={part.href} {...(/^https?:\/\//.test(part.href) ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="text-primary font-semibold inline underline">{part.text}</a>
+      <a key={i} href={part.href} {...linkAttrs(part.href)} className="text-primary font-semibold inline underline">{part.text}</a>
     )
   );
 }
