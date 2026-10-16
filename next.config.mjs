@@ -2,6 +2,10 @@ import { REDIRECTS } from "./lib/redirects.mjs";
 
 const SITE = "https://www.icecubedigital.com";
 
+// `next dev` sets this; `next build` does not. Used to relax caching on assets
+// that are actively being edited (see headers() below).
+const isDev = process.env.NODE_ENV === "development";
+
 /**
  * Same-domain absolute destinations → paths. Keeps redirects host-relative so
  * they resolve correctly on preview deployments (a hardcoded www URL would bounce
@@ -82,8 +86,17 @@ const nextConfig = {
         // covered by the directory rules above, so this one shipped with
         // `max-age=0` — the same "Cloudflare caches nothing" problem those rules
         // were added to fix. It changes about never.
+        //
+        // Not cached in development: a day-long TTL on a file you are actively
+        // restyling means every edit looks like it did nothing until you clear
+        // the browser cache.
         source: "/sitemap.xsl",
-        headers: [{ key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" }],
+        headers: [
+          {
+            key: "Cache-Control",
+            value: isDev ? "no-store, must-revalidate" : "public, max-age=86400, stale-while-revalidate=604800",
+          },
+        ],
       },
     ];
   },

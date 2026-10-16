@@ -1,4 +1,4 @@
-import { SITEMAPS, SITEMAP_HEADERS, buildSitemapIndex } from "@/lib/sitemap-sources";
+import { SITEMAPS, SITEMAP_HEADERS, buildSitemapIndex, originFor } from "@/lib/sitemap-sources";
 
 /**
  * The sitemap index — the one URL robots.txt and Search Console point at
@@ -13,18 +13,21 @@ import { SITEMAPS, SITEMAP_HEADERS, buildSitemapIndex } from "@/lib/sitemap-sour
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-export async function GET() {
+export async function GET(request) {
   try {
-    const loaded = await Promise.all(
-      SITEMAPS.map(async ({ name, load }) => {
-        const entries = await load();
-        if (!entries.length) throw new Error(`${name} resolved no URLs`);
-        // Entries are sorted newest-first, but author/category URLs carry no date.
-        const lastmod = entries.map((e) => e.lastmod).filter(Boolean).sort().pop() ?? null;
-        return { name, lastmod };
-      })
-    );
-    return new Response(buildSitemapIndex(loaded), { headers: SITEMAP_HEADERS });
+    // Sequential on purpose. Loading all seven in parallel fires ~14 GraphQL
+    // requests at the CMS in one burst, and Cloudflare answered 520 to one of
+    // them in testing, taking the whole index to 503. This route is cached for
+    // an hour, so a few extra seconds costs nothing and the CMS stays happy.
+    const loaded = [];
+    for (const { name, load } of SITEMAPS) {
+      const entries = await load();
+      if (!entries.length) throw new Error(`${name} resolved no URLs`);
+      // Entries are sorted newest-first, but author/category URLs carry no date.
+      const lastmod = entries.map((e) => e.lastmod).filter(Boolean).sort().pop() ?? null;
+      loaded.push({ name, lastmod });
+    }
+    return new Response(buildSitemapIndex(loaded, originFor(request)), { headers: SITEMAP_HEADERS });
   } catch (err) {
     console.error("[sitemap] index generation failed:", err?.message || err);
     return new Response("Sitemap temporarily unavailable", {
