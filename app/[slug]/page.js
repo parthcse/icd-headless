@@ -94,6 +94,7 @@ const SECTION_RENDERERS = {
   tableBasicSecondary: (data) => data.tableBasicSecondary && <ServicesTableBasic data={data.tableBasicSecondary} />,
   tableBasicTertiary: (data) => data.tableBasicTertiary && <ServicesTableBasic data={data.tableBasicTertiary} />,
   tableBasicQuaternary: (data) => data.tableBasicQuaternary && <ServicesTableBasic data={data.tableBasicQuaternary} />,
+  tableBasicQuinary: (data) => data.tableBasicQuinary && <ServicesTableBasic data={data.tableBasicQuinary} />,
   tableInfoCards: (data) => data.tableInfoCards && <ServicesTableInfoCards data={data.tableInfoCards} />,
   tablePackages: (data) => data.tablePackages && <ServicesTablePackages data={data.tablePackages} />,
   tablePackagesAccordion: (data) => data.tablePackagesAccordion && <ServicesTablePackagesAccordion data={data.tablePackagesAccordion} />,

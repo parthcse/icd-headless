@@ -40,10 +40,15 @@ export default function ServicesInfoBoxSection({ data }) {
                   {item.bodyList.map((li, j) => <li key={j}>{li}</li>)}
                 </ul>
               )}
-              {item.bodyAfter && <p>{item.bodyAfter}</p>}
+              {item.bodyAfter && <p>{Array.isArray(item.bodyAfter) ? renderParts(item.bodyAfter) : item.bodyAfter}</p>}
             </div>
           ))}
         </div>
+        {data.footerNote && (
+          <p className="text-center max-w-4xl mx-auto mt-10 leading-relaxed">
+            {Array.isArray(data.footerNote) ? renderParts(data.footerNote) : data.footerNote}
+          </p>
+        )}
       </div>
     </section>
   );
