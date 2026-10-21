@@ -45,3 +45,7 @@ next-env.d.ts
 # regenerated on every build, and a tracked file that every build rewrites
 # would block the "git pull" deploy on cPanel with local changes.
 lib/sitemap-manifest.json
+
+# Claude Code local settings (approved permissions). Machine-specific, so it
+# stays out of the repo — each developer builds up their own allowlist.
+.claude/settings.local.json

@@ -38,7 +38,7 @@ export default function ServicesInfoBoxSection({ data }) {
               {item.body && <p>{Array.isArray(item.body) ? renderParts(item.body) : item.body}</p>}
               {item.bodyList && (
                 <ul className="list-disc pl-5 space-y-1 text-left">
-                  {item.bodyList.map((li, j) => <li key={j}>{li}</li>)}
+                  {item.bodyList.map((li, j) => <li key={j}>{Array.isArray(li) ? renderParts(li) : li}</li>)}
                 </ul>
               )}
               {item.bodyAfter && <p>{Array.isArray(item.bodyAfter) ? renderParts(item.bodyAfter) : item.bodyAfter}</p>}
