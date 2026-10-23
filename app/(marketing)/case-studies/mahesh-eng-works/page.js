@@ -397,13 +397,16 @@ export default async function MaheshEngWorksCaseStudy() {
               credible, conversion-ready digital platform.
             </p>
 
-            <div className="space-y-12 xl:space-y-16">
+            <div className="space-y-20 xl:space-y-32">
               {SOLUTIONS.map((s, idx) => (
                 <div key={s.num} className="grid grid-cols-1 items-center gap-space-mini xl:gap-space lg:grid-cols-2">
                   {/* Alternate image side on wide screens; text-only blocks span full width */}
                   <div className={`animate fadeUp ${s.image && idx % 2 === 1 ? "lg:order-2" : ""} ${!s.image ? "lg:col-span-2" : ""}`}>
-                    <p className="mb-2 font-semibold text-primary">{s.num}</p>
-                    <h3 className="mb-4 font-24 font-semibold leading-tight">{s.title}</h3>
+                    {/* Number sits inline with the title — "3.4 Product Architecture Overhaul" */}
+                    <h3 className="mb-4 font-24 font-semibold leading-tight">
+                      <span className="mr-2 text-primary">{s.num}</span>{" "}
+                      {s.title}
+                    </h3>
                     <p className="text-white/75">{s.body}</p>
                     {s.bullets && (
                       <ul className="mt-3 list-disc space-y-2 pl-5 text-white/75 marker:text-primary">

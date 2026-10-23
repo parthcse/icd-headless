@@ -124,20 +124,18 @@ const CHALLENGES = [
   ["Promotions vs. Luxury Feel", "First-time buyer offers are needed, but loud pop-ups and banners cheapen a premium brand.", "Offers either go unnoticed or hurt the brand image."],
 ];
 
-// Numbered solution blocks. `image` optional; `bullets` optional; `body` may be
-// an array so an inline link can sit inside the paragraph.
-const SOLUTIONS = [
+// The ten solution points. `bullets` optional; `body` may be an array so an
+// inline link can sit inside the paragraph. Images live on SOLUTION_ROWS below.
+const SOLUTION_POINTS = [
   {
     num: "2.1",
     title: "Store Strategy & Catalogue Architecture",
     body: "We started by mapping the full catalogue and the different ways customers look for jewelry. A gift buyer browses by type, a diamond buyer thinks in shapes, and a gemstone lover shops by stone or color. The store architecture supports all three paths, with collections for jewelry type, diamond shape, gemstone, color, best sellers and gifts.",
-    image: `${IMG}/catalogue-architecture.png`,
   },
   {
     num: "2.2",
     title: "Custom Luxury UI Design",
     body: "The design is crisp, clean and modern, with plenty of white space so each piece stands out. Products sit on clean backgrounds, typography is refined and understated, and the color palette stays restrained to keep attention on the gold and stones. Separate desktop and mobile banner artwork keeps the look sharp on every screen.",
-    image: `${IMG}/luxury-ui.png`,
   },
   {
     num: "2.3",
@@ -147,13 +145,11 @@ const SOLUTIONS = [
       { text: "jewelry website design and development", href: "/jewelry-website-design-development/" },
       ": let the product lead, and let the brand story build trust around it.",
     ],
-    image: `${IMG}/homepage-most-loved.png`,
   },
   {
     num: "2.4",
     title: "Mega Menu Navigation",
     body: "A mega menu organizes the full catalogue under All Jewelry, Diamond Jewelry and Gemstone Jewelry. Each opens into clear columns such as Shop by Type, Shop by Shape, Shop by Gemstone and Shop by Color, with featured collection images inside the menu. Customers can reach a specific category, like oval diamond jewelry or sapphire jewelry, in two clicks.",
-    image: `${IMG}/homepage-navigation.png`,
   },
   {
     num: "2.5",
@@ -163,19 +159,16 @@ const SOLUTIONS = [
       { text: "Shopify development for jewelry stores", href: "/shopify-development-services/" },
       " kept these pages fast and easy to use, even with many products in a single collection.",
     ],
-    image: `${IMG}/collection-filters.png`,
   },
   {
     num: "2.6",
     title: "Custom Search With Exact Keyword Matching",
     body: "Standard store search often returns loose, partial matches, which frustrates a customer who already knows what they want. We customized the search so it matches the exact keywords a customer types and brings up the specific product they are looking for, whether they search by product name, gemstone or style. Trending searches such as engagement rings, hoop earrings and studs appear as soon as the search opens.",
-    image: `${IMG}/gemstone-collection.png`,
   },
   {
     num: "2.7",
     title: "Metal Swatches on Listing Pages",
     body: "Each product card on the listing page shows yellow and white gold swatches. Customers can switch metals right from the collection page and see the same design in a different color without opening the product. This keeps collections tidy, since each design appears once instead of being listed twice.",
-    image: `${IMG}/metal-swatches.png`,
   },
   {
     num: "2.8",
@@ -185,7 +178,6 @@ const SOLUTIONS = [
       { text: "conversion rate optimization for ecommerce stores", href: "/conversion-rate-optimization-services/" },
       ", because it puts the offer in front of shoppers at the moment they are browsing.",
     ],
-    image: `${IMG}/offer-banner.png`,
   },
   {
     num: "2.9",
@@ -199,13 +191,50 @@ const SOLUTIONS = [
       "Product details such as stone type, shape, setting and clarity",
       "Care instructions, delivery and return information",
     ],
-    image: `${IMG}/size-guide.png`,
   },
   {
     num: "2.10",
     title: "360-Degree Product View",
     body: "To close the gap between browsing online and holding a piece in a store, we integrated Orbitvu's 360-degree viewer into the product pages. Customers can rotate the jewelry and see the setting, profile and sparkle from every angle before they buy.",
-    image: `${IMG}/bracelets-detail.png`,
+  },
+];
+
+/**
+ * The ten points, paired two per screenshot.
+ *
+ * This previously rendered as ten separate full-width image+text rows. That
+ * made the section a long scroll of near-identical blocks, and squeezed each
+ * 2560px browser capture into a half-width column where the UI it was meant to
+ * show became unreadable. Pairing the points keeps every word, halves the rows,
+ * and lets each screenshot run large enough to actually read.
+ *
+ * `points` indexes into SOLUTION_POINTS, so the copy has exactly one home.
+ */
+const SOLUTION_ROWS = [
+  {
+    image: `${IMG}/catalogue-architecture.png`,
+    alt: "Jewelry Direct — All Jewelry landing page with Shop by Category",
+    points: [0, 1],
+  },
+  {
+    image: `${IMG}/homepage-most-loved.png`,
+    alt: "Jewelry Direct — homepage Most Loved row and main navigation",
+    points: [2, 3],
+  },
+  {
+    image: `${IMG}/collection-filters.png`,
+    alt: "Jewelry Direct — collection page with filters and sort options",
+    points: [4, 5],
+  },
+  {
+    image: `${IMG}/offer-banner.png`,
+    alt: "Jewelry Direct — metal swatches and the welcome offer tile in the product grid",
+    points: [6, 7],
+  },
+  {
+    image: `${IMG}/size-guide.png`,
+    alt: "Jewelry Direct — ring size guide supporting the product pages",
+    points: [8, 9],
   },
 ];
 
@@ -313,25 +342,33 @@ export default async function JewelryDirectCaseStudy() {
               , built around how people actually shop for fine jewelry online.
             </p>
 
-            <div className="space-y-12 xl:space-y-16">
-              {SOLUTIONS.map((s, idx) => (
-                <div key={s.num} className="grid grid-cols-1 items-center gap-space-mini xl:gap-space lg:grid-cols-2">
-                  {/* Alternate image side on wide screens; text-only blocks span full width */}
-                  <div className={`animate fadeUp ${s.image && idx % 2 === 1 ? "lg:order-2" : ""} ${!s.image ? "lg:col-span-2" : ""}`}>
-                    <p className="mb-2 font-semibold text-primary">{s.num}</p>
-                    <h3 className="mb-4 font-24 font-semibold leading-tight">{s.title}</h3>
-                    <Body content={s.body} />
-                    {s.bullets && (
-                      <ul className="mt-3 list-disc space-y-2 pl-5 text-white/75 marker:text-primary">
-                        {s.bullets.map((b, i) => <li key={i}>{b}</li>)}
-                      </ul>
-                    )}
+            <div className="space-y-20 xl:space-y-32">
+              {SOLUTION_ROWS.map((row, idx) => (
+                <div key={row.image} className="grid grid-cols-1 items-center gap-space-mini xl:gap-space lg:grid-cols-2">
+                  {/* Screenshot alternates side on wide screens */}
+                  <figure className={`animate fadeUp ${idx % 2 === 1 ? "lg:order-2" : ""}`}>
+                    <Shot src={row.image} alt={row.alt} />
+                  </figure>
+                  <div className={`animate fadeUp space-y-10 xl:space-y-14 ${idx % 2 === 1 ? "lg:order-1" : ""}`} style={{ animationDelay: "0.1s" }}>
+                    {row.points.map((i) => {
+                      const s = SOLUTION_POINTS[i];
+                      return (
+                        <div key={s.num}>
+                          {/* Number sits inline with the title — "2.9 Product Pages …" */}
+                          <h3 className="mb-3 font-24 font-semibold leading-tight">
+                            <span className="mr-2 text-primary">{s.num}</span>{" "}
+                            {s.title}
+                          </h3>
+                          <Body content={s.body} />
+                          {s.bullets && (
+                            <ul className="mt-3 list-disc space-y-2 pl-5 text-white/75 marker:text-primary">
+                              {s.bullets.map((b, j) => <li key={j}>{b}</li>)}
+                            </ul>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
-                  {s.image && (
-                    <figure className={`animate fadeUp ${idx % 2 === 1 ? "lg:order-1" : ""}`} style={{ animationDelay: "0.1s" }}>
-                      <Shot src={s.image} alt={`${s.title} — Jewelry Direct`} />
-                    </figure>
-                  )}
                 </div>
               ))}
             </div>
