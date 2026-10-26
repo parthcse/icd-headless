@@ -213,27 +213,27 @@ const SOLUTION_POINTS = [
 const SOLUTION_ROWS = [
   {
     image: `${IMG}/catalogue-architecture.png`,
-    alt: "Jewelry Direct — All Jewelry landing page with Shop by Category",
+    alt: "Jewelry Direct — All Jewelry collection page: hero, Shop by Category and New Arrivals",
     points: [0, 1],
   },
   {
-    image: `${IMG}/homepage-most-loved.png`,
-    alt: "Jewelry Direct — homepage Most Loved row and main navigation",
+    image: `${IMG}/mega-menu.png`,
+    alt: "Jewelry Direct — mega menu open, with Shop by Type, diamond shapes and featured collections",
     points: [2, 3],
   },
   {
-    image: `${IMG}/collection-filters.png`,
-    alt: "Jewelry Direct — collection page with filters and sort options",
+    image: `${IMG}/search-overlay.png`,
+    alt: "Jewelry Direct — search panel open over a filtered collection, showing trending searches",
     points: [4, 5],
   },
   {
-    image: `${IMG}/offer-banner.png`,
-    alt: "Jewelry Direct — metal swatches and the welcome offer tile in the product grid",
+    image: `${IMG}/swatches-and-offer.png`,
+    alt: "Jewelry Direct — rings listing with metal swatches, filters and an offer tile in the grid",
     points: [6, 7],
   },
   {
     image: `${IMG}/size-guide.png`,
-    alt: "Jewelry Direct — ring size guide supporting the product pages",
+    alt: "Jewelry Direct — ring size guide with three measuring methods and the size chart",
     points: [8, 9],
   },
 ];
