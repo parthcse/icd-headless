@@ -111,7 +111,7 @@ const HERO = {
     { value: "14", label: "Gemstone Varieties" },
     { value: "4", label: "Core Jewelry Categories" },
   ],
-  image: `${IMG}/hero.png`,
+  image: `${IMG}/hero.jpg`,
 };
 
 const CHALLENGES = [
@@ -212,27 +212,27 @@ const SOLUTION_POINTS = [
  */
 const SOLUTION_ROWS = [
   {
-    image: `${IMG}/catalogue-architecture.png`,
+    image: `${IMG}/catalogue-architecture.jpg`,
     alt: "Jewelry Direct — All Jewelry collection page: hero, Shop by Category and New Arrivals",
     points: [0, 1],
   },
   {
-    image: `${IMG}/mega-menu.png`,
+    image: `${IMG}/mega-menu.jpg`,
     alt: "Jewelry Direct — mega menu open, with Shop by Type, diamond shapes and featured collections",
     points: [2, 3],
   },
   {
-    image: `${IMG}/search-overlay.png`,
+    image: `${IMG}/search-overlay.jpg`,
     alt: "Jewelry Direct — search panel open over a filtered collection, showing trending searches",
     points: [4, 5],
   },
   {
-    image: `${IMG}/swatches-and-offer.png`,
+    image: `${IMG}/swatches-and-offer.jpg`,
     alt: "Jewelry Direct — rings listing with metal swatches, filters and an offer tile in the grid",
     points: [6, 7],
   },
   {
-    image: `${IMG}/size-guide.png`,
+    image: `${IMG}/size-guide.jpg`,
     alt: "Jewelry Direct — ring size guide with three measuring methods and the size chart",
     points: [8, 9],
   },
