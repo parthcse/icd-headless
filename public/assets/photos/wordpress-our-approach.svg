@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 960" width="1024" height="960" role="img" aria-labelledby="t d">
+  <title id="t">Our approach to WordPress quality and performance</title>
+  <desc id="d">Five commitments on every build: clean coding, strategic planning, responsive design, speed and security, and creative ideas.</desc>
+
+  <style>
+    .h  { font: 700 37px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #16221F; }
+    .sub{ font: 400 20px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #5A6B68; }
+    .ct { font: 700 23px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #16221F; }
+    .cb { font: 400 17px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #5A6B68; }
+    .big{ font: 700 42px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #E6EFEC; }
+    .fb { font: 700 20px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #FFFFFF; }
+    .fs { font: 400 17px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #B8C6C2; }
+    .card { fill: #FFFFFF; stroke: #E2EAE8; stroke-width: 1.5; }
+    .ico { fill: none; stroke: #F17E3F; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  </style>
+
+  <rect width="1024" height="960" fill="#F3F7F6"/>
+  <g stroke="#DCE8E4" stroke-width="1.5" fill="none" opacity="0.9">
+    <path d="M0 144 L110 190 L184 116"/>
+    <path d="M1024 230 L938 280"/>
+    <path d="M1024 882 L936 860"/>
+  </g>
+  <g fill="#DCE8E4">
+    <circle cx="110" cy="190" r="5"/><circle cx="184" cy="116" r="3.5"/>
+    <circle cx="938" cy="280" r="5"/><circle cx="936" cy="860" r="4"/>
+  </g>
+
+  <text class="h" x="64" y="92">Quality at Every Step</text>
+  <text class="sub" x="64" y="128">Five things we hold to on every WordPress build.</text>
+
+  <!-- 01 clean coding -->
+  <g>
+    <rect class="card" x="64" y="176" width="896" height="104" rx="16"/>
+    <rect x="64" y="176" width="5" height="104" rx="2.5" fill="#F17E3F"/>
+    <circle cx="112" cy="228" r="19" fill="#FDEDE2"/>
+    <g class="ico" transform="translate(102 219)">
+      <path d="M6 2 L1 9 L6 16"/><path d="M14 2 L19 9 L14 16"/>
+    </g>
+    <text class="big" x="856" y="244">01</text>
+    <text class="ct" x="152" y="222">Clean coding</text>
+    <text class="cb" x="152" y="252">Written so the site runs smoothly and efficiently.</text>
+  </g>
+
+  <!-- 02 strategic planning -->
+  <g>
+    <rect class="card" x="64" y="294" width="896" height="104" rx="16"/>
+    <rect x="64" y="294" width="5" height="104" rx="2.5" fill="#F17E3F"/>
+    <circle cx="112" cy="346" r="19" fill="#FDEDE2"/>
+    <g class="ico" transform="translate(103 337)">
+      <circle cx="9" cy="9" r="8"/><circle cx="9" cy="9" r="3"/>
+    </g>
+    <text class="big" x="856" y="362">02</text>
+    <text class="ct" x="152" y="340">Strategic planning</text>
+    <text class="cb" x="152" y="370">A customised plan built around your business goals.</text>
+  </g>
+
+  <!-- 03 responsive design -->
+  <g>
+    <rect class="card" x="64" y="412" width="896" height="104" rx="16"/>
+    <rect x="64" y="412" width="5" height="104" rx="2.5" fill="#F17E3F"/>
+    <circle cx="112" cy="464" r="19" fill="#FDEDE2"/>
+    <g class="ico" transform="translate(101 455)">
+      <rect x="1" y="2" width="12" height="9" rx="1.5"/><rect x="15" y="5" width="5" height="12" rx="1.5"/>
+    </g>
+    <text class="big" x="856" y="480">03</text>
+    <text class="ct" x="152" y="458">Responsive design</text>
+    <text class="cb" x="152" y="488">Layouts that adapt to any screen size.</text>
+  </g>
+
+  <!-- 04 fast and secure -->
+  <g>
+    <rect class="card" x="64" y="530" width="896" height="104" rx="16"/>
+    <rect x="64" y="530" width="5" height="104" rx="2.5" fill="#F17E3F"/>
+    <circle cx="112" cy="582" r="19" fill="#FDEDE2"/>
+    <g class="ico" transform="translate(104 572)">
+      <path d="M8 1 L1 10 h6 l-1 8 L14 8 h-6 z"/>
+    </g>
+    <text class="big" x="856" y="598">04</text>
+    <text class="ct" x="152" y="576">Fast and secure</text>
+    <text class="cb" x="152" y="606">Speed and security prioritised on every project.</text>
+  </g>
+
+  <!-- 05 creative ideas -->
+  <g>
+    <rect class="card" x="64" y="648" width="896" height="104" rx="16"/>
+    <rect x="64" y="648" width="5" height="104" rx="2.5" fill="#F17E3F"/>
+    <circle cx="112" cy="700" r="19" fill="#FDEDE2"/>
+    <g class="ico" transform="translate(104 690)">
+      <path d="M8 1 a6 6 0 0 1 4 10.5 V14 h-8 v-2.5 A6 6 0 0 1 8 1 z"/><path d="M5 17.5 h6"/>
+    </g>
+    <text class="big" x="856" y="716">05</text>
+    <text class="ct" x="152" y="694">Creative ideas</text>
+    <text class="cb" x="152" y="724">Never just the basics, so your site stands out.</text>
+  </g>
+
+  <!-- footer -->
+  <rect x="64" y="790" width="896" height="104" rx="16" fill="#16221F"/>
+  <rect x="64" y="790" width="5" height="104" rx="2.5" fill="#F17E3F"/>
+  <text class="fb" x="96" y="834">Expertise, experience and dedication</text>
+  <text class="fs" x="96" y="864">Partnering with Icecube Digital gives your business all three.</text>
+</svg>

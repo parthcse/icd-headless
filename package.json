@@ -7,9 +7,9 @@
   },
   "scripts": {
     "predev": "node scripts/build-sitemap-manifest.mjs",
-    "dev": "next dev",
+    "dev": "next dev -p 3000",
     "predev:webpack": "node scripts/build-sitemap-manifest.mjs",
-    "dev:webpack": "next dev --webpack",
+    "dev:webpack": "next dev --webpack -p 3000",
     "prebuild": "node scripts/build-sitemap-manifest.mjs",
     "build": "next build",
     "build:css": "tailwindcss -i ./styles/input.css -o ./public/css/output.css --minify",

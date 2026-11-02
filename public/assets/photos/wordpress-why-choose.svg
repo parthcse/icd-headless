@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 960" width="1024" height="960" role="img" aria-labelledby="t d">
+  <title id="t">Why choose WordPress</title>
+  <desc id="d">Six reasons WordPress stays the platform of choice: beginner friendly, customisable themes and plugins, SEO optimisation, responsive design, constant security updates and a large community.</desc>
+
+  <style>
+    .h  { font: 700 37px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #16221F; }
+    .sub{ font: 400 20px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #5A6B68; }
+    .ct { font: 700 22px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #16221F; }
+    .cb { font: 400 17px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #5A6B68; }
+    .fb { font: 700 20px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #FFFFFF; }
+    .fs { font: 400 17px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #B8C6C2; }
+    .card { fill: #FFFFFF; stroke: #E2EAE8; stroke-width: 1.5; }
+    .ico { fill: none; stroke: #F17E3F; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  </style>
+
+  <rect width="1024" height="960" fill="#F3F7F6"/>
+  <g stroke="#DCE8E4" stroke-width="1.5" fill="none" opacity="0.9">
+    <path d="M0 140 L108 186 L182 112"/>
+    <path d="M1024 206 L940 254"/>
+    <path d="M1024 884 L938 862"/>
+  </g>
+  <g fill="#DCE8E4">
+    <circle cx="108" cy="186" r="5"/><circle cx="182" cy="112" r="3.5"/>
+    <circle cx="940" cy="254" r="5"/><circle cx="938" cy="862" r="4"/>
+  </g>
+
+  <text class="h" x="64" y="92">Why WordPress Works</text>
+  <text class="sub" x="64" y="128">Six reasons it stays the platform of choice.</text>
+
+  <!-- beginner friendly -->
+  <g>
+    <rect class="card" x="64" y="176" width="432" height="168" rx="16"/>
+    <rect x="64" y="176" width="5" height="168" rx="2.5" fill="#F17E3F"/>
+    <circle cx="112" cy="224" r="19" fill="#FDEDE2"/>
+    <g class="ico" transform="translate(103 215)">
+      <circle cx="9" cy="5.5" r="4"/><path d="M1.5 17 a7.5 7.5 0 0 1 15 0"/>
+    </g>
+    <text class="ct" x="96" y="276">Beginner Friendly</text>
+    <text class="cb" x="96" y="306">A user-friendly interface that needs</text>
+    <text class="cb" x="96" y="330">no coding knowledge.</text>
+  </g>
+
+  <!-- themes and plugins -->
+  <g>
+    <rect class="card" x="528" y="176" width="432" height="168" rx="16"/>
+    <rect x="528" y="176" width="5" height="168" rx="2.5" fill="#F17E3F"/>
+    <circle cx="576" cy="224" r="19" fill="#FDEDE2"/>
+    <g class="ico" transform="translate(566 215)">
+      <path d="M9 1 L17 5.5 L9 10 L1 5.5 z"/><path d="M1 11.5 L9 16 L17 11.5"/>
+    </g>
+    <text class="ct" x="560" y="276">Customisable themes and plugins</text>
+    <text class="cb" x="560" y="306">Endless customization options to meet</text>
+    <text class="cb" x="560" y="330">various website needs.</text>
+  </g>
+
+  <!-- seo -->
+  <g>
+    <rect class="card" x="64" y="368" width="432" height="168" rx="16"/>
+    <rect x="64" y="368" width="5" height="168" rx="2.5" fill="#F17E3F"/>
+    <circle cx="112" cy="416" r="19" fill="#FDEDE2"/>
+    <g class="ico" transform="translate(102 407)">
+      <circle cx="8" cy="8" r="6.5"/><path d="M12.8 12.8 L18 18"/>
+    </g>
+    <text class="ct" x="96" y="468">SEO optimisation</text>
+    <text class="cb" x="96" y="498">Helps the website rank higher in the</text>
+    <text class="cb" x="96" y="522">search engines.</text>
+  </g>
+
+  <!-- responsive -->
+  <g>
+    <rect class="card" x="528" y="368" width="432" height="168" rx="16"/>
+    <rect x="528" y="368" width="5" height="168" rx="2.5" fill="#F17E3F"/>
+    <circle cx="576" cy="416" r="19" fill="#FDEDE2"/>
+    <g class="ico" transform="translate(565 407)">
+      <rect x="1" y="2" width="12" height="9" rx="1.5"/><rect x="15" y="5" width="5" height="12" rx="1.5"/>
+    </g>
+    <text class="ct" x="560" y="468">Responsive design</text>
+    <text class="cb" x="560" y="498">Responsive layouts for a quality user</text>
+    <text class="cb" x="560" y="522">experience on every device.</text>
+  </g>
+
+  <!-- security -->
+  <g>
+    <rect class="card" x="64" y="560" width="432" height="168" rx="16"/>
+    <rect x="64" y="560" width="5" height="168" rx="2.5" fill="#F17E3F"/>
+    <circle cx="112" cy="608" r="19" fill="#FDEDE2"/>
+    <g class="ico" transform="translate(103 599)">
+      <path d="M9 1 L16.5 4 v6 c0 4.5 -3 7 -7.5 8.5 C4.5 17 1.5 14.5 1.5 10 V4 z"/><path d="M5.8 9.6 L8 11.8 L12.2 7.6"/>
+    </g>
+    <text class="ct" x="96" y="660">Constant security updates</text>
+    <text class="cb" x="96" y="690">Regular releases that enhance security</text>
+    <text class="cb" x="96" y="714">and functionality.</text>
+  </g>
+
+  <!-- community -->
+  <g>
+    <rect class="card" x="528" y="560" width="432" height="168" rx="16"/>
+    <rect x="528" y="560" width="5" height="168" rx="2.5" fill="#F17E3F"/>
+    <circle cx="576" cy="608" r="19" fill="#FDEDE2"/>
+    <g class="ico" transform="translate(565 600)">
+      <circle cx="6" cy="5" r="3.2"/><circle cx="14" cy="5" r="3.2"/>
+      <path d="M1 16 a5 5 0 0 1 10 0"/><path d="M9.5 16 a5 5 0 0 1 9.5 0"/>
+    </g>
+    <text class="ct" x="560" y="660">Large and supportive community</text>
+    <text class="cb" x="560" y="690">A dedicated community ready to solve</text>
+    <text class="cb" x="560" y="714">your problems.</text>
+  </g>
+
+  <!-- footer -->
+  <rect x="64" y="790" width="896" height="104" rx="16" fill="#16221F"/>
+  <rect x="64" y="790" width="5" height="104" rx="2.5" fill="#F17E3F"/>
+  <text class="fb" x="96" y="834">Blogs, portfolios, business sites, storefronts</text>
+  <text class="fs" x="96" y="864">One platform that scales from a first page to a full catalogue.</text>
+</svg>

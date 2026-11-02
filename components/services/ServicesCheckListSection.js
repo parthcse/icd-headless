@@ -16,9 +16,15 @@ function renderParts(parts) {
 }
 
 export default function ServicesCheckListSection({ data }) {
-  // Columns: `benefits` (single array) + `columns` (2|3) auto-splits into N even
-  // columns; otherwise the classic benefitsLeft/benefitsRight (1 or 2 columns).
+  // Columns: `benefits` (single array) + `columns` (2|3|4) auto-splits into N
+  // even columns; otherwise the classic benefitsLeft/benefitsRight (1 or 2).
+  //
+  // `iconSize: "small"` is for lists of short one-line labels (an industries
+  // list, say). The default row spacing is tuned for sentence-length benefits,
+  // so thirty short items run to an absurd height; small shrinks the tick and
+  // the row rhythm and drops the larger desktop type.
   const cols = data.columns || (data.benefitsRight ? 2 : 1);
+  const small = data.iconSize === "small";
   const columnLists = data.benefits
     ? Array.from({ length: cols }, (_, i) => {
         const per = Math.ceil(data.benefits.length / cols);
@@ -27,7 +33,18 @@ export default function ServicesCheckListSection({ data }) {
     : data.benefitsRight
     ? [data.benefitsLeft, data.benefitsRight]
     : [data.benefitsLeft];
-  const gridCols = cols >= 3 ? "md:grid-cols-3" : cols === 2 ? "md:grid-cols-2" : "";
+  const gridCols =
+    cols >= 4
+      ? "sm:grid-cols-2 lg:grid-cols-4"
+      : cols === 3
+      ? "md:grid-cols-3"
+      : cols === 2
+      ? "md:grid-cols-2"
+      : "";
+  const gridGap = small ? "gap-space-small" : "gap-space-mini xl:gap-space";
+  const rowRhythm = small
+    ? "[&>li]:items-center [&>li]:gap-[0.9em] [&>li]:pb-4 [&>li]:mb-4"
+    : "[&>li]:items-start [&>li]:gap-[1.2em] [&>li]:pb-space-small [&>li]:mb-space-small";
   return (
     <section className="services-checklist full-section">
       <div className="container">
@@ -40,22 +57,26 @@ export default function ServicesCheckListSection({ data }) {
               ))
             : <p className="mx-auto max-w-5xl">{data.subtitle}</p>}
         </div>
-        <div className={`grid grid-cols-1 ${gridCols} gap-space-mini xl:gap-space mx-auto max-w-[1280px] lg:font-22 font-normal`}>
+        <div className={`grid grid-cols-1 ${gridCols} ${gridGap} mx-auto max-w-[1280px] font-normal${small ? " text-lg" : " lg:font-22"}`}>
           {columnLists.map((col, ci) => (
             <ul
               key={ci}
-              className="[&>li]:flex [&>li]:items-start [&>li]:gap-[1.2em] [&>li]:pb-space-small [&>li]:mb-space-small [&>li]:border-b [&>li]:border-white/15 [&>li:last-child]:pb-0 [&>li:last-child]:mb-0 [&>li:last-child]:border-0"
+              className={`[&>li]:flex ${rowRhythm} [&>li]:border-b [&>li]:border-white/15 [&>li:last-child]:pb-0 [&>li:last-child]:mb-0 [&>li:last-child]:border-0`}
             >
               {col.map((item, i) => (
                 <li key={i}>
-                  <CheckPrimaryIcon className="w-[2.4em] min-w-[2.4em] shrink-0" />
+                  <CheckPrimaryIcon
+                    className={`shrink-0 ${small ? "w-[1.5em] min-w-[1.5em]" : "w-[2.4em] min-w-[2.4em]"}`}
+                  />
                   {typeof item === "object" && item.title ? (
                     <div>
                       <p className="font-semibold">{item.title}</p>
                       <p className="font-normal">{item.body}</p>
                     </div>
                   ) : (
-                    <p className="font-normal">{Array.isArray(item) ? renderParts(item) : item}</p>
+                    <p className={small ? "font-medium" : "font-normal"}>
+                      {Array.isArray(item) ? renderParts(item) : item}
+                    </p>
                   )}
                 </li>
               ))}
