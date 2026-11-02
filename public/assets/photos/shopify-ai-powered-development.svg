@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 960" width="1024" height="960" role="img" aria-labelledby="t d">
+  <title id="t">AI-powered Shopify development for scalable growth</title>
+  <desc id="d">Three stages — initial setup, advanced customization and performance optimization — feeding a rising growth chart, with focus on site speed, user experience and conversion rate.</desc>
+
+  <style>
+    .h  { font: 700 37px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #16221F; }
+    .sub{ font: 400 20px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #5A6B68; }
+    .ct { font: 700 23px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #16221F; }
+    .cb { font: 400 17px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #5A6B68; }
+    .n  { font: 700 16px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #F17E3F; }
+    .chip { font: 700 17px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #16221F; }
+    .lead { font: 700 17px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #5A6B68; }
+    .ax { font: 700 15px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #5A6B68; }
+    .fb { font: 700 20px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #FFFFFF; }
+    .fs { font: 400 17px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #B8C6C2; }
+    .card { fill: #FFFFFF; stroke: #E2EAE8; stroke-width: 1.5; }
+    .ico { fill: none; stroke: #F17E3F; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  </style>
+
+  <rect width="1024" height="960" fill="#F3F7F6"/>
+  <g stroke="#DCE8E4" stroke-width="1.5" fill="none" opacity="0.9">
+    <path d="M0 140 L110 186 L186 112"/>
+    <path d="M1024 236 L934 288 L862 232"/>
+    <path d="M52 884 L146 824 L246 870"/>
+  </g>
+  <g fill="#DCE8E4">
+    <circle cx="110" cy="186" r="5"/><circle cx="186" cy="112" r="3.5"/>
+    <circle cx="934" cy="288" r="5"/><circle cx="862" cy="232" r="3.5"/>
+    <circle cx="146" cy="824" r="5"/><circle cx="246" cy="870" r="3.5"/>
+  </g>
+
+  <text class="h" x="56" y="92">AI-Powered Shopify Development</text>
+  <text class="sub" x="56" y="128">Aligned to your business goals, built to scale.</text>
+
+  <!-- stage 1 -->
+  <g>
+    <rect class="card" x="56" y="176" width="440" height="136" rx="16"/>
+    <rect x="56" y="176" width="5" height="136" rx="2.5" fill="#F17E3F"/>
+    <circle cx="104" cy="224" r="19" fill="#FDEDE2"/>
+    <g class="ico" transform="translate(94 214)">
+      <rect x="1" y="2" width="16" height="12" rx="1.5"/><path d="M6 18 h6"/><path d="M9 14 v4"/>
+    </g>
+    <text class="n" x="136" y="217">STAGE 1</text>
+    <text class="ct" x="136" y="243">Initial Setup</text>
+    <text class="cb" x="88" y="286">Store configuration, theme and catalogue setup.</text>
+  </g>
+
+  <!-- stage 2 -->
+  <g>
+    <rect class="card" x="56" y="330" width="440" height="136" rx="16"/>
+    <rect x="56" y="330" width="5" height="136" rx="2.5" fill="#F17E3F"/>
+    <circle cx="104" cy="378" r="19" fill="#FDEDE2"/>
+    <g class="ico" transform="translate(94 368)">
+      <path d="M2 7 L7 2 L12 7"/><path d="M7 2 v14"/><path d="M12 13 L17 18"/>
+    </g>
+    <text class="n" x="136" y="371">STAGE 2</text>
+    <text class="ct" x="136" y="397">Advanced Customization</text>
+    <text class="cb" x="88" y="440">Functionality and integrations built to your model.</text>
+  </g>
+
+  <!-- stage 3 -->
+  <g>
+    <rect class="card" x="56" y="484" width="440" height="136" rx="16"/>
+    <rect x="56" y="484" width="5" height="136" rx="2.5" fill="#F17E3F"/>
+    <circle cx="104" cy="532" r="19" fill="#FDEDE2"/>
+    <g class="ico" transform="translate(95 522)">
+      <path d="M9 1 L3 11 h5 l-2 8 L15 9 h-5 z"/>
+    </g>
+    <text class="n" x="136" y="525">STAGE 3</text>
+    <text class="ct" x="136" y="551">Performance Optimization</text>
+    <text class="cb" x="88" y="594">Speed, Core Web Vitals and ongoing support.</text>
+  </g>
+
+  <!-- growth panel -->
+  <g>
+    <rect class="card" x="528" y="176" width="440" height="444" rx="16"/>
+    <rect x="528" y="176" width="5" height="444" rx="2.5" fill="#F17E3F"/>
+    <text class="ct" x="560" y="222">Scalable Growth</text>
+    <text class="cb" x="560" y="250">Measured, not assumed.</text>
+
+    <g stroke="#E2EAE8" stroke-width="1.5" stroke-dasharray="5 6">
+      <path d="M560 300 H936"/><path d="M560 390 H936"/><path d="M560 480 H936"/>
+    </g>
+    <path d="M560 560 H936" stroke="#CFDEDA" stroke-width="2"/>
+
+    <rect x="580" y="470" width="56" height="90" rx="5" fill="#FBD9C2"/>
+    <rect x="668" y="410" width="56" height="150" rx="5" fill="#F8BE98"/>
+    <rect x="756" y="340" width="56" height="220" rx="5" fill="#F5A370"/>
+    <rect x="844" y="266" width="56" height="294" rx="5" fill="#F17E3F"/>
+
+    <path d="M592 452 C 700 430, 790 350, 886 258" stroke="#16221F" stroke-width="2.2" stroke-dasharray="6 6" fill="none"/>
+    <path d="M866 264 L886 258 L880 278" stroke="#16221F" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <text class="ax" x="588" y="586">Setup</text>
+    <text class="ax" x="678" y="586">Build</text>
+    <text class="ax" x="770" y="586">Tune</text>
+    <text class="ax" x="856" y="586">Scale</text>
+  </g>
+
+  <!-- focus -->
+  <text class="lead" x="56" y="668">WHERE WE FOCUS</text>
+  <g>
+    <rect class="card" x="56" y="690" width="214" height="58" rx="29"/>
+    <circle cx="94" cy="719" r="6" fill="#F17E3F"/>
+    <text class="chip" x="114" y="725">Site speed</text>
+
+    <rect class="card" x="286" y="690" width="286" height="58" rx="29"/>
+    <circle cx="324" cy="719" r="6" fill="#F17E3F"/>
+    <text class="chip" x="344" y="725">User experience</text>
+
+    <rect class="card" x="588" y="690" width="284" height="58" rx="29"/>
+    <circle cx="626" cy="719" r="6" fill="#F17E3F"/>
+    <text class="chip" x="646" y="725">Conversion rate</text>
+  </g>
+
+  <!-- footer -->
+  <rect x="56" y="800" width="912" height="104" rx="16" fill="#16221F"/>
+  <rect x="56" y="800" width="5" height="104" rx="2.5" fill="#F17E3F"/>
+  <text class="fb" x="88" y="844">SEO and UX/UI design built in</text>
+  <text class="fs" x="88" y="874">Proven practices and data-driven insights, from first setup to full scale.</text>
+</svg>
