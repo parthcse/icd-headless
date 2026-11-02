@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 960" width="1024" height="960" role="img" aria-labelledby="t d">
+  <title id="t">How a white label WordPress agency works behind your brand</title>
+  <desc id="d">Your agency stays client-facing while a white label team of developers, designers and QA specialists delivers behind an NDA-protected boundary.</desc>
+
+  <style>
+    .h  { font: 700 37px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #16221F; }
+    .sub{ font: 400 20px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #5A6B68; }
+    .ct { font: 700 24px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #16221F; }
+    .cw { font: 700 24px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #FFFFFF; }
+    .cb { font: 400 17px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #5A6B68; }
+    .cbw{ font: 400 17px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #B8C6C2; }
+    .n  { font: 700 16px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #F17E3F; }
+    .chip { font: 700 17px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #16221F; }
+    .chipw{ font: 700 17px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #FFFFFF; }
+    .lead { font: 700 17px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #5A6B68; }
+    .bnd { font: 700 15px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #8C9C98; }
+    .fb { font: 700 20px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #FFFFFF; }
+    .fs { font: 400 17px "Gilroy", "Segoe UI", Helvetica, Arial, sans-serif; fill: #B8C6C2; }
+    .card { fill: #FFFFFF; stroke: #E2EAE8; stroke-width: 1.5; }
+  </style>
+
+  <rect width="1024" height="960" fill="#F3F7F6"/>
+  <g stroke="#DCE8E4" stroke-width="1.5" fill="none" opacity="0.9">
+    <path d="M0 142 L110 188 L186 114"/>
+    <path d="M1024 198 L938 246"/>
+    <path d="M1024 884 L936 862"/>
+  </g>
+  <g fill="#DCE8E4">
+    <circle cx="110" cy="188" r="5"/><circle cx="186" cy="114" r="3.5"/>
+    <circle cx="938" cy="246" r="5"/><circle cx="936" cy="862" r="4"/>
+  </g>
+
+  <text class="h" x="64" y="92">Your Brand, Our Code</text>
+  <text class="sub" x="64" y="128">A full WordPress team working behind your agency.</text>
+
+  <!-- client-facing layer -->
+  <g>
+    <rect class="card" x="64" y="172" width="896" height="132" rx="16"/>
+    <rect x="64" y="172" width="5" height="132" rx="2.5" fill="#F17E3F"/>
+    <text class="n" x="96" y="208">CLIENT-FACING</text>
+    <text class="ct" x="96" y="238">Your Agency</text>
+
+    <rect x="96" y="256" width="168" height="34" rx="17" fill="#F3F7F6" stroke="#E2EAE8" stroke-width="1.5"/>
+    <text class="chip" x="130" y="279">Sales</text>
+    <rect x="280" y="256" width="186" height="34" rx="17" fill="#F3F7F6" stroke="#E2EAE8" stroke-width="1.5"/>
+    <text class="chip" x="312" y="279">Strategy</text>
+    <rect x="482" y="256" width="282" height="34" rx="17" fill="#F3F7F6" stroke="#E2EAE8" stroke-width="1.5"/>
+    <text class="chip" x="514" y="279">Client relationships</text>
+  </g>
+
+  <!-- boundary -->
+  <path d="M64 334 H378" stroke="#C6D6D2" stroke-width="2" stroke-dasharray="7 7"/>
+  <path d="M684 334 H960" stroke="#C6D6D2" stroke-width="2" stroke-dasharray="7 7"/>
+  <text class="bnd" x="396" y="340">NDA-PROTECTED BOUNDARY</text>
+
+  <!-- delivery layer -->
+  <g>
+    <rect x="64" y="366" width="896" height="180" rx="16" fill="#16221F"/>
+    <rect x="64" y="366" width="5" height="180" rx="2.5" fill="#F17E3F"/>
+    <text class="n" x="96" y="404">BEHIND THE SCENES</text>
+    <text class="cw" x="96" y="434">Your White Label Team</text>
+    <text class="cbw" x="96" y="464">Theme customization, plugin architecture, maintenance — under your name.</text>
+
+    <rect x="96" y="486" width="214" height="36" rx="18" fill="#243430"/>
+    <text class="chipw" x="130" y="510">Developers</text>
+    <rect x="326" y="486" width="200" height="36" rx="18" fill="#243430"/>
+    <text class="chipw" x="360" y="510">Designers</text>
+    <rect x="542" y="486" width="238" height="36" rx="18" fill="#243430"/>
+    <text class="chipw" x="576" y="510">QA specialists</text>
+  </g>
+
+  <!-- benefits -->
+  <text class="lead" x="64" y="600">WHAT YOUR AGENCY GAINS</text>
+  <g>
+    <rect class="card" x="64" y="618" width="288" height="56" rx="28"/>
+    <circle cx="102" cy="646" r="6" fill="#F17E3F"/>
+    <text class="chip" x="122" y="652">NDA accountability</text>
+
+    <rect class="card" x="368" y="618" width="288" height="56" rx="28"/>
+    <circle cx="406" cy="646" r="6" fill="#F17E3F"/>
+    <text class="chip" x="426" y="652">Quality-tested code</text>
+
+    <rect class="card" x="672" y="618" width="288" height="56" rx="28"/>
+    <circle cx="710" cy="646" r="6" fill="#F17E3F"/>
+    <text class="chip" x="730" y="652">Offshore cost advantage</text>
+
+    <rect class="card" x="64" y="690" width="288" height="56" rx="28"/>
+    <circle cx="102" cy="718" r="6" fill="#F17E3F"/>
+    <text class="chip" x="122" y="724">Rich resource library</text>
+
+    <rect class="card" x="368" y="690" width="288" height="56" rx="28"/>
+    <circle cx="406" cy="718" r="6" fill="#F17E3F"/>
+    <text class="chip" x="426" y="724">Higher client retention</text>
+
+    <rect class="card" x="672" y="690" width="288" height="56" rx="28"/>
+    <circle cx="710" cy="718" r="6" fill="#F17E3F"/>
+    <text class="chip" x="730" y="724">Scales with your growth</text>
+  </g>
+
+  <!-- footer -->
+  <rect x="64" y="790" width="896" height="104" rx="16" fill="#16221F"/>
+  <rect x="64" y="790" width="5" height="104" rx="2.5" fill="#F17E3F"/>
+  <text class="fb" x="96" y="834">No hiring, no training, no delays</text>
+  <text class="fs" x="96" y="864">Scale up or down with project demand, without upfront investment.</text>
+</svg>
