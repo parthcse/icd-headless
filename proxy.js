@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { REDIRECTS } from "@/lib/redirects.mjs";
+import { GONE_HTML, isGone } from "@/lib/gone.mjs";
 
 /**
  * Request-time rewrites and redirects. (Next.js 16 "proxy" file convention —
@@ -58,6 +59,21 @@ export async function proxy(request) {
     const lower = request.nextUrl.clone();
     lower.pathname = pathname.toLowerCase();
     return NextResponse.redirect(lower, 308);
+  }
+
+  // Retired URLs (lib/gone.mjs) — 410 Gone, deliberately never a redirect.
+  // Checked after the lowercase hop so a mixed-case spelling normalises first,
+  // and before app/blog/[slug], which would otherwise serve the post WordPress
+  // still publishes.
+  if (isGone(pathname)) {
+    return new NextResponse(GONE_HTML, {
+      status: 410,
+      headers: {
+        "content-type": "text/html; charset=utf-8",
+        "x-robots-tag": "noindex",
+        "cache-control": "public, max-age=3600",
+      },
+    });
   }
 
   // Yoast's convention, preserved: /sitemap.xml is a 301 to the real index at
