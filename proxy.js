@@ -76,6 +76,34 @@ export async function proxy(request) {
     });
   }
 
+  // A trailing /page/1/ is the same resource as the un-paginated base URL.
+  // BlogPagination already links page 1 as the base path, so nothing on the
+  // site generates these — they come from old crawls and external links.
+  // One rule covers the blog root, author and category archives; /page/2/
+  // and up are untouched.
+  if (pathname.endsWith("/page/1/")) {
+    const base = request.nextUrl.clone();
+    base.pathname = pathname.slice(0, -"page/1/".length);
+    return NextResponse.redirect(base, 301);
+  }
+
+  // A malformed internal link published a /blog URL with a space instead of
+  // the slash after /blog. The post itself has to be fixed in the CMS; this
+  // catches the copies already crawled.
+  // nextUrl.pathname keeps the %20 encoded, so test the decoded form too.
+  const decodedPath = (() => {
+    try {
+      return decodeURIComponent(pathname);
+    } catch {
+      return pathname;
+    }
+  })();
+  if (decodedPath.startsWith("/blog ")) {
+    const fixed = request.nextUrl.clone();
+    fixed.pathname = `/blog/${decodedPath.slice("/blog ".length)}`;
+    return NextResponse.redirect(fixed, 301);
+  }
+
   // Yoast's convention, preserved: /sitemap.xml is a 301 to the real index at
   // /sitemap_index.xml, not a second copy of it. robots.txt advertises
   // /sitemap.xml, and Search Console has followed this hop for years.
@@ -93,7 +121,12 @@ export async function proxy(request) {
       return NextResponse.next();
     }
     if (!res.ok) return NextResponse.next();
-    const txt = (await res.text()).replace(/https:\/\/cms\.icecubedigital\.com(?!\/wp-content)/g, PUBLIC_ORIGIN);
+    const txt = (await res.text())
+      .replace(/https:\/\/cms\.icecubedigital\.com(?!\/wp-content)/g, PUBLIC_ORIGIN)
+      // The CMS still lists /joomla-development-services/, which now 410s.
+      .split("\n")
+      .filter((line) => !line.includes("/joomla-development-services/"))
+      .join("\n");
     return new NextResponse(txt, {
       status: 200,
       headers: {
