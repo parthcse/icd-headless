@@ -90,6 +90,13 @@
     .blog-content figure { @apply my-6; }
     .blog-content figure figcaption { @apply mt-2 text-center text-sm text-white/55; }
     .blog-content blockquote { @apply my-6 border-l-4 border-primary pl-4 italic text-white/70; }
+    /* Code blocks scroll inside their own box. Without overflow-x the browser
+       default (white-space: pre, no overflow) lets a long line stretch the
+       article and put a horizontal scrollbar on the whole page — WP posts ship
+       <pre> lines of 200+ characters. */
+    .blog-content pre { @apply my-6 overflow-x-auto rounded-lg border border-[#2a2a2a] bg-black-light p-4 text-sm leading-relaxed; }
+    .blog-content pre code { @apply bg-transparent p-0 font-normal text-white/90; }
+    .blog-content :not(pre) > code { @apply rounded bg-black-light px-1.5 py-0.5 text-[0.9em] text-white; }
     .blog-content table { @apply my-6 w-full border-collapse text-sm; }
     .blog-content th, .blog-content td { @apply border border-[#2a2a2a] px-3 py-2 text-left align-top; }
     .blog-content th { @apply bg-black-light font-semibold text-white; }
