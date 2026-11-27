@@ -69,7 +69,9 @@ function InfoTable({ columns, rows }) {
 export default function ServicesInfoSection({ data }) {
   const isCenter = data.contentAlign === "center";
   return (
-    <section className="services-information full-section">
+    // `sectionId` is optional: it renders an id so another section can link
+    // to this one with an in-page anchor (#id).
+    <section className="services-information full-section" id={data.sectionId}>
       <div className="container">
         <div className={`heading-wrap animate fadeUp${isCenter ? " text-center" : ""}`}>
           <h3 className="font-48">{data.eyebrow}</h3>

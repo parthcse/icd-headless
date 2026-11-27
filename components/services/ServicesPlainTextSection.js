@@ -16,7 +16,9 @@ function renderParts(parts) {
 
 export default function ServicesPlainTextSection({ data }) {
   return (
-    <section className="services-plain-text full-section">
+    // `sectionId` is optional: it renders an id so another section can link
+    // to this one with an in-page anchor (#id).
+    <section className="services-plain-text full-section" id={data.sectionId}>
       <div className="container">
         {(data.eyebrow || data.title) && (
           <div className="heading-wrap pb-2 animate fadeUp">

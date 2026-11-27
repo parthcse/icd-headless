@@ -37,8 +37,14 @@ export default function ServicesTopIconBoxSection({ data }) {
           </div>
         )}
         <div className={`flex flex-wrap justify-center ${data.contentAlign === "left" ? "text-left" : "text-center"} gap-6 leading-relaxed`}>
-          {data.items.map((item, i) => (
-            <div key={i} className={`${itemW} bg-black-light py-space-small px-4 md:px-6 xl:px-8`}>
+          {data.items.map((item, i) => {
+            // `item.href` turns the whole card into a link (the industry
+            // grids use it). Without href the card stays a plain div, so every
+            // existing topIconBox renders exactly as it did before.
+            const Card = item.href ? "a" : "div";
+            const linkProps = item.href ? { href: item.href, ...linkAttrs(item.href) } : {};
+            return (
+              <Card key={i} {...linkProps} className={`${itemW} bg-black-light py-space-small px-4 md:px-6 xl:px-8${item.href ? " transition-colors hover:text-primary" : ""}`}>
               {item.icon && <img loading="lazy" className={`${data.iconClass || "max-w-28 sm:max-w-20"} mb-6 ${data.contentAlign === "left" ? "mx-0" : "mx-auto"}`} src={item.icon} alt="" />}
               <h3 className="font-semibold font-22">{item.title}</h3>
               {item.body && <p>{Array.isArray(item.body) ? renderParts(item.body) : item.body}</p>}
@@ -48,8 +54,9 @@ export default function ServicesTopIconBoxSection({ data }) {
                 </ul>
               )}
               {item.bodyAfter && <p>{Array.isArray(item.bodyAfter) ? renderParts(item.bodyAfter) : item.bodyAfter}</p>}
-            </div>
-          ))}
+            </Card>
+            );
+          })}
         </div>
         {data.footerNote && (
           <p className="text-center max-w-4xl mx-auto mt-10 leading-relaxed">{Array.isArray(data.footerNote) ? renderParts(data.footerNote) : data.footerNote}</p>
