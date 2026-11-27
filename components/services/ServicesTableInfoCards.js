@@ -49,9 +49,9 @@ export default function ServicesTableInfoCards({ data }) {
               >
                 <div className="bg-primary flex flex-col items-center justify-center py-4 px-6 xl:py-6 xl:px-8 text-center">
                   <h3 className="font-22 font-semibold mb-0">{plan.name}</h3>
-                  {/* Caption naming what the first body row holds, e.g. "(Best for)". */}
+                  {/* Caption naming what the first body row holds, e.g. "BEST FOR". */}
                   {data.firstRowLabel && (
-                    <p className="text-sm font-normal mb-0 mt-1">({data.firstRowLabel})</p>
+                    <p className="text-base font-semibold uppercase tracking-wide mb-0 mt-1">{data.firstRowLabel}</p>
                   )}
                 </div>
                 {Array.from({ length: rowCount }).map((_, j) => (
